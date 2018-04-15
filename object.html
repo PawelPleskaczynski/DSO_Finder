@@ -17,7 +17,7 @@
         margin-right: auto;
         width: 85%;
       }
-      #table {
+      .table {
         font-size: xx-small;
       }
       .btn-secondary {
@@ -31,7 +31,7 @@
         margin-right: auto;
         width: 512px;
       }
-      #table {
+      #table_div {
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -51,9 +51,13 @@
       top: 50%;
       -webkit-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
+      mix-blend-mode: difference;
       z-index: 1;
     }
-    #table {
+    .table {
+      margin-bottom: 25px;
+    }
+    #table_div {
       display: none;
     }
     #loading_text_img {
@@ -63,6 +67,7 @@
       -webkit-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
       z-index: 1;
+      mix-blend-mode: difference;
       color: #fff;
       display: none;
     }
@@ -78,14 +83,32 @@
     #obs {
       z-index: 2;
     }
+    #DSO_image {
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
+    }
     </style>
   </head>
   <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-      <a class="navbar-brand" href="index.html">DSO Finder</a>
-      <span class="badge badge-warning">Beta</span>
-    </nav>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="index.html">DSO Finder</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor03">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/PawelPleskaczynski/DSO_Finder/blob/master/README.md">About</a>
+        </li>
+      </ul>
+      <div class="form-inline my-2 my-lg-0">
+        <input type="text" class="form-control" placeholder="Search for another DSO" id="input_name" style="margin-right: 16px;">
+        <a class="btn btn-secondary btn-md" href="#" onclick="openDSO()" role="button">Search</a>
+      </div>
+    </div>
+  </nav>
 
     <div>
       <h2 class="blink" id="loading_text">Loading...</h4>
@@ -117,7 +140,17 @@
       </div>
     </div>
 
-    <table id="table" class="table table-hover"></table>
+    <div id="table_div">
+      <p>Object type</p>
+      <table id="table_type" class="table table-hover"></table>
+
+      <p>Catalog numbers</p>
+      <table id="table_aliases" class="table table-hover"></table>
+
+      <p>Fluxes</p>
+      <table id="table_fluxes" class="table table-hover"></table>
+    </div>
+
 
   <script src="object.js"></script>
   </body>
