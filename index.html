@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>DSO Finder</title>
+    <link rel="stylesheet" href="theme/bootstrap/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+    <!--<meta name="theme-color" content="#4DB6AC"/>-->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">
+    @media only screen and (max-width: 730px) {
+      .jumbotron {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+        margin-top: 25px
+      }
+    }
+    @media only screen and (min-width: 730px) {
+      .jumbotron {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+        margin-top: 50px
+      }
+    }
+    </style>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+      <a class="navbar-brand" href="#">DSO Finder</a>
+      <span class="badge badge-warning">Beta</span>
+    </nav>
+
+    <div class="alert alert-warning" style="margin-top: 30px; margin-left:80px; margin-right:80px;">
+      <h4 class="alert-heading">Warning!</h4>
+      <p class="mb-0">This website is in beta phase, some data might not load/load really slow.</p>
+    </div>
+
+    <div class="jumbotron">
+      <h2>Find astronomical object</h2>
+
+      <p class="lead">Type name/coordinates of an object to find its image from DSS and SDSS sky surveys</p> <!--TODO: opis-->
+
+      <hr class="my-4">
+      <div id="nameinput">
+        <input type="text" class="form-control" placeholder="Name of the object (eg. M42, NGC 1976) / coordinates" id="input_name">
+        <p class="lead" style="margin-top: 25px;">
+          <a class="btn btn-primary btn-lg" href="#" onclick="openDSO()" role="button">Find object</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <p>Powered by <a href="https://api.arcsecond.io/?/">arcsecond.io</a>, <a href="http://skyserver.sdss.org/dr12/en/help/docs/api.aspx#imgcutout">SDSS SkyServer</a> and <a href="http://archive.eso.org/dss/dss">ESO DSS Archive</a>.</p>
+    </div>
+
+
+  </body>
+</html>

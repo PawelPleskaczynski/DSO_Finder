@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>DSO Finder</title>
+    <link rel="stylesheet" href="theme/bootstrap/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!--<meta name="theme-color" content="#4DB6AC"/>-->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">
+    @media only screen and (max-width: 1024px) {
+      #card{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 85%;
+      }
+      #table {
+        font-size: xx-small;
+      }
+      .btn-secondary {
+        font-size: small;
+      }
+    }
+    @media only screen and (min-width: 1024px) {
+      #card{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 512px;
+      }
+      #table {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+      }
+    }
+    #card {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    #card {
+      display: none;
+    }
+    #loading_text {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+    #table {
+      display: none;
+    }
+    #loading_text_img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      color: #fff;
+      display: none;
+    }
+    .blink {
+      animation: blinker 2s ease infinite;
+    }
+
+    @keyframes blinker {
+      50% {
+        opacity: 0.3;
+      }
+    }
+    #obs {
+      z-index: 2;
+    }
+    </style>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+      <a class="navbar-brand" href="index.html">DSO Finder</a>
+      <span class="badge badge-warning">Beta</span>
+    </nav>
+
+    <div>
+      <h2 class="blink" id="loading_text">Loading...</h4>
+    </div>
+
+    <div>
+      <h2 class="blink" id="loading_text_img">Loading...</h4>
+    </div>
+
+    <div class="card" id="card">
+      <img class="card-img-top" src="" alt="Card image" id="DSO_image">
+      <div class="card-body">
+        <h5 class="card-title" id="cardtitle">Name</h5>
+        <p class="card-text" id="card_ra">RA</p>
+        <p class="card-text" id="card_dec">DEC</p>
+        <p class="card-text"><a href="#" id="link_simbad">SIMBAD database</a></p>
+        <div>
+          <div class="btn-group btn-group-toggle" data-toggle="buttons" id="obs">
+            <label class="btn btn-secondary active">
+              <input type="radio" name="options" id="option_r" autocomplete="off" checked="" onchange="option_r()">DSS Red</label>
+            <label class="btn btn-secondary">
+              <input type="radio" name="options" id="option_b" autocomplete="off" onchange="option_b()">DSS Blue</label>
+            <label class="btn btn-secondary">
+              <input type="radio" name="options" id="option_ir" autocomplete="off" onchange="option_ir()">DSS IR</label>
+            <label class="btn btn-secondary">
+              <input type="radio" name="options" id="option_sdss" autocomplete="off" onchange="option_sdss()">SDSS</label>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <table id="table" class="table table-hover"></table>
+
+  <script src="object.js"></script>
+  </body>
+</html>
