@@ -17,8 +17,8 @@ $(function () {
 })
 
 function load() {
-  const proxyURL = "https://cors-anywhere.herokuapp.com/";
-  const requestURL = "https://api.arcsecond.io/objects/" + getVar("obj") + "/?format=json";
+  var proxyURL = "https://cors-anywhere.herokuapp.com/";
+  var requestURL = "https://api.arcsecond.io/objects/" + getVar("obj") + "/?format=json";
   $.getJSON(proxyURL + requestURL, function(json) {
       var name = json.name;
       var coords = json.ICRS_coordinates;
@@ -35,7 +35,7 @@ function load() {
       var table_data_aliases = json.aliases;
       var table_data_fluxes = json.fluxes;
 
-      document.getElementById("loading_text").innerHTML = "Loading image...";
+      document.getElementById("loading_text").innerHTML = "Loading image…";
 
       createTable_object_types();
       createTable_aliases();
@@ -168,9 +168,9 @@ function load() {
 }
 
 function option_r() {
-  jQuery("#loading_text_img").show();
+  jQuery("#loading_bg").show();
   image.onload = function () {
-     jQuery("#loading_text_img").hide();
+     jQuery("#loading_bg").hide();
      black_white();
   }
   image.onerror = function() {
@@ -180,9 +180,9 @@ function option_r() {
   image.src = "http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=30.000000&y=30.000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
 }
 function option_b() {
-  jQuery("#loading_text_img").show();
+  jQuery("#loading_bg").show();
   image.onload = function () {
-     jQuery("#loading_text_img").hide();
+     jQuery("#loading_bg").hide();
      black_white();
   }
   image.onerror = function() {
@@ -192,9 +192,9 @@ function option_b() {
   image.src = "http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=30.000000&y=30.000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
 }
 function option_ir() {
-  jQuery("#loading_text_img").show();
+  jQuery("#loading_bg").show();
   image.onload = function () {
-     jQuery("#loading_text_img").hide();
+     jQuery("#loading_bg").hide();
      black_white();
   }
   image.onerror = function() {
@@ -204,9 +204,9 @@ function option_ir() {
   image.src = "http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=30.000000&y=30.000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
 }
 function option_sdss() {
-  jQuery("#loading_text_img").show();
+  jQuery("#loading_bg").show();
   image.onload = function () {
-     jQuery("#loading_text_img").hide();
+     jQuery("#loading_bg").hide();
      color();
   }
   image.onerror = function() {

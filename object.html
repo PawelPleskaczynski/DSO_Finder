@@ -62,15 +62,7 @@
       display: none;
     }
     #loading_text_img {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      -webkit-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
-      z-index: 1;
-      mix-blend-mode: difference;
       color: #fff;
-      display: none;
     }
     .alert {
       position: absolute;
@@ -97,6 +89,21 @@
     #DSO_image {
       -webkit-filter: grayscale(100%);
       filter: grayscale(100%);
+    }
+    .loading_bg {
+      position: absolute;
+      left: 50%;
+      top: 33%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      color: #fff;
+      border-radius: 8px;
+      background-color: rgba(0, 0, 0, 0.33);
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-top: 8px;
+      display: none;
     }
     </style>
   </head>
@@ -125,11 +132,7 @@
   </nav>
 
     <div>
-      <h2 class="blink" id="loading_text">Loading...</h4>
-    </div>
-
-    <div>
-      <h2 class="blink" id="loading_text_img">Loading...</h4>
+      <h2 class="blink" id="loading_text">Loading…</h2>
     </div>
 
     <div class="alert alert-danger">
@@ -138,7 +141,12 @@
     </div>
 
     <div class="card" id="card">
-      <img class="card-img-top" src="" alt="Card image" id="DSO_image">
+      <div>
+        <div class="loading_bg" id="loading_bg">
+          <h2 class="blink" id="loading_text_img">Loading…</h2>
+        </div>
+        <img class="card-img-top" src="" alt="Card image" id="DSO_image">
+      </div>
       <div class="card-body">
         <h5 class="card-title" id="cardtitle">Name</h5>
         <p class="card-text" id="card_ra">RA</p>
@@ -160,7 +168,7 @@
     </div>
 
     <div id="table_div">
-      <p data-toggle="tooltip" data-placement="left" data-original-title="Type of the object (eg. galaxy, nebula, star...).">Object type</p>
+      <p data-toggle="tooltip" data-placement="left" data-original-title="Type of the object (eg. galaxy, nebula, star…).">Object type</p>
       <table id="table_type" class="table table-hover"></table>
 
       <p data-toggle="tooltip" data-placement="left" data-original-title="Catalog numbers of this object.">Catalog numbers</p>
