@@ -53,6 +53,7 @@
       transform: translate(-50%, -50%);
       mix-blend-mode: difference;
       z-index: 1;
+      display: none;
     }
     .table {
       margin-bottom: 25px;
@@ -71,6 +72,16 @@
       color: #fff;
       display: none;
     }
+    .alert {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      display: none;
+    }
+
     .blink {
       animation: blinker 2s ease infinite;
     }
@@ -100,6 +111,9 @@
     <div class="collapse navbar-collapse" id="navbarColor03">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
+          <a class="nav-link" href="help.html">Help</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="https://github.com/PawelPleskaczynski/DSO_Finder/blob/master/README.md">About</a>
         </li>
       </ul>
@@ -116,6 +130,11 @@
 
     <div>
       <h2 class="blink" id="loading_text_img">Loading...</h4>
+    </div>
+
+    <div class="alert alert-danger">
+      <h4 class="alert-heading">Error!</h4>
+      <p class="mb-0">Couldn't find object.</p>
     </div>
 
     <div class="card" id="card">
@@ -141,13 +160,13 @@
     </div>
 
     <div id="table_div">
-      <p>Object type</p>
+      <p data-toggle="tooltip" data-placement="left" data-original-title="Type of the object (eg. galaxy, nebula, star...).">Object type</p>
       <table id="table_type" class="table table-hover"></table>
 
-      <p>Catalog numbers</p>
+      <p data-toggle="tooltip" data-placement="left" data-original-title="Catalog numbers of this object.">Catalog numbers</p>
       <table id="table_aliases" class="table table-hover"></table>
 
-      <p>Fluxes</p>
+      <p data-toggle="tooltip" data-placement="left" data-original-title="Brightness of the object in different wavelengths.">Fluxes</p>
       <table id="table_fluxes" class="table table-hover"></table>
     </div>
 

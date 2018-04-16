@@ -10,6 +10,11 @@ var dec;
 var image = document.getElementById("DSO_image");
 
 window.onLoad = load();
+window.onLoad = jQuery("#loading_text").fadeIn("slow");
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 
 function load() {
   const proxyURL = "https://cors-anywhere.herokuapp.com/";
@@ -17,6 +22,10 @@ function load() {
   $.getJSON(proxyURL + requestURL, function(json) {
       var name = json.name;
       var coords = json.ICRS_coordinates;
+      if (coords == null || coords == "null") {
+        jQuery("#loading_text").fadeOut("slow");
+        jQuery(".alert").fadeIn("slow");
+      }
       ra = coords.right_ascension;
       dec = coords.declination;
       title.innerHTML = bigLetter(name);
@@ -25,6 +34,8 @@ function load() {
       var table_data_object_types = json.object_types;
       var table_data_aliases = json.aliases;
       var table_data_fluxes = json.fluxes;
+
+      document.getElementById("loading_text").innerHTML = "Loading image...";
 
       createTable_object_types();
       createTable_aliases();
@@ -133,7 +144,7 @@ function load() {
                }
 
 
-      document.getElementById("link_simbad").href = "http://simbad.u-strasbg.fr/simbad/sim-basic?Ident=" + name + "&submit=SIMBAD+search"
+      document.getElementById("link_simbad").href = "http://simbad.u-strasbg.fr/simbad/sim-basic?Ident=" + name + "&submit=SIMBAD+search";
 
       preloadImage("http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=30.000000&y=30.000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO");
       preloadImage("http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=30.000000&y=30.000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO");
