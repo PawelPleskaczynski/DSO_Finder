@@ -8,6 +8,9 @@ var button_sdss = document.getElementById("option_sdss");
 var ra;
 var dec;
 var image = document.getElementById("DSO_image");
+var zoom_dss = 30;
+var zoom_sdss = 3;
+var img_type = "";
 
 window.onLoad = load();
 window.onLoad = jQuery("#loading_text").fadeIn("slow");
@@ -17,9 +20,10 @@ $(function () {
 })
 
 function load() {
-  var proxyURL = "https://cors-anywhere.herokuapp.com/";
-  var requestURL = "https://api.arcsecond.io/objects/" + getVar("obj") + "/?format=json";
-  $.getJSON(proxyURL + requestURL, function(json) {
+  var proxyURL = "https://calm-eyrie-13472.herokuapp.com/";
+  var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/" + getVar("obj") + "/?format=json";
+  var finalUrl = proxyURL + requestURL;
+  $.getJSON(requestURL, function(json) {
       var name = json.name;
       var coords = json.ICRS_coordinates;
       if (coords == null || coords == "null") {
@@ -146,17 +150,18 @@ function load() {
 
       document.getElementById("link_simbad").href = "http://simbad.u-strasbg.fr/simbad/sim-basic?Ident=" + name + "&submit=SIMBAD+search";
 
-      preloadImage("http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=30.000000&y=30.000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO");
-      preloadImage("http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=30.000000&y=30.000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO");
-      preloadImage("http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=30.000000&y=30.000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO");
-      preloadImage("http://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=3.5&width=512&height=512&opt=L");
+      preloadImage("http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO");
+      preloadImage("http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO");
+      preloadImage("http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO");
+      preloadImage("http://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + ".5&width=512&height=512&opt=L");
 
-      image.src = "http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=30.000000&y=30.000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+      image.src = "http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
 
       image.onload = function() {
         jQuery("#card").fadeIn("slow");
         jQuery("#loading_text").fadeOut("slow");
         jQuery("#table_div").fadeIn("slow");
+        img_type = "DSS_R";
       }
 
       image.onerror = function() {
@@ -167,53 +172,128 @@ function load() {
     });
 }
 
+function zoomin() {
+  if (img_type == "DSS_R" || img_type == "DSS_B" || img_type == "DSS_IR") {
+    zoom_dss = zoom_dss - 5;
+  } else if (img_type == "SDSS") {
+    zoom_sdss = zoom_sdss - 1;
+  }
+
+  if (zoom_dss >= 5) {
+    jQuery("#loading_bg").show();
+    image.onload = function () {
+      jQuery("#loading_bg").hide();
+    }
+    if (img_type == "DSS_R") {
+      image.src = "http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+      black_white();
+    } else if (img_type == "DSS_B") {
+      image.src = "http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
+      black_white();
+    } else if (img_type == "DSS_IR") {
+      image.src = "http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
+      black_white();
+    } else if (img_type == "SDSS") {
+      if (zoom_sdss >= 0) {
+        image.src = "http://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + ".5&width=512&height=512&opt=L";
+        color();
+      } else {
+        zoom_sdss = 0;
+        jQuery("#loading_bg").hide();
+      }
+    }
+  }
+  if (zoom_dss < 5) {
+    zoom_dss = 5;
+  }
+}
+
+function zoomout() {
+  if (img_type == "DSS_R" || img_type == "DSS_B" || img_type == "DSS_IR") {
+    zoom_dss = zoom_dss + 5;
+  } else if (img_type == "SDSS") {
+    zoom_sdss = zoom_sdss + 1;
+  }
+
+  if (zoom_dss <= 120) {
+    jQuery("#loading_bg").show();
+    image.onload = function () {
+      jQuery("#loading_bg").hide();
+    }
+    if (img_type == "DSS_R") {
+      image.src = "http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+      black_white();
+    } else if (img_type == "DSS_B") {
+      image.src = "http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
+      black_white();
+    } else if (img_type == "DSS_IR") {
+      image.src = "http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
+      black_white();
+    } else if (img_type == "SDSS") {
+      image.src = "http://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + ".5&width=512&height=512&opt=L";
+      color();
+    }
+  }
+  if (zoom_dss > 120) {
+    zoom_dss = 120;
+  }
+}
+
 function option_r() {
+  zoom_dss = 30;
   jQuery("#loading_bg").show();
   image.onload = function () {
      jQuery("#loading_bg").hide();
      black_white();
+     img_type = "DSS_R";
   }
   image.onerror = function() {
     image.onerror = "";
     image.src = "img_error.png";
   }
-  image.src = "http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=30.000000&y=30.000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+  image.src = "http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
 }
 function option_b() {
+  zoom_dss = 30;
   jQuery("#loading_bg").show();
   image.onload = function () {
      jQuery("#loading_bg").hide();
      black_white();
+     img_type = "DSS_B";
   }
   image.onerror = function() {
     image.onerror = "";
     image.src = "img_error.png";
   }
-  image.src = "http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=30.000000&y=30.000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
+  image.src = "http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
 }
 function option_ir() {
+  zoom_dss = 30;
   jQuery("#loading_bg").show();
   image.onload = function () {
      jQuery("#loading_bg").hide();
      black_white();
+     img_type = "DSS_IR";
   }
   image.onerror = function() {
     image.onerror = "";
     image.src = "img_error.png";
   }
-  image.src = "http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=30.000000&y=30.000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
+  image.src = "http://archive.eso.org/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
 }
 function option_sdss() {
+  zoom_sdss = 3;
   jQuery("#loading_bg").show();
   image.onload = function () {
      jQuery("#loading_bg").hide();
      color();
+     img_type = "SDSS";
   }
   image.onerror = function() {
     image.onerror = "";
     image.src = "img_error.png";
   }
-  image.src = "http://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=3.5&width=512&height=512&opt=L";
+  image.src = "http://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + ".5&width=512&height=512&opt=L";
 }
 
 function bigLetter(string)

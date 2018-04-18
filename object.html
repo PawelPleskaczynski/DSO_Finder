@@ -126,7 +126,7 @@
       </ul>
       <div class="form-inline my-2 my-lg-0">
         <input type="text" class="form-control" placeholder="Search for another DSO" id="input_name" style="margin-right: 16px;">
-        <a class="btn btn-secondary btn-md" href="#" onclick="openDSO()" role="button">Search</a>
+        <a class="btn btn-secondary btn-md" href="javascript:void(0)" onclick="openDSO()" role="button">Search</a>
       </div>
     </div>
   </nav>
@@ -162,6 +162,12 @@
               <input type="radio" name="options" id="option_ir" autocomplete="off" onchange="option_ir()">DSS IR</label>
             <label class="btn btn-secondary">
               <input type="radio" name="options" id="option_sdss" autocomplete="off" onchange="option_sdss()">SDSS</label>
+        </div>
+      </div>
+      <div style="margin-top: 12px;">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="zoomin()">+</button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="zoomout()">-</button>
         </div>
       </div>
       </div>
