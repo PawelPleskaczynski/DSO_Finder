@@ -11,6 +11,7 @@ var image = document.getElementById("DSO_image");
 var zoom_dss = 30;
 var zoom_sdss = 3;
 var img_type = "";
+var is_coords = getVar("input_type") == "coordinates";
 
 window.onLoad = load();
 window.onLoad = jQuery("#loading_text").fadeIn("slow");
@@ -20,24 +21,67 @@ $(function () {
 })
 
 function load() {
-  var proxyURL = "https://calm-eyrie-13472.herokuapp.com/";
-  var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/" + getVar("obj") + "/?format=json";
-  var finalUrl = proxyURL + requestURL;
+  if (is_coords) {
+    var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + getVar("obj") + "&format=json&radius=10";
+  } else {
+    var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/" + getVar("obj") + "/?format=json";
+  }
   $.getJSON(requestURL, function(json) {
-      var name = json.name;
-      var coords = json.ICRS_coordinates;
-      if (coords == null || coords == "null") {
-        jQuery("#loading_text").fadeOut("slow");
-        jQuery(".alert").fadeIn("slow");
+    if (is_coords) {
+      if (json.name == null) {
+        document.getElementById("loading_text").innerHTML = "Loading image…";
+
+        image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + getVar("ra") + "&dec=" + getVar("dec") + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+
+        $(".card-title").hide();
+        $(".card-text").hide();
+        $("#table_div").hide();
+
+        ra = getVar("ra");
+        dec = getVar("dec");
+
+        image.onload = function() {
+          jQuery("#card").fadeIn("slow");
+          jQuery("#loading_text").fadeOut("slow");
+          img_type = "DSS_R";
+        }
+
+        image.onerror = function() {
+          image.onerror = "";
+          image.src = "img_error.png";
+        }
+
+      } else {
+        var name_first = json;
+        var result = name_first[0];
+        var name = result.name;
+        var coords = result.ICRS_coordinates;
+        ra = coords.right_ascension;
+        dec = coords.declination;
+        title.innerHTML = bigLetter(name);
+        card_ra.innerHTML = "RA: " + ra;
+        card_dec.innerHTML = "DEC: " + dec;
+        var table_data_object_types = result.object_types;
+        var table_data_aliases = result.aliases;
+        var table_data_fluxes = result.fluxes;
+
+        document.getElementById("raplus").onclick = "ra_plus()";
+        document.getElementById("raminus").onclick = "ra_minus()";
+        document.getElementById("decplus").onclick = "dec_plus()";
+        document.getElementById("decminus").onclick = "dec_minus()";
       }
-      ra = coords.right_ascension;
-      dec = coords.declination;
-      title.innerHTML = bigLetter(name);
-      card_ra.innerHTML = "RA: " + ra;
-      card_dec.innerHTML = "DEC: " + dec;
-      var table_data_object_types = json.object_types;
-      var table_data_aliases = json.aliases;
-      var table_data_fluxes = json.fluxes;
+    } else {
+        var name = json.name;
+        var coords = json.ICRS_coordinates;
+        ra = coords.right_ascension;
+        dec = coords.declination;
+        title.innerHTML = bigLetter(name);
+        card_ra.innerHTML = "RA: " + ra;
+        card_dec.innerHTML = "DEC: " + dec;
+        var table_data_object_types = json.object_types;
+        var table_data_aliases = json.aliases;
+        var table_data_fluxes = json.fluxes;
+      }
 
       document.getElementById("loading_text").innerHTML = "Loading image…";
 
@@ -150,11 +194,6 @@ function load() {
 
       document.getElementById("link_simbad").href = "http://simbad.u-strasbg.fr/simbad/sim-basic?Ident=" + name + "&submit=SIMBAD+search";
 
-      preloadImage("https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO");
-      preloadImage("https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO");
-      preloadImage("https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO");
-      preloadImage("https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + ".5&width=512&height=512&opt=L");
-
       image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
 
       image.onload = function() {
@@ -169,7 +208,34 @@ function load() {
         image.src = "img_error.png";
       }
 
-    });
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+      jQuery("#loading_text").fadeOut("slow");
+      var error = document.getElementById("error_message");
+      var error_link = document.getElementById("error_link");
+      error.innerHTML = "Couldn't find '" + getVar("obj").replace("%20"," ") + "'.";
+      jQuery(".alert").fadeIn("slow");
+      if (getVar("obj").match(/ncg/i)) {
+        error_link.innerHTML = "Did you mean " + getVar("obj").replace(/ncg/i,"NGC").replace("%20"," ") + "?";
+        error_link.href = "object.html?obj=" + getVar("obj").replace(/ncg/i,"NGC"),"_self";
+      }
+      if (getVar("obj").match(/pcg/i)) {
+        error_link.innerHTML = "Did you mean " + getVar("obj").replace(/pcg/i,"PGC").replace("%20"," ") + "?";
+        error_link.href = "object.html?obj=" + getVar("obj").replace(/pcg/i,"PGC"),"_self";
+      }
+      if (getVar("obj").match(/ucg/i)) {
+        error_link.innerHTML = "Did you mean " + getVar("obj").replace(/ucg/i,"UGC").replace("%20"," ") + "?";
+        error_link.href = "object.html?obj=" + getVar("obj").replace(/ucg/i,"UGC"),"_self";
+      }
+      if (getVar("obj").match(/hgc/i)) {
+        error_link.innerHTML = "Did you mean " + getVar("obj").replace(/hgc/i,"HCG").replace("%20"," ") + "?";
+        error_link.href = "object.html?obj=" + getVar("obj").replace(/hgc/i,"HCG"),"_self";
+      }
+      if (getVar("obj").match(/apr/i)) {
+        error_link.innerHTML = "Did you mean " + getVar("obj").replace(/apr/i,"Arp").replace("%20"," ") + "?";
+        error_link.href = "object.html?obj=" + getVar("obj").replace(/apr/i,"Arp"),"_self";
+      }
+     });
 }
 
 function zoomin() {
@@ -317,14 +383,133 @@ function getVar(variable){
   return(false);
 }
 
-function preloadImage(url){
-    var img = new Image();
-    img.src = url;
-}
-
 function openDSO() {
   var object_name = document.getElementById("input_name").value;
-  window.open("object.html?obj=" + object_name,"_self");
+  var coord_regex = /^(?:(|[0-9][0-9][0-9]|[0-9][0-9]|[0-9])(.|)(|[0-9][0-9][0-9]|[0-9][0-9]|[0-9])( |)([-+])(|[0-9][0-9][0-9]|[0-9][0-9]|[0-9])(.|)([0-9][0-9][0-9]|[0-9][0-9]|[0-9]))$/
+  var ra_dec_regex = /^(?:([0-9]|[0-9][0-9])(h|H)(| )([0-9]|[0-9][0-9])(m|M)(| )([0-9]|[0-9][0-9]|[0-9].[0-9]|[0-9].[0-9][0-9]|[0-9].[0-9][0-9][0-9]|[0-9][0-9].[0-9]|[0-9][0-9].[0-9][0-9]|[0-9][0-9].[0-9][0-9][0-9])(s|S)(| )(|[+-])([0-9]|[0-9][0-9])(d|D)(| )([0-9]|[0-9][0-9])(m|M)(| )([0-9]|[0-9][0-9]|[0-9].[0-9]|[0-9].[0-9][0-9]|[0-9].[0-9][0-9][0-9]|[0-9][0-9].[0-9]|[0-9][0-9].[0-9][0-9]|[0-9][0-9].[0-9][0-9][0-9])(s|S))$/
+  var ra_regex = /([0-9]|[0-9][0-9])(h|H)(| )([0-9]|[0-9][0-9])(m|M)(| )([0-9]|[0-9][0-9]|[0-9].[0-9]|[0-9].[0-9][0-9]|[0-9].[0-9][0-9][0-9]|[0-9][0-9].[0-9]|[0-9][0-9].[0-9][0-9]|[0-9][0-9].[0-9][0-9][0-9])(s|S)/
+  var dec_regex = /(|[+-])([0-9]|[0-9][0-9])(d|D)(| )([0-9]|[0-9][0-9])(m|M)(| )([0-9]|[0-9][0-9]|[0-9].[0-9]|[0-9].[0-9][0-9]|[0-9].[0-9][0-9][0-9]|[0-9][0-9].[0-9]|[0-9][0-9].[0-9][0-9]|[0-9][0-9].[0-9][0-9][0-9])(s|S)/
+  var ra_h_regex = /([0-9]|[0-9][0-9])(h|H)/
+  var ra_m_regex = /([0-9]|[0-9][0-9])(m|M)/
+  var ra_s_regex = /(([0-9].[0-9])|([0-9][0-9].[0-9][0-9])|([0-9][0-9].[0-9][0-9][0-9])|([0-9])|([0-9][0-9]))(s|S)/
+  var dec_d_regex = /(|[+-])([0-9]|[0-9][0-9])(d|D)/
+  var dec_m_regex = /([0-9]|[0-9][0-9])(m|M)/
+  var dec_s_regex = /(([0-9].[0-9])|([0-9][0-9].[0-9][0-9])|([0-9][0-9].[0-9][0-9][0-9])|([0-9])|([0-9][0-9]))(s|S)/
+  if (!object_name == null || !object_name == "") {
+    if (coord_regex.test(object_name)) {
+      window.open("object.html?obj=" + object_name.replace("+","%2B") +"&input_type=coordinates","_self");
+    } else if (ra_dec_regex.test(object_name)) {
+      var ra = object_name.match(ra_regex);
+      var dec = object_name.match(dec_regex);
+      var ra_h = ra[0].match(ra_h_regex);
+      var ra_m = ra[0].match(ra_m_regex);
+      var ra_s = ra[0].match(ra_s_regex);
+      var dec_d = dec[0].match(dec_d_regex);
+      var dec_d_symbol = dec_d[1];
+      var dec_d_value = Number(dec_d[2]);
+      var dec_m = dec[0].match(dec_m_regex);
+      var dec_s = dec[0].match(dec_s_regex);
+
+      var ra_final = Number((ra_h[1] * 15) + (ra_m[1] * 1/4) + (ra_s[1] * 1/240));
+      var dec1 = Number(dec_d_value);
+      var dec2 = Number(dec_m[1]/60);
+      var dec3 = Number(dec_s[1]/3600);
+      var dec_final = Number(dec_d_symbol + (dec1 + dec2 + dec3)).toFixed(3);
+      console.log(ra_final);
+      console.log(dec_final);
+      window.open("object.html?obj=" + ra_final.toFixed(3) + " " + dec_final.replace("+","%2B") + "&ra=" + ra_final.toFixed(3) + "&dec=" + dec_final.replace("+","%2B") + "&input_type=coordinates","_self");
+    } else {
+      window.open("object.html?obj=" + object_name,"_self");
+    }
+  }
+}
+
+function ra_plus() {
+  ra = ra + 0.1;
+
+  jQuery("#loading_bg").show();
+  image.onload = function () {
+    jQuery("#loading_bg").hide();
+  }
+  if (img_type == "DSS_R") {
+    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+    black_white();
+  } else if (img_type == "DSS_B") {
+    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
+    black_white();
+  } else if (img_type == "DSS_IR") {
+    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
+    black_white();
+  } else if (img_type == "SDSS") {
+    image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + ".5&width=512&height=512&opt=L";
+    color();
+  }
+}
+
+function ra_minus() {
+  ra = ra - 0.1;
+
+  jQuery("#loading_bg").show();
+  image.onload = function () {
+    jQuery("#loading_bg").hide();
+  }
+  if (img_type == "DSS_R") {
+    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+    black_white();
+  } else if (img_type == "DSS_B") {
+    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
+    black_white();
+  } else if (img_type == "DSS_IR") {
+    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
+    black_white();
+  } else if (img_type == "SDSS") {
+    image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + ".5&width=512&height=512&opt=L";
+    color();
+  }
+}
+
+function dec_plus() {
+  dec = dec + 0.1;
+
+  jQuery("#loading_bg").show();
+  image.onload = function () {
+    jQuery("#loading_bg").hide();
+  }
+  if (img_type == "DSS_R") {
+    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+    black_white();
+  } else if (img_type == "DSS_B") {
+    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
+    black_white();
+  } else if (img_type == "DSS_IR") {
+    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
+    black_white();
+  } else if (img_type == "SDSS") {
+    image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + ".5&width=512&height=512&opt=L";
+    color();
+  }
+}
+
+function dec_minus() {
+  dec = dec - 0.1;
+
+  jQuery("#loading_bg").show();
+  image.onload = function () {
+    jQuery("#loading_bg").hide();
+  }
+  if (img_type == "DSS_R") {
+    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+    black_white();
+  } else if (img_type == "DSS_B") {
+    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
+    black_white();
+  } else if (img_type == "DSS_IR") {
+    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
+    black_white();
+  } else if (img_type == "SDSS") {
+    image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + ".5&width=512&height=512&opt=L";
+    color();
+  }
 }
 
 function black_white() {

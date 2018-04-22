@@ -143,7 +143,8 @@
 
     <div class="alert alert-danger">
       <h4 class="alert-heading">Error!</h4>
-      <p class="mb-0">Couldn't find object.</p>
+      <p class="mb-0" id="error_message"></p>
+      <p class="mb-0"><a href="" id="error_link"></a></p>
     </div>
 
     <div class="card" id="card">
@@ -171,9 +172,16 @@
         </div>
       </div>
       <div style="margin-top: 12px;">
-        <div class="btn-group" role="group" aria-label="Basic example">
+        <div class="btn-group" role="group" style="float: left; margin-right: 24px;">
           <button type="button" class="btn btn-secondary btn-sm" onclick="zoomin()">+</button>
           <button type="button" class="btn btn-secondary btn-sm" onclick="zoomout()">-</button>
+        </div>
+
+        <div class="btn-group" role="group">
+          <button id="raplus" type="button" class="btn btn-secondary btn-sm" onclick="ra_plus()" data-toggle="tooltip" data-placement="bottom" data-original-title="Left">RA +</button>
+          <button id="decplus" type="button" class="btn btn-secondary btn-sm" onclick="dec_plus()" data-toggle="tooltip" data-placement="bottom" data-original-title="Up">DEC +</button>
+          <button id="decminus" type="button" class="btn btn-secondary btn-sm" onclick="dec_minus()" data-toggle="tooltip" data-placement="bottom" data-original-title="Down">DEC -</button>
+          <button id="raminus" type="button" class="btn btn-secondary btn-sm" onclick="ra_minus()" data-toggle="tooltip" data-placement="bottom" data-original-title="Right">RA -</button>
         </div>
       </div>
       </div>
