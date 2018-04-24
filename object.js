@@ -425,7 +425,7 @@ function openDSO() {
 
 
 function ra_plus() {
-  ra = ra + 0.1;
+  ra = Number(ra) + 0.1;
 
   jQuery("#loading_bg").show();
   image.onload = function () {
@@ -447,7 +447,7 @@ function ra_plus() {
 }
 
 function ra_minus() {
-  ra = ra - 0.1;
+  ra = Number(ra) - 0.1;
 
   jQuery("#loading_bg").show();
   image.onload = function () {
@@ -469,7 +469,7 @@ function ra_minus() {
 }
 
 function dec_plus() {
-  dec = dec + 0.1;
+  dec = Number(dec) + 0.1;
 
   jQuery("#loading_bg").show();
   image.onload = function () {
@@ -491,7 +491,7 @@ function dec_plus() {
 }
 
 function dec_minus() {
-  dec = dec - 0.1;
+  dec = Number(dec) - 0.1;
 
   jQuery("#loading_bg").show();
   image.onload = function () {
