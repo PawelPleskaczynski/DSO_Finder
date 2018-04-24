@@ -26,6 +26,7 @@ function load() {
   } else {
     var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/" + getVar("obj") + "/?format=json";
   }
+  
   $.getJSON(requestURL, function(json) {
     if (is_coords) {
       if (json.name == null) {

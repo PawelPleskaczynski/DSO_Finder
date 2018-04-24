@@ -36,5 +36,6 @@ function openDSO() {
     } else {
       window.open("object.html?obj=" + object_name,"_self");
     }
+    
   }
 }
