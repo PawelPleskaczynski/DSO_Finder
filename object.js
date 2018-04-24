@@ -5,8 +5,8 @@ var button_r = document.getElementById("option_r");
 var button_b = document.getElementById("option_b");
 var button_ir = document.getElementById("option_ir");
 var button_sdss = document.getElementById("option_sdss");
-var ra;
-var dec;
+var Number(ra);
+var Number(dec);
 var image = document.getElementById("DSO_image");
 var zoom_dss = 30;
 var zoom_sdss = 3;
@@ -425,7 +425,7 @@ function openDSO() {
 
 
 function ra_plus() {
-  ra = +ra + 0.1;
+  ra = ra + 0.1;
 
   jQuery("#loading_bg").show();
   image.onload = function () {
@@ -447,7 +447,7 @@ function ra_plus() {
 }
 
 function ra_minus() {
-  ra = +ra - 0.1;
+  ra = ra - 0.1;
 
   jQuery("#loading_bg").show();
   image.onload = function () {
@@ -469,7 +469,7 @@ function ra_minus() {
 }
 
 function dec_plus() {
-  dec = +dec + 0.1;
+  dec = dec + 0.1;
 
   jQuery("#loading_bg").show();
   image.onload = function () {
@@ -491,7 +491,7 @@ function dec_plus() {
 }
 
 function dec_minus() {
-  dec = +dec - 0.1;
+  dec = dec - 0.1;
 
   jQuery("#loading_bg").show();
   image.onload = function () {
