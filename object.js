@@ -37,6 +37,101 @@ function load() {
       jQuery("#card").fadeIn("slow");
     }
     color();
+  } else if (getVar("obj").toUpperCase() == "moon".toUpperCase()) {
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var hour = date.getHours();
+    var day_final = day + (hour / 24);
+
+    var phase = moonPhase(day_final,month,year);
+    phase_round = Math.round(moonPhase(day_final,month,year));
+
+    if (phase_round == 0) {
+      phase_round = "New";
+    } else if (phase_round == 1) {
+      phase_round = "Waxing Crescent";
+    } else if (phase_round == 2) {
+      phase_round = "Quarter";
+    } else if (phase_round == 3) {
+      phase_round = "Waxing Gibbous";
+    } else if (phase_round == 4) {
+      phase_round = "Full";
+    } else if (phase_round == 5) {
+      phase_round = "Waning Gibbous";
+    } else if (phase_round == 6) {
+      phase_round = "Last Quarter";
+    } else if (phase_round == 7) {
+      phase_round = "Waning Crescent";
+    } else if (phase_round == 8) {
+      phase_round = "New";
+    }
+    if (phase <= 4) {
+      phase = phase/4;
+      phase = phase * 100;
+    } else {
+      phase = phase - 4;
+      phase = phase/4;
+      phase = 1-phase;
+      phase = phase * 1000;
+    }
+    console.log(phase);
+
+    document.getElementById("cardtitle").innerHTML = phase_round + " Moon";
+
+    var moonArr = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21'];
+    if (phase >= 0 && phase < 10) {
+      image.src = "images/moon/moon_1.jpg"
+    } else if (phase >= 10 && phase < 20) {
+      image.src = "images/moon/moon_2.jpg"
+    } else if (phase >= 20 && phase < 30) {
+      image.src = "images/moon/moon_3.jpg"
+    } else if (phase >= 30 && phase < 40) {
+      image.src = "images/moon/moon_4.jpg"
+    } else if (phase >= 40 && phase < 50) {
+      image.src = "images/moon/moon_5.jpg"
+    } else if (phase >= 50 && phase < 60) {
+      image.src = "images/moon/moon_6.jpg"
+    } else if (phase >= 60 && phase < 70) {
+      image.src = "images/moon/moon_7.jpg"
+    } else if (phase >= 70 && phase < 80) {
+      image.src = "images/moon/moon_8.jpg"
+    } else if (phase >= 80 && phase < 85) {
+      image.src = "images/moon/moon_9.jpg"
+    } else if (phase >= 85 && phase < 91) {
+      image.src = "images/moon/moon_10.jpg"
+    } else if (phase >= 91 && phase <= 100) {
+      image.src = "images/moon/moon_12.jpg"
+    } else if (phase >= 910 && phase < 1000) {
+      image.src = "images/moon/moon_13.jpg"
+    } else if (phase >= 800 && phase < 850) {
+      image.src = "images/moon/moon_14.jpg"
+    } else if (phase >= 700 && phase < 800) {
+      image.src = "images/moon/moon_15.jpg"
+    } else if (phase >= 600 && phase < 700) {
+      image.src = "images/moon/moon_16.jpg"
+    } else if (phase >= 500 && phase < 600) {
+      image.src = "images/moon/moon_17.jpg"
+    } else if (phase >= 400 && phase < 500) {
+      image.src = "images/moon/moon_18.jpg"
+    } else if (phase >= 300 && phase < 400) {
+      image.src = "images/moon/moon_19.jpg"
+    } else if (phase >= 200 && phase < 300) {
+      image.src = "images/moon/moon_20.jpg"
+    } else if (phase >= 100 && phase < 200) {
+      image.src = "images/moon/moon_21.jpg"
+    } else if (phase >= 0 && phase < 100) {
+      image.src = "images/moon/moon_22.jpg"
+    }
+
+    image.onload = function() {
+      jQuery("#loadingtextdiv").hide();
+      jQuery(".card-text").hide();
+      jQuery("#obs").hide();
+      jQuery("#zoom_ra_dec_btns").hide();
+      jQuery("#card").fadeIn("slow");
+    }
   } else {
     var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/" + getVar("obj") + "/?format=json";
     json();
@@ -438,6 +533,8 @@ function openDSO() {
     } else {
       if (object_name.match(/sun/i)) {
         window.open("object.html?obj=sun","_self")
+      } else if (object_name.match(/moon/i)) {
+        window.open("object.html?obj=moon","_self")
       } else {
         window.open("object.html?obj=" + object_name,"_self");
       }
@@ -568,4 +665,27 @@ function black_white() {
 function color() {
   $('#DSO_image').css('-webkit-filter','grayscale(0%)');
   $('#DSO_image').css('filter','grayscale(0%)');
+}
+
+function moonPhase(day, month, year) { /* based on https://www.subsystems.us/uploads/9/8/9/4/98948044/moonphase.pdf*/
+  if (month < 3) {
+    year = year - 1;
+    month = month + 12;
+  }
+  var a = year / 100;
+  var b = a / 4;
+  var c = 2 - a + b;
+  var e = 365.25 * (year + 4716);
+  var f = 30.6001 * (month + 1);
+  var julian = c + day + e + f - 1524.5;
+  julian = julian - 2458224;
+  var julian = julian / 29.530589;
+  var julian_int = parseInt(julian);
+  julian = julian - julian_int;
+  julian_int = julian * 8;
+  console.log(julian_int);
+  if (Math.ceil(julian_int) > 8) {
+    julian_int = 0;
+  }
+  return julian_int;
 }

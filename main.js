@@ -35,6 +35,8 @@ function openDSO() {
     } else {
       if (object_name.match(/sun/i)) {
         window.open("object.html?obj=sun","_self")
+      } else if (object_name.match(/moon/i)) {
+        window.open("object.html?obj=moon","_self")
       } else {
         window.open("object.html?obj=" + object_name,"_self");
       }
