@@ -33,7 +33,11 @@ function openDSO() {
       var dec_final = Number(dec_d_symbol + (dec1 + dec2 + dec3)).toFixed(3);
       window.open("object.html?obj=" + ra_final.toFixed(3) + " " + dec_final.replace("+","%2B") + "&ra=" + ra_final.toFixed(3) + "&dec=" + dec_final.replace("+","%2B") + "&input_type=coordinates","_self");
     } else {
-      window.open("object.html?obj=" + object_name,"_self");
+      if (object_name.match(/sun/i)) {
+        window.open("object.html?obj=sun","_self")
+      } else {
+        window.open("object.html?obj=" + object_name,"_self");
+      }
     }
   }
 }

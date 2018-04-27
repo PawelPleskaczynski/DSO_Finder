@@ -23,55 +23,71 @@ $(function () {
 function load() {
   if (is_coords) {
     var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + getVar("obj") + "&format=json&radius=10";
+    json();
+  } else if (getVar("obj").toUpperCase() == "sun".toUpperCase()) {
+    document.getElementById("cardtitle").innerHTML = "Sun in white light";
+    image.src = "https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_HMIIC.jpg";
+    image.onload = function() {
+      jQuery("#loadingtextdiv").hide();
+      jQuery(".card-text").hide();
+      jQuery("#obs").hide();
+      jQuery("#sun_btn").show();
+      jQuery("#zoom_ra_dec_btns").hide();
+      img_type = "wl_sun_img";
+      jQuery("#card").fadeIn("slow");
+    }
+    color();
   } else {
     var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/" + getVar("obj") + "/?format=json";
+    json();
   }
 
-  $.getJSON(requestURL, function(json) {
-    if (is_coords) {
-      if (json.name == null) {
-        document.getElementById("loading_text").innerHTML = "Loading image…";
+  function json() {
+    $.getJSON(requestURL, function(json) {
+      if (is_coords) {
+        if (json.name == null) {
+          document.getElementById("loading_text").innerHTML = "Loading image…";
 
-        image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + getVar("ra") + "&dec=" + getVar("dec") + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+          image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + getVar("ra") + "&dec=" + getVar("dec") + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
 
-        $(".card-title").hide();
-        $(".card-text").hide();
-        $("#table_div").hide();
+          $(".card-title").hide();
+          $(".card-text").hide();
+          $("#table_div").hide();
 
-        ra = getVar("ra");
-        dec = getVar("dec");
+          ra = getVar("ra");
+          dec = getVar("dec");
 
-        image.onload = function() {
-          jQuery("#card").fadeIn("slow");
-          jQuery("#loading_text").fadeOut("slow");
-          img_type = "DSS_R";
+          image.onload = function() {
+            jQuery("#card").fadeIn("slow");
+            jQuery("#loading_text").fadeOut("slow");
+            img_type = "DSS_R";
+          }
+
+          image.onerror = function() {
+            image.onerror = "";
+            image.src = "img_error.png";
+          }
+
+        } else {
+          var name_first = json;
+          var result = name_first[0];
+          var name = result.name;
+          var coords = result.ICRS_coordinates;
+          ra = coords.right_ascension;
+          dec = coords.declination;
+          title.innerHTML = bigLetter(name);
+          card_ra.innerHTML = "RA: " + ra;
+          card_dec.innerHTML = "DEC: " + dec;
+          var table_data_object_types = result.object_types;
+          var table_data_aliases = result.aliases;
+          var table_data_fluxes = result.fluxes;
+
+          document.getElementById("raplus").onclick = "ra_plus()";
+          document.getElementById("raminus").onclick = "ra_minus()";
+          document.getElementById("decplus").onclick = "dec_plus()";
+          document.getElementById("decminus").onclick = "dec_minus()";
         }
-
-        image.onerror = function() {
-          image.onerror = "";
-          image.src = "img_error.png";
-        }
-
       } else {
-        var name_first = json;
-        var result = name_first[0];
-        var name = result.name;
-        var coords = result.ICRS_coordinates;
-        ra = coords.right_ascension;
-        dec = coords.declination;
-        title.innerHTML = bigLetter(name);
-        card_ra.innerHTML = "RA: " + ra;
-        card_dec.innerHTML = "DEC: " + dec;
-        var table_data_object_types = result.object_types;
-        var table_data_aliases = result.aliases;
-        var table_data_fluxes = result.fluxes;
-
-        document.getElementById("raplus").onclick = "ra_plus()";
-        document.getElementById("raminus").onclick = "ra_minus()";
-        document.getElementById("decplus").onclick = "dec_plus()";
-        document.getElementById("decminus").onclick = "dec_minus()";
-      }
-    } else {
         var name = json.name;
         var coords = json.ICRS_coordinates;
         ra = coords.right_ascension;
@@ -96,101 +112,101 @@ function load() {
         for (var i = 0 ; i < table_data_object_types.length ; i++) {
           var row$ = $('<tr/>');
           for (var colIndex = 0 ; colIndex < columns.length ; colIndex++) {
-              var cellValue = table_data_object_types[i][columns[colIndex]];
+            var cellValue = table_data_object_types[i][columns[colIndex]];
 
-              if (cellValue == null) { cellValue = ""; }
+            if (cellValue == null) { cellValue = ""; }
 
-              row$.append($('<td/>').html(cellValue));
+            row$.append($('<td/>').html(cellValue));
+          }
+          $("#table_type").append(row$);
+        }
+      }
+
+      function addAllColumnHeaders_object_types(table_data_object_types) {
+        var columnSet = [];
+        var headerTr$ = $('<tr/>');
+
+        for (var i = 0 ; i < table_data_object_types.length ; i++) {
+          var rowHash = table_data_object_types[i];
+          for (var key in rowHash) {
+            if ($.inArray(key, columnSet) == -1){
+              columnSet.push(key);
+              headerTr$.append($('<th/>').html(key));
             }
-            $("#table_type").append(row$);
           }
         }
+        $("#table_type").append(headerTr$);
 
-        function addAllColumnHeaders_object_types(table_data_object_types) {
-          var columnSet = [];
-          var headerTr$ = $('<tr/>');
+        return columnSet;
+      }
 
-          for (var i = 0 ; i < table_data_object_types.length ; i++) {
-            var rowHash = table_data_object_types[i];
-            for (var key in rowHash) {
-              if ($.inArray(key, columnSet) == -1){
-                  columnSet.push(key);
-                  headerTr$.append($('<th/>').html(key));
-               }
-             }
-           }
-           $("#table_type").append(headerTr$);
+      function createTable_aliases() {
+        var columns = addAllColumnHeaders_aliases(table_data_aliases);
 
-           return columnSet;
-         }
+        for (var i = 0 ; i < table_data_aliases.length ; i++) {
+          var row$ = $('<tr/>');
+          for (var colIndex = 0 ; colIndex < columns.length ; colIndex++) {
+            var cellValue = table_data_aliases[i][columns[colIndex]];
 
-         function createTable_aliases() {
-           var columns = addAllColumnHeaders_aliases(table_data_aliases);
+            if (cellValue == null) { cellValue = ""; }
 
-           for (var i = 0 ; i < table_data_aliases.length ; i++) {
-             var row$ = $('<tr/>');
-             for (var colIndex = 0 ; colIndex < columns.length ; colIndex++) {
-                 var cellValue = table_data_aliases[i][columns[colIndex]];
+            row$.append($('<td/>').html(cellValue));
+          }
+          $("#table_aliases").append(row$);
+        }
+      }
 
-                 if (cellValue == null) { cellValue = ""; }
+      function addAllColumnHeaders_aliases(table_data_aliases) {
+        var columnSet = [];
+        var headerTr$ = $('<tr/>');
 
-                 row$.append($('<td/>').html(cellValue));
-               }
-               $("#table_aliases").append(row$);
-             }
-           }
-
-           function addAllColumnHeaders_aliases(table_data_aliases) {
-             var columnSet = [];
-             var headerTr$ = $('<tr/>');
-
-             for (var i = 0 ; i < table_data_aliases.length ; i++) {
-               var rowHash = table_data_aliases[i];
-               for (var key in rowHash) {
-                 if ($.inArray(key, columnSet) == -1){
-                     columnSet.push(key);
-                     headerTr$.append($('<th/>').html(key));
-                  }
-                }
-              }
-              $("#table_aliases").append(headerTr$);
-
-              return columnSet;
+        for (var i = 0 ; i < table_data_aliases.length ; i++) {
+          var rowHash = table_data_aliases[i];
+          for (var key in rowHash) {
+            if ($.inArray(key, columnSet) == -1){
+              columnSet.push(key);
+              headerTr$.append($('<th/>').html(key));
             }
+          }
+        }
+        $("#table_aliases").append(headerTr$);
 
-            function createTable_fluxes() {
-              var columns = addAllColumnHeaders_fluxes(table_data_fluxes);
+        return columnSet;
+      }
 
-              for (var i = 0 ; i < table_data_fluxes.length ; i++) {
-                var row$ = $('<tr/>');
-                for (var colIndex = 0 ; colIndex < columns.length ; colIndex++) {
-                    var cellValue = table_data_fluxes[i][columns[colIndex]];
+      function createTable_fluxes() {
+        var columns = addAllColumnHeaders_fluxes(table_data_fluxes);
 
-                    if (cellValue == null) { cellValue = ""; }
+        for (var i = 0 ; i < table_data_fluxes.length ; i++) {
+          var row$ = $('<tr/>');
+          for (var colIndex = 0 ; colIndex < columns.length ; colIndex++) {
+            var cellValue = table_data_fluxes[i][columns[colIndex]];
 
-                    row$.append($('<td/>').html(cellValue));
-                  }
-                  $("#table_fluxes").append(row$);
-                }
-              }
+            if (cellValue == null) { cellValue = ""; }
 
-              function addAllColumnHeaders_fluxes(table_data_fluxes) {
-                var columnSet = [];
-                var headerTr$ = $('<tr/>');
+            row$.append($('<td/>').html(cellValue));
+          }
+          $("#table_fluxes").append(row$);
+        }
+      }
 
-                for (var i = 0 ; i < table_data_fluxes.length ; i++) {
-                  var rowHash = table_data_fluxes[i];
-                  for (var key in rowHash) {
-                    if ($.inArray(key, columnSet) == -1){
-                        columnSet.push(key);
-                        headerTr$.append($('<th/>').html(key));
-                     }
-                   }
-                 }
-                 $("#table_fluxes").append(headerTr$);
+      function addAllColumnHeaders_fluxes(table_data_fluxes) {
+        var columnSet = [];
+        var headerTr$ = $('<tr/>');
 
-                 return columnSet;
-               }
+        for (var i = 0 ; i < table_data_fluxes.length ; i++) {
+          var rowHash = table_data_fluxes[i];
+          for (var key in rowHash) {
+            if ($.inArray(key, columnSet) == -1){
+              columnSet.push(key);
+              headerTr$.append($('<th/>').html(key));
+            }
+          }
+        }
+        $("#table_fluxes").append(headerTr$);
+
+        return columnSet;
+      }
 
 
       document.getElementById("link_simbad").href = "http://simbad.u-strasbg.fr/simbad/sim-basic?Ident=" + name + "&submit=SIMBAD+search";
@@ -236,7 +252,8 @@ function load() {
         error_link.innerHTML = "Did you mean " + getVar("obj").replace(/apr/i,"Arp").replace("%20"," ") + "?";
         error_link.href = "object.html?obj=" + getVar("obj").replace(/apr/i,"Arp"),"_self";
       }
-     });
+    });
+  }
 }
 
 function zoomin() {
@@ -419,10 +436,15 @@ function openDSO() {
       var dec_final = Number(dec_d_symbol + (dec1 + dec2 + dec3)).toFixed(3);
       window.open("object.html?obj=" + ra_final.toFixed(3) + " " + dec_final.replace("+","%2B") + "&ra=" + ra_final.toFixed(3) + "&dec=" + dec_final.replace("+","%2B") + "&input_type=coordinates","_self");
     } else {
-      window.open("object.html?obj=" + object_name,"_self");
+      if (object_name.match(/sun/i)) {
+        window.open("object.html?obj=sun","_self")
+      } else {
+        window.open("object.html?obj=" + object_name,"_self");
+      }
     }
   }
 }
+
 
 function ra_plus() {
   ra = +ra + 0.1;
@@ -510,6 +532,32 @@ function dec_minus() {
     image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + ".5&width=512&height=512&opt=L";
     color();
   }
+}
+
+function wl_sun() {
+  jQuery("#loading_bg").show();
+  image.onload = function () {
+     jQuery("#loading_bg").hide();
+     document.getElementById("cardtitle").innerHTML = "Sun in white light";
+  }
+  image.onerror = function() {
+    image.onerror = "";
+    image.src = "img_error.png";
+  }
+  image.src = "https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_HMIIC.jpg";
+}
+
+function ha_sun() {
+  jQuery("#loading_bg").show();
+  image.onload = function () {
+     jQuery("#loading_bg").hide();
+     document.getElementById("cardtitle").innerHTML = "Sun in H-alpha";
+  }
+  image.onerror = function() {
+    image.onerror = "";
+    image.src = "img_error.png";
+  }
+  image.src = "https://www.daystarfilters.com/latest_gong_color.jpg";
 }
 
 function black_white() {

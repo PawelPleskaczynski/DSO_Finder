@@ -139,7 +139,7 @@
     </div>
   </nav>
 
-    <div>
+    <div id="loadingtextdiv">
       <h2 class="blink" id="loading_text">Loading…</h2>
     </div>
 
@@ -173,7 +173,15 @@
               <input type="radio" name="options" id="option_sdss" autocomplete="off" onchange="option_sdss()">SDSS</label>
         </div>
       </div>
-      <div style="margin-top: 12px;">
+      <div style="display: none;" id="sun_btn">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons" id="obs">
+          <label class="btn btn-secondary active">
+            <input type="radio" name="options" id="option_wl" autocomplete="off" checked="" onchange="wl_sun()">White light</label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option_ha" autocomplete="off" onchange="ha_sun()">H-alpna</label>
+      </div>
+    </div>
+      <div style="margin-top: 12px;" id="zoom_ra_dec_btns">
         <div class="btn-group" role="group" style="float: left; margin-right: 24px;">
           <button type="button" class="btn btn-secondary btn-sm" onclick="zoomin()">+</button>
           <button type="button" class="btn btn-secondary btn-sm" onclick="zoomout()">-</button>
