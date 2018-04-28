@@ -8,4 +8,4 @@ DSO Finder is a little website for seaching astronomical objects by name/coordin
 ## Sources
 Powered by <a href="https://api.arcsecond.io/?/">arcsecond.io</a>, <a href="http://skyserver.sdss.org/dr12/en/help/docs/api.aspx#imgcutout">SDSS SkyServer</a> and <a href="http://archive.eso.org/dss/dss">ESO DSS Archive</a>.
 
-Background images are from various observatories, these images were processed by <a href="https://www.facebook.com/KarolAstro">Karol Masztalerz</a>. Image of the Moon was taken by me. 
+Background images are from various observatories, these images were processed by <a href="https://www.facebook.com/KarolAstro">Karol Masztalerz</a>. Image of the Moon was taken by me.

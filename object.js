@@ -80,7 +80,6 @@ function load() {
 
     document.getElementById("cardtitle").innerHTML = phase_round + " Moon";
 
-    var moonArr = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21'];
     if (phase >= 0 && phase < 10) {
       image.src = "images/moon/moon_1.jpg"
     } else if (phase >= 10 && phase < 20) {
@@ -143,19 +142,36 @@ function load() {
         if (json.name == null) {
           document.getElementById("loading_text").innerHTML = "Loading image…";
 
-          image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + getVar("ra") + "&dec=" + getVar("dec") + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+          ra = getVar("ra");
+          dec = getVar("dec");
 
           $(".card-title").hide();
           $(".card-text").hide();
           $("#table_div").hide();
 
-          ra = getVar("ra");
-          dec = getVar("dec");
+          var request = new XMLHttpRequest();
+          request.onreadystatechange = function() {
+            if (request.readyState === 4){
+              request.status;
+              if (request.status == 200) {
+                jQuery("#btn_sdss").show();
+                image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + ".5&width=512&height=512&opt=L";
+                img_type = "SDSS";
+                color();
+              } else {
+                jQuery("#btn_no_sdss").show();
+                image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+                img_type = "DSS_R";
+              }
+            }
+          };
+          request.open("GET", "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + ".5&width=128&height=128&opt=L", true);
+          request.send();
 
           image.onload = function() {
             jQuery("#card").fadeIn("slow");
             jQuery("#loading_text").fadeOut("slow");
-            img_type = "DSS_R";
+            jQuery("#table_div").fadeIn("slow");
           }
 
           image.onerror = function() {
@@ -197,9 +213,26 @@ function load() {
 
       document.getElementById("loading_text").innerHTML = "Loading image…";
 
-      createTable_object_types();
-      createTable_aliases();
-      createTable_fluxes();
+      if (table_data_object_types != undefined) {
+        createTable_object_types();
+      } else {
+        jQuery("#table_type").hide();
+        jQuery("#table_type_p").hide();
+      }
+
+      if (table_data_aliases != undefined) {
+        createTable_aliases();
+      } else {
+        jQuery("#table_aliases").hide();
+        jQuery("#table_aliases_p").hide();
+      }
+
+      if (table_data_fluxes != undefined) {
+        createTable_fluxes();
+      } else {
+        jQuery("#table_fluxes").hide();
+        jQuery("#table_fluxes_p").hide();
+      }
 
       function createTable_object_types() {
         var columns = addAllColumnHeaders_object_types(table_data_object_types);
@@ -306,13 +339,29 @@ function load() {
 
       document.getElementById("link_simbad").href = "http://simbad.u-strasbg.fr/simbad/sim-basic?Ident=" + name + "&submit=SIMBAD+search";
 
-      image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+      var request = new XMLHttpRequest();
+      request.onreadystatechange = function() {
+        if (request.readyState === 4){
+          request.status;
+          if (request.status == 200) {
+            jQuery("#btn_sdss").show();
+            image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + ".5&width=512&height=512&opt=L";
+            img_type = "SDSS";
+            color();
+          } else {
+            jQuery("#btn_no_sdss").show();
+            image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+            img_type = "DSS_R";
+          }
+        }
+      };
+      request.open("GET", "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + ".5&width=128&height=128&opt=L", true);
+      request.send();
 
       image.onload = function() {
         jQuery("#card").fadeIn("slow");
         jQuery("#loading_text").fadeOut("slow");
         jQuery("#table_div").fadeIn("slow");
-        img_type = "DSS_R";
       }
 
       image.onerror = function() {

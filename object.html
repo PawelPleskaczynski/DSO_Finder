@@ -113,6 +113,36 @@
       backdrop-filter: blur(5px);
       -webkit-backdrop-filter: blur(5px);
     }
+    a {
+      color: #E91E63;
+      -webkit-transition: color 0.5s;
+      transition: color 0.5s;
+    }
+    a:hover {
+      color: #F06292;
+    }
+    .btn-search {
+      background: #673AB7;
+    }
+    .btn-secondary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+      background: #512DA8;
+    }
+    .card {
+      box-shadow: 0px 3px 5px rgba(0, 0, 0, .2);
+      moz-box-shadow: 0px 3px 5px rgba(0, 0, 0,0.2);
+      -webkit-box-shadow: 0px 3px 5px rgba(0, 0, 0, .2);
+      -webkit-transition: box-shadow 0.5s;
+      transition: box-shadow 0.5s;
+      -webkit-transition: moz-box-shadow 0.5s;
+      transition: moz-box-shadow 0.5s;
+      -webkit-transition: -webkit-box-shadow 0.5s;
+      transition: -webkit-box-shadow 0.5s;
+    }
+    .card:hover {
+      box-shadow: 0px 4px 5px rgba(0,0,0,0.33);
+      moz-box-shadow: 0px 4px 5px rgba(0,0,0,0.33);
+      -webkit-box-shadow: 0px 4px 5px rgba(0,0,0,0.33);
+    }
     </style>
   </head>
   <body>
@@ -134,7 +164,7 @@
       </ul>
       <div class="form-inline my-2 my-lg-0">
         <input type="text" class="form-control" placeholder="Search for another DSO" id="input_name" style="margin-right: 16px;">
-        <a class="btn btn-secondary btn-md" href="javascript:void(0)" onclick="openDSO()" role="button">Search</a>
+        <a class="btn btn-secondary btn-search btn-md" href="javascript:void(0)" onclick="openDSO()" role="button">Search</a>
       </div>
     </div>
   </nav>
@@ -161,18 +191,28 @@
         <p class="card-text" id="card_ra">RA</p>
         <p class="card-text" id="card_dec">DEC</p>
         <p class="card-text"><a href="#" id="link_simbad">SIMBAD database</a></p>
-        <div>
+        <div style="display: none;" id="btn_sdss">
           <div class="btn-group btn-group-toggle" data-toggle="buttons" id="obs">
             <label class="btn btn-secondary active">
-              <input type="radio" name="options" id="option_r" autocomplete="off" checked="" onchange="option_r()">DSS Red</label>
+              <input type="radio" name="options" id="option_sdss" autocomplete="off"  checked="" onchange="option_sdss()">SDSS</label>
+            <label class="btn btn-secondary">
+              <input type="radio" name="options" id="option_r" autocomplete="off" onchange="option_r()">DSS Red</label>
             <label class="btn btn-secondary">
               <input type="radio" name="options" id="option_b" autocomplete="off" onchange="option_b()">DSS Blue</label>
             <label class="btn btn-secondary">
               <input type="radio" name="options" id="option_ir" autocomplete="off" onchange="option_ir()">DSS IR</label>
-            <label class="btn btn-secondary">
-              <input type="radio" name="options" id="option_sdss" autocomplete="off" onchange="option_sdss()">SDSS</label>
         </div>
       </div>
+      <div style="display: none;" id="btn_no_sdss">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons" id="obs">
+          <label class="btn btn-secondary active">
+            <input type="radio" name="options" id="option_r" autocomplete="off" checked="" onchange="option_r()">DSS Red</label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option_b" autocomplete="off" onchange="option_b()">DSS Blue</label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option_ir" autocomplete="off" onchange="option_ir()">DSS IR</label>
+      </div>
+    </div>
       <div style="display: none;" id="sun_btn">
         <div class="btn-group btn-group-toggle" data-toggle="buttons" id="obs">
           <label class="btn btn-secondary active">
@@ -199,13 +239,13 @@
     </div>
 
     <div id="table_div">
-      <p data-toggle="tooltip" data-placement="left" data-original-title="Type of the object (eg. galaxy, nebula, star…).">Object type</p>
+      <p id="table_type_p" data-toggle="tooltip" data-placement="left" data-original-title="Type of the object (eg. galaxy, nebula, star…).">Object type</p>
       <table id="table_type" class="table table-hover"></table>
 
-      <p data-toggle="tooltip" data-placement="left" data-original-title="Catalog numbers of this object.">Catalog numbers</p>
+      <p id="table_aliases_p" data-toggle="tooltip" data-placement="left" data-original-title="Catalog numbers of this object.">Catalog numbers</p>
       <table id="table_aliases" class="table table-hover"></table>
 
-      <p data-toggle="tooltip" data-placement="left" data-original-title="Brightness of the object in different wavelengths.">Fluxes</p>
+      <p id="table_fluxes_p" data-toggle="tooltip" data-placement="left" data-original-title="Brightness of the object in different wavelengths.">Fluxes</p>
       <table id="table_fluxes" class="table table-hover"></table>
     </div>
 
