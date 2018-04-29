@@ -1,6 +1,6 @@
 var title = document.getElementById("cardtitle");
-var card_ra = document.getElementById("card_ra");
-var card_dec = document.getElementById("card_dec");
+var card_ra_dec = document.getElementById("card_ra_dec");
+var card_mag = document.getElementById("card_mag");
 var button_r = document.getElementById("option_r");
 var button_b = document.getElementById("option_b");
 var button_ir = document.getElementById("option_ir");
@@ -188,8 +188,7 @@ function load() {
           ra = coords.right_ascension;
           dec = coords.declination;
           title.innerHTML = bigLetter(name);
-          card_ra.innerHTML = "RA: " + ra;
-          card_dec.innerHTML = "DEC: " + dec;
+          card_ra_dec.innerHTML = "RA: " + ra + "&middot; DEC: " + dec;
           var table_data_object_types = result.object_types;
           var table_data_aliases = result.aliases;
           var table_data_fluxes = result.fluxes;
@@ -205,8 +204,7 @@ function load() {
         ra = coords.right_ascension;
         dec = coords.declination;
         title.innerHTML = bigLetter(name);
-        card_ra.innerHTML = "RA: " + ra;
-        card_dec.innerHTML = "DEC: " + dec;
+        card_ra_dec.innerHTML = "RA " + ra + "  &middot;  DEC " + dec;
         var table_data_object_types = json.object_types;
         var table_data_aliases = json.aliases;
         var table_data_fluxes = json.fluxes;
@@ -385,6 +383,32 @@ function load() {
       image.onerror = function() {
         image.onerror = "";
         image.src = "img_error.png";
+      }
+
+
+      var fluxes = table_data_fluxes;
+      if (fluxes[0] != null && fluxes[0] != undefined) {
+        for (var i = 0; i < fluxes.length; i++) {
+          var flux = fluxes[i];
+          if (fluxes[i].name == "V") {
+            card_mag.innerHTML = "Visual magnitude: " + flux.value + " mag";
+            if (flux.value <= 6) {
+              jQuery("#card_mag").attr("data-original-title","The object is extremely easy to view through a telescope.");
+            } else if (flux.value > 6 && flux.value <= 8) {
+              jQuery("#card_mag").attr("data-original-title","The object is easy to view through a telescope.");
+            } else if (flux.value > 8 && flux.value <= 10) {
+              jQuery("#card_mag").attr("data-original-title","The object is moderately easy to view through a telescope.");
+            } else if (flux.value > 10 && flux.value <= 11) {
+              jQuery("#card_mag").attr("data-original-title","The object is moderately hard to view through a telescope.");
+            } else if (flux.value > 11 && flux.value <= 13) {
+              jQuery("#card_mag").attr("data-original-title","The object is hard to view through a telescope.");
+            } else if (flux.value > 13) {
+              jQuery("#card_mag").attr("data-original-title","The object is challenging to view through a telescope.");
+            }
+          }
+        }
+      } else {
+        jQuery("#card_mag").hide();
       }
 
     })
