@@ -140,7 +140,7 @@ function load() {
   function json() {
     $.getJSON(requestURL, function(json) {
       if (is_coords) {
-        if (json[0].name == undefined) {
+        if (json[0] == undefined) {
           document.getElementById("loading_text").innerHTML = "Loading image…";
 
           ra = getVar("ra");
@@ -168,20 +168,11 @@ function load() {
           };
           request.open("GET", "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + ".5&width=128&height=128&opt=L", true);
           request.send();
+          jQuery("#table_btn_div").hide();
 
           image.onload = function() {
             jQuery("#card").fadeIn("slow");
             jQuery("#loading_text").fadeOut("slow");
-            jQuery("#table_btn_div").fadeIn("slow");
-            function hideTable(mediaquery) {
-              if (mediaquery.matches) {
-                jQuery("#table_div").hide();
-              } else {
-                jQuery("#table_div").fadeIn("slow");
-              }
-            }
-            hideTable(mediaquery);
-            mediaquery.addListener(hideTable);
           }
 
 
@@ -228,6 +219,7 @@ function load() {
       } else {
         jQuery("#table_type").hide();
         jQuery("#table_type_p").hide();
+        jQuery("#table_btn_div").hide();
       }
 
       if (table_data_aliases[0] != undefined) {
@@ -235,6 +227,7 @@ function load() {
       } else {
         jQuery("#table_aliases").hide();
         jQuery("#table_aliases_p").hide();
+        jQuery("#table_btn_div").hide();
       }
 
       if (table_data_fluxes[0] != undefined) {
@@ -242,6 +235,7 @@ function load() {
       } else {
         jQuery("#table_fluxes").hide();
         jQuery("#table_fluxes_p").hide();
+        jQuery("#table_btn_div").hide();
       }
 
       function createTable_object_types() {
@@ -371,10 +365,14 @@ function load() {
       image.onload = function() {
         jQuery("#card").fadeIn("slow");
         jQuery("#loading_text").fadeOut("slow");
-        jQuery("#table_btn_div").fadeIn("slow");
         function hideTable(mediaquery) {
           if (mediaquery.matches) {
             jQuery("#table_div").hide();
+            if (table_data_object_types[0] == undefined && table_data_aliases[0] == undefined && table_data_fluxes[0] == undefined) {
+              jQuery("#table_btn_div").hide();
+            } else {
+              jQuery("#table_btn_div").fadeIn("slow");
+            }
           } else {
             jQuery("#table_div").fadeIn("slow");
           }
