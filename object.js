@@ -391,19 +391,25 @@ function load() {
         for (var i = 0; i < fluxes.length; i++) {
           var flux = fluxes[i];
           if (fluxes[i].name == "V") {
-            card_mag.innerHTML = "Visual magnitude: " + flux.value + " mag";
-            if (flux.value <= 6) {
-              jQuery("#card_mag").attr("data-original-title","The object is extremely easy to view through a telescope.");
-            } else if (flux.value > 6 && flux.value <= 8) {
-              jQuery("#card_mag").attr("data-original-title","The object is easy to view through a telescope.");
-            } else if (flux.value > 8 && flux.value <= 10) {
-              jQuery("#card_mag").attr("data-original-title","The object is moderately easy to view through a telescope.");
-            } else if (flux.value > 10 && flux.value <= 11) {
-              jQuery("#card_mag").attr("data-original-title","The object is moderately hard to view through a telescope.");
-            } else if (flux.value > 11 && flux.value <= 13) {
-              jQuery("#card_mag").attr("data-original-title","The object is hard to view through a telescope.");
-            } else if (flux.value > 13) {
-              jQuery("#card_mag").attr("data-original-title","The object is challenging to view through a telescope.");
+            if (flux.value != null || flux.value != undefined) {
+              var mag_vis = (flux.value).toFixed(2);
+              card_mag.innerHTML = "Visual magnitude: " + mag_vis + " mag";
+              jQuery("#card_mag").attr("style","display: inline-block;");
+              if (mag_vis <= 6) {
+                jQuery("#card_mag").attr("data-original-title","The object is extremely easy to view through a telescope.");
+              } else if (mag_vis > 6 && mag_vis <= 8) {
+                jQuery("#card_mag").attr("data-original-title","The object is easy to view through a telescope.");
+              } else if (mag_vis > 8 && mag_vis <= 10) {
+                jQuery("#card_mag").attr("data-original-title","The object is moderately easy to view through a telescope.");
+              } else if (mag_vis > 10 && mag_vis <= 11) {
+                jQuery("#card_mag").attr("data-original-title","The object is moderately hard to view through a telescope.");
+              } else if (mag_vis > 11 && mag_vis <= 13) {
+                jQuery("#card_mag").attr("data-original-title","The object is hard to view through a telescope.");
+              } else if (mag_vis > 13) {
+                jQuery("#card_mag").attr("data-original-title","The object is challenging to view through a telescope.");
+              }
+            } else {
+              jQuery("#card_mag").hide();
             }
           }
         }
