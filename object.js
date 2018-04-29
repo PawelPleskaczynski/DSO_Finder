@@ -12,6 +12,7 @@ var zoom_dss = 30;
 var zoom_sdss = 3;
 var img_type = "";
 var is_coords = getVar("input_type") == "coordinates";
+var mediaquery = window.matchMedia("(max-width: 1024px)");
 
 window.onLoad = load();
 window.onLoad = jQuery("#loading_text").fadeIn("slow");
@@ -139,7 +140,7 @@ function load() {
   function json() {
     $.getJSON(requestURL, function(json) {
       if (is_coords) {
-        if (json.name == null) {
+        if (json[0].name == undefined) {
           document.getElementById("loading_text").innerHTML = "Loading image…";
 
           ra = getVar("ra");
@@ -171,8 +172,18 @@ function load() {
           image.onload = function() {
             jQuery("#card").fadeIn("slow");
             jQuery("#loading_text").fadeOut("slow");
-            jQuery("#table_div").fadeIn("slow");
+            jQuery("#table_btn_div").fadeIn("slow");
+            function hideTable(mediaquery) {
+              if (mediaquery.matches) {
+                jQuery("#table_div").hide();
+              } else {
+                jQuery("#table_div").fadeIn("slow");
+              }
+            }
+            hideTable(mediaquery);
+            mediaquery.addListener(hideTable);
           }
+
 
           image.onerror = function() {
             image.onerror = "";
@@ -180,8 +191,7 @@ function load() {
           }
 
         } else {
-          var name_first = json;
-          var result = name_first[0];
+          var result = json[0];
           var name = result.name;
           var coords = result.ICRS_coordinates;
           ra = coords.right_ascension;
@@ -213,21 +223,21 @@ function load() {
 
       document.getElementById("loading_text").innerHTML = "Loading image…";
 
-      if (table_data_object_types != undefined) {
+      if (table_data_object_types[0] != undefined) {
         createTable_object_types();
       } else {
         jQuery("#table_type").hide();
         jQuery("#table_type_p").hide();
       }
 
-      if (table_data_aliases != undefined) {
+      if (table_data_aliases[0] != undefined) {
         createTable_aliases();
       } else {
         jQuery("#table_aliases").hide();
         jQuery("#table_aliases_p").hide();
       }
 
-      if (table_data_fluxes != undefined) {
+      if (table_data_fluxes[0] != undefined) {
         createTable_fluxes();
       } else {
         jQuery("#table_fluxes").hide();
@@ -361,8 +371,18 @@ function load() {
       image.onload = function() {
         jQuery("#card").fadeIn("slow");
         jQuery("#loading_text").fadeOut("slow");
-        jQuery("#table_div").fadeIn("slow");
+        jQuery("#table_btn_div").fadeIn("slow");
+        function hideTable(mediaquery) {
+          if (mediaquery.matches) {
+            jQuery("#table_div").hide();
+          } else {
+            jQuery("#table_div").fadeIn("slow");
+          }
+        }
+        hideTable(mediaquery);
+        mediaquery.addListener(hideTable);
       }
+
 
       image.onerror = function() {
         image.onerror = "";
@@ -737,4 +757,12 @@ function moonPhase(day, month, year) { /* based on https://www.subsystems.us/upl
     julian_int = 0;
   }
   return julian_int;
+}
+
+function showTable() {
+  jQuery("#table_div").fadeIn("slow");
+  jQuery("#show_table_btn").addClass("btn-expand-none");
+  jQuery("#table_btn_div").removeClass("table_btn_div");
+  jQuery("#table_btn_div").addClass("table_btn_div_small");
+  jQuery("#table_btn_div").fadeOut(500);
 }

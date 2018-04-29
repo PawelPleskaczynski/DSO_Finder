@@ -11,6 +11,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <style type="text/css">
     @media only screen and (max-width: 1024px) {
+      #loading_text {
+        font-size: 1.66em;
+      }
+      #table_btn_div {
+        display: none;
+      }
+      #show_table_btn {
+        display: block;
+        margin: 0 auto;
+      }
       #card{
         display: block;
         margin-left: auto;
@@ -31,6 +41,12 @@
       }
     }
     @media only screen and (min-width: 1024px) {
+      #table_btn_div {
+        display: none;
+      }
+      #show_table_btn {
+        display: none;
+      }
       #card{
         display: block;
         margin-left: auto;
@@ -43,6 +59,14 @@
         margin-right: auto;
         width: 60%;
       }
+    }
+    .table_btn_div {
+      margin-bottom: 24px;
+      -webkit-transition: margin-bottom 0.5s;
+      transition: margin-bottom 0.5s;
+    }
+    .table_btn_div_small {
+      margin-bottom: 0px;
     }
     #card {
       margin-top: 20px;
@@ -143,6 +167,14 @@
       moz-box-shadow: 0px 4px 5px rgba(0,0,0,0.33);
       -webkit-box-shadow: 0px 4px 5px rgba(0,0,0,0.33);
     }
+    .btn-expand {
+      font-size: auto;
+      -webkit-transition: font-size 0.5s;
+      transition: font-size 0.5s;
+    }
+    .btn-expand-none {
+      font-size: 0px;
+    }
     </style>
   </head>
   <body>
@@ -236,6 +268,10 @@
 
       </div>
       </div>
+    </div>
+
+    <div id="table_btn_div" class="table_btn_div">
+      <button type="button" class="btn btn-secondary btn-expand" id="show_table_btn" onclick="showTable()">Show more</button>
     </div>
 
     <div id="table_div">
