@@ -836,6 +836,15 @@ function lucky() {
   } else if (catalog_array == 4) {
     number_final = hcg_numbers;
   }
-  var lucky_obj = cat_array[catalog_array] + number_final;
+  var lucky_obj = cat_array[catalog_array] + " " + number_final;
   window.open("object.html?obj=" + lucky_obj + "&lucky=true","_self");
 }
+
+var input_name = document.getElementById("input_name");
+
+input_name.addEventListener("keyup", function(event) {
+  event.preventDefault();
+  if (event.keyCode === 13) {
+    document.getElementById("find_btn").click();
+  }
+});
