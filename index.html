@@ -29,6 +29,21 @@
         margin-top: 50px
       }
     }
+    @media only screen and (max-width: 385px) {
+      .btn {
+        font-size: 80%;
+      }
+    }
+    @media only screen and (max-width: 330px) {
+      .btn {
+        font-size: 66%;
+      }
+    }
+    @media only screen and (max-width: 297px) {
+      .btn {
+        font-size: 40%;
+      }
+    }
     .jumbotron {
       background: rgba(220, 220, 220, 0.7);
       backdrop-filter: blur(10px);
@@ -52,7 +67,7 @@
       <hr class="my-4">
       <div id="nameinput">
         <input type="text" class="form-control" placeholder="Name of the object (eg. M42, NGC 1976) / coordinates (eg. 159.684 +48.817)" id="input_name">
-        <div style="margin-top: 25px;">
+        <div style="margin-top: 25px;" id="btn_div">
           <p class="lead">
             <a class="btn btn-primary btn-lg" href="javascript:void(0)" onclick="openDSO()" role="button">Find object</a>
             <a class="btn btn-primary btn-lg" href="javascript:void(0)" onclick="lucky()" role="button" style="margin-left: 16px;">I'm feeling lucky</a>
