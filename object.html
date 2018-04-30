@@ -13,6 +13,10 @@
     @media only screen and (max-width: 1024px) {
       #loading_text {
         font-size: 1.66em;
+        -webkit-user-select: none;
+        -moz-user-select: -moz-none;
+        -ms-user-select: none;
+        user-select: none;
       }
       #table_btn_div {
         display: none;
@@ -84,6 +88,10 @@
       mix-blend-mode: difference;
       z-index: 1;
       display: none;
+      -webkit-user-select: none;
+      -moz-user-select: -moz-none;
+      -ms-user-select: none;
+      user-select: none;
     }
     .table {
       margin-bottom: 25px;
@@ -93,6 +101,10 @@
     }
     #loading_text_img {
       color: #fff;
+      -webkit-user-select: none;
+      -moz-user-select: -moz-none;
+      -ms-user-select: none;
+      user-select: none;
     }
     .alert {
       position: absolute;
@@ -123,7 +135,7 @@
     .loading_bg {
       position: absolute;
       left: 50%;
-      top: 33%;
+      top: 50%;
       -webkit-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
       z-index: 1;
@@ -180,6 +192,54 @@
     .btn-expand-none {
       font-size: 0px;
     }
+    .link_up {
+      background: linear-gradient(0deg, rgba(0,0,0,0), rgba(0,0,0,0.5));
+      opacity: 0;
+      -webkit-transition: opacity 0.3s;
+      transition: opacity 0.3s;
+    }
+    .link_down {
+      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.5));
+      opacity: 0;
+      -webkit-transition: opacity 0.3s;
+      transition: opacity 0.3s;
+    }
+    .link_left {
+      background: linear-gradient(-90deg, rgba(0,0,0,0), rgba(0,0,0,0.5));
+      opacity: 0;
+      -webkit-transition: opacity 0.3s;
+      transition: opacity 0.3s;
+    }
+    .link_right {
+      background: linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,0.5));
+      opacity: 0;
+      -webkit-transition: opacity 0.3s;
+      transition: opacity 0.3s;
+    }
+    .link_up:hover {
+      opacity: 1;
+    }
+    .link_down:hover {
+      opacity: 1;
+    }
+    .link_left:hover {
+      opacity: 1;
+    }
+    .link_right:hover {
+      opacity: 1;
+    }
+    .controls {
+      text-align: center;
+      vertical-align: middle;
+      position: relative;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-user-select: none;
+      -moz-user-select: -moz-none;
+      -ms-user-select: none;
+      user-select: none;
+    }
     </style>
   </head>
   <body>
@@ -217,9 +277,21 @@
     </div>
 
     <div class="card" id="card">
-      <div>
+      <div style="position: relative;">
         <div class="loading_bg" id="loading_bg">
           <h2 class="blink" id="loading_text_img">Loading…</h2>
+        </div>
+        <div class="link_up" id="link_up" style="position: absolute; height: 20%; width: 100%; z-index: 2;" onclick="dec_plus()">
+          <h5 class="controls">Up</p>
+        </div>
+        <div class="link_left" id="link_left" style="position: absolute; left: 0px; height: 100%; width: 20%; z-index: 1;" onclick="ra_plus()">
+          <h5 class="controls">Left</p>
+        </div>
+        <div class="link_right" id="link_right" style="position: absolute; right: 0px; height: 100%; width: 20%; z-index: 1;" onclick="ra_minus()">
+          <h5 class="controls">Right</p>
+        </div>
+        <div class="link_down" id="link_down" style="position: absolute; bottom: 0px; height: 20%; width: 100%; z-index: 2" onclick="dec_minus()">
+          <h5 class="controls">Down</p>
         </div>
         <img class="card-img-top" src="" alt="Card image" id="DSO_image">
       </div>
@@ -280,14 +352,14 @@
     </div>
 
     <div id="table_div">
-      <p id="table_type_p" data-toggle="tooltip" data-placement="left" data-original-title="Type of the object (eg. galaxy, nebula, star…).">Object type</p>
-      <table id="table_type" class="table table-hover"></table>
+      <p id="table_fluxes_p" data-toggle="tooltip" data-placement="left" data-original-title="Brightness of the object in different wavelengths.">Fluxes</p>
+      <table id="table_fluxes" class="table table-hover"></table>
 
       <p id="table_aliases_p" data-toggle="tooltip" data-placement="left" data-original-title="Catalog numbers of this object.">Catalog numbers</p>
       <table id="table_aliases" class="table table-hover"></table>
 
-      <p id="table_fluxes_p" data-toggle="tooltip" data-placement="left" data-original-title="Brightness of the object in different wavelengths.">Fluxes</p>
-      <table id="table_fluxes" class="table table-hover"></table>
+      <p id="table_type_p" data-toggle="tooltip" data-placement="left" data-original-title="Type of the object (eg. galaxy, nebula, star…).">Object type</p>
+      <table id="table_type" class="table table-hover"></table>
     </div>
 
 
