@@ -25,6 +25,15 @@ function load() {
   if (is_coords) {
     var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + getVar("obj") + "&format=json&radius=10";
     json();
+    jQuery("#link_left").attr("onclick","ra_plus()");
+    jQuery("#link_right").attr("onclick","ra_minus()");
+    jQuery("#link_up").attr("onclick","dec_plus()");
+    jQuery("#link_down").attr("onclick","dec_minus()");
+
+    jQuery("#link_left").show();
+    jQuery("#link_right").show();
+    jQuery("#link_up").show();
+    jQuery("#link_down").show();
   } else if (getVar("obj").toUpperCase() == "sun".toUpperCase()) {
     document.getElementById("cardtitle").innerHTML = "Sun in white light";
     image.src = "https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_HMIIC.jpg";
@@ -135,6 +144,15 @@ function load() {
   } else {
     var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/" + getVar("obj") + "/?format=json";
     json();
+    jQuery("#link_left").attr("onclick","ra_plus()");
+    jQuery("#link_right").attr("onclick","ra_minus()");
+    jQuery("#link_up").attr("onclick","dec_plus()");
+    jQuery("#link_down").attr("onclick","dec_minus()");
+
+    jQuery("#link_left").show();
+    jQuery("#link_right").show();
+    jQuery("#link_up").show();
+    jQuery("#link_down").show();
   }
 
   function json() {
@@ -443,6 +461,9 @@ function load() {
       if (getVar("obj").match(/apr/i)) {
         error_link.innerHTML = "Did you mean " + getVar("obj").replace(/apr/i,"Arp").replace("%20"," ") + "?";
         error_link.href = "object.html?obj=" + getVar("obj").replace(/apr/i,"Arp"),"_self";
+      }
+      if (getVar("lucky") == "true") {
+        lucky();
       }
     });
   }
@@ -793,4 +814,28 @@ function showTable() {
   jQuery("#table_btn_div").removeClass("table_btn_div");
   jQuery("#table_btn_div").addClass("table_btn_div_small");
   jQuery("#table_btn_div").fadeOut(500);
+}
+
+function lucky() {
+  var cat_array = ["M","NGC","PGC","Arp","HCG"];
+  var messier_numbers = Math.floor(Math.random() * 110) + 1;
+  var pgc_numbers = Math.floor(Math.random() * 130000) + 1;
+  var ngc_numbers = Math.floor(Math.random() * 7840) + 1;
+  var arp_numbers = Math.floor(Math.random() * 338) + 1;
+  var hcg_numbers = Math.floor(Math.random() * 100) + 1;
+  var catalog_array = Math.floor(Math.random() * 5);
+  var number_final;
+  if (catalog_array == 0) {
+    number_final = messier_numbers;
+  } else if (catalog_array == 1) {
+    number_final = ngc_numbers;
+  } else if (catalog_array == 2) {
+    number_final = pgc_numbers;
+  } else if (catalog_array == 3) {
+    number_final = arp_numbers;
+  } else if (catalog_array == 4) {
+    number_final = hcg_numbers;
+  }
+  var lucky_obj = cat_array[catalog_array] + " " + number_final;
+  window.open("object.html?obj=" + lucky_obj + "&lucky=true","_self");
 }

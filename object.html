@@ -253,6 +253,9 @@
     <div class="collapse navbar-collapse" id="navbarColor03">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0)" onclick="lucky()">Random object</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="help.html">Help</a>
         </li>
         <li class="nav-item">
@@ -281,16 +284,16 @@
         <div class="loading_bg" id="loading_bg">
           <h2 class="blink" id="loading_text_img">Loading…</h2>
         </div>
-        <div class="link_up" id="link_up" style="position: absolute; height: 20%; width: 100%; z-index: 2;" onclick="dec_plus()">
+        <div class="link_up" id="link_up" style="position: absolute; height: 20%; width: 100%; z-index: 2; display: none;" onclick="">
           <h5 class="controls">Up</p>
         </div>
-        <div class="link_left" id="link_left" style="position: absolute; left: 0px; height: 100%; width: 20%; z-index: 1;" onclick="ra_plus()">
+        <div class="link_left" id="link_left" style="position: absolute; left: 0px; height: 100%; width: 20%; z-index: 1; display: none;" onclick="">
           <h5 class="controls">Left</p>
         </div>
-        <div class="link_right" id="link_right" style="position: absolute; right: 0px; height: 100%; width: 20%; z-index: 1;" onclick="ra_minus()">
+        <div class="link_right" id="link_right" style="position: absolute; right: 0px; height: 100%; width: 20%; z-index: 1; display: none;" onclick="">
           <h5 class="controls">Right</p>
         </div>
-        <div class="link_down" id="link_down" style="position: absolute; bottom: 0px; height: 20%; width: 100%; z-index: 2" onclick="dec_minus()">
+        <div class="link_down" id="link_down" style="position: absolute; bottom: 0px; height: 20%; width: 100%; z-index: 2; display: none;" onclick="">
           <h5 class="controls">Down</p>
         </div>
         <img class="card-img-top" src="" alt="Card image" id="DSO_image">
@@ -327,7 +330,7 @@
           <label class="btn btn-secondary active">
             <input type="radio" name="options" id="option_wl" autocomplete="off" checked="" onchange="wl_sun()">White light</label>
           <label class="btn btn-secondary">
-            <input type="radio" name="options" id="option_ha" autocomplete="off" onchange="ha_sun()">H-alpna</label>
+            <input type="radio" name="options" id="option_ha" autocomplete="off" onchange="ha_sun()">H-alpha</label>
       </div>
     </div>
       <div style="margin-top: 12px;" id="zoom_ra_dec_btns">

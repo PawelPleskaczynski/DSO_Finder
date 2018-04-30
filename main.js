@@ -43,3 +43,27 @@ function openDSO() {
     }
   }
 }
+
+function lucky() {
+  var cat_array = ["M","NGC","PGC","Arp","HCG"];
+  var messier_numbers = Math.floor(Math.random() * 110) + 1;
+  var pgc_numbers = Math.floor(Math.random() * 130000) + 1;
+  var ngc_numbers = Math.floor(Math.random() * 7840) + 1;
+  var arp_numbers = Math.floor(Math.random() * 338) + 1;
+  var hcg_numbers = Math.floor(Math.random() * 100) + 1;
+  var catalog_array = Math.floor(Math.random() * 5);
+  var number_final;
+  if (catalog_array == 0) {
+    number_final = messier_numbers;
+  } else if (catalog_array == 1) {
+    number_final = ngc_numbers;
+  } else if (catalog_array == 2) {
+    number_final = pgc_numbers;
+  } else if (catalog_array == 3) {
+    number_final = arp_numbers;
+  } else if (catalog_array == 4) {
+    number_final = hcg_numbers;
+  }
+  var lucky_obj = cat_array[catalog_array] + " " + number_final;
+  window.open("object.html?obj=" + lucky_obj + "&lucky=true","_self");
+}
