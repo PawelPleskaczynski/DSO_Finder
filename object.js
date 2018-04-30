@@ -220,7 +220,14 @@ function load() {
         var name = json.name;
         var coords = json.ICRS_coordinates;
         if (coords == null || coords == undefined) {
-          window.open("object.html?obj=" + getVar("obj").replace("%20",""),"_self");
+          if (getVar("obj").includes("%20")) {
+            window.open("object.html?obj=" + getVar("obj").replace("%20",""),"_self");
+          } else {
+            var error = document.getElementById("error_message");
+            error.innerHTML = "An error occured while processing query '" + getVar("obj") + "'.";
+            jQuery("#loading_text").fadeOut("slow");
+            jQuery(".alert").fadeIn("slow");
+          }
         }
         ra = coords.right_ascension;
         dec = coords.declination;
