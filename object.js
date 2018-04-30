@@ -219,6 +219,9 @@ function load() {
       } else {
         var name = json.name;
         var coords = json.ICRS_coordinates;
+        if (coords == null || coords == undefined) {
+          window.open("object.html?obj=" + getVar("obj").replace("%20",""),"_self");
+        }
         ra = coords.right_ascension;
         dec = coords.declination;
         title.innerHTML = bigLetter(name);
