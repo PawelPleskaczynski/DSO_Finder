@@ -13,6 +13,7 @@ var zoom_sdss = 3;
 var img_type = "";
 var is_coords = getVar("input_type") == "coordinates";
 var mediaquery = window.matchMedia("(max-width: 1024px)");
+var name;
 
 window.onLoad = load();
 window.onLoad = jQuery("#loading_text").fadeIn("slow");
@@ -201,7 +202,7 @@ function load() {
 
         } else {
           var result = json[0];
-          var name = result.name;
+          name = result.name;
           var coords = result.ICRS_coordinates;
           ra = coords.right_ascension;
           dec = coords.declination;
@@ -211,13 +212,15 @@ function load() {
           var table_data_aliases = result.aliases;
           var table_data_fluxes = result.fluxes;
 
+          document.title = name + " - DSO Finder";
+
           document.getElementById("raplus").onclick = "ra_plus()";
           document.getElementById("raminus").onclick = "ra_minus()";
           document.getElementById("decplus").onclick = "dec_plus()";
           document.getElementById("decminus").onclick = "dec_minus()";
         }
       } else {
-        var name = json.name;
+        name = json.name;
         var coords = json.ICRS_coordinates;
         if (coords == null || coords == undefined) {
           if (getVar("obj").includes("%20")) {
@@ -229,6 +232,7 @@ function load() {
             jQuery(".alert").fadeIn("slow");
           }
         }
+        document.title = name + " - DSO Finder";
         ra = coords.right_ascension;
         dec = coords.declination;
         title.innerHTML = bigLetter(name);
@@ -366,7 +370,7 @@ function load() {
         return columnSet;
       }
 
-
+      document.title = name + " - DSO Finder";
       document.getElementById("link_simbad").href = "http://simbad.u-strasbg.fr/simbad/sim-basic?Ident=" + name + "&submit=SIMBAD+search";
 
       var request = new XMLHttpRequest();
