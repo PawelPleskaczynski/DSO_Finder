@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>DSO Finder</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="https://pawelpleskaczynski.github.io/DSO_Finder/apple-touch-icon.png">
+    <link rel="icon" href="https://pawelpleskaczynski.github.io/DSO_Finder/favicon.ico">
+    <meta name="msapplication-square150x150logo" content="https://pawelpleskaczynski.github.io/DSO_Finder/mstile-150x150.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://pawelpleskaczynski.github.io/DSO_Finder/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://pawelpleskaczynski.github.io/DSO_Finder/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://pawelpleskaczynski.github.io/DSO_Finder/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="https://pawelpleskaczynski.github.io/DSO_Finder/android-chrome-512x512.png">
+    <link rel="manifest" href="https://pawelpleskaczynski.github.io/DSO_Finder/site.webmanifest">
+    <link rel="mask-icon" href="https://pawelpleskaczynski.github.io/DSO_Finder/safari-pinned-tab.svg" color="#432f80">
+    <meta name="msapplication-TileColor" content="#432f80">
+    <meta name="msapplication-config" content="https://pawelpleskaczynski.github.io/DSO_Finder/browserconfig.xml" />
+    <meta name="theme-color" content="#303030">
+    <link rel="stylesheet" href="theme/bootstrap/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <meta name="theme-color" content="#f2f2f2"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <style type="text/css">
+    @media only screen and (max-width: 1024px) {
+      .alert {
+        width: 85%;
+        margin: auto;
+        margin-top: 25px;
+      }
+      .jumbotron {
+        width: 85%;
+      }
+      #loading_text {
+        font-size: 1.66em;
+        -webkit-user-select: none;
+        -moz-user-select: -moz-none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      #card{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 85%;
+      }
+    }
+    @media only screen and (min-width: 1024px) {
+      .alert {
+        width: 66%;
+        margin: auto;
+        margin-top: 25px;
+      }
+      #res__width {
+        display: inline-block; width: 45%;
+      }
+      #res__height {
+        display: inline-block; width: 45%; float: right;
+      }
+      .jumbotron {
+        width: 66%;
+      }
+      #card{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 66%;
+      }
+    }
+    .jumbotron {
+      margin: auto;
+      margin-top: 24px;
+    }
+    #card {
+      display: none;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    #loading_text {
+      display: none;
+      -webkit-user-select: none;
+      -moz-user-select: -moz-none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    #loading_text_img {
+      color: #fff;
+      -webkit-user-select: none;
+      -moz-user-select: -moz-none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    .blink {
+      animation: blinker 2s ease infinite;
+    }
+    @keyframes blinker {
+      50% {
+        opacity: 0.3;
+      }
+    }
+    #DSO_image {
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
+    }
+    .loading_bg {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      color: #fff;
+      border-radius: 8px;
+      background-color: rgba(0, 0, 0, 0.33);
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-top: 8px;
+      display: none;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+    a {
+      color: #E91E63;
+      -webkit-transition: color 0.5s;
+      transition: color 0.5s;
+    }
+    a:hover {
+      color: #F06292;
+    }
+    .card {
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, .2);
+      moz-box-shadow: 0px 2px 5px rgba(0, 0, 0,0.2);
+      -webkit-box-shadow: 0px 2px 5px rgba(0, 0, 0, .2);
+      -webkit-transition: box-shadow 0.5s;
+      transition: box-shadow 0.5s;
+      -webkit-transition: moz-box-shadow 0.5s;
+      transition: moz-box-shadow 0.5s;
+      -webkit-transition: -webkit-box-shadow 0.5s;
+      transition: -webkit-box-shadow 0.5s;
+    }
+    .card:hover {
+      box-shadow: 0px 4px 5px rgba(0,0,0,0.33);
+      moz-box-shadow: 0px 4px 5px rgba(0,0,0,0.33);
+      -webkit-box-shadow: 0px 4px 5px rgba(0,0,0,0.33);
+    }
+    .jumbotron {
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, .2);
+      moz-box-shadow: 0px 2px 5px rgba(0, 0, 0,0.2);
+      -webkit-box-shadow: 0px 2px 5px rgba(0, 0, 0, .2);
+      -webkit-transition: box-shadow 0.5s;
+      transition: box-shadow 0.5s;
+      -webkit-transition: moz-box-shadow 0.5s;
+      transition: moz-box-shadow 0.5s;
+      -webkit-transition: -webkit-box-shadow 0.5s;
+      transition: -webkit-box-shadow 0.5s;
+    }
+    .jumbotron:hover {
+      box-shadow: 0px 4px 5px rgba(0,0,0,0.33);
+      moz-box-shadow: 0px 4px 5px rgba(0,0,0,0.33);
+      -webkit-box-shadow: 0px 4px 5px rgba(0,0,0,0.33);
+    }
+    .navbar {
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, .2);
+      moz-box-shadow: 0px 2px 5px rgba(0, 0, 0,0.2);
+      -webkit-box-shadow: 0px 2px 5px rgba(0, 0, 0, .2);
+    }
+    .link_up {
+      background: linear-gradient(0deg, rgba(0,0,0,0), rgba(0,0,0,0.5));
+      opacity: 0;
+      -webkit-transition: opacity 0.3s;
+      transition: opacity 0.3s;
+    }
+    .link_down {
+      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.5));
+      opacity: 0;
+      -webkit-transition: opacity 0.3s;
+      transition: opacity 0.3s;
+    }
+    .link_left {
+      background: linear-gradient(-90deg, rgba(0,0,0,0), rgba(0,0,0,0.5));
+      opacity: 0;
+      -webkit-transition: opacity 0.3s;
+      transition: opacity 0.3s;
+    }
+    .link_right {
+      background: linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,0.5));
+      opacity: 0;
+      -webkit-transition: opacity 0.3s;
+      transition: opacity 0.3s;
+    }
+    .link_up:hover {
+      opacity: 1;
+    }
+    .link_down:hover {
+      opacity: 1;
+    }
+    .link_left:hover {
+      opacity: 1;
+    }
+    .link_right:hover {
+      opacity: 1;
+    }
+    .controls {
+      text-align: center;
+      vertical-align: middle;
+      position: relative;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-user-select: none;
+      -moz-user-select: -moz-none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    </style>
+  </head>
+  <body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="index.html">DSO Finder</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor03">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" onclick="lucky()">Random object</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="help.html">Help</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/PawelPleskaczynski/DSO_Finder/blob/master/README.md">About</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="alert alert-dismissible alert-warning">
+    <h3 class="alert-heading">Warning!</h4>
+    <p class="mb-0">This tool won't work with large fields of view (larger than 120 arcminutes), due to DSS limitations.</p>
+  </div>
+
+  <div class="jumbotron">
+    <h2>Details about your setup</h2>
+
+    <div class="btn-group btn-group-toggle" data-toggle="buttons" style="margin-bottom: 24px; margin-top: 24px;">
+      <label class="btn btn-secondary active">
+        <input type="radio" name="options" id="imgmode" autocomplete="off" checked="" onchange="imaging()">Imaging mode</label>
+        <label class="btn btn-secondary">
+          <input type="radio" name="options" id="obsmode" autocomplete="off" onchange="observing()">Observing mode</label>
+        </div>
+
+        <div id="img_mode">
+          <div class="form-group">
+            <fieldset>
+              <label class="control-label" for="flength_input">Telescope details</label>
+              <div class="form-group">
+                <div class="input-group mb-3">
+                  <input type="number" class="form-control" placeholder="Telescope focal length..." id="flength_input">
+                  <div class="input-group-append">
+                    <span class="input-group-text">mm</span>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset style="margin-top: 24px;">
+              <label class="control-label" for="pixsize">Camera details</label>
+              <div class="form-group">
+                <div class="input-group mb-3">
+                  <input type="number" class="form-control" placeholder="Pixel size..." id="pixsize">
+                  <div class="input-group-append">
+                    <span class="input-group-text">microns</span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="form-group" id="res__width">
+                  <div class="input-group mb-3">
+                    <input type="number" class="form-control" placeholder="Resolution (width)..." id="reswidth">
+                    <div class="input-group-append">
+                      <span class="input-group-text">pixels</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" id="res__height">
+                  <div class="input-group mb-3">
+                    <input type="number" class="form-control" placeholder="Resolution (height)..." id="resheight">
+                    <div class="input-group-append">
+                      <span class="input-group-text">pixels</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset style="margin-top: 24px;">
+              <label class="control-label" for="object_name_img">Object</label>
+              <div class="form-group">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Type in name/coordinates of an object..." id="object_name_img">
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <button type="button" class="btn btn-success btn-lg" onclick="fov_img()">Calculate field of view</button>
+        </div>
+
+        <div id="obs_mode" style="display: none;">
+          <div class="form-group">
+            <fieldset>
+              <label class="control-label" for="flength_input_obs">Telescope details</label>
+              <div class="form-group">
+                <div class="input-group mb-3">
+                  <input type="number" class="form-control" placeholder="Telescope focal length..." id="flength_input_obs">
+                  <div class="input-group-append">
+                    <span class="input-group-text">mm</span>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset style="margin-top: 24px;">
+              <label class="control-label" for="afov">Eyepiece details</label>
+              <div class="form-group">
+                <div class="input-group mb-3">
+                  <input type="number" class="form-control" placeholder="Apparent field of view..." id="afov">
+                  <div class="input-group-append">
+                    <span class="input-group-text">°</span>
+                  </div>
+                </div>
+                <div class="input-group mb-3">
+                  <input type="number" class="form-control" placeholder="Focal length..." id="eyepiece_flength">
+                  <div class="input-group-append">
+                    <span class="input-group-text">mm</span>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset style="margin-top: 24px;">
+              <label class="control-label" for="object_name_obs">Object</label>
+              <div class="form-group">
+                <div class="input-group mb-3">
+                  <input type="number" class="form-control" placeholder="Type in name/coordinates of an object..." id="object_name_obs">
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <button type="button" class="btn btn-success btn-lg" onclick="fov_obs()">Calculate field of view</button>
+        </div>
+      </div>
+
+      <div id="loadingtextdiv" style="margin-top: 24px;">
+        <h2 class="blink" id="loading_text" style="text-align: center; vertical-align: middle;">Loading…</h2>
+      </div>
+
+      <div class="card" id="card">
+        <div style="position: relative;">
+          <div style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; margin: 16px;">
+            <h6 id="fov_width_text"></h6>
+            <h6 id="fov_height_text"></h6>
+            <h6 id="resolution_text"></h6>
+          </div>
+          <div class="loading_bg" id="loading_bg">
+            <h2 class="blink" id="loading_text_img">Loading…</h2>
+          </div>
+          <div class="link_up" id="link_up" style="position: absolute; height: 20%; width: 100%; z-index: 2;" onclick="dec_plus()">
+            <h5 class="controls">Up</p>
+            </div>
+            <div class="link_left" id="link_left" style="position: absolute; left: 0px; height: 100%; width: 20%; z-index: 1;" onclick="ra_plus()">
+              <h5 class="controls">Left</p>
+              </div>
+              <div class="link_right" id="link_right" style="position: absolute; right: 0px; height: 100%; width: 20%; z-index: 1;" onclick="ra_minus()">
+                <h5 class="controls">Right</p>
+                </div>
+                <div class="link_down" id="link_down" style="position: absolute; bottom: 0px; height: 20%; width: 100%; z-index: 2;" onclick="dec_minus()">
+                  <h5 class="controls">Down</p>
+                  </div>
+                  <div>
+                    <img class="card-img-top" src="" alt="Card image" id="DSO_image">
+                  </div>
+                </div>
+              </div>
+
+              <script src="fov.js"></script>
+
+  </body>
+</html>
