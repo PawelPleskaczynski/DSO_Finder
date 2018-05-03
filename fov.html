@@ -45,6 +45,23 @@
         width: 85%;
       }
     }
+    @media only screen and (max-width: 700px) {
+      h6 {
+        font-size: 0.67em;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
+      #details_div {
+        margin: 6px;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        opacity: 0.66;
+      }
+    }
     @media only screen and (min-width: 1024px) {
       .alert {
         width: 66%;
@@ -66,6 +83,15 @@
         margin-right: auto;
         width: 66%;
       }
+    }
+    #details_div {
+      margin: 16px;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 3;
     }
     .jumbotron {
       margin: auto;
@@ -344,7 +370,7 @@
               <label class="control-label" for="object_name_obs">Object</label>
               <div class="form-group">
                 <div class="input-group mb-3">
-                  <input type="number" class="form-control" placeholder="Type in name/coordinates of an object..." id="object_name_obs">
+                  <input type="text" class="form-control" placeholder="Type in name/coordinates of an object..." id="object_name_obs">
                 </div>
               </div>
             </fieldset>
@@ -353,13 +379,13 @@
         </div>
       </div>
 
-      <div id="loadingtextdiv" style="margin-top: 24px;">
+      <div id="loadingtextdiv" style="margin-top: 24px; margin-bottom: 24px;">
         <h2 class="blink" id="loading_text" style="text-align: center; vertical-align: middle;">Loading…</h2>
       </div>
 
       <div class="card" id="card">
         <div style="position: relative;">
-          <div style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; margin: 16px;">
+          <div id="details_div">
             <h6 id="fov_width_text"></h6>
             <h6 id="fov_height_text"></h6>
             <h6 id="resolution_text"></h6>
@@ -367,25 +393,26 @@
           <div class="loading_bg" id="loading_bg">
             <h2 class="blink" id="loading_text_img">Loading…</h2>
           </div>
-          <div class="link_up" id="link_up" style="position: absolute; height: 20%; width: 100%; z-index: 2;" onclick="dec_plus()">
+          <div class="link_up" id="link_up" style="position: absolute; height: 20%; width: 100%; z-index: 5;" onclick="dec_plus()">
             <h5 class="controls">Up</p>
-            </div>
-            <div class="link_left" id="link_left" style="position: absolute; left: 0px; height: 100%; width: 20%; z-index: 1;" onclick="ra_plus()">
-              <h5 class="controls">Left</p>
-              </div>
-              <div class="link_right" id="link_right" style="position: absolute; right: 0px; height: 100%; width: 20%; z-index: 1;" onclick="ra_minus()">
-                <h5 class="controls">Right</p>
-                </div>
-                <div class="link_down" id="link_down" style="position: absolute; bottom: 0px; height: 20%; width: 100%; z-index: 2;" onclick="dec_minus()">
-                  <h5 class="controls">Down</p>
-                  </div>
-                  <div>
-                    <img class="card-img-top" src="" alt="Card image" id="DSO_image">
-                  </div>
-                </div>
-              </div>
+          </div>
+          <div class="link_left" id="link_left" style="position: absolute; left: 0px; height: 100%; width: 20%; z-index: 4;" onclick="ra_plus()">
+            <h5 class="controls">Left</p>
+          </div>
+          <div class="link_right" id="link_right" style="position: absolute; right: 0px; height: 100%; width: 20%; z-index: 4;" onclick="ra_minus()">
+            <h5 class="controls">Right</p>
+          </div>
+          <div class="link_down" id="link_down" style="position: absolute; bottom: 0px; height: 20%; width: 100%; z-index: 5;" onclick="dec_minus()">
+            <h5 class="controls">Down</p>
+          </div>
+          <div>
+            <img src="images/fov/eyepiece.png" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 2; display: none;" id="eyepiece_fov">
+            <img class="card-img-top" src="" alt="Card image" id="DSO_image" style="position: relative;">
+          </div>
+        </div>
+      </div>
 
-              <script src="fov.js"></script>
+      <script src="fov.js"></script>
 
   </body>
 </html>

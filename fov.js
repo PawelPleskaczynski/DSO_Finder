@@ -18,18 +18,37 @@ var object_observing = document.getElementById("object_name_obs");
 
 var fov_width;
 var fov_height;
+var fov;
 
 var loading_text = document.getElementById("loading_text");
+
+window.onload = jQuery("#link_left").attr("onclick","ra_plus()");
+window.onload = jQuery("#link_right").attr("onclick","ra_minus()");
+window.onload = jQuery("#link_up").attr("onclick","dec_plus()");
+window.onload = jQuery("#link_down").attr("onclick","dec_minus()");
 
 function imaging() {
   jQuery("#img_mode").show();
   jQuery("#obs_mode").hide();
+  jQuery("#link_left").attr("onclick","ra_plus()");
+  jQuery("#link_right").attr("onclick","ra_minus()");
+  jQuery("#link_up").attr("onclick","dec_plus()");
+  jQuery("#link_down").attr("onclick","dec_minus()");
+  jQuery("#eyepiece_fov").hide();
+  jQuery("#card").hide();
 }
 
 function observing() {
   jQuery("#img_mode").hide();
   jQuery("#obs_mode").show();
+  jQuery("#link_left").attr("onclick","ra_plus_obs()");
+  jQuery("#link_right").attr("onclick","ra_minus_obs()");
+  jQuery("#link_up").attr("onclick","dec_plus_obs()");
+  jQuery("#link_down").attr("onclick","dec_minus_obs()");
+  jQuery("#eyepiece_fov").show();
+  jQuery("#card").hide();
 }
+
 
 function fov_img() {
   var telescope_flength_v = telescope_flength.value;
@@ -48,6 +67,7 @@ function fov_img() {
     fov_width_text.innerHTML = "Width: " + fov_width.toFixed(2) + " arcminutes";
     fov_height_text.innerHTML = "Height: " + fov_height.toFixed(2) + " arcminutes";
     resolution_text.innerHTML = "Resolution: " + res.toFixed(2) + " arcseconds/px"
+    loading_text.innerHTML = "Loading...";
 
     if (fov_width <= 120 && fov_height <= 120) {
 
@@ -63,7 +83,8 @@ function fov_img() {
         ra = coords.right_ascension;
         dec = coords.declination;
 
-        loading_text.innerHTML = "Loading image... This may take a while."
+        loading_text.innerHTML = "Loading image... This may take a while.";
+        scroll_bottom();
 
         image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
 
@@ -86,10 +107,52 @@ function fov_obs() {
   var telescope_flength_obs_v = telescope_flength_obs.value;
   var eyepiece_afov_v = eyepiece_afov.value;
   var eyepiece_flength_v = eyepiece_flength.value;
-  var object_imaging_v = object_imaging.value;
+  var object_observing_v = object_observing.value;
+  loading_text.innerHTML = "Loading...";
 
-  var magnification = telescope_flength_obs_v / eyepiece_flength_v;
-  var fov = eyepiece_afov_v / magnification;
+
+  if (telescope_flength_obs_v != "" && eyepiece_afov_v != "" && eyepiece_flength_v != "" && object_observing_v != "") {
+    var magnification = telescope_flength_obs_v / eyepiece_flength_v;
+    fov = eyepiece_afov_v / magnification;
+    fov = fov * 60;
+
+    fov_width_text.innerHTML = "FoV size: " + fov.toFixed(2) + " arcminutes";
+    resolution_text.innerHTML = "Magnification: " + magnification.toFixed(2) + "x";
+    fov_height_text.innerHTML = "";
+
+    if (fov <= 120) {
+
+      jQuery("#loading_text").show();
+      jQuery("#card").hide();
+      jQuery("#loading_bg").hide();
+      scroll_bottom();
+
+      var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/" + object_observing_v + "/?format=json";
+
+      $.getJSON(requestURL, function (json) {
+        var coords = json.ICRS_coordinates;
+        ra = coords.right_ascension;
+        dec = coords.declination;
+
+        loading_text.innerHTML = "Loading image... This may take a while.";
+        scroll_bottom();
+
+        image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+
+        image.onload = function() {
+          jQuery("#card").fadeIn("slow");
+          jQuery("#loading_text").fadeOut("slow");
+          scroll_bottom_load();
+        }
+
+        image.onerror = function() {
+          jQuery("#loading_text").fadeOut("slow");
+        }
+
+      })
+    }
+  }
+
 }
 
 function ra_plus() {
@@ -130,6 +193,46 @@ function dec_minus() {
     jQuery("#loading_bg").hide();
   }
   image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+}
+
+function ra_plus_obs() {
+  ra = +ra + 0.1;
+
+  jQuery("#loading_bg").show();
+  image.onload = function () {
+    jQuery("#loading_bg").hide();
+  }
+  image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+}
+
+function ra_minus_obs() {
+  ra = +ra - 0.1;
+
+  jQuery("#loading_bg").show();
+  image.onload = function () {
+    jQuery("#loading_bg").hide();
+  }
+  image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+}
+
+function dec_plus_obs() {
+  dec = +dec + 0.1;
+
+  jQuery("#loading_bg").show();
+  image.onload = function () {
+    jQuery("#loading_bg").hide();
+  }
+  image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+}
+
+function dec_minus_obs() {
+  dec = +dec - 0.1;
+
+  jQuery("#loading_bg").show();
+  image.onload = function () {
+    jQuery("#loading_bg").hide();
+  }
+  image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
 }
 
 function scroll_bottom() {
