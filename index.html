@@ -65,8 +65,24 @@
   <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar" style="opacity: 0.8; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
-      <a class="navbar-brand" href="javascript:void(0)">DSO Finder</a>
-      <span class="badge badge-warning">Beta</span>
+      <a class="navbar-brand" href="index.html">DSO Finder</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="fov.html">Field of view calculator</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="help.html">Help</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/PawelPleskaczynski/DSO_Finder/blob/master/README.md">About</a>
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <div class="jumbotron">
@@ -88,7 +104,6 @@
     </div>
 
     <div class="container">
-      <p><a href="help.html" style="color: #42f4a4;">Help</a></p>
       <p style="color: #fff;">Powered by <a href="https://api.arcsecond.io/?/" style="color: #42f4a4;">arcsecond.io</a>, <a href="http://skyserver.sdss.org/dr12/en/help/docs/api.aspx#imgcutout" style="color: #42f4a4;">SDSS SkyServer</a> and <a href="http://archive.eso.org/dss/dss" style="color: #42f4a4;">ESO DSS Archive</a>.</p>
     </div>
 
