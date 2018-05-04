@@ -921,5 +921,4 @@ function preload() {
   } else if (img_type == "SDSS") {
     img_4.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + (dec - 0.1) + "&scale=" + zoom_sdss + ".5&width=512&height=512";
   }
-
 }
