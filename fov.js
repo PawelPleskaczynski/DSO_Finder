@@ -70,7 +70,7 @@ function fov_img() {
     resolution_text.innerHTML = "Resolution: " + res.toFixed(2) + " arcseconds/px"
     loading_text.innerHTML = "Loading...";
 
-    if (fov_width <= 120 && fov_height <= 120) {
+    if (fov_width * fov_height <= 14400) {
 
       jQuery("#loading_text").show();
       jQuery("#card").hide();
@@ -87,7 +87,7 @@ function fov_img() {
         loading_text.innerHTML = "Loading image... This may take a while.";
         scroll_bottom();
 
-        if (fov_width > 75 || fov_height > 75) {
+        if (fov_width * fov_height > 5600) {
           image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
           img_type = "DSS1";
         } else {
@@ -99,7 +99,6 @@ function fov_img() {
           jQuery("#card").fadeIn("slow");
           jQuery("#loading_text").fadeOut("slow");
           scroll_bottom_load();
-          preload();
         }
 
         image.onerror = function() {
@@ -158,7 +157,6 @@ function fov_obs() {
           jQuery("#card").fadeIn("slow");
           jQuery("#loading_text").fadeOut("slow");
           scroll_bottom_load();
-          preload_obs();
         }
 
         image.onerror = function() {
@@ -177,7 +175,6 @@ function ra_plus() {
   jQuery("#loading_bg").show();
   image.onload = function () {
     jQuery("#loading_bg").hide();
-    preload();
   }
   if (img_type == "DSS1") {
     image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
@@ -192,7 +189,6 @@ function ra_minus() {
   jQuery("#loading_bg").show();
   image.onload = function () {
     jQuery("#loading_bg").hide();
-    preload();
   }
   if (img_type == "DSS1") {
     image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
@@ -207,7 +203,6 @@ function dec_plus() {
   jQuery("#loading_bg").show();
   image.onload = function () {
     jQuery("#loading_bg").hide();
-    preload();
   }
   if (img_type == "DSS1") {
     image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
@@ -222,7 +217,6 @@ function dec_minus() {
   jQuery("#loading_bg").show();
   image.onload = function () {
     jQuery("#loading_bg").hide();
-    preload();
   }
   if (img_type == "DSS1") {
     image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
@@ -237,7 +231,6 @@ function ra_plus_obs() {
   jQuery("#loading_bg").show();
   image.onload = function () {
     jQuery("#loading_bg").hide();
-    preload_obs();
   }
   if (img_type == "DSS1") {
     image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
@@ -252,7 +245,6 @@ function ra_minus_obs() {
   jQuery("#loading_bg").show();
   image.onload = function () {
     jQuery("#loading_bg").hide();
-    preload_obs();
   }
   if (img_type == "DSS1") {
     image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
@@ -267,7 +259,6 @@ function dec_plus_obs() {
   jQuery("#loading_bg").show();
   image.onload = function () {
     jQuery("#loading_bg").hide();
-    preload_obs();
   }
   if (img_type == "DSS1") {
     image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
@@ -282,7 +273,6 @@ function dec_minus_obs() {
   jQuery("#loading_bg").show();
   image.onload = function () {
     jQuery("#loading_bg").hide();
-    preload_obs();
   }
   if (img_type == "DSS1") {
     image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
@@ -325,42 +315,4 @@ function lucky() {
   }
   var lucky_obj = cat_array[catalog_array] + " " + number_final;
   window.open("object.html?obj=" + lucky_obj + "&lucky=true","_self");
-}
-
-function preload() {
-  img_1 = new Image();
-  img_2 = new Image();
-  img_3 = new Image();
-  img_4 = new Image();
-
-  if (img_type == "DSS1") {
-    img_1.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + (ra + 0.1) + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
-    img_2.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + (ra - 0.1) + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
-    img_3.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + (dec + 0.1) + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
-    img_4.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + (dec - 0.1) + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
-  } else if (img_type == "DSS2") {
-    img_1.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + (ra + 0.1) + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
-    img_2.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + (ra - 0.1) + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
-    img_3.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + (dec + 0.1) + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
-    img_4.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + (dec - 0.1) + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
-  }
-}
-
-function preload_obs() {
-  img_5 = new Image();
-  img_6 = new Image();
-  img_7 = new Image();
-  img_8 = new Image();
-
-  if (img_type == "DSS1") {
-    img_5.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + (ra + 0.1) + "&dec=" + dec + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
-    img_6.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + (ra - 0.1) + "&dec=" + dec + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
-    img_7.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + (dec + 0.1) + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
-    img_8.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + (dec - 0.1) + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
-  } else if (img_type == "DSS2") {
-    img_5.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + (ra + 0.1) + "&dec=" + dec + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
-    img_6.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + (ra - 0.1) + "&dec=" + dec + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
-    img_7.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + (dec + 0.1) + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
-    img_8.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + (dec - 0.1) + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
-  }
 }
