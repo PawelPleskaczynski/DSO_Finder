@@ -82,14 +82,8 @@ function load() {
       phase = phase/4;
       phase = phase * 100;
     } else {
-      phase = phase - 4;
-      phase = phase/4;
-      phase = 1-phase;
-      phase = phase * 1000;
+      phase = (1 - (phase - 4) / 4) * 1000;
     }
-    console.log(phase);
-
-    document.getElementById("cardtitle").innerHTML = phase_round + " Moon";
 
     if (phase >= 0 && phase < 10) {
       image.src = "images/moon/moon_1.jpg"
@@ -113,9 +107,9 @@ function load() {
       image.src = "images/moon/moon_10.jpg"
     } else if (phase >= 91 && phase <= 100) {
       image.src = "images/moon/moon_12.jpg"
-    } else if (phase >= 910 && phase < 1000) {
+    } else if (phase >= 820 && phase < 1000) {
       image.src = "images/moon/moon_13.jpg"
-    } else if (phase >= 800 && phase < 850) {
+    } else if (phase >= 800 && phase < 820) {
       image.src = "images/moon/moon_14.jpg"
     } else if (phase >= 700 && phase < 800) {
       image.src = "images/moon/moon_15.jpg"
@@ -134,6 +128,14 @@ function load() {
     } else if (phase >= 0 && phase < 100) {
       image.src = "images/moon/moon_22.jpg"
     }
+
+    if (phase > 100) {
+      phase = phase / 10;
+    }
+
+    jQuery("#cardtitle").attr("data-original-title","Around " + Math.round(phase) + "%");
+
+    document.getElementById("cardtitle").innerHTML = phase_round + " Moon";
 
     image.onload = function() {
       jQuery("#loadingtextdiv").hide();
@@ -815,7 +817,6 @@ function moonPhase(day, month, year) { /* based on https://www.subsystems.us/upl
   var julian_int = parseInt(julian);
   julian = julian - julian_int;
   julian_int = julian * 8;
-  console.log(julian_int);
   if (Math.ceil(julian_int) > 8) {
     julian_int = 0;
   }
