@@ -54,10 +54,12 @@ function load() {
     var month = date.getMonth() + 1;
     var day = date.getDate();
     var hour = date.getHours();
-    var day_final = day + (hour / 24);
-
-    var phase = moonPhase(day_final,month,year);
-    phase_round = Math.round(moonPhase(day_final,month,year));
+    var timezone = date.getTimezoneOffset();
+    timezone = timezone / 60 / 24;
+    day = day + (hour / 24);
+    day = day - timezone;
+    var phase = moonPhase(day,month,year);
+    phase_round = Math.round(moonPhase(day,month,year));
 
     if (phase_round == 0) {
       phase_round = "New";
@@ -78,11 +80,11 @@ function load() {
     } else if (phase_round == 8) {
       phase_round = "New";
     }
+
     if (phase <= 4) {
-      phase = phase/4;
-      phase = phase * 100;
+      phase = phase / 4 * 100;
     } else {
-      phase = (1 - (phase - 4) / 4) * 1000;
+      phase = (8 - phase) / 4 * 1000;
     }
 
     if (phase >= 0 && phase < 10) {
