@@ -20,7 +20,7 @@ var resolution_text = document.getElementById("resolution_text");
 var fov_width;
 var fov_height;
 var fov;
-var img_type;
+var img_type = "DSS1";
 
 var loading_text = document.getElementById("loading_text");
 var solar_system_obj = document.getElementById("solar_system_obj");
@@ -31,6 +31,7 @@ window.onload = jQuery("#link_up").attr("onclick","dec_plus()");
 window.onload = jQuery("#link_down").attr("onclick","dec_minus()");
 
 function imaging() {
+  jQuery("#dso_big_fov").hide();
   jQuery("#img_mode").show();
   jQuery("#obs_mode").hide();
   jQuery("#link_left").attr("onclick","ra_plus()");
@@ -45,10 +46,11 @@ function imaging() {
   jQuery("#fov_move_controls").show();
   jQuery("#card2").css("background","none");
   jQuery("#card2").css("height", "auto");
-  document.getElementById("eyepiece_fov").src = "images/ui/eyepiece.png";
+  jQuery(".alert-danger").hide();
 }
 
 function observing() {
+  jQuery("#dso_big_fov").hide();
   jQuery("#img_mode").hide();
   jQuery("#obs_mode").show();
   jQuery("#link_left").attr("onclick","ra_plus_obs()");
@@ -63,6 +65,7 @@ function observing() {
   jQuery("#fov_move_controls").show();
   jQuery("#card2").css("background","none");
   jQuery("#card2").css("height", "auto");
+  jQuery(".alert-danger").hide();
 }
 
 
@@ -89,9 +92,11 @@ function fov_img() {
     resolution_text.innerHTML = "Resolution: " + res.toFixed(2) + " arcseconds/px"
     loading_text.innerHTML = "Loading...";
 
-    if (object_imaging_v.toUpperCase() == "moon".toUpperCase()) {
+    if (object_imaging_v.toUpperCase().trim() == "moon".toUpperCase()) {
       var height_fov = fov_height / fov_width;
       var width = jQuery("#card").width();
+      jQuery("#dso_big_fov").hide();
+      jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
       jQuery("#card2").show();
       jQuery("#card2").css("background","url(images/ui/black_square.png)");
@@ -116,9 +121,11 @@ function fov_img() {
         jQuery("#solar_system_obj").css("width",moon_width + "px");
         jQuery("#solar_system_obj").css("height",moon_width + "px");
       }
-    } else if (object_imaging_v.toUpperCase() == "mercury".toUpperCase()) {
+    } else if (object_imaging_v.toUpperCase().trim() == "mercury".toUpperCase()) {
       var height_fov = fov_height / fov_width;
       var width = jQuery("#card").width();
+      jQuery("#dso_big_fov").hide();
+      jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
       jQuery("#card2").show();
       jQuery("#card2").css("background","url(images/ui/black_square.png)");
@@ -143,9 +150,11 @@ function fov_img() {
         jQuery("#solar_system_obj").css("width",mercury_width + "px");
         jQuery("#solar_system_obj").css("height",mercury_width + "px");
       }
-    } else if (object_imaging_v.toUpperCase() == "venus".toUpperCase()) {
+    } else if (object_imaging_v.toUpperCase().trim() == "venus".toUpperCase()) {
       var height_fov = fov_height / fov_width;
       var width = jQuery("#card").width();
+      jQuery("#dso_big_fov").hide();
+      jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
       jQuery("#card2").show();
       jQuery("#card2").css("background","url(images/ui/black_square.png)");
@@ -170,9 +179,11 @@ function fov_img() {
         jQuery("#solar_system_obj").css("width",venus_width + "px");
         jQuery("#solar_system_obj").css("height",venus_width + "px");
       }
-    } else if (object_imaging_v.toUpperCase() == "mars".toUpperCase()) {
+    } else if (object_imaging_v.toUpperCase().trim() == "mars".toUpperCase()) {
       var height_fov = fov_height / fov_width;
       var width = jQuery("#card").width();
+      jQuery("#dso_big_fov").hide();
+      jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
       jQuery("#card2").show();
       jQuery("#card2").css("background","url(images/ui/black_square.png)");
@@ -197,9 +208,11 @@ function fov_img() {
         jQuery("#solar_system_obj").css("width",mars_width + "px");
         jQuery("#solar_system_obj").css("height",mars_width + "px");
       }
-    } else if (object_imaging_v.toUpperCase() == "jupiter".toUpperCase()) {
+    } else if (object_imaging_v.toUpperCase().trim() == "jupiter".toUpperCase()) {
       var height_fov = fov_height / fov_width;
       var width = jQuery("#card").width();
+      jQuery("#dso_big_fov").hide();
+      jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
       jQuery("#card2").show();
       jQuery("#card2").css("background","url(images/ui/black_square.png)");
@@ -224,9 +237,11 @@ function fov_img() {
         jQuery("#solar_system_obj").css("width",jupiter_width + "px");
         jQuery("#solar_system_obj").css("height",jupiter_width + "px");
       }
-    } else if (object_imaging_v.toUpperCase() == "saturn".toUpperCase()) {
+    } else if (object_imaging_v.toUpperCase().trim() == "saturn".toUpperCase()) {
       var height_fov = fov_height / fov_width;
       var width = jQuery("#card").width();
+      jQuery("#dso_big_fov").hide();
+      jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
       jQuery("#card2").show();
       jQuery("#card2").css("background","url(images/ui/black_square.png)");
@@ -251,9 +266,11 @@ function fov_img() {
         jQuery("#solar_system_obj").css("width",saturn_width + "px");
         jQuery("#solar_system_obj").css("height",saturn_width + "px");
       }
-    } else if (object_imaging_v.toUpperCase() == "uranus".toUpperCase()) {
+    } else if (object_imaging_v.toUpperCase().trim() == "uranus".toUpperCase()) {
       var height_fov = fov_height / fov_width;
       var width = jQuery("#card").width();
+      jQuery("#dso_big_fov").hide();
+      jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
       jQuery("#card2").show();
       jQuery("#card2").css("background","url(images/ui/black_square.png)");
@@ -278,9 +295,11 @@ function fov_img() {
         jQuery("#solar_system_obj").css("width",uranus_width + "px");
         jQuery("#solar_system_obj").css("height",uranus_width + "px");
       }
-    } else if (object_imaging_v.toUpperCase() == "neptune".toUpperCase()) {
+    } else if (object_imaging_v.toUpperCase().trim() == "neptune".toUpperCase()) {
       var height_fov = fov_height / fov_width;
       var width = jQuery("#card").width();
+      jQuery("#dso_big_fov").hide();
+      jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
       jQuery("#card2").show();
       jQuery("#card2").css("background","url(images/ui/black_square.png)");
@@ -305,9 +324,11 @@ function fov_img() {
         jQuery("#solar_system_obj").css("width",neptune_width + "px");
         jQuery("#solar_system_obj").css("height",neptune_width + "px");
       }
-    } else if (object_imaging_v.toUpperCase() == "sun".toUpperCase()) {
+    } else if (object_imaging_v.toUpperCase().trim() == "sun".toUpperCase()) {
       var height_fov = fov_height / fov_width;
       var width = jQuery("#card").width();
+      jQuery("#dso_big_fov").hide();
+      jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
       jQuery("#card2").show();
       jQuery("#card2").css("background","url(images/ui/black_square.png)");
@@ -342,6 +363,8 @@ function fov_img() {
       jQuery("#loading_text").show();
       jQuery("#card").hide();
       jQuery("#loading_bg").hide();
+      jQuery("#dso_big_fov").hide();
+      jQuery(".alert-danger").hide();
       scroll_bottom();
 
       if (fov_width * fov_height <= 14400) {
@@ -356,12 +379,14 @@ function fov_img() {
           loading_text.innerHTML = "Loading image... This may take a while.";
           scroll_bottom();
 
-          if (fov_width * fov_height > 5600) {
-            image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
-            img_type = "DSS1";
+          if (fov_width * fov_height > 4900) {
+            if (img_type == "DSS2") {
+              image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+            } else if (img_type == "DSS1") {
+              image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
+            }
           } else {
             image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
-            img_type = "DSS2";
           }
 
           image.onload = function() {
@@ -374,6 +399,84 @@ function fov_img() {
             jQuery("#loading_text").fadeOut("slow");
           }
         })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+          jQuery("#loading_text").fadeOut("slow");
+          var error = document.getElementById("message");
+          error.innerHTML = "Couldn't find '" + object_imaging_v.replace("%20"," ") + "'.";
+          jQuery(".alert-danger").fadeIn("slow");
+        });
+      } else {
+        var height_fov = fov_height / fov_width;
+        var width = jQuery("#card").width();
+        var image_big_fov = new Image();
+
+        jQuery("#loading_bg").hide();
+        jQuery(".alert-danger").hide();
+        jQuery("#solar_system_obj").hide();
+        jQuery("#DSO_image").show();
+        jQuery("#fov_move_controls").show();
+        jQuery("#card2").css("background","none");
+        jQuery("#card2").css("height", "auto");
+        jQuery("#loading_text").show();
+        jQuery("#card").hide();
+        jQuery("#dso_big_fov").hide();
+        scroll_bottom();
+
+        var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/" + object_imaging_v + "/?format=json";
+
+        $.getJSON(requestURL, function (json) {
+          var coords = json.ICRS_coordinates;
+          ra = coords.right_ascension;
+          dec = coords.declination;
+
+          loading_text.innerHTML = "Loading image... This may take a while.";
+          scroll_bottom();
+
+          if (img_type == "DSS2") {
+            image_big_fov.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=120&y=120&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+          } else if (img_type == "DSS1") {
+            image_big_fov.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=120&y=120&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
+          }
+
+          image_big_fov.onload = function() {
+            jQuery("#card").fadeIn("slow");
+            jQuery("#loading_text").fadeOut("slow");
+            scroll_bottom_load();
+
+            jQuery("#loading_bg").hide();
+            jQuery("#card2").show();
+            jQuery("#card2").css("background","url(images/ui/black_square.png)");
+            jQuery("#card2").css("height", width * height_fov);
+            jQuery("#dso_big_fov").show();
+            jQuery("#DSO_image").hide();
+            jQuery("#fov_move_controls").hide();
+            jQuery("#dso_big_fov").css("background","url(" + image_big_fov.src + ")");
+            jQuery("#dso_big_fov").css("backgroundSize","contain");
+            jQuery("#dso_big_fov").css("backgroundPosition","center");
+            var dso_width = 120 / fov_width;
+            dso_width = dso_width * width
+            jQuery("#dso_big_fov").css("width",dso_width + "px");
+            jQuery("#dso_big_fov").css("height",dso_width + "px");
+            scroll_bottom_load();
+            window.onresize = function() {
+              var width = jQuery("#card").width();
+              jQuery("#card2").css("height", width * height_fov);
+              var dso_width = 120 / fov_width;
+              dso_width = dso_width * width
+              jQuery("#dso_big_fov").css("width",dso_width + "px");
+              jQuery("#dso_big_fov").css("height",dso_width + "px");
+            }
+          }
+          image.onerror = function() {
+            jQuery("#loading_text").fadeOut("slow");
+          }
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+          jQuery("#loading_text").fadeOut("slow");
+          var error = document.getElementById("message");
+          error.innerHTML = "Couldn't find '" + object_imaging_v.replace("%20"," ") + "'.";
+          jQuery(".alert-danger").fadeIn("slow");
+        });
       }
     }
   }
@@ -400,10 +503,11 @@ function fov_obs() {
     resolution_text.innerHTML = "Magnification: " + magnification.toFixed(2) + "x";
     fov_height_text.innerHTML = "";
 
-    if (object_observing_v.toUpperCase() == "moon".toUpperCase()) {
-      document.getElementById("eyepiece_fov").src = "images/ui/eyepiece.png";
+    if (object_observing_v.toUpperCase().trim() == "moon".toUpperCase()) {
       var height_fov = fov;
       var width = jQuery("#card").width();
+      jQuery("#dso_big_fov").hide();
+      jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
       jQuery("#card2").show();
       jQuery("#card2").css("background","url(images/ui/black_square.png)");
@@ -428,10 +532,11 @@ function fov_obs() {
         jQuery("#solar_system_obj").css("width",moon_width + "px");
         jQuery("#solar_system_obj").css("height",moon_width + "px");
       }
-    } else if (object_observing_v.toUpperCase() == "mercury".toUpperCase()) {
-      document.getElementById("eyepiece_fov").src = "images/ui/eyepiece_red.png";
+    } else if (object_observing_v.toUpperCase().trim() == "mercury".toUpperCase()) {
       var height_fov = fov;
       var width = jQuery("#card").width();
+      jQuery("#dso_big_fov").hide();
+      jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
       jQuery("#card2").show();
       jQuery("#card2").css("background","url(images/ui/black_square.png)");
@@ -456,10 +561,11 @@ function fov_obs() {
         jQuery("#solar_system_obj").css("width",mercury_width + "px");
         jQuery("#solar_system_obj").css("height",mercury_width + "px");
       }
-    } else if (object_observing_v.toUpperCase() == "venus".toUpperCase()) {
-      document.getElementById("eyepiece_fov").src = "images/ui/eyepiece_red.png";
+    } else if (object_observing_v.toUpperCase().trim() == "venus".toUpperCase()) {
       var height_fov = fov;
       var width = jQuery("#card").width();
+      jQuery("#dso_big_fov").hide();
+      jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
       jQuery("#card2").show();
       jQuery("#card2").css("background","url(images/ui/black_square.png)");
@@ -484,10 +590,11 @@ function fov_obs() {
         jQuery("#solar_system_obj").css("width",venus_width + "px");
         jQuery("#solar_system_obj").css("height",venus_width + "px");
       }
-    } else if (object_observing_v.toUpperCase() == "mars".toUpperCase()) {
-      document.getElementById("eyepiece_fov").src = "images/ui/eyepiece_red.png";
+    } else if (object_observing_v.toUpperCase().trim() == "mars".toUpperCase()) {
       var height_fov = fov;
       var width = jQuery("#card").width();
+      jQuery("#dso_big_fov").hide();
+      jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
       jQuery("#card2").show();
       jQuery("#card2").css("background","url(images/ui/black_square.png)");
@@ -512,10 +619,11 @@ function fov_obs() {
         jQuery("#solar_system_obj").css("width",mars_width + "px");
         jQuery("#solar_system_obj").css("height",mars_width + "px");
       }
-    } else if (object_observing_v.toUpperCase() == "jupiter".toUpperCase()) {
-      document.getElementById("eyepiece_fov").src = "images/ui/eyepiece_red.png";
+    } else if (object_observing_v.toUpperCase().trim() == "jupiter".toUpperCase()) {
       var height_fov = fov;
       var width = jQuery("#card").width();
+      jQuery("#dso_big_fov").hide();
+      jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
       jQuery("#card2").show();
       jQuery("#card2").css("background","url(images/ui/black_square.png)");
@@ -540,10 +648,11 @@ function fov_obs() {
         jQuery("#solar_system_obj").css("width",jupiter_width + "px");
         jQuery("#solar_system_obj").css("height",jupiter_width + "px");
       }
-    } else if (object_observing_v.toUpperCase() == "saturn".toUpperCase()) {
-      document.getElementById("eyepiece_fov").src = "images/ui/eyepiece_red.png";
+    } else if (object_observing_v.toUpperCase().trim() == "saturn".toUpperCase()) {
       var height_fov = fov;
       var width = jQuery("#card").width();
+      jQuery("#dso_big_fov").hide();
+      jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
       jQuery("#card2").show();
       jQuery("#card2").css("background","url(images/ui/black_square.png)");
@@ -568,10 +677,11 @@ function fov_obs() {
         jQuery("#solar_system_obj").css("width",saturn_width + "px");
         jQuery("#solar_system_obj").css("height",saturn_width + "px");
       }
-    } else if (object_observing_v.toUpperCase() == "uranus".toUpperCase()) {
-      document.getElementById("eyepiece_fov").src = "images/ui/eyepiece_red.png";
+    } else if (object_observing_v.toUpperCase().trim() == "uranus".toUpperCase()) {
       var height_fov = fov;
       var width = jQuery("#card").width();
+      jQuery("#dso_big_fov").hide();
+      jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
       jQuery("#card2").show();
       jQuery("#card2").css("background","url(images/ui/black_square.png)");
@@ -596,10 +706,11 @@ function fov_obs() {
         jQuery("#solar_system_obj").css("width",uranus_width + "px");
         jQuery("#solar_system_obj").css("height",uranus_width + "px");
       }
-    } else if (object_observing_v.toUpperCase() == "neptune".toUpperCase()) {
-      document.getElementById("eyepiece_fov").src = "images/ui/eyepiece_red.png";
+    } else if (object_observing_v.toUpperCase().trim() == "neptune".toUpperCase()) {
       var height_fov = fov;
       var width = jQuery("#card").width();
+      jQuery("#dso_big_fov").hide();
+      jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
       jQuery("#card2").show();
       jQuery("#card2").css("background","url(images/ui/black_square.png)");
@@ -624,10 +735,11 @@ function fov_obs() {
         jQuery("#solar_system_obj").css("width",neptune_width + "px");
         jQuery("#solar_system_obj").css("height",neptune_width + "px");
       }
-    } else if (object_observing_v.toUpperCase() == "sun".toUpperCase()) {
-      document.getElementById("eyepiece_fov").src = "images/ui/eyepiece.png";
+    } else if (object_observing_v.toUpperCase().trim() == "sun".toUpperCase()) {
       var height_fov = fov;
       var width = jQuery("#card").width();
+      jQuery("#dso_big_fov").hide();
+      jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
       jQuery("#card2").show();
       jQuery("#card2").css("background","url(images/ui/black_square.png)");
@@ -653,7 +765,6 @@ function fov_obs() {
         jQuery("#solar_system_obj").css("height",sun_width + "px");
       }
     } else {
-      document.getElementById("eyepiece_fov").src = "images/ui/eyepiece_red.png";
       jQuery("#loading_bg").hide();
       jQuery("#solar_system_obj").hide();
       jQuery("#DSO_image").show();
@@ -663,6 +774,8 @@ function fov_obs() {
       jQuery("#loading_text").show();
       jQuery("#card").hide();
       jQuery("#loading_bg").hide();
+      jQuery("#dso_big_fov").hide();
+      jQuery(".alert-danger").hide();
       scroll_bottom();
 
       if (fov * fov <= 14400) {
@@ -677,12 +790,14 @@ function fov_obs() {
           loading_text.innerHTML = "Loading image... This may take a while.";
           scroll_bottom();
 
-          if (fov > 75) {
-            image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
-            img_type = "DSS1";
+          if (fov > 70) {
+            if (img_type == "DSS2") {
+              image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+            } else if (img_type == "DSS1") {
+              image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
+            }
           } else {
             image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov + "&y=" + fov + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
-            img_type = "DSS2";
           }
 
 
@@ -697,10 +812,87 @@ function fov_obs() {
           }
 
         })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+          jQuery("#loading_text").fadeOut("slow");
+          var error = document.getElementById("message");
+          error.innerHTML = "Couldn't find '" + object_observing_v.replace("%20"," ") + "'.";
+          jQuery(".alert-danger").fadeIn("slow");
+        });
+      } else {
+        var height_fov = fov;
+        var width = jQuery("#card").width();
+        var image_big_fov_obs = new Image();
+
+        jQuery("#loading_bg").hide();
+        jQuery(".alert-danger").hide();
+        jQuery("#solar_system_obj").hide();
+        jQuery("#DSO_image").show();
+        jQuery("#fov_move_controls").show();
+        jQuery("#card2").css("background","none");
+        jQuery("#card2").css("height", "auto");
+        jQuery("#loading_text").show();
+        jQuery("#card").hide();
+        jQuery("#dso_big_fov").hide();
+        scroll_bottom();
+
+        var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/" + object_observing_v + "/?format=json";
+
+        $.getJSON(requestURL, function (json) {
+          var coords = json.ICRS_coordinates;
+          ra = coords.right_ascension;
+          dec = coords.declination;
+
+          loading_text.innerHTML = "Loading image... This may take a while.";
+          scroll_bottom();
+
+          if (img_type == "DSS2") {
+            image_big_fov_obs.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=120&y=120&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+          } else if (img_type == "DSS1") {
+            image_big_fov_obs.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=120&y=120&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
+          }
+
+          image_big_fov_obs.onload = function() {
+            jQuery("#card").fadeIn("slow");
+            jQuery("#loading_text").fadeOut("slow");
+            scroll_bottom_load();
+
+            jQuery("#loading_bg").hide();
+            jQuery("#card2").show();
+            jQuery("#card2").css("background","url(images/ui/black_square.png)");
+            jQuery("#card2").css("height", width);
+            jQuery("#dso_big_fov").show();
+            jQuery("#DSO_image").hide();
+            jQuery("#fov_move_controls").hide();
+            jQuery("#dso_big_fov").css("background","url(" + image_big_fov_obs.src + ")");
+            jQuery("#dso_big_fov").css("backgroundSize","contain");
+            jQuery("#dso_big_fov").css("backgroundPosition","center");
+            var dso_width = 120 / fov;
+            dso_width = dso_width * width
+            jQuery("#dso_big_fov").css("width",dso_width + "px");
+            jQuery("#dso_big_fov").css("height",dso_width + "px");
+            scroll_bottom_load();
+            window.onresize = function() {
+              var width = jQuery("#card").width();
+              jQuery("#card2").css("height", width);
+              var dso_width = 120 / fov;
+              dso_width = dso_width * width
+              jQuery("#dso_big_fov").css("width",dso_width + "px");
+              jQuery("#dso_big_fov").css("height",dso_width + "px");
+            }
+          }
+          image.onerror = function() {
+            jQuery("#loading_text").fadeOut("slow");
+          }
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+          jQuery("#loading_text").fadeOut("slow");
+          var error = document.getElementById("message");
+          error.innerHTML = "Couldn't find '" + object_observing_v.replace("%20"," ") + "'.";
+          jQuery(".alert-danger").fadeIn("slow");
+        });
       }
     }
   }
-
 }
 
 function ra_plus() {
@@ -857,5 +1049,13 @@ function barlow_show() {
   } else {
     jQuery("#barlow_div").fadeOut("300");
     document.getElementById("barlow_input").value = "";
+  }
+}
+
+function dss_check() {
+  if (document.getElementById("dss_check").checked) {
+    img_type = "DSS1";
+  } else {
+    img_type = "DSS2";
   }
 }

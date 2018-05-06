@@ -15,10 +15,17 @@ Background images are from various observatories, these images were processed by
 
 #### Images in FoV calculator
 Image of Sun: NASA SDO
+
 Image of Moon: NASA LRO
+
 Image of Mercury: NASA MESSENGER
+
 Image of Venus: NASA Magellan
+
 Image of Mars: ESA - European Space Agency & Max-Planck Institute for Solar System Research for OSIRIS Team
+
 Image of Jupiter: NASA Hubble
+
 Image of Saturn: NASA Cassini
+
 Images of Uranus and Neptune: NASA Voyager 2
