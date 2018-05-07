@@ -1,3 +1,18 @@
+window.scrollreveal = ScrollReveal();
+scrollreveal.reveal('#about');
+
+window.onload = function() {
+  var date = new Date();
+  var hour = date.getHours();
+  if (hour > 7 && hour <= 18) {
+    jQuery(".text_item").css("color","#000");
+    jQuery(".about").css("background","#fafafa");
+  } else {
+    jQuery(".text_item").css("color","#fff");
+    jQuery(".about").css("background","#222");
+  }
+}
+
 function openDSO() {
   var object_name = document.getElementById("input_name").value;
   var coord_regex = /^(?:(|[0-9][0-9][0-9]|[0-9][0-9]|[0-9])(.|)(|[0-9][0-9][0-9]|[0-9][0-9]|[0-9])( |)([-+])(|[0-9][0-9][0-9]|[0-9][0-9]|[0-9])(.|)([0-9][0-9][0-9]|[0-9][0-9]|[0-9]))$/

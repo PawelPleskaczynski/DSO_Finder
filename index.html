@@ -19,6 +19,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
     <meta name="theme-color" content="#f2f2f2"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <style type="text/css">
@@ -59,6 +60,25 @@
       background: rgba(220, 220, 220, 0.7);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
+    }
+    .about {
+      padding: 24px;
+    }
+    .text_item {
+      color: #000;
+    }
+    .about_items {
+      width: 75%;
+      margin: auto;
+    }
+    .notice {
+      animation: notice_anim 1.5s ease 2;
+    }
+    @keyframes notice_anim {
+      50% {
+        font-size: 105%;
+        color: #ccc;
+      }
     }
     </style>
   </head>
@@ -104,8 +124,37 @@
     </div>
 
     <div class="container">
+      <p style="color: #fff;" class="notice">Scroll down for more info ↓</p>
       <p style="color: #fff;">Powered by <a href="https://api.arcsecond.io/?/" style="color: #42f4a4;">arcsecond.io</a>, <a href="http://skyserver.sdss.org/dr12/en/help/docs/api.aspx#imgcutout" style="color: #42f4a4;">SDSS SkyServer</a> and <a href="http://archive.eso.org/dss/dss" style="color: #42f4a4;">ESO DSS Archive</a>.</p>
     </div>
+
+    <div id="about">
+      <div class="about">
+        <div class="about_items">
+          <div style="display: flex; flex-flow: row wrap; align-items: center;">
+            <img src="android-chrome-192x192.png" style="width: 2.5em; height: 2.5em;"></img>
+            <h2 style="margin-left: 8px;" class="text_item">DSO Finder</h2>
+          </div>
+          <h4 class="text_item">What's this website about?</h4>
+          <p class="text_item">This website's main purpose is to search for astronomical objects and view images of them from professional sky surveys. There are some other tools available, like field of view calculator.</p>
+          <h4 class="text_item">What can I search for?</h4>
+          <p class="text_item">You can find basically any astronomical object you want! Numerous galaxies and countless nebulae, Sun, Moon... You can search for objects using:</p>
+          <ul>
+            <li class="text_item">Name (works only for popular objects, like Heart Nebula, Orion Nebula, Horsehead Nebula)</li>
+            <li class="text_item">Catalog number (like NGC 6888, M27)</li>
+            <li class="text_item">Coordinates (like NGC 6888, M27)</li>
+            <li class="text_item">For more examples, go <a href="help.html">here</a></li>
+          </ul>
+          <p class="text_item">When you search for an object, my website will load an image of it. Website loads images from SDSS (better quality than DSS) if available.</p>
+          <h4 class="text_item">What is field of view calculator?</h4>
+          <p class="text_item"><a href="fov.html">Field of view calculator</a> lets you check how an object will look like through your telescope. You can choose between imaging and observing mode. In imaging mode, you need to input details about your telescope and camera and in observing mode you need to input details about your telescope and eyepiece.</p>
+          <h4 class="text_item">More information</h4>
+          <p class="text_item"><a href="https://github.com/PawelPleskaczynski/DSO_Finder/blob/master/README.md">About</a>, <a href="help.html">Help</a></p>
+          <p style="color: #666;">© 2018 Paweł Pleskaczyński</p>
+        </div>
+      </div>
+    </div>
+
 
     <script src="main.js"></script>
     <script src="background.js"></script>
