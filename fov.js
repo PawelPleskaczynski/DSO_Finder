@@ -22,6 +22,16 @@ var fov_height;
 var fov;
 var img_type = "DSS1";
 
+var moon_ang = 31.717;
+var sun_ang = 31.992;
+var mercury_ang = 0.146;
+var venus_ang = 0.631;
+var mars_ang = 0.238;
+var jupiter_ang = 0.665;
+var saturn_ang = 0.653;
+var uranus_ang = 0.062;
+var neptune_ang = 0.038;
+
 var loading_text = document.getElementById("loading_text");
 var solar_system_obj = document.getElementById("solar_system_obj");
 
@@ -95,6 +105,10 @@ function fov_img() {
     if (object_imaging_v.toUpperCase().trim() == "moon".toUpperCase()) {
       var height_fov = fov_height / fov_width;
       var width = jQuery("#card").width();
+      jQuery("#average").addClass("active");
+      jQuery("#apogee").removeClass("active");
+      jQuery("#perigee").removeClass("active");
+      jQuery("#size").fadeIn("slow");
       jQuery("#dso_big_fov").hide();
       jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
@@ -108,7 +122,7 @@ function fov_img() {
       jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/moon.jpg)");
       jQuery("#solar_system_obj").css("backgroundSize","contain");
       jQuery("#solar_system_obj").css("backgroundPosition","center");
-      var moon_width = 31 / fov_width;
+      var moon_width = moon_ang / fov_width;
       moon_width = moon_width * width
       jQuery("#solar_system_obj").css("width",moon_width + "px");
       jQuery("#solar_system_obj").css("height",moon_width + "px");
@@ -116,14 +130,45 @@ function fov_img() {
       window.onresize = function() {
         var width = jQuery("#card").width();
         jQuery("#card2").css("height", width * height_fov);
-        var moon_width = 31 / fov_width;
+        var moon_width = moon_ang / fov_width;
         moon_width = moon_width * width
         jQuery("#solar_system_obj").css("width",moon_width + "px");
         jQuery("#solar_system_obj").css("height",moon_width + "px");
       }
+      jQuery("#apogee").click(function() {
+        moon_ang = 29.333;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var moon_width = moon_ang / fov_width;
+        moon_width = moon_width * width
+        jQuery("#solar_system_obj").css("width",moon_width + "px");
+        jQuery("#solar_system_obj").css("height",moon_width + "px");
+      });
+      jQuery("#average").click(function() {
+        moon_ang = 31.717;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var moon_width = moon_ang / fov_width;
+        moon_width = moon_width * width
+        jQuery("#solar_system_obj").css("width",moon_width + "px");
+        jQuery("#solar_system_obj").css("height",moon_width + "px");
+      });
+      jQuery("#perigee").click(function() {
+        moon_ang = 34.1;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var moon_width = moon_ang / fov_width;
+        moon_width = moon_width * width
+        jQuery("#solar_system_obj").css("width",moon_width + "px");
+        jQuery("#solar_system_obj").css("height",moon_width + "px");
+      });
     } else if (object_imaging_v.toUpperCase().trim() == "mercury".toUpperCase()) {
       var height_fov = fov_height / fov_width;
       var width = jQuery("#card").width();
+      jQuery("#average").addClass("active");
+      jQuery("#apogee").removeClass("active");
+      jQuery("#perigee").removeClass("active");
+      jQuery("#size").fadeIn("slow");
       jQuery("#dso_big_fov").hide();
       jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
@@ -137,7 +182,7 @@ function fov_img() {
       jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/mercury.jpg)");
       jQuery("#solar_system_obj").css("backgroundSize","contain");
       jQuery("#solar_system_obj").css("backgroundPosition","center");
-      var mercury_width = 0.1666666 / fov_width;
+      var mercury_width = mercury_ang / fov_width;
       mercury_width = mercury_width * width
       jQuery("#solar_system_obj").css("width",mercury_width + "px");
       jQuery("#solar_system_obj").css("height",mercury_width + "px");
@@ -145,14 +190,45 @@ function fov_img() {
       window.onresize = function() {
         var width = jQuery("#card").width();
         jQuery("#card2").css("height", width * height_fov);
-        var mercury_width = 0.1666666 / fov_width;
+        var mercury_width = mercury_ang / fov_width;
         mercury_width = mercury_width * width
         jQuery("#solar_system_obj").css("width",mercury_width + "px");
         jQuery("#solar_system_obj").css("height",mercury_width + "px");
       }
+      jQuery("#apogee").click(function() {
+        mercury_ang = 0.075;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var mercury_width = mercury_ang / fov_width;
+        mercury_width = mercury_width * width
+        jQuery("#solar_system_obj").css("width",mercury_width + "px");
+        jQuery("#solar_system_obj").css("height",mercury_width + "px");
+      });
+      jQuery("#average").click(function() {
+        mercury_ang = 0.146;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var mercury_width = mercury_ang / fov_width;
+        mercury_width = mercury_width * width
+        jQuery("#solar_system_obj").css("width",mercury_width + "px");
+        jQuery("#solar_system_obj").css("height",mercury_width + "px");
+      });
+      jQuery("#perigee").click(function() {
+        mercury_ang = 0.216;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var mercury_width = mercury_ang / fov_width;
+        mercury_width = mercury_width * width
+        jQuery("#solar_system_obj").css("width",mercury_width + "px");
+        jQuery("#solar_system_obj").css("height",mercury_width + "px");
+      });
     } else if (object_imaging_v.toUpperCase().trim() == "venus".toUpperCase()) {
       var height_fov = fov_height / fov_width;
       var width = jQuery("#card").width();
+      jQuery("#average").addClass("active");
+      jQuery("#apogee").removeClass("active");
+      jQuery("#perigee").removeClass("active");
+      jQuery("#size").fadeIn("slow");
       jQuery("#dso_big_fov").hide();
       jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
@@ -166,7 +242,7 @@ function fov_img() {
       jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/venus.jpg)");
       jQuery("#solar_system_obj").css("backgroundSize","contain");
       jQuery("#solar_system_obj").css("backgroundPosition","center");
-      var venus_width = 0.85 / fov_width;
+      var venus_width = venus_ang / fov_width;
       venus_width = venus_width * width
       jQuery("#solar_system_obj").css("width",venus_width + "px");
       jQuery("#solar_system_obj").css("height",venus_width + "px");
@@ -174,14 +250,45 @@ function fov_img() {
       window.onresize = function() {
         var width = jQuery("#card").width();
         jQuery("#card2").css("height", width * height_fov);
-        var venus_width = 0.85 / fov_width;
+        var venus_width = venus_ang / fov_width;
         venus_width = venus_width * width
         jQuery("#solar_system_obj").css("width",venus_width + "px");
         jQuery("#solar_system_obj").css("height",venus_width + "px");
       }
+      jQuery("#apogee").click(function() {
+        venus_ang = 0.161;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var venus_width = venus_ang / fov_width;
+        venus_width = venus_width * width
+        jQuery("#solar_system_obj").css("width",venus_width + "px");
+        jQuery("#solar_system_obj").css("height",venus_width + "px");
+      });
+      jQuery("#average").click(function() {
+        venus_ang = 0.631;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var venus_width = venus_ang / fov_width;
+        venus_width = venus_width * width
+        jQuery("#solar_system_obj").css("width",venus_width + "px");
+        jQuery("#solar_system_obj").css("height",venus_width + "px");
+      });
+      jQuery("#perigee").click(function() {
+        venus_ang = 1.1;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var venus_width = venus_ang / fov_width;
+        venus_width = venus_width * width
+        jQuery("#solar_system_obj").css("width",venus_width + "px");
+        jQuery("#solar_system_obj").css("height",venus_width + "px");
+      });
     } else if (object_imaging_v.toUpperCase().trim() == "mars".toUpperCase()) {
       var height_fov = fov_height / fov_width;
       var width = jQuery("#card").width();
+      jQuery("#average").addClass("active");
+      jQuery("#apogee").removeClass("active");
+      jQuery("#perigee").removeClass("active");
+      jQuery("#size").fadeIn("slow");
       jQuery("#dso_big_fov").hide();
       jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
@@ -195,7 +302,7 @@ function fov_img() {
       jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/mars.jpg)");
       jQuery("#solar_system_obj").css("backgroundSize","contain");
       jQuery("#solar_system_obj").css("backgroundPosition","center");
-      var mars_width = 0.3 / fov_width;
+      var mars_width = mars_ang / fov_width;
       mars_width = mars_width * width
       jQuery("#solar_system_obj").css("width",mars_width + "px");
       jQuery("#solar_system_obj").css("height",mars_width + "px");
@@ -203,14 +310,45 @@ function fov_img() {
       window.onresize = function() {
         var width = jQuery("#card").width();
         jQuery("#card2").css("height", width * height_fov);
-        var mars_width = 0.3 / fov_width;
+        var mars_width = mars_ang / fov_width;
         mars_width = mars_width * width
         jQuery("#solar_system_obj").css("width",mars_width + "px");
         jQuery("#solar_system_obj").css("height",mars_width + "px");
       }
+      jQuery("#apogee").click(function() {
+        mars_ang = 0.0583;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var mars_width = mars_ang / fov_width;
+        mars_width = mars_width * width
+        jQuery("#solar_system_obj").css("width",mars_width + "px");
+        jQuery("#solar_system_obj").css("height",mars_width + "px");
+      });
+      jQuery("#average").click(function() {
+        mars_ang = 0.238;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var mars_width = mars_ang / fov_width;
+        mars_width = mars_width * width
+        jQuery("#solar_system_obj").css("width",mars_width + "px");
+        jQuery("#solar_system_obj").css("height",mars_width + "px");
+      });
+      jQuery("#perigee").click(function() {
+        mars_ang = 0.418;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var mars_width = mars_ang / fov_width;
+        mars_width = mars_width * width
+        jQuery("#solar_system_obj").css("width",mars_width + "px");
+        jQuery("#solar_system_obj").css("height",mars_width + "px");
+      });
     } else if (object_imaging_v.toUpperCase().trim() == "jupiter".toUpperCase()) {
       var height_fov = fov_height / fov_width;
       var width = jQuery("#card").width();
+      jQuery("#average").addClass("active");
+      jQuery("#apogee").removeClass("active");
+      jQuery("#perigee").removeClass("active");
+      jQuery("#size").fadeIn("slow");
       jQuery("#dso_big_fov").hide();
       jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
@@ -224,7 +362,7 @@ function fov_img() {
       jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/jupiter.jpg)");
       jQuery("#solar_system_obj").css("backgroundSize","contain");
       jQuery("#solar_system_obj").css("backgroundPosition","center");
-      var jupiter_width = 0.7 / fov_width;
+      var jupiter_width = jupiter_ang / fov_width;
       jupiter_width = jupiter_width * width
       jQuery("#solar_system_obj").css("width",jupiter_width + "px");
       jQuery("#solar_system_obj").css("height",jupiter_width + "px");
@@ -232,14 +370,45 @@ function fov_img() {
       window.onresize = function() {
         var width = jQuery("#card").width();
         jQuery("#card2").css("height", width * height_fov);
-        var jupiter_width = 0.7 / fov_width;
+        var jupiter_width = jupiter_ang / fov_width;
         jupiter_width = jupiter_width * width
         jQuery("#solar_system_obj").css("width",jupiter_width + "px");
         jQuery("#solar_system_obj").css("height",jupiter_width + "px");
       }
+      jQuery("#apogee").click(function() {
+        jupiter_ang = 0.496;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var jupiter_width = jupiter_ang / fov_width;
+        jupiter_width = jupiter_width * width
+        jQuery("#solar_system_obj").css("width",jupiter_width + "px");
+        jQuery("#solar_system_obj").css("height",jupiter_width + "px");
+      });
+      jQuery("#average").click(function() {
+        jupiter_ang = 0.665;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var jupiter_width = jupiter_ang / fov_width;
+        jupiter_width = jupiter_width * width
+        jQuery("#solar_system_obj").css("width",jupiter_width + "px");
+        jQuery("#solar_system_obj").css("height",jupiter_width + "px");
+      });
+      jQuery("#perigee").click(function() {
+        jupiter_ang = 0.835;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var jupiter_width = jupiter_ang / fov_width;
+        jupiter_width = jupiter_width * width
+        jQuery("#solar_system_obj").css("width",jupiter_width + "px");
+        jQuery("#solar_system_obj").css("height",jupiter_width + "px");
+      });
     } else if (object_imaging_v.toUpperCase().trim() == "saturn".toUpperCase()) {
       var height_fov = fov_height / fov_width;
       var width = jQuery("#card").width();
+      jQuery("#average").addClass("active");
+      jQuery("#apogee").removeClass("active");
+      jQuery("#perigee").removeClass("active");
+      jQuery("#size").fadeIn("slow");
       jQuery("#dso_big_fov").hide();
       jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
@@ -253,7 +422,7 @@ function fov_img() {
       jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/saturn.jpg)");
       jQuery("#solar_system_obj").css("backgroundSize","contain");
       jQuery("#solar_system_obj").css("backgroundPosition","center");
-      var saturn_width = 0.66666 / fov_width;
+      var saturn_width = saturn_ang / fov_width;
       saturn_width = saturn_width * width
       jQuery("#solar_system_obj").css("width",saturn_width + "px");
       jQuery("#solar_system_obj").css("height",saturn_width + "px");
@@ -261,14 +430,45 @@ function fov_img() {
       window.onresize = function() {
         var width = jQuery("#card").width();
         jQuery("#card2").css("height", width * height_fov);
-        var saturn_width = 0.66666 / fov_width;
+        var saturn_width = saturn_ang / fov_width;
         saturn_width = saturn_width * width
         jQuery("#solar_system_obj").css("width",saturn_width + "px");
         jQuery("#solar_system_obj").css("height",saturn_width + "px");
       }
+      jQuery("#apogee").click(function() {
+        saturn_ang = 0.583;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var saturn_width = saturn_ang / fov_width;
+        saturn_width = saturn_width * width
+        jQuery("#solar_system_obj").css("width",saturn_width + "px");
+        jQuery("#solar_system_obj").css("height",saturn_width + "px");
+      });
+      jQuery("#average").click(function() {
+        saturn_ang = 0.653;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var saturn_width = saturn_ang / fov_width;
+        saturn_width = saturn_width * width
+        jQuery("#solar_system_obj").css("width",saturn_width + "px");
+        jQuery("#solar_system_obj").css("height",saturn_width + "px");
+      });
+      jQuery("#perigee").click(function() {
+        saturn_ang = 0.723;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var saturn_width = saturn_ang / fov_width;
+        saturn_width = saturn_width * width
+        jQuery("#solar_system_obj").css("width",saturn_width + "px");
+        jQuery("#solar_system_obj").css("height",saturn_width + "px");
+      });
     } else if (object_imaging_v.toUpperCase().trim() == "uranus".toUpperCase()) {
       var height_fov = fov_height / fov_width;
       var width = jQuery("#card").width();
+      jQuery("#average").addClass("active");
+      jQuery("#apogee").removeClass("active");
+      jQuery("#perigee").removeClass("active");
+      jQuery("#size").fadeIn("slow");
       jQuery("#dso_big_fov").hide();
       jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
@@ -282,7 +482,7 @@ function fov_img() {
       jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/uranus.jpg)");
       jQuery("#solar_system_obj").css("backgroundSize","contain");
       jQuery("#solar_system_obj").css("backgroundPosition","center");
-      var uranus_width = 0.061666 / fov_width;
+      var uranus_width = uranus_ang / fov_width;
       uranus_width = uranus_width * width
       jQuery("#solar_system_obj").css("width",uranus_width + "px");
       jQuery("#solar_system_obj").css("height",uranus_width + "px");
@@ -290,14 +490,45 @@ function fov_img() {
       window.onresize = function() {
         var width = jQuery("#card").width();
         jQuery("#card2").css("height", width * height_fov);
-        var uranus_width = 0.061666 / fov_width;
+        var uranus_width = uranus_ang / fov_width;
         uranus_width = uranus_width * width
         jQuery("#solar_system_obj").css("width",uranus_width + "px");
         jQuery("#solar_system_obj").css("height",uranus_width + "px");
       }
+      jQuery("#apogee").click(function() {
+        uranus_ang = 0.055;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var uranus_width = uranus_ang / fov_width;
+        uranus_width = uranus_width * width
+        jQuery("#solar_system_obj").css("width",uranus_width + "px");
+        jQuery("#solar_system_obj").css("height",uranus_width + "px");
+      });
+      jQuery("#average").click(function() {
+        uranus_ang = 0.062;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var uranus_width = uranus_ang / fov_width;
+        uranus_width = uranus_width * width
+        jQuery("#solar_system_obj").css("width",uranus_width + "px");
+        jQuery("#solar_system_obj").css("height",uranus_width + "px");
+      });
+      jQuery("#perigee").click(function() {
+        uranus_ang = 0.068;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var uranus_width = uranus_ang / fov_width;
+        uranus_width = uranus_width * width
+        jQuery("#solar_system_obj").css("width",uranus_width + "px");
+        jQuery("#solar_system_obj").css("height",uranus_width + "px");
+      });
     } else if (object_imaging_v.toUpperCase().trim() == "neptune".toUpperCase()) {
       var height_fov = fov_height / fov_width;
       var width = jQuery("#card").width();
+      jQuery("#average").addClass("active");
+      jQuery("#apogee").removeClass("active");
+      jQuery("#perigee").removeClass("active");
+      jQuery("#size").fadeIn("slow");
       jQuery("#dso_big_fov").hide();
       jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
@@ -311,7 +542,7 @@ function fov_img() {
       jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/neptune.jpg)");
       jQuery("#solar_system_obj").css("backgroundSize","contain");
       jQuery("#solar_system_obj").css("backgroundPosition","center");
-      var neptune_width = 0.038333 / fov_width;
+      var neptune_width = neptune_ang / fov_width;
       neptune_width = neptune_width * width
       jQuery("#solar_system_obj").css("width",neptune_width + "px");
       jQuery("#solar_system_obj").css("height",neptune_width + "px");
@@ -319,14 +550,45 @@ function fov_img() {
       window.onresize = function() {
         var width = jQuery("#card").width();
         jQuery("#card2").css("height", width * height_fov);
-        var neptune_width = 0.038333 / fov_width;
+        var neptune_width = neptune_ang / fov_width;
         neptune_width = neptune_width * width
         jQuery("#solar_system_obj").css("width",neptune_width + "px");
         jQuery("#solar_system_obj").css("height",neptune_width + "px");
       }
+      jQuery("#apogee").click(function() {
+        neptune_ang = 0.036;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var neptune_width = neptune_ang / fov_width;
+        neptune_width = neptune_width * width
+        jQuery("#solar_system_obj").css("width",neptune_width + "px");
+        jQuery("#solar_system_obj").css("height",neptune_width + "px");
+      });
+      jQuery("#average").click(function() {
+        neptune_ang = 0.038;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var neptune_width = neptune_ang / fov_width;
+        neptune_width = neptune_width * width
+        jQuery("#solar_system_obj").css("width",neptune_width + "px");
+        jQuery("#solar_system_obj").css("height",neptune_width + "px");
+      });
+      jQuery("#perigee").click(function() {
+        neptune_ang = 0.04;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var neptune_width = neptune_ang / fov_width;
+        neptune_width = neptune_width * width
+        jQuery("#solar_system_obj").css("width",neptune_width + "px");
+        jQuery("#solar_system_obj").css("height",neptune_width + "px");
+      });
     } else if (object_imaging_v.toUpperCase().trim() == "sun".toUpperCase()) {
       var height_fov = fov_height / fov_width;
       var width = jQuery("#card").width();
+      jQuery("#average").addClass("active");
+      jQuery("#apogee").removeClass("active");
+      jQuery("#perigee").removeClass("active");
+      jQuery("#size").fadeIn("slow");
       jQuery("#dso_big_fov").hide();
       jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
@@ -340,7 +602,7 @@ function fov_img() {
       jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/sun.jpg)");
       jQuery("#solar_system_obj").css("backgroundSize","contain");
       jQuery("#solar_system_obj").css("backgroundPosition","center");
-      var sun_width = 32 / fov_width;
+      var sun_width = sun_ang / fov_width;
       sun_width = sun_width * width
       jQuery("#solar_system_obj").css("width",sun_width + "px");
       jQuery("#solar_system_obj").css("height",sun_width + "px");
@@ -348,12 +610,40 @@ function fov_img() {
       window.onresize = function() {
         var width = jQuery("#card").width();
         jQuery("#card2").css("height", width * height_fov);
-        var sun_width = 32 / fov_width;
+        var sun_width = sun_ang / fov_width;
         sun_width = sun_width * width
         jQuery("#solar_system_obj").css("width",sun_width + "px");
         jQuery("#solar_system_obj").css("height",sun_width + "px");
       }
+      jQuery("#apogee").click(function() {
+        sun_ang = 31.45;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var sun_width = sun_ang / fov_width;
+        sun_width = sun_width * width
+        jQuery("#solar_system_obj").css("width",sun_width + "px");
+        jQuery("#solar_system_obj").css("height",sun_width + "px");
+      });
+      jQuery("#average").click(function() {
+        sun_ang = 31.992;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var sun_width = sun_ang / fov_width;
+        sun_width = sun_width * width
+        jQuery("#solar_system_obj").css("width",sun_width + "px");
+        jQuery("#solar_system_obj").css("height",sun_width + "px");
+      });
+      jQuery("#perigee").click(function() {
+        sun_ang = 32.53;
+        var width = jQuery("#card").width();
+        jQuery("#card2").css("height", width * height_fov);
+        var sun_width = sun_ang / fov_width;
+        sun_width = sun_width * width
+        jQuery("#solar_system_obj").css("width",sun_width + "px");
+        jQuery("#solar_system_obj").css("height",sun_width + "px");
+      });
     } else {
+      jQuery("#size").hide();
       jQuery("#loading_bg").hide();
       jQuery("#solar_system_obj").hide();
       jQuery("#DSO_image").show();
@@ -420,6 +710,7 @@ function fov_img() {
         jQuery("#loading_text").show();
         jQuery("#card").hide();
         jQuery("#dso_big_fov").hide();
+        jQuery("#size").hide();
         scroll_bottom();
 
         var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/" + object_imaging_v + "/?format=json";
@@ -506,6 +797,10 @@ function fov_obs() {
     if (object_observing_v.toUpperCase().trim() == "moon".toUpperCase()) {
       var height_fov = fov;
       var width = jQuery("#card").width();
+      jQuery("#average").addClass("active");
+      jQuery("#apogee").removeClass("active");
+      jQuery("#perigee").removeClass("active");
+      jQuery("#size").fadeIn("slow");
       jQuery("#dso_big_fov").hide();
       jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
@@ -535,6 +830,10 @@ function fov_obs() {
     } else if (object_observing_v.toUpperCase().trim() == "mercury".toUpperCase()) {
       var height_fov = fov;
       var width = jQuery("#card").width();
+      jQuery("#average").addClass("active");
+      jQuery("#apogee").removeClass("active");
+      jQuery("#perigee").removeClass("active");
+      jQuery("#size").fadeIn("slow");
       jQuery("#dso_big_fov").hide();
       jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
@@ -564,6 +863,10 @@ function fov_obs() {
     } else if (object_observing_v.toUpperCase().trim() == "venus".toUpperCase()) {
       var height_fov = fov;
       var width = jQuery("#card").width();
+      jQuery("#average").addClass("active");
+      jQuery("#apogee").removeClass("active");
+      jQuery("#perigee").removeClass("active");
+      jQuery("#size").fadeIn("slow");
       jQuery("#dso_big_fov").hide();
       jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
@@ -593,6 +896,10 @@ function fov_obs() {
     } else if (object_observing_v.toUpperCase().trim() == "mars".toUpperCase()) {
       var height_fov = fov;
       var width = jQuery("#card").width();
+      jQuery("#average").addClass("active");
+      jQuery("#apogee").removeClass("active");
+      jQuery("#perigee").removeClass("active");
+      jQuery("#size").fadeIn("slow");
       jQuery("#dso_big_fov").hide();
       jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
@@ -622,6 +929,10 @@ function fov_obs() {
     } else if (object_observing_v.toUpperCase().trim() == "jupiter".toUpperCase()) {
       var height_fov = fov;
       var width = jQuery("#card").width();
+      jQuery("#average").addClass("active");
+      jQuery("#apogee").removeClass("active");
+      jQuery("#perigee").removeClass("active");
+      jQuery("#size").fadeIn("slow");
       jQuery("#dso_big_fov").hide();
       jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
@@ -651,6 +962,10 @@ function fov_obs() {
     } else if (object_observing_v.toUpperCase().trim() == "saturn".toUpperCase()) {
       var height_fov = fov;
       var width = jQuery("#card").width();
+      jQuery("#average").addClass("active");
+      jQuery("#apogee").removeClass("active");
+      jQuery("#perigee").removeClass("active");
+      jQuery("#size").fadeIn("slow");
       jQuery("#dso_big_fov").hide();
       jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
@@ -680,6 +995,10 @@ function fov_obs() {
     } else if (object_observing_v.toUpperCase().trim() == "uranus".toUpperCase()) {
       var height_fov = fov;
       var width = jQuery("#card").width();
+      jQuery("#average").addClass("active");
+      jQuery("#apogee").removeClass("active");
+      jQuery("#perigee").removeClass("active");
+      jQuery("#size").fadeIn("slow");
       jQuery("#dso_big_fov").hide();
       jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
@@ -709,6 +1028,10 @@ function fov_obs() {
     } else if (object_observing_v.toUpperCase().trim() == "neptune".toUpperCase()) {
       var height_fov = fov;
       var width = jQuery("#card").width();
+      jQuery("#average").addClass("active");
+      jQuery("#apogee").removeClass("active");
+      jQuery("#perigee").removeClass("active");
+      jQuery("#size").fadeIn("slow");
       jQuery("#dso_big_fov").hide();
       jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
@@ -738,6 +1061,10 @@ function fov_obs() {
     } else if (object_observing_v.toUpperCase().trim() == "sun".toUpperCase()) {
       var height_fov = fov;
       var width = jQuery("#card").width();
+      jQuery("#average").addClass("active");
+      jQuery("#apogee").removeClass("active");
+      jQuery("#perigee").removeClass("active");
+      jQuery("#size").fadeIn("slow");
       jQuery("#dso_big_fov").hide();
       jQuery(".alert-danger").hide();
       jQuery("#loading_bg").hide();
@@ -776,6 +1103,7 @@ function fov_obs() {
       jQuery("#loading_bg").hide();
       jQuery("#dso_big_fov").hide();
       jQuery(".alert-danger").hide();
+      jQuery("#size").hide();
       scroll_bottom();
 
       if (fov * fov <= 14400) {
@@ -833,6 +1161,7 @@ function fov_obs() {
         jQuery("#loading_text").show();
         jQuery("#card").hide();
         jQuery("#dso_big_fov").hide();
+        jQuery("#size").hide();
         scroll_bottom();
 
         var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/" + object_observing_v + "/?format=json";

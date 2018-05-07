@@ -31,6 +31,9 @@
       .jumbotron {
         width: 85%;
       }
+      #size {
+        width: 85%;
+      }
       #loading_text {
         font-size: 1.66em;
         -webkit-user-select: none;
@@ -75,6 +78,9 @@
         display: inline-block; width: 45%; float: right;
       }
       .jumbotron {
+        width: 66%;
+      }
+      #size {
         width: 66%;
       }
       #card{
@@ -244,6 +250,9 @@
       -ms-user-select: none;
       user-select: none;
     }
+    .btn-secondary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+      background: #512DA8;
+    }
     </style>
   </head>
   <body>
@@ -397,6 +406,18 @@
 
       <div id="loadingtextdiv" style="margin-top: 24px; margin-bottom: 24px;">
         <h2 class="blink" id="loading_text" style="text-align: center; vertical-align: middle;">Loading…</h2>
+      </div>
+
+      <div style="margin: auto; display: none;" id="size">
+        <label for="btn_div">Angular diameter</label>
+        <div class="btn-group btn-group-toggle" data-toggle="buttons" id="btn_div">
+          <label class="btn btn-secondary" id="apogee">
+          <input type="radio" name="options" autocomplete="off">Apogee</label>
+          <label class="btn btn-secondary active" id="average">
+          <input type="radio" name="options" autocomplete="off" checked="">Average</label>
+          <label class="btn btn-secondary" id="perigee">
+          <input type="radio" name="options" autocomplete="off">Perigee</label>
+        </div>
       </div>
 
       <div class="card" id="card">
