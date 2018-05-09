@@ -707,17 +707,17 @@ function fov_img() {
         if (coord_regex.test(object_imaging_v)) {
           var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + object_imaging_v.replace("+","%2B") + "&format=json&radius=10";
         } else if (ra_dec_regex.test(object_imaging_v)) {
-          var ra = object_imaging_v.match(ra_regex);
-          var dec = object_imaging_v.match(dec_regex);
-          var ra_h = ra[0].match(ra_h_regex);
-          var ra_m = ra[0].match(ra_m_regex);
-          var ra_s = ra[0].match(ra_s_regex);
-          var dec_d = dec[0].match(dec_d_regex);
+          var ra_reg = object_imaging_v.match(ra_regex);
+          var dec_reg = object_imaging_v.match(dec_regex);
+          var ra_h = ra_reg[0].match(ra_h_regex);
+          var ra_m = ra_reg[0].match(ra_m_regex);
+          var ra_s = ra_reg[0].match(ra_s_regex);
+          var dec_d = dec_reg[0].match(dec_d_regex);
           var dec_d_symbol = dec_d[1];
           dec_d_symbol = dec_d_symbol.replace("−","-");
           var dec_d_value = Number(dec_d[2]);
-          var dec_m = dec[0].match(dec_m_regex);
-          var dec_s = dec[0].match(dec_s_regex);
+          var dec_m = dec_reg[0].match(dec_m_regex);
+          var dec_s = dec_reg[0].match(dec_s_regex);
 
           ra_final = Number((ra_h[1] * 15) + (ra_m[1] * 1/4) + (ra_s[1] * 1/240));
           var dec1 = Number(dec_d_value);
@@ -795,17 +795,17 @@ function fov_img() {
         if (coord_regex.test(object_imaging_v)) {
           var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + object_imaging_v.replace("+","%2B") + "&format=json&radius=10";
         } else if (ra_dec_regex.test(object_imaging_v)) {
-          var ra = object_imaging_v.match(ra_regex);
-          var dec = object_imaging_v.match(dec_regex);
-          var ra_h = ra[0].match(ra_h_regex);
-          var ra_m = ra[0].match(ra_m_regex);
-          var ra_s = ra[0].match(ra_s_regex);
-          var dec_d = dec[0].match(dec_d_regex);
+          var ra_reg = object_imaging_v.match(ra_regex);
+          var dec_reg = object_imaging_v.match(dec_regex);
+          var ra_h = ra_reg[0].match(ra_h_regex);
+          var ra_m = ra_reg[0].match(ra_m_regex);
+          var ra_s = ra_reg[0].match(ra_s_regex);
+          var dec_d = dec_reg[0].match(dec_d_regex);
           var dec_d_symbol = dec_d[1];
           dec_d_symbol = dec_d_symbol.replace("−","-");
           var dec_d_value = Number(dec_d[2]);
-          var dec_m = dec[0].match(dec_m_regex);
-          var dec_s = dec[0].match(dec_s_regex);
+          var dec_m = dec_reg[0].match(dec_m_regex);
+          var dec_s = dec_reg[0].match(dec_s_regex);
 
           ra_final = Number((ra_h[1] * 15) + (ra_m[1] * 1/4) + (ra_s[1] * 1/240));
           var dec1 = Number(dec_d_value);
@@ -1478,17 +1478,17 @@ function fov_obs() {
         if (coord_regex.test(object_observing_v)) {
           var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + object_observing_v.replace("+","%2B") + "&format=json&radius=10";
         } else if (ra_dec_regex.test(object_observing_v)) {
-          var ra = object_observing_v.match(ra_regex);
-          var dec = object_observing_v.match(dec_regex);
-          var ra_h = ra[0].match(ra_h_regex);
-          var ra_m = ra[0].match(ra_m_regex);
-          var ra_s = ra[0].match(ra_s_regex);
-          var dec_d = dec[0].match(dec_d_regex);
+          var ra_reg = object_observing_v.match(ra_regex);
+          var dec_reg = object_observing_v.match(dec_regex);
+          var ra_h = ra_reg[0].match(ra_h_regex);
+          var ra_m = ra_reg[0].match(ra_m_regex);
+          var ra_s = ra_reg[0].match(ra_s_regex);
+          var dec_d = dec_reg[0].match(dec_d_regex);
           var dec_d_symbol = dec_d[1];
           dec_d_symbol = dec_d_symbol.replace("−","-");
           var dec_d_value = Number(dec_d[2]);
-          var dec_m = dec[0].match(dec_m_regex);
-          var dec_s = dec[0].match(dec_s_regex);
+          var dec_m = dec_reg[0].match(dec_m_regex);
+          var dec_s = dec_reg[0].match(dec_s_regex);
 
           ra_final = Number((ra_h[1] * 15) + (ra_m[1] * 1/4) + (ra_s[1] * 1/240));
           var dec1 = Number(dec_d_value);
@@ -1568,17 +1568,17 @@ function fov_obs() {
         if (coord_regex.test(object_observing_v)) {
           var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + object_observing_v.replace("+","%2B") + "&format=json&radius=10";
         } else if (ra_dec_regex.test(object_observing_v)) {
-          var ra = object_observing_v.match(ra_regex);
-          var dec = object_observing_v.match(dec_regex);
-          var ra_h = ra[0].match(ra_h_regex);
-          var ra_m = ra[0].match(ra_m_regex);
-          var ra_s = ra[0].match(ra_s_regex);
-          var dec_d = dec[0].match(dec_d_regex);
+          var ra_reg = object_observing_v.match(ra_regex);
+          var dec_reg = object_observing_v.match(dec_regex);
+          var ra_h = ra_reg[0].match(ra_h_regex);
+          var ra_m = ra_reg[0].match(ra_m_regex);
+          var ra_s = ra_reg[0].match(ra_s_regex);
+          var dec_d = dec_reg[0].match(dec_d_regex);
           var dec_d_symbol = dec_d[1];
           dec_d_symbol = dec_d_symbol.replace("−","-");
           var dec_d_value = Number(dec_d[2]);
-          var dec_m = dec[0].match(dec_m_regex);
-          var dec_s = dec[0].match(dec_s_regex);
+          var dec_m = dec_reg[0].match(dec_m_regex);
+          var dec_s = dec_reg[0].match(dec_s_regex);
 
           ra_final = Number((ra_h[1] * 15) + (ra_m[1] * 1/4) + (ra_s[1] * 1/240));
           var dec1 = Number(dec_d_value);
