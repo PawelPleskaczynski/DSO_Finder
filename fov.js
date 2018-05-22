@@ -20,7 +20,8 @@ var resolution_text = document.getElementById("resolution_text");
 var fov_width;
 var fov_height;
 var fov;
-var img_type = "DSS1";
+var img_type = "SDSS";
+var res;
 
 var moon_ang = 31.717;
 var sun_ang = 31.992;
@@ -34,6 +35,9 @@ var neptune_ang = 0.038;
 
 var ra_final;
 var dec_final;
+
+var resolution_width_v;
+var resolution_height_v;
 
 var loading_text = document.getElementById("loading_text");
 var solar_system_obj = document.getElementById("solar_system_obj");
@@ -56,6 +60,7 @@ window.onload = jQuery("#link_up").attr("onclick","dec_plus()");
 window.onload = jQuery("#link_down").attr("onclick","dec_minus()");
 
 function imaging() {
+  image.src = "";
   jQuery("#dso_big_fov").hide();
   jQuery("#img_mode").show();
   jQuery("#obs_mode").hide();
@@ -85,6 +90,7 @@ function imaging() {
 }
 
 function observing() {
+  image.src = "";
   jQuery("#dso_big_fov").hide();
   jQuery("#img_mode").hide();
   jQuery("#obs_mode").show();
@@ -117,8 +123,8 @@ function observing() {
 function fov_img() {
   var telescope_flength_v = telescope_flength.value;
   var pixel_size_v = pixel_size.value;
-  var resolution_width_v = resolution_width.value;
-  var resolution_height_v = resolution_height.value;
+  resolution_width_v = resolution_width.value;
+  resolution_height_v = resolution_height.value;
   var object_imaging_v = object_imaging.value;
   var barlow_input_v = barlow_input.value;
   if (barlow_input_v) {
@@ -140,7 +146,7 @@ function fov_img() {
     var sensor_height = pixel_size_v * 0.001 * resolution_height_v;
     fov_width = 3438 * sensor_width / telescope_flength_v;
     fov_height = 3438 * sensor_height / telescope_flength_v;
-    var res = 206 * pixel_size_v / telescope_flength_v;
+    res = 206 * pixel_size_v / telescope_flength_v;
 
     fov_width_text.innerHTML = "Width: " + fov_width.toFixed(2) + " arcminutes";
     fov_height_text.innerHTML = "Height: " + fov_height.toFixed(2) + " arcminutes";
@@ -753,9 +759,86 @@ function fov_img() {
               image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
             } else if (img_type == "DSS1") {
               image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
+            } else if (img_type == "SDSS") {
+              if (resolution_width_v > 2048 || resolution_height_v > 2048) {
+                res = res * 2;
+                resolution_width_v = resolution_width_v / 2;
+                resolution_height_v = resolution_height_v / 2;
+                image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
+              } else if (resolution_width_v > 4096 || resolution_height_v > 4096) {
+                res = res * 3;
+                resolution_width_v = resolution_width_v / 3;
+                resolution_height_v = resolution_height_v / 3;
+                image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
+              } else if (resolution_width_v > 6144 || resolution_height_v > 6144) {
+                res = res * 4;
+                resolution_width_v = resolution_width_v / 4;
+                resolution_height_v = resolution_height_v / 4;
+                image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
+              } else if (resolution_width_v > 8192 || resolution_height_v > 8192) {
+                res = res * 5;
+                resolution_width_v = resolution_width_v / 5;
+                resolution_height_v = resolution_height_v / 5;
+                image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
+              } else if (resolution_width_v > 10240 || resolution_height_v > 10240) {
+                res = res * 6;
+                resolution_width_v = resolution_width_v / 6;
+                resolution_height_v = resolution_height_v / 6;
+                image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
+              } else {
+                image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
+              }
             }
           } else {
-            image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+            if (img_type == "DSS2" || img_type == "DSS1") {
+              image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+            } else if (img_type == "SDSS") {
+              var request = new XMLHttpRequest();
+              request.onreadystatechange = function() {
+                if (request.readyState === 4){
+                  request.status;
+                  if (request.status == 200) {
+                    if (resolution_width_v > 2048 || resolution_height_v > 2048) {
+                      res = res * 3;
+                      resolution_width_v = resolution_width_v / 3;
+                      resolution_height_v = resolution_height_v / 3;
+                      image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
+                    } else if (resolution_width_v > 4096 || resolution_height_v > 4096) {
+                      res = res * 4;
+                      resolution_width_v = resolution_width_v / 4;
+                      resolution_height_v = resolution_height_v / 4;
+                      image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
+                    } else if (resolution_width_v > 6144 || resolution_height_v > 6144) {
+                      res = res * 5;
+                      resolution_width_v = resolution_width_v / 5;
+                      resolution_height_v = resolution_height_v / 5;
+                      image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
+                    } else if (resolution_width_v > 8192 || resolution_height_v > 8192) {
+                      res = res * 6;
+                      resolution_width_v = resolution_width_v / 6;
+                      resolution_height_v = resolution_height_v / 6;
+                      image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
+                    } else if (resolution_width_v > 10240 || resolution_height_v > 10240) {
+                      res = res * 7;
+                      resolution_width_v = resolution_width_v / 7;
+                      resolution_height_v = resolution_height_v / 7;
+                      image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
+                    } else {
+                      image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
+                    }
+                    img_type = "SDSS";
+                    color();
+                  } else {
+                    jQuery("#option_sdss").removeClass("active");
+                    jQuery("#option_dss").addClass("active");
+                    jQuery("#option_dss").click();
+                  }
+                }
+              };
+              request.open("GET", "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + (res.toFixed(2)) * 8 + "&width=" + resolution_width_v / 8 + "&height=" + resolution_height_v / 8, true);
+              request.send();
+              jQuery("#table_btn_div").hide();
+            }
           }
 
           image.onload = function() {
@@ -840,6 +923,58 @@ function fov_img() {
             image_big_fov.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=120&y=120&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
           } else if (img_type == "DSS1") {
             image_big_fov.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=120&y=120&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
+          } else if (img_type == "SDSS") {
+            var request = new XMLHttpRequest();
+            request.onreadystatechange = function() {
+              if (request.readyState === 4){
+                request.status;
+                if (request.status == 200) {
+                  if (resolution_width_v > 2048 || resolution_height_v > 2048) {
+                    res = res * 3;
+                    resolution_width_v = resolution_width_v / 3;
+                    resolution_height_v = resolution_height_v / 3;
+                    image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
+                  } else if (resolution_width_v > 4096 || resolution_height_v > 4096) {
+                    res = res * 4;
+                    resolution_width_v = resolution_width_v / 4;
+                    resolution_height_v = resolution_height_v / 4;
+                    image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
+                  } else if (resolution_width_v > 6144 || resolution_height_v > 6144) {
+                    res = res * 5;
+                    resolution_width_v = resolution_width_v / 5;
+                    resolution_height_v = resolution_height_v / 5;
+                    image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
+                  } else if (resolution_width_v > 8192 || resolution_height_v > 8192) {
+                    res = res * 6;
+                    resolution_width_v = resolution_width_v / 6;
+                    resolution_height_v = resolution_height_v / 6;
+                    image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
+                  } else if (resolution_width_v > 10240 || resolution_height_v > 10240) {
+                    res = res * 7;
+                    resolution_width_v = resolution_width_v / 7;
+                    resolution_height_v = resolution_height_v / 7;
+                    image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
+                  } else {
+                    image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
+                  }
+                  img_type = "SDSS";
+                  color();
+                } else {
+                  jQuery("#option_sdss").removeClass("active");
+                  jQuery("#option_dss").addClass("active");
+                  jQuery("#option_dss").click();
+                }
+              }
+            };
+            request.open("GET", "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + (res.toFixed(2)) * 8 + "&width=" + resolution_width_v / 8 + "&height=" + resolution_height_v / 8, true);
+            request.send();
+            jQuery("#table_btn_div").hide();
+          }
+
+          image.onload = function() {
+            jQuery("#card").fadeIn("slow");
+            jQuery("#loading_text").fadeOut("slow");
+            scroll_bottom_load();
           }
 
           image_big_fov.onload = function() {
@@ -895,6 +1030,8 @@ function fov_obs() {
   if (barlow_input_v) {
     telescope_flength_obs_v = telescope_flength_obs_v * barlow_input_v;
   }
+
+  option_dss();
 
   moon_ang = 31.717;
   sun_ang = 31.992;
@@ -1670,6 +1807,8 @@ function ra_plus() {
     image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
   } else if (img_type == "DSS2") {
     image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+  } else if (img_type == "SDSS") {
+    image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
   }
 }
 
@@ -1684,6 +1823,8 @@ function ra_minus() {
     image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
   } else if (img_type == "DSS2") {
     image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+  } else if (img_type == "SDSS") {
+    image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
   }
 }
 
@@ -1698,6 +1839,8 @@ function dec_plus() {
     image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
   } else if (img_type == "DSS2") {
     image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+  } else if (img_type == "SDSS") {
+    image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
   }
 }
 
@@ -1712,6 +1855,8 @@ function dec_minus() {
     image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS1&equinox=J2000&statsmode=VO";
   } else if (img_type == "DSS2") {
     image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + fov_width + "&y=" + fov_height + "&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+  } else if (img_type == "SDSS") {
+    image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + res.toFixed(2) + "&width=" + resolution_width_v + "&height=" + resolution_height_v;
   }
 }
 
@@ -1823,9 +1968,37 @@ function barlow_show() {
 }
 
 function dss_check() {
+  if (img_type != "SDSS") {
+    if (document.getElementById("dss_check").checked) {
+      img_type = "DSS1";
+    } else {
+      img_type = "DSS2";
+    }
+  }
+}
+
+function option_sdss() {
+  img_type = "SDSS";
+  fov_img();
+  color();
+}
+
+function option_dss() {
   if (document.getElementById("dss_check").checked) {
     img_type = "DSS1";
   } else {
     img_type = "DSS2";
   }
+  fov_img();
+  black_white();
+}
+
+function black_white() {
+  $('#DSO_image').css('-webkit-filter','grayscale(100%)');
+  $('#DSO_image').css('filter','grayscale(100%)');
+}
+
+function color() {
+  $('#DSO_image').css('-webkit-filter','grayscale(0%)');
+  $('#DSO_image').css('filter','grayscale(0%)');
 }

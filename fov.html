@@ -131,8 +131,8 @@
       }
     }
     #DSO_image {
-      -webkit-filter: grayscale(100%);
-      filter: grayscale(100%);
+      -webkit-filter: grayscale(0%);
+      filter: grayscale(0%);
     }
     .loading_bg {
       position: absolute;
@@ -363,6 +363,16 @@
             </fieldset>
           </div>
           <button type="button" class="btn btn-success btn-lg" onclick="fov_img()">Calculate field of view</button>
+
+          <p style="margin-top: 24px;">Sky survey</label>
+          <div id="btn_sdss">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons" id="obs">
+              <label class="btn btn-secondary active">
+                <input type="radio" name="options" id="option_sdss" autocomplete="off"  checked="" onchange="option_sdss()">SDSS</label>
+              <label class="btn btn-secondary">
+                <input type="radio" name="options" id="option_dss" autocomplete="off" onchange="option_dss()">DSS</label>
+              </div>
+            </div>
         </div>
 
         <div id="obs_mode" style="display: none;">
@@ -399,7 +409,7 @@
 
         <div class="custom-control custom-checkbox" style="margin-top: 24px;">
           <input type="checkbox" class="custom-control-input" id="dss_check" onclick="dss_check()" checked="">
-          <label class="custom-control-label" for="dss_check">Load smaller images (from older sky survey) for large fields of view</label>
+          <label class="custom-control-label" for="dss_check">Load smaller images (from DSS1 sky survey) for large fields of view (works if DSS is checked)</label>
         </div>
 
       </div>
