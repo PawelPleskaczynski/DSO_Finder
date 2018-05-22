@@ -364,15 +364,17 @@
           </div>
           <button type="button" class="btn btn-success btn-lg" onclick="fov_img()">Calculate field of view</button>
 
-          <p style="margin-top: 24px;">Sky survey</label>
-          <div id="btn_sdss">
-            <div class="btn-group btn-group-toggle" data-toggle="buttons" id="obs">
-              <label class="btn btn-secondary active">
-                <input type="radio" name="options" id="option_sdss" autocomplete="off"  checked="" onchange="option_sdss()">SDSS</label>
-              <label class="btn btn-secondary">
-                <input type="radio" name="options" id="option_dss" autocomplete="off" onchange="option_dss()">DSS</label>
-              </div>
-            </div>
+          <div id="survey_div">
+            <p style="margin-top: 24px;">Sky survey</p>
+            <div id="btn_sdss">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons" id="obs">
+                <label class="btn btn-secondary active">
+                  <input type="radio" name="options" id="option_sdss" autocomplete="off"  checked="" onchange="option_sdss()">SDSS</label>
+                  <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option_dss" autocomplete="off" onchange="option_dss()">DSS</label>
+                  </div>
+                </div>
+          </div>
         </div>
 
         <div id="obs_mode" style="display: none;">
@@ -405,6 +407,18 @@
             </fieldset>
           </div>
           <button type="button" class="btn btn-success btn-lg" onclick="fov_obs()">Calculate field of view</button>
+
+          <div id="survey_div_obs">
+            <p style="margin-top: 24px;">Sky survey</p>
+            <div id="btn_sdss">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons" id="obs">
+                <label class="btn btn-secondary active">
+                  <input type="radio" name="options" id="option_sdss_obs" autocomplete="off"  checked="" onchange="option_sdss_obs()">SDSS</label>
+                  <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option_dss_obs" autocomplete="off" onchange="option_dss_obs()">DSS</label>
+                  </div>
+                </div>
+          </div>
         </div>
 
         <div class="custom-control custom-checkbox" style="margin-top: 24px;">
