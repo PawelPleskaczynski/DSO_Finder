@@ -63,6 +63,7 @@
         left: 0;
         z-index: 3;
         opacity: 0.66;
+        pointer-events: none;
       }
     }
     @media only screen and (min-width: 1024px) {
@@ -98,6 +99,10 @@
       top: 0;
       left: 0;
       z-index: 3;
+      pointer-events: none;
+    }
+    #eyepiece_fov {
+      pointer-events: none;
     }
     .jumbotron {
       margin: auto;
@@ -253,6 +258,10 @@
     .btn-secondary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
       background: #512DA8;
     }
+    #solar_system_obj {
+      cursor: move;
+      border-radius: 50%;
+    }
     </style>
   </head>
   <body>
@@ -282,8 +291,8 @@
   </nav>
 
   <div class="alert alert-info">
-    <h4 class="alert-heading">Notice</h4>
-    <p class="mb-0">This tool will load cropped images for fields of view larger than 4 square degrees.</p>
+    <h4 class="alert-heading">Info</h4>
+    <p class="mb-0">With this tool you can calculate field of view of your telescope with given camera or eyepiece. Choose Observing/Imaging mode, input details about your telescope and find wanted object.</p>
   </div>
 
   <div class="jumbotron">
@@ -469,9 +478,9 @@
             </div>
           </div>
           <div id="card2" style="position: relative; overflow: hidden;">
+            <img src="images/ui/eyepiece.png" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 2; display: none;" id="eyepiece_fov">
             <div id="solar_system_obj" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);"></div>
             <div id="dso_big_fov" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); filter: grayscale(100%); -webkit-filter: grayscale(100%);"></div>
-            <img src="images/ui/eyepiece.png" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 2; display: none;" id="eyepiece_fov">
             <img class="card-img-top" src="" alt="Card image" id="DSO_image" style="position: relative;">
           </div>
         </div>

@@ -23,6 +23,11 @@ var fov;
 var img_type = "SDSS";
 var res;
 
+var solar_system_obj = document.getElementById("solar_system_obj");
+var mousePosition;
+var offset = [0,0];
+var isDown = false;
+
 var moon_ang = 31.717;
 var sun_ang = 31.992;
 var mercury_ang = 0.146;
@@ -160,22 +165,40 @@ function fov_img() {
 
     if (object_imaging_v.toUpperCase().trim() == "moon".toUpperCase()) {
       load_solar_system_obj_img("moon", 29.333, moon_ang, 34.1, fov_height, fov_width);
+      restart_pos();
+      drag_obj();
     } else if (object_imaging_v.toUpperCase().trim() == "mercury".toUpperCase()) {
       load_solar_system_obj_img("mercury", 0.075, mercury_ang, 0.216, fov_height, fov_width);
+      restart_pos();
+      drag_obj();
     } else if (object_imaging_v.toUpperCase().trim() == "venus".toUpperCase()) {
       load_solar_system_obj_img("venus", 0.161, venus_ang, 1.1, fov_height, fov_width);
+      restart_pos();
+      drag_obj();
     } else if (object_imaging_v.toUpperCase().trim() == "mars".toUpperCase()) {
       load_solar_system_obj_img("mars", 0.0583, mars_ang, 0.418, fov_height, fov_width);
+      restart_pos();
+      drag_obj();
     } else if (object_imaging_v.toUpperCase().trim() == "jupiter".toUpperCase()) {
       load_solar_system_obj_img("jupiter", 0.496, jupiter_ang, 0.835, fov_height, fov_width);
+      restart_pos();
+      drag_obj();
     } else if (object_imaging_v.toUpperCase().trim() == "saturn".toUpperCase()) {
       load_solar_system_obj_img("saturn", 0.583, saturn_ang, 0.723, fov_height, fov_width);
+      restart_pos();
+      drag_obj();
     } else if (object_imaging_v.toUpperCase().trim() == "uranus".toUpperCase()) {
       load_solar_system_obj_img("uranus", 0.055, uranus_ang, 0.068, fov_height, fov_width);
+      restart_pos();
+      drag_obj();
     } else if (object_imaging_v.toUpperCase().trim() == "neptune".toUpperCase()) {
       load_solar_system_obj_img("neptune", 0.036, neptune_ang, 0.04, fov_height, fov_width);
+      restart_pos();
+      drag_obj();
     } else if (object_imaging_v.toUpperCase().trim() == "sun".toUpperCase()) {
       load_solar_system_obj_img("sun", 31.45, sun_ang, 32.53, fov_height, fov_width);
+      restart_pos();
+      drag_obj();
     } else {
       jQuery("#size").hide();
       jQuery("#loading_bg").hide();
@@ -554,22 +577,40 @@ function fov_obs() {
 
     if (object_observing_v.toUpperCase().trim() == "moon".toUpperCase()) {
       load_solar_system_obj_obs("moon", 29.333, moon_ang, 34.1, fov);
+      restart_pos();
+      drag_obj();
     } else if (object_observing_v.toUpperCase().trim() == "mercury".toUpperCase()) {
       load_solar_system_obj_obs("mercury", 0.075, mercury_ang, 0.216, fov);
+      restart_pos();
+      drag_obj();
     } else if (object_observing_v.toUpperCase().trim() == "venus".toUpperCase()) {
       load_solar_system_obj_obs("venus", 0.161, venus_ang, 1.1, fov);
+      restart_pos();
+      drag_obj();
     } else if (object_observing_v.toUpperCase().trim() == "mars".toUpperCase()) {
       load_solar_system_obj_obs("mars", 0.0583, mars_ang, 0.418, fov);
+      restart_pos();
+      drag_obj();
     } else if (object_observing_v.toUpperCase().trim() == "jupiter".toUpperCase()) {
       load_solar_system_obj_obs("jupiter", 0.496, jupiter_ang, 0.835, fov);
+      restart_pos();
+      drag_obj();
     } else if (object_observing_v.toUpperCase().trim() == "saturn".toUpperCase()) {
       load_solar_system_obj_obs("saturn", 0.583, saturn_ang, 0.723, fov);
+      restart_pos();
+      drag_obj();
     } else if (object_observing_v.toUpperCase().trim() == "uranus".toUpperCase()) {
       load_solar_system_obj_obs("uranus", 0.055, uranus_ang, 0.068, fov);
+      restart_pos();
+      drag_obj();
     } else if (object_observing_v.toUpperCase().trim() == "neptune".toUpperCase()) {
       load_solar_system_obj_obs("neptune", 0.036, neptune_ang, 0.04, fov);
+      restart_pos();
+      drag_obj();
     } else if (object_observing_v.toUpperCase().trim() == "sun".toUpperCase()) {
       load_solar_system_obj_obs("sun", 31.45, sun_ang, 32.53, fov);
+      restart_pos();
+      drag_obj();
     } else {
       jQuery("#loading_bg").hide();
       jQuery("#solar_system_obj").hide();
@@ -1191,4 +1232,37 @@ function load_solar_system_obj_obs(type, min, avg, max, fov) {
     jQuery("#solar_system_obj").css("width",object_width + "px");
     jQuery("#solar_system_obj").css("height",object_width + "px");
   });
+}
+
+function restart_pos() {
+  jQuery("#solar_system_obj").css("position","absolute");
+  jQuery("#solar_system_obj").css("left","50%");
+  jQuery("#solar_system_obj").css("top","50%");
+  jQuery("#solar_system_obj").css("transform","translate(-50%, -50%)");
+}
+
+function drag_obj() {
+  solar_system_obj.addEventListener('mousedown', function(e) {
+    isDown = true;
+    offset = [
+      solar_system_obj.offsetLeft - e.clientX,
+      solar_system_obj.offsetTop - e.clientY
+    ];
+  }, true);
+
+  document.addEventListener('mouseup', function() {
+    isDown = false;
+  }, true);
+
+  document.addEventListener('mousemove', function(event) {
+    event.preventDefault();
+    if (isDown) {
+      mousePosition = {
+        x : event.clientX,
+        y : event.clientY
+      };
+      solar_system_obj.style.left = (mousePosition.x + offset[0]) + 'px';
+      solar_system_obj.style.top  = (mousePosition.y + offset[1]) + 'px';
+    }
+  }, true);
 }
