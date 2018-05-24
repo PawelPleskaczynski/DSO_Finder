@@ -1125,7 +1125,17 @@ function load_solar_system_obj_img(type, min, avg, max, fovheight, fovwidth) {
   jQuery("#solar_system_obj").show();
   jQuery("#DSO_image").hide();
   jQuery("#fov_move_controls").hide();
-  jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/" + type + ".jpg)");
+  if (type == "moon") {
+    if (fovwidth * fovheight > 400) {
+      jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/moon.jpg)");
+    } else if (fovwidth * fovheight <= 400 && fovwidth * fovheight >= 64) {
+      jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/moon_medium.jpg)");
+    } else if (fovwidth * fovheight < 64) {
+      jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/moon_big.jpg)");
+    }
+  } else {
+    jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/" + type + ".jpg)");
+  }
   jQuery("#solar_system_obj").css("backgroundSize","contain");
   jQuery("#solar_system_obj").css("backgroundPosition","center");
   var object_width = obj_ang / fovwidth;
@@ -1189,7 +1199,17 @@ function load_solar_system_obj_obs(type, min, avg, max, fov) {
   jQuery("#solar_system_obj").show();
   jQuery("#DSO_image").hide();
   jQuery("#fov_move_controls").hide();
-  jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/" + type + ".jpg)");
+  if (type == "moon") {
+    if (fov > 20) {
+      jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/moon.jpg)");
+    } else if (fov <= 20 && fov > 8) {
+      jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/moon_medium.jpg)");
+    } else {
+      jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/moon_big.jpg)");
+    }
+  } else {
+    jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/" + type + ".jpg)");
+  }
   jQuery("#solar_system_obj").css("backgroundSize","contain");
   jQuery("#solar_system_obj").css("backgroundPosition","center");
   var object_width = obj_ang / fov;
