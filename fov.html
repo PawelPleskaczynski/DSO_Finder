@@ -15,6 +15,7 @@
     <meta name="msapplication-TileColor" content="#432f80">
     <meta name="msapplication-config" content="https://pawelpleskaczynski.github.io/DSO_Finder/browserconfig.xml" />
     <meta name="theme-color" content="#303030">
+    <script src="anime.min.js"></script>
     <link rel="stylesheet" href="theme/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="theme/scrollbar.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
@@ -262,6 +263,12 @@
       cursor: move;
       border-radius: 50%;
     }
+    .alert-info {
+      display: none;
+    }
+    .jumbotron {
+      display: none;
+    }
     </style>
   </head>
   <body>
@@ -492,6 +499,24 @@
         <p class="mb-0" id="message">Couldn't find.</p>
       </div>
 
+      <script type="text/javascript">
+      jQuery(document).ready(function() {
+        jQuery(".alert-info").fadeIn(500);
+        jQuery(".alert-info").css("transform","scale(0.9)");
+        anime({
+          targets: '.alert-info',
+          scale: 1,
+          duration: 1500
+        });
+        jQuery(".jumbotron").fadeIn(500);
+        jQuery(".jumbotron").css("transform","scale(1.1)");
+        anime({
+          targets: '.jumbotron',
+          scale: 1,
+          duration: 1500
+        });
+      })
+      </script>
       <script src="fov.js"></script>
 
   </body>

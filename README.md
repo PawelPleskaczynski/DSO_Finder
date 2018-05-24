@@ -37,4 +37,6 @@ Images of Uranus and Neptune: NASA Voyager 2
 
 <a href="https://jquery.com/">jQuery</a>
 
+<a href="http://animejs.com/">AnimeJS</a> library
+
 Little <a href="https://scrollrevealjs.org">ScrollReveal</a> library

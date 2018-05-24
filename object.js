@@ -15,8 +15,10 @@ var is_coords = getVar("input_type") == "coordinates";
 var mediaquery = window.matchMedia("(max-width: 1024px)");
 var name;
 
-window.onLoad = load();
-window.onLoad = jQuery("#loading_text").fadeIn("slow");
+jQuery(document).ready(function() {
+  jQuery("#loading_text").fadeIn("slow");
+})
+
 
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
@@ -45,7 +47,13 @@ function load() {
       jQuery("#sun_btn").show();
       jQuery("#zoom_ra_dec_btns").hide();
       img_type = "wl_sun_img";
-      jQuery("#card").fadeIn("slow");
+      jQuery("#card").fadeIn(500);
+      jQuery("#card").css("transform","scale(1.2)");
+      anime({
+        targets: '#card',
+        scale: 1,
+        duration: 1500
+      });
     }
     color();
   } else if (getVar("obj").toUpperCase() == "moon".toUpperCase()) {
@@ -144,7 +152,13 @@ function load() {
       jQuery(".card-text").hide();
       jQuery("#obs").hide();
       jQuery("#zoom_ra_dec_btns").hide();
-      jQuery("#card").fadeIn("slow");
+      jQuery("#card").fadeIn(500);
+      jQuery("#card").css("transform","scale(1.2)");
+      anime({
+        targets: '#card',
+        scale: 1,
+        duration: 1500
+      });
     }
   } else {
     var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/" + getVar("obj") + "/?format=json";
@@ -194,7 +208,13 @@ function load() {
           jQuery("#table_btn_div").hide();
 
           image.onload = function() {
-            jQuery("#card").fadeIn("slow");
+            jQuery("#card").fadeIn(500);
+            jQuery("#card").css("transform","scale(1.2)");
+            anime({
+              targets: '#card',
+              scale: 1,
+              duration: 1500
+            });
             jQuery("#loading_text").fadeOut("slow");
             preload();
           }
@@ -398,7 +418,13 @@ function load() {
       request.send();
 
       image.onload = function() {
-        jQuery("#card").fadeIn("slow");
+        jQuery("#card").fadeIn(500);
+        jQuery("#card").css("transform","scale(1.2)");
+        anime({
+          targets: '#card',
+          scale: 1,
+          duration: 1500
+        });
         jQuery("#loading_text").fadeOut("slow");
         preload();
         function hideTable(mediaquery) {
