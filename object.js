@@ -17,6 +17,7 @@ var name;
 
 jQuery(document).ready(function() {
   jQuery("#loading_text").fadeIn("slow");
+  load();
 })
 
 
