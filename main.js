@@ -56,6 +56,8 @@ function openDSO() {
         window.open("object.html?obj=" + object_name,"_self");
       }
     }
+  } else {
+    micron.getEle(".jumbotron").interaction("shake").duration(".45").timing("ease-out");
   }
 }
 

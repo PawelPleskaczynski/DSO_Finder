@@ -16,6 +16,8 @@
     <meta name="msapplication-config" content="https://pawelpleskaczynski.github.io/DSO_Finder/browserconfig.xml" />
     <meta name="theme-color" content="#303030">
     <script src="anime.min.js"></script>
+    <link href="https://unpkg.com/webkul-micron@1.1.6/dist/css/micron.min.css" type="text/css" rel="stylesheet">
+    <script src="https://unpkg.com/webkul-micron@1.1.6/dist/script/micron.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="theme/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="theme/scrollbar.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
@@ -378,7 +380,7 @@
               </div>
             </fieldset>
           </div>
-          <button type="button" class="btn btn-success btn-lg" onclick="fov_img()">Calculate field of view</button>
+          <button type="button" class="btn btn-success btn-lg" onclick="fov_img()" id="btn1">Calculate field of view</button>
 
           <div id="survey_div">
             <p style="margin-top: 24px;">Sky survey</p>
@@ -422,7 +424,7 @@
               </div>
             </fieldset>
           </div>
-          <button type="button" class="btn btn-success btn-lg" onclick="fov_obs()">Calculate field of view</button>
+          <button type="button" class="btn btn-success btn-lg" onclick="fov_obs()" id="btn2">Calculate field of view</button>
 
           <div id="survey_div_obs">
             <p style="margin-top: 24px;">Sky survey</p>

@@ -39,4 +39,6 @@ Images of Uranus and Neptune: NASA Voyager 2
 
 <a href="http://animejs.com/">AnimeJS</a> library
 
-Little <a href="https://scrollrevealjs.org">ScrollReveal</a> library
+<a href="https://webkul.github.io/micron/">micron</a> library
+
+<a href="https://scrollrevealjs.org">ScrollReveal</a> library

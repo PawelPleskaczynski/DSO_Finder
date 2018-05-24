@@ -539,6 +539,20 @@ function fov_img() {
         });
       }
     }
+  } else {
+    micron.getEle("#btn1").interaction("shake").duration(".45").timing("ease-out");
+
+    jQuery(".form-control").each(function(){
+      if(jQuery(this).val() == "") {
+        anime({
+          targets: this,
+          backgroundColor: '#A13D33',
+          direction: 'alternate',
+          easing: 'easeInOutQuart',
+          duration: 450
+        });
+      }
+    });
   }
 }
 
@@ -872,8 +886,23 @@ function fov_obs() {
         });
       }
     }
+  } else {
+    micron.getEle("#btn2").interaction("shake").duration(".45").timing("ease-out");
+
+    jQuery(".form-control").each(function(){
+      if(jQuery(this).val() == "") {
+        anime({
+          targets: this,
+          backgroundColor: '#A13D33',
+          direction: 'alternate',
+          easing: 'easeInOutQuart',
+          duration: 450
+        });
+      }
+    });
   }
 }
+
 
 function ra_plus() {
   ra = +ra + 0.1;
