@@ -120,7 +120,7 @@
     }
     </style>
   </head>
-  <body>
+  <body style="background: #303030;">
 
     <div id="bg">
       <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar" style="opacity: 0.8; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
@@ -205,11 +205,12 @@
     <script type="text/javascript">
     jQuery(document).ready(function() {
       jQuery("#bg").fadeIn(500);
-      jQuery("#bg").css("transform","translateY(20%)")
+      jQuery(".jumbotron").css("transform","scale(0.9)")
       anime({
-        targets: '#bg',
-        translateY: '0%',
-        duration: 1500
+        targets: '.jumbotron',
+        scale: 1,
+        duration: 400,
+        easing: 'easeInOutQuart'
       });
     })
     </script>
