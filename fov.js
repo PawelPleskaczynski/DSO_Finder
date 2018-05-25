@@ -94,6 +94,10 @@ function imaging() {
   uranus_ang = 0.062;
   neptune_ang = 0.038;
   img_type = "SDSS";
+  jQuery(".form-control").each(function(){
+      jQuery(this).css("backgroundColor","#fff");
+      jQuery(this).removeClass("is-invalid");
+  });
 }
 
 function observing() {
@@ -126,6 +130,10 @@ function observing() {
   uranus_ang = 0.062;
   neptune_ang = 0.038;
   img_type = "SDSS";
+  jQuery(".form-control").each(function(){
+      jQuery(this).css("backgroundColor","#fff");
+      jQuery(this).removeClass("is-invalid");
+  });
 }
 
 
@@ -549,6 +557,7 @@ function fov_img() {
           easing: 'easeOutCubic',
           duration: 850
         });
+        jQuery(this).addClass("is-invalid");
       }
     });
     micron.getEle("#btn1").interaction("shake").duration(".45").timing("ease-out");
@@ -895,6 +904,7 @@ function fov_obs() {
           easing: 'easeOutCubic',
           duration: 850
         });
+        jQuery(this).addClass("is-invalid");
       }
     });
     micron.getEle("#btn2").interaction("shake").duration(".45").timing("ease-out");
@@ -1069,7 +1079,15 @@ function lucky() {
     number_final = vdb_numbers;
   }
   var lucky_obj = cat_array[catalog_array] + " " + number_final;
-  window.open("object.html?obj=" + lucky_obj + "&lucky=true","_self");
+  anime({
+    targets: 'body',
+    opacity: 0,
+    easing: 'easeInOutQuart',
+    duration: 400,
+    complete: function(anim) {
+      window.open("object.html?obj=" + lucky_obj + "&lucky=true&barslide=true","_self");
+    }
+  });
 }
 
 function barlow_show() {
@@ -1312,4 +1330,13 @@ function drag_obj() {
       solar_system_obj.style.top  = (mousePosition.y + offset[1]) + 'px';
     }
   }, true);
+}
+
+function check_if_not_empty() {
+  jQuery(".form-control").each(function(){
+    if (jQuery(this).val() != "") {
+      jQuery(this).css("backgroundColor","#fff");
+      jQuery(this).removeClass("is-invalid");
+    }
+  });
 }

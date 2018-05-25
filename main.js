@@ -1,7 +1,16 @@
 window.scrollreveal = ScrollReveal();
-scrollreveal.reveal('#about');
+scrollreveal.reveal('#about', {
+  afterReveal: function(domEl) {
+    anime({
+      targets: 'img',
+      scale: 1,
+      duration: 1400
+    });
+  }
+});
 
 window.onload = function() {
+  jQuery("img").css("transform","scale(0)");
   var date = new Date();
   var hour = date.getHours();
   if (hour > 7 && hour <= 18) {
@@ -27,7 +36,15 @@ function openDSO() {
   var dec_s_regex = /([0-9]+[|.|,][0-9]+|[0-9]+)(| )(s|S|″|")/
   if (!object_name == null || !object_name == "") {
     if (coord_regex.test(object_name)) {
-      window.open("object.html?obj=" + object_name.replace("+","%2B") +"&input_type=coordinates","_self");
+      anime({
+        targets: '#bg',
+        opacity: 0,
+        easing: 'easeInOutQuart',
+        duration: 400,
+        complete: function(anim) {
+          window.open("object.html?obj=" + object_name.replace("+","%2B") +"&input_type=coordinates&barslide=true","_self");
+        }
+      });
     } else if (ra_dec_regex.test(object_name)) {
       var ra = object_name.match(ra_regex);
       var dec = object_name.match(dec_regex);
@@ -46,14 +63,46 @@ function openDSO() {
       var dec2 = Number(dec_m[1]/60);
       var dec3 = Number(dec_s[1]/3600);
       var dec_final = Number(dec_d_symbol + (dec1 + dec2 + dec3)).toFixed(3);
-      window.open("object.html?obj=" + ra_final.toFixed(3) + " " + dec_final.replace("+","%2B") + "&ra=" + ra_final.toFixed(3) + "&dec=" + dec_final.replace("+","%2B") + "&input_type=coordinates","_self");
+      anime({
+        targets: '#bg',
+        opacity: 0,
+        easing: 'easeInOutQuart',
+        duration: 400,
+        complete: function(anim) {
+          window.open("object.html?obj=" + ra_final.toFixed(3) + " " + dec_final.replace("+","%2B") + "&ra=" + ra_final.toFixed(3) + "&dec=" + dec_final.replace("+","%2B") + "&input_type=coordinates&barslide=true","_self");
+        }
+      });
     } else {
       if (object_name.match(/sun/i)) {
-        window.open("object.html?obj=sun","_self")
+        anime({
+          targets: '#bg',
+          opacity: 0,
+          easing: 'easeInOutQuart',
+          duration: 400,
+          complete: function(anim) {
+            window.open("object.html?obj=sun&barslide=true","_self")
+          }
+        });
       } else if (object_name.match(/moon/i)) {
-        window.open("object.html?obj=moon","_self")
+        anime({
+          targets: '#bg',
+          opacity: 0,
+          easing: 'easeInOutQuart',
+          duration: 400,
+          complete: function(anim) {
+            window.open("object.html?obj=moon&barslide=true","_self")
+          }
+        });
       } else {
-        window.open("object.html?obj=" + object_name,"_self");
+        anime({
+          targets: '#bg',
+          opacity: 0,
+          easing: 'easeInOutQuart',
+          duration: 400,
+          complete: function(anim) {
+            window.open("object.html?obj=" + object_name + "&barslide=true","_self");
+          }
+        });
       }
     }
   } else {
@@ -88,7 +137,15 @@ function lucky() {
     number_final = vdb_numbers;
   }
   var lucky_obj = cat_array[catalog_array] + " " + number_final;
-  window.open("object.html?obj=" + lucky_obj + "&lucky=true","_self");
+  anime({
+    targets: '#bg',
+    opacity: 0,
+    easing: 'easeInOutQuart',
+    duration: 400,
+    complete: function(anim) {
+      window.open("object.html?obj=" + lucky_obj + "&lucky=true&barslide=true","_self");
+    }
+  });
 }
 
 var input_name = document.getElementById("input_name");

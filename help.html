@@ -15,6 +15,7 @@
     <meta name="msapplication-TileColor" content="#432f80">
     <meta name="msapplication-config" content="https://pawelpleskaczynski.github.io/DSO_Finder/browserconfig.xml" />
     <meta name="theme-color" content="#303030">
+    <script src="anime.min.js"></script>
     <link rel="stylesheet" href="theme/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="theme/scrollbar.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
@@ -25,10 +26,10 @@
     <style type="text/css">
     </style>
   </head>
-  <body>
+  <body style="display: none;">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="index.html">DSO Finder</a>
+      <a class="navbar-brand" href="javascript:void(0)" onclick="main_link()">DSO Finder</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -36,7 +37,7 @@
       <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="fov.html">Field of view calculator</a>
+            <a class="nav-link" href="javascript:void(0)" onclick="fov_link()">Field of view calculator</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="javascript:void(0)">Help</a>
@@ -85,6 +86,32 @@
       <h3>I can't find an object!</h3>
       <p>If you're searching by name, try to find by catalog number.</p>
     </div>
+
+    <script type="text/javascript">
+    jQuery("body").fadeIn("slow");
+    function fov_link() {
+      anime({
+        targets: 'body',
+        opacity: 0,
+        easing: 'easeInOutQuart',
+        duration: 400,
+        complete: function(anim) {
+          window.open("fov.html","_self")
+        }
+      });
+    }
+    function main_link() {
+      anime({
+        targets: 'body',
+        opacity: 0,
+        easing: 'easeInOutQuart',
+        duration: 400,
+        complete: function(anim) {
+          window.open("index.html","_self")
+        }
+      });
+    }
+    </script>
 
   </body>
 </html>

@@ -16,10 +16,25 @@ var mediaquery = window.matchMedia("(max-width: 1024px)");
 var name;
 
 jQuery(document).ready(function() {
+  var slide = getVar("barslide");
+  if (slide) {
+    jQuery("#nonav_content").fadeIn("slow");
+    anime({
+      targets: '.navbar',
+      translateY: "0%",
+      duration: 500,
+      easing: 'easeInOutQuart'
+    });
+  } else {
+    jQuery(".navbar").css("transform","translateY(0)");
+    jQuery("#nonav_content").fadeIn("slow");
+  }
+})
+
+jQuery(document).ready(function() {
   jQuery("#loading_text").fadeIn("slow");
   load();
 })
-
 
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
@@ -681,7 +696,15 @@ function openDSO() {
   var dec_s_regex = /([0-9]+[|.|,][0-9]+|[0-9]+)(| )(s|S|″|")/
   if (!object_name == null || !object_name == "") {
     if (coord_regex.test(object_name)) {
-      window.open("object.html?obj=" + object_name.replace("+","%2B") +"&input_type=coordinates","_self");
+      anime({
+        targets: '#nonav_content',
+        opacity: 0,
+        easing: 'easeInOutQuart',
+        duration: 400,
+        complete: function(anim) {
+          window.open("object.html?obj=" + object_name.replace("+","%2B") +"&input_type=coordinates","_self");
+        }
+      });
     } else if (ra_dec_regex.test(object_name)) {
       var ra = object_name.match(ra_regex);
       var dec = object_name.match(dec_regex);
@@ -700,14 +723,46 @@ function openDSO() {
       var dec2 = Number(dec_m[1]/60);
       var dec3 = Number(dec_s[1]/3600);
       var dec_final = Number(dec_d_symbol + (dec1 + dec2 + dec3)).toFixed(3);
-      window.open("object.html?obj=" + ra_final.toFixed(3) + " " + dec_final.replace("+","%2B") + "&ra=" + ra_final.toFixed(3) + "&dec=" + dec_final.replace("+","%2B") + "&input_type=coordinates","_self");
+      anime({
+        targets: '#nonav_content',
+        opacity: 0,
+        easing: 'easeInOutQuart',
+        duration: 400,
+        complete: function(anim) {
+          window.open("object.html?obj=" + ra_final.toFixed(3) + " " + dec_final.replace("+","%2B") + "&ra=" + ra_final.toFixed(3) + "&dec=" + dec_final.replace("+","%2B") + "&input_type=coordinates","_self");
+        }
+      });
     } else {
       if (object_name.match(/sun/i)) {
-        window.open("object.html?obj=sun","_self")
+        anime({
+          targets: '#nonav_content',
+          opacity: 0,
+          easing: 'easeInOutQuart',
+          duration: 400,
+          complete: function(anim) {
+            window.open("object.html?obj=sun","_self")
+          }
+        });
       } else if (object_name.match(/moon/i)) {
-        window.open("object.html?obj=moon","_self")
+        anime({
+          targets: '#nonav_content',
+          opacity: 0,
+          easing: 'easeInOutQuart',
+          duration: 400,
+          complete: function(anim) {
+            window.open("object.html?obj=moon","_self")
+          }
+        });
       } else {
-        window.open("object.html?obj=" + object_name,"_self");
+        anime({
+          targets: '#nonav_content',
+          opacity: 0,
+          easing: 'easeInOutQuart',
+          duration: 400,
+          complete: function(anim) {
+            window.open("object.html?obj=" + object_name,"_self");
+          }
+        });
       }
     }
   }
@@ -899,7 +954,15 @@ function lucky() {
     number_final = vdb_numbers;
   }
   var lucky_obj = cat_array[catalog_array] + " " + number_final;
-  window.open("object.html?obj=" + lucky_obj + "&lucky=true","_self");
+  anime({
+    targets: '#nonav_content',
+    opacity: 0,
+    easing: 'easeInOutQuart',
+    duration: 400,
+    complete: function(anim) {
+      window.open("object.html?obj=" + lucky_obj + "&lucky=true","_self");
+    }
+  });
 }
 
 var input_name = document.getElementById("input_name");

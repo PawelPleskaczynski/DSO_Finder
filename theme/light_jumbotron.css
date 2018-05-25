@@ -6,8 +6,8 @@
 
 .btn-secondary {
   color: #ffffff;
-  background-color: #607D8B;
-  border-color: #607D8B;
+  background-color: #B23445;
+  border-color: #B23445;
 }
 
 .btn-secondary:hover,
@@ -16,8 +16,8 @@
 .btn-secondary.active,
 .open .dropdown-toggle.btn-secondary {
   color: #ffffff;
-  background-color: #546E7A;
-  border-color: #546E7A;
+  background-color: #542630;
+  border-color: #542630;
 }
 
 .btn-secondary:active,
@@ -41,11 +41,11 @@ fieldset[disabled] .btn-secondary:active,
 .btn-secondary.disabled.active,
 .btn-secondary[disabled].active,
 fieldset[disabled] .btn-secondary.active {
-  background-color: #546E7A;
-  border-color: #546E7A;
+  background-color: #B23445;
+  border-color: #B23445;
 }
 
 .btn-secondary .badge {
-  color: #546E7A;
-  background-color: #546E7A;
+  color: #B23445;
+  background-color: #ffffff;
 }
