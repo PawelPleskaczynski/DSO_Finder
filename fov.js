@@ -1349,6 +1349,7 @@ function load_solar_system_obj_obs(type, min, avg, max, fov) {
 }
 
 function iss_img(fovheight, fovwidth) {
+  jQuery("#size").hide();
   jQuery("#solar_system_obj").css("border-radius","0%");
   jQuery("#survey_div").hide();
   var heightfov = fovheight / fovwidth;
@@ -1392,6 +1393,7 @@ function iss_img(fovheight, fovwidth) {
 
 function iss_obs() {
   px_size_text.innerHTML = "";
+  jQuery("#size").hide();
   jQuery("#solar_system_obj").css("border-radius","0%");
   jQuery("#survey_div_obs").hide();
   var heightfov = fov;
