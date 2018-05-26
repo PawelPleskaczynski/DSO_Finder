@@ -107,6 +107,9 @@ function openDSO() {
     }
   } else {
     micron.getEle(".jumbotron").interaction("shake").duration(".45").timing("ease-out");
+    jQuery(".form-control").each(function(){
+        jQuery(this).addClass("is-invalid");
+    });
   }
 }
 

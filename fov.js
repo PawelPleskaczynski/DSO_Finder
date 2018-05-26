@@ -17,6 +17,7 @@ var object_observing = document.getElementById("object_name_obs");
 var fov_width_text = document.getElementById("fov_width_text");
 var fov_height_text = document.getElementById("fov_height_text");
 var resolution_text = document.getElementById("resolution_text");
+var px_size_text = document.getElementById("px_size_text");
 var fov_width;
 var fov_height;
 var fov;
@@ -138,6 +139,7 @@ function observing() {
 
 
 function fov_img() {
+  px_size_text.innerHTML = "";
   jQuery("#survey_div").show();
   var telescope_flength_v = telescope_flength.value;
   var pixel_size_v = pixel_size.value;
@@ -205,6 +207,10 @@ function fov_img() {
       drag_obj();
     } else if (object_imaging_v.toUpperCase().trim() == "sun".toUpperCase()) {
       load_solar_system_obj_img("sun", 31.45, sun_ang, 32.53, fov_height, fov_width);
+      restart_pos();
+      drag_obj();
+    } else if (object_imaging_v.toUpperCase().trim() == "iss".toUpperCase() || object_imaging_v.toUpperCase().trim() == "international space station".toUpperCase()) {
+      iss_img(fov_height, fov_width);
       restart_pos();
       drag_obj();
     } else {
@@ -565,6 +571,7 @@ function fov_img() {
 }
 
 function fov_obs() {
+  px_size_text.innerHTML = "";
   jQuery("#survey_div_obs").show();
   var telescope_flength_obs_v = telescope_flength_obs.value;
   var eyepiece_afov_v = eyepiece_afov.value;
@@ -633,6 +640,10 @@ function fov_obs() {
       load_solar_system_obj_obs("sun", 31.45, sun_ang, 32.53, fov);
       restart_pos();
       drag_obj();
+    } else if (object_observing_v.toUpperCase().trim() == "iss".toUpperCase() || object_observing_v.toUpperCase().trim() == "international space station".toUpperCase()) {
+       iss_obs(fov);
+       restart_pos();
+       drag_obj();
     } else {
       jQuery("#loading_bg").hide();
       jQuery("#solar_system_obj").hide();
@@ -1152,10 +1163,19 @@ function color() {
 }
 
 function load_solar_system_obj_img(type, min, avg, max, fovheight, fovwidth) {
+  jQuery("#solar_system_obj").css("border-radius","50%");
   jQuery("#survey_div").hide();
   var heightfov = fovheight / fovwidth;
   var width = jQuery("#card").width();
   var obj_ang = avg;
+  var px_size = (obj_ang * 60) / res.toFixed(2);
+  var widthpx = jQuery("#reswidth").val()
+  var heightpx = jQuery("#resheight").val()
+  if (px_size < widthpx || px_size < heightpx) {
+    px_size_text.innerHTML = "Object size: " + Math.floor(px_size) + "px";
+  } else {
+    px_size_text.innerHTML = "";
+  }
   jQuery("#average").addClass("active");
   jQuery("#apogee").removeClass("active");
   jQuery("#perigee").removeClass("active");
@@ -1204,6 +1224,14 @@ function load_solar_system_obj_img(type, min, avg, max, fovheight, fovwidth) {
     object_width = object_width * width
     jQuery("#solar_system_obj").css("width",object_width + "px");
     jQuery("#solar_system_obj").css("height",object_width + "px");
+    var px_size = (obj_ang * 60) / res.toFixed(2);
+    var widthpx = jQuery("#reswidth").val()
+    var heightpx = jQuery("#resheight").val()
+    if (px_size < widthpx || px_size < heightpx) {
+      px_size_text.innerHTML = "Object size: " + Math.floor(px_size) + "px";
+    } else {
+      px_size_text.innerHTML = "";
+    }
   });
   jQuery("#average").click(function() {
     obj_ang = avg;
@@ -1213,6 +1241,14 @@ function load_solar_system_obj_img(type, min, avg, max, fovheight, fovwidth) {
     object_width = object_width * width
     jQuery("#solar_system_obj").css("width",object_width + "px");
     jQuery("#solar_system_obj").css("height",object_width + "px");
+    var px_size = (obj_ang * 60) / res.toFixed(2);
+    var widthpx = jQuery("#reswidth").val()
+    var heightpx = jQuery("#resheight").val()
+    if (px_size < widthpx || px_size < heightpx) {
+      px_size_text.innerHTML = "Object size: " + Math.floor(px_size) + "px";
+    } else {
+      px_size_text.innerHTML = "";
+    }
   });
   jQuery("#perigee").click(function() {
     obj_ang = max;
@@ -1222,10 +1258,20 @@ function load_solar_system_obj_img(type, min, avg, max, fovheight, fovwidth) {
     object_width = object_width * width
     jQuery("#solar_system_obj").css("width",object_width + "px");
     jQuery("#solar_system_obj").css("height",object_width + "px");
+    var px_size = (obj_ang * 60) / res.toFixed(2);
+    var widthpx = jQuery("#reswidth").val()
+    var heightpx = jQuery("#resheight").val()
+    if (px_size < widthpx || px_size < heightpx) {
+      px_size_text.innerHTML = "Object size: " + Math.floor(px_size) + "px";
+    } else {
+      px_size_text.innerHTML = "";
+    }
   });
 }
 
 function load_solar_system_obj_obs(type, min, avg, max, fov) {
+  px_size_text.innerHTML = "";
+  jQuery("#solar_system_obj").css("border-radius","50%");
   jQuery("#survey_div_obs").hide();
   var heightfov = fov;
   var width = jQuery("#card").width();
@@ -1278,6 +1324,7 @@ function load_solar_system_obj_obs(type, min, avg, max, fov) {
     object_width = object_width * width
     jQuery("#solar_system_obj").css("width",object_width + "px");
     jQuery("#solar_system_obj").css("height",object_width + "px");
+    px_size_text.innerHTML = "";
   });
   jQuery("#average").click(function() {
     obj_ang = avg;
@@ -1287,6 +1334,7 @@ function load_solar_system_obj_obs(type, min, avg, max, fov) {
     object_width = object_width * width
     jQuery("#solar_system_obj").css("width",object_width + "px");
     jQuery("#solar_system_obj").css("height",object_width + "px");
+    px_size_text.innerHTML = "";
   });
   jQuery("#perigee").click(function() {
     obj_ang = max;
@@ -1296,7 +1344,85 @@ function load_solar_system_obj_obs(type, min, avg, max, fov) {
     object_width = object_width * width
     jQuery("#solar_system_obj").css("width",object_width + "px");
     jQuery("#solar_system_obj").css("height",object_width + "px");
+    px_size_text.innerHTML = "";
   });
+}
+
+function iss_img(fovheight, fovwidth) {
+  jQuery("#solar_system_obj").css("border-radius","0%");
+  jQuery("#survey_div").hide();
+  var heightfov = fovheight / fovwidth;
+  var width = jQuery("#card").width();
+  var obj_ang = 1;
+  var px_size = (obj_ang * 60) / res.toFixed(2);
+  var widthpx = jQuery("#reswidth").val()
+  var heightpx = jQuery("#resheight").val()
+  if (px_size < widthpx || px_size < heightpx) {
+    px_size_text.innerHTML = "Object size: " + Math.floor(px_size) + "px";
+  } else {
+    px_size_text.innerHTML = "";
+  }
+  jQuery("#dso_big_fov").hide();
+  jQuery(".alert-danger").hide();
+  jQuery("#loading_bg").hide();
+  jQuery("#card2").show();
+  jQuery("#card2").css("background","url(images/ui/black_square.png)");
+  jQuery("#card2").css("height", width * heightfov);
+  jQuery("#card").show();
+  jQuery("#solar_system_obj").show();
+  jQuery("#DSO_image").hide();
+  jQuery("#fov_move_controls").hide();
+  jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/iss.png)");
+  jQuery("#solar_system_obj").css("backgroundSize","contain");
+  jQuery("#solar_system_obj").css("backgroundPosition","center");
+  var object_width = obj_ang / fovwidth;
+  object_width = object_width * width
+  jQuery("#solar_system_obj").css("width",object_width + "px");
+  jQuery("#solar_system_obj").css("height",object_width + "px");
+  scroll_bottom_load();
+  window.onresize = function() {
+    var width = jQuery("#card").width();
+    jQuery("#card2").css("height", width * heightfov);
+    var object_width = obj_ang / fovwidth;
+    object_width = object_width * width
+    jQuery("#solar_system_obj").css("width",object_width + "px");
+    jQuery("#solar_system_obj").css("height",object_width + "px");
+  }
+}
+
+function iss_obs() {
+  px_size_text.innerHTML = "";
+  jQuery("#solar_system_obj").css("border-radius","0%");
+  jQuery("#survey_div_obs").hide();
+  var heightfov = fov;
+  var width = jQuery("#card").width();
+  var obj_ang = 1;
+  jQuery("#dso_big_fov").hide();
+  jQuery(".alert-danger").hide();
+  jQuery("#loading_bg").hide();
+  jQuery("#card2").show();
+  jQuery("#card2").css("background","url(images/ui/black_square.png)");
+  jQuery("#card2").css("height", width);
+  jQuery("#card").show();
+  jQuery("#solar_system_obj").show();
+  jQuery("#DSO_image").hide();
+  jQuery("#fov_move_controls").hide();
+  jQuery("#solar_system_obj").css("background","url(images/ui/solar_system/iss.png)");
+  jQuery("#solar_system_obj").css("backgroundSize","contain");
+  jQuery("#solar_system_obj").css("backgroundPosition","center");
+  var object_width = obj_ang / fov;
+  object_width = object_width * width
+  jQuery("#solar_system_obj").css("width",object_width + "px");
+  jQuery("#solar_system_obj").css("height",object_width + "px");
+  scroll_bottom_load();
+  window.onresize = function() {
+    var width = jQuery("#card").width();
+    jQuery("#card2").css("height", width);
+    var object_width = obj_ang / fov;
+    object_width = object_width * width
+    jQuery("#solar_system_obj").css("width",object_width + "px");
+    jQuery("#solar_system_obj").css("height",object_width + "px");
+  }
 }
 
 function restart_pos() {

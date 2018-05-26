@@ -265,7 +265,6 @@
     }
     #solar_system_obj {
       cursor: move;
-      border-radius: 50%;
     }
     .alert-info {
       display: none;
@@ -374,7 +373,7 @@
             </fieldset>
 
             <fieldset style="margin-top: 24px;">
-              <label class="form-control-label" for="object_name_img">Object (can be DSO, Sun/Moon/planets or coordinates)</label>
+              <label class="form-control-label" for="object_name_img">Object (can be DSO, Sun/Moon/planets/ISS or coordinates)</label>
               <div class="form-group">
                 <div class="input-group mb-3">
                   <input type="text" class="form-control" oninput="check_if_not_empty()" placeholder="Type in name/coordinates of an object..." id="object_name_img">
@@ -470,6 +469,7 @@
             <h6 id="fov_width_text"></h6>
             <h6 id="fov_height_text"></h6>
             <h6 id="resolution_text"></h6>
+            <h6 id="px_size_text"></h6>
           </div>
           <div class="loading_bg" id="loading_bg">
             <h2 class="blink" id="loading_text_img">Loading…</h2>
