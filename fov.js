@@ -175,7 +175,9 @@ function fov_img() {
     proportions = fov_height / fov_width;
     fov_width_secs = fov_width * 60;
     sdss_height = 960 * proportions;
+    sdss_height = Math.round(sdss_height);
     res_sdss = fov_width_secs / 960;
+    res_sdss = res_sdss.toFixed(2);
 
     fov_width_text.innerHTML = "Width: " + fov_width.toFixed(2) + " arcminutes";
     fov_height_text.innerHTML = "Height: " + fov_height.toFixed(2) + " arcminutes";
