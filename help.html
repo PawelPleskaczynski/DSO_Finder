@@ -25,12 +25,44 @@
     <script src="anime.min.js"></script>
     <link rel="stylesheet" href="theme/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="theme/scrollbar.css">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.4.85/css/materialdesignicons.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="main.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <style type="text/css">
+    .mdi {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle !important;
+      padding-bottom: 3px;
+    }
+    .email {
+      color: #666;
+      -webkit-transition: color 0.33s;
+      transition: color 0.33s;
+    }
+    .github {
+      color: #666;
+      -webkit-transition: color 0.33s;
+      transition: color 0.33s;
+    }
+    .facebook {
+      color: #666;
+      -webkit-transition: color 0.33s;
+      transition: color 0.33s;
+    }
+    .email:hover {
+      color: #DE5347;
+    }
+    .github:hover {
+      color: #fff;
+    }
+    .facebook:hover {
+      color: #3B5998;
+    }
     </style>
   </head>
   <body style="display: none;">
@@ -50,7 +82,8 @@
             <a class="nav-link" href="javascript:void(0)">Help</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://github.com/PawelPleskaczynski/DSO_Finder/blob/master/README.md">About</a>
+            <a class="nav-link" href="https://github.com/PawelPleskaczynski/DSO_Finder/blob/master/README.md" style="float: left;">About</a>
+            <span class="mdi mdi-open-in-new" style="color: #707070; transform: translate(5%,27%);"></span>
           </li>
         </ul>
       </div>
@@ -92,7 +125,18 @@
 
       <h3>I can't find an object!</h3>
       <p>If you're searching by name, try to find by catalog number.</p>
+      <p style="color: #666; float: left;">© 2018 Paweł Pleskaczyński</p>
+      <a href="https://github.com/PawelPleskaczynski" class="github">
+        <span class="mdi mdi-github-circle github" style="transform: translateY(27%); transform: scale(1.5); margin-left: 8px;"></span>
+      </a>
+      <a href="https://web.facebook.com/pawelpleskaczysnki" class="facebook">
+        <span class="mdi mdi-facebook-box facebook" style="transform: translateY(27%); transform: scale(1.5); margin-left: 8px;"></span>
+      </a>
+      <a href="mailto:pawelpleskaczynski@gmail.com" class="email">
+        <span class="mdi mdi-email email" style="transform: translateY(27%); transform: scale(1.5); margin-left: 8px;"><a href="mailto:pawelpleskaczynski@gmail.com"></a></span>
+      </a>
     </div>
+
 
     <script type="text/javascript">
     jQuery("body").fadeIn("slow");

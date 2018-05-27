@@ -70,6 +70,7 @@ window.onload = jQuery("#link_up").attr("onclick","dec_plus()");
 window.onload = jQuery("#link_down").attr("onclick","dec_minus()");
 
 function imaging() {
+  jQuery("#small_link").text("The image is too big, make it smaller.");
   jQuery("#card").css("transform","scale(1)");
   jQuery(".small_img_div").hide();
   jQuery("#survey_div_obs").show();
@@ -108,6 +109,7 @@ function imaging() {
 }
 
 function observing() {
+  jQuery("#small_link").text("The image is too big, make it smaller.");
   jQuery("#card").css("transform","scale(1)");
   jQuery(".small_img_div").hide();
   jQuery("#survey_div_obs").show();
@@ -147,6 +149,7 @@ function observing() {
 
 
 function fov_img() {
+  jQuery("#small_link").text("The image is too big, make it smaller.");
   jQuery("#card").css("transform","scale(1)");
   jQuery(".small_img_div").hide();
   px_size_text.innerHTML = "";
@@ -535,6 +538,7 @@ function fov_img() {
 }
 
 function fov_obs() {
+  jQuery("#small_link").text("The image is too big, make it smaller.");
   jQuery("#card").css("transform","scale(1)");
   jQuery(".small_img_div").hide();
   px_size_text.innerHTML = "";
