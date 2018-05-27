@@ -70,6 +70,8 @@ window.onload = jQuery("#link_up").attr("onclick","dec_plus()");
 window.onload = jQuery("#link_down").attr("onclick","dec_minus()");
 
 function imaging() {
+  jQuery("#card").css("transform","scale(1)");
+  jQuery(".small_img_div").hide();
   jQuery("#survey_div_obs").show();
   image.src = "";
   jQuery("#dso_big_fov").hide();
@@ -106,6 +108,8 @@ function imaging() {
 }
 
 function observing() {
+  jQuery("#card").css("transform","scale(1)");
+  jQuery(".small_img_div").hide();
   jQuery("#survey_div_obs").show();
   image.src = "";
   jQuery("#dso_big_fov").hide();
@@ -143,6 +147,8 @@ function observing() {
 
 
 function fov_img() {
+  jQuery("#card").css("transform","scale(1)");
+  jQuery(".small_img_div").hide();
   px_size_text.innerHTML = "";
   jQuery("#survey_div").show();
   var telescope_flength_v = telescope_flength.value;
@@ -337,6 +343,15 @@ function fov_img() {
             jQuery("#card").fadeIn("slow");
             jQuery("#loading_text").hide();
             scroll_bottom_load();
+            function mediaquery(query) {
+              if (query.matches) {
+                jQuery(".small_img_div").fadeIn("slow");
+              } else {
+                jQuery(".small_img_div").hide();
+              }
+            }
+            var query = window.matchMedia("(min-width: 1024px)")
+            mediaquery(query);
           }
 
           image.onerror = function() {
@@ -440,12 +455,31 @@ function fov_img() {
             jQuery("#card").fadeIn("slow");
             jQuery("#loading_text").fadeOut("slow");
             scroll_bottom_load();
+            function mediaquery(query) {
+              if (query.matches) {
+                jQuery(".small_img_div").fadeIn("slow");
+              } else {
+                jQuery(".small_img_div").hide();
+              }
+            }
+            var query = window.matchMedia("(min-width: 1024px)")
+            mediaquery(query);
           }
 
           image_big_fov.onload = function() {
             jQuery("#card").fadeIn("slow");
             jQuery("#loading_text").fadeOut("slow");
             scroll_bottom_load();
+
+            function mediaquery(query) {
+              if (query.matches) {
+                jQuery(".small_img_div").fadeIn("slow");
+              } else {
+                jQuery(".small_img_div").hide();
+              }
+            }
+            var query = window.matchMedia("(min-width: 1024px)")
+            mediaquery(query);
 
             jQuery("#loading_bg").hide();
             jQuery("#card2").show();
@@ -501,6 +535,8 @@ function fov_img() {
 }
 
 function fov_obs() {
+  jQuery("#card").css("transform","scale(1)");
+  jQuery(".small_img_div").hide();
   px_size_text.innerHTML = "";
   jQuery("#survey_div_obs").show();
   var telescope_flength_obs_v = telescope_flength_obs.value;
@@ -689,6 +725,15 @@ function fov_obs() {
             jQuery("#card").fadeIn("slow");
             jQuery("#loading_text").fadeOut("slow");
             scroll_bottom_load();
+            function mediaquery(query) {
+              if (query.matches) {
+                jQuery(".small_img_div").fadeIn("slow");
+              } else {
+                jQuery(".small_img_div").hide();
+              }
+            }
+            var query = window.matchMedia("(min-width: 1024px)")
+            mediaquery(query);
           }
 
           image.onerror = function() {
@@ -792,12 +837,31 @@ function fov_obs() {
               jQuery("#card").fadeIn("slow");
               jQuery("#loading_text").fadeOut("slow");
               scroll_bottom_load();
+              function mediaquery(query) {
+                if (query.matches) {
+                  jQuery(".small_img_div").fadeIn("slow");
+                } else {
+                  jQuery(".small_img_div").hide();
+                }
+              }
+              var query = window.matchMedia("(min-width: 1024px)")
+              mediaquery(query);
             }
 
           image_big_fov_obs.onload = function() {
             jQuery("#card").fadeIn("slow");
             jQuery("#loading_text").fadeOut("slow");
             scroll_bottom_load();
+
+            function mediaquery(query) {
+              if (query.matches) {
+                jQuery(".small_img_div").fadeIn("slow");
+              } else {
+                jQuery(".small_img_div").hide();
+              }
+            }
+            var query = window.matchMedia("(min-width: 1024px)")
+            mediaquery(query);
 
             jQuery("#loading_bg").hide();
             jQuery("#card2").show();
@@ -1093,6 +1157,15 @@ function color() {
 }
 
 function load_solar_system_obj_img(type, min, avg, max, fovheight, fovwidth) {
+  function mediaquery(query) {
+    if (query.matches) {
+      jQuery(".small_img_div").fadeIn("slow");
+    } else {
+      jQuery(".small_img_div").hide();
+    }
+  }
+  var query = window.matchMedia("(min-width: 1024px)")
+  mediaquery(query);
   jQuery("#solar_system_obj").css("border-radius","50%");
   jQuery("#survey_div").hide();
   var heightfov = fovheight / fovwidth;
@@ -1200,6 +1273,15 @@ function load_solar_system_obj_img(type, min, avg, max, fovheight, fovwidth) {
 }
 
 function load_solar_system_obj_obs(type, min, avg, max, fov) {
+  function mediaquery(query) {
+    if (query.matches) {
+      jQuery(".small_img_div").fadeIn("slow");
+    } else {
+      jQuery(".small_img_div").hide();
+    }
+  }
+  var query = window.matchMedia("(min-width: 1024px)")
+  mediaquery(query);
   px_size_text.innerHTML = "";
   jQuery("#solar_system_obj").css("border-radius","50%");
   jQuery("#survey_div_obs").hide();
@@ -1279,6 +1361,15 @@ function load_solar_system_obj_obs(type, min, avg, max, fov) {
 }
 
 function iss_img(fovheight, fovwidth) {
+  function mediaquery(query) {
+    if (query.matches) {
+      jQuery(".small_img_div").fadeIn("slow");
+    } else {
+      jQuery(".small_img_div").hide();
+    }
+  }
+  var query = window.matchMedia("(min-width: 1024px)")
+  mediaquery(query);
   jQuery("#size").hide();
   jQuery("#solar_system_obj").css("border-radius","0%");
   jQuery("#survey_div").hide();
@@ -1322,6 +1413,15 @@ function iss_img(fovheight, fovwidth) {
 }
 
 function iss_obs() {
+  function mediaquery(query) {
+    if (query.matches) {
+      jQuery(".small_img_div").fadeIn("slow");
+    } else {
+      jQuery(".small_img_div").hide();
+    }
+  }
+  var query = window.matchMedia("(min-width: 1024px)")
+  mediaquery(query);
   px_size_text.innerHTML = "";
   jQuery("#size").hide();
   jQuery("#solar_system_obj").css("border-radius","0%");
@@ -1397,4 +1497,24 @@ function check_if_not_empty() {
       jQuery(this).removeClass("is-invalid");
     }
   });
+}
+
+function make_small() {
+  if (jQuery("#small_link").text() == "The image is too big, make it smaller.") {
+    anime({
+      targets: "#card",
+      scale: 0.66,
+      easing: 'easeInOutQuart',
+      duration: 600
+    });
+    jQuery("#small_link").text("Make size normal.");
+  } else {
+    anime({
+      targets: "#card",
+      scale: 1,
+      easing: 'easeInOutQuart',
+      duration: 600
+    });
+    jQuery("#small_link").text("The image is too big, make it smaller.");
+  }
 }
