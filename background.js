@@ -14,7 +14,6 @@ if (hour > 10 && hour <= 16) {
   setbgnight();
 }
 
-var body = jQuery("body");
 
 function setbg() {
   jQuery(".btn").removeClass("btn-secondary");
@@ -24,8 +23,8 @@ function setbg() {
       var tempimg = new Image();
       tempimg.src = "images/" + mobile_pic_arr[randomMobile] + ".jpg";
       tempimg.onload = function(){
-        jQuery("body").css("background","url(images/" + mobile_pic_arr[randomMobile] + ".jpg) no-repeat center center fixed");
-        jQuery("body").css("background-size","cover");
+        jQuery(".mobile_bg").css("background","url(images/" + mobile_pic_arr[randomMobile] + ".jpg) no-repeat center center fixed");
+        jQuery(".mobile_bg").css("background-size","cover");
       };
     } else {
       jQuery(".btn").addClass("btn-secondary" + pic_arr[random]);
@@ -50,8 +49,8 @@ function setbgnight() {
       var tempimg = new Image();
       tempimg.src = "images/" + mobile_pic_arr_night[randomMobile_night] + ".jpg";
       tempimg.onload = function(){
-        jQuery("body").css("background","url(images/" + mobile_pic_arr_night[randomMobile_night] + ".jpg) no-repeat center center fixed");
-        jQuery("body").css("background-size","cover");
+        jQuery(".mobile_bg").css("background","url(images/" + mobile_pic_arr_night[randomMobile_night] + ".jpg) no-repeat center center fixed");
+        jQuery(".mobile_bg").css("background-size","cover");
       };
     } else {
       jQuery(".btn").addClass("btn-secondary" + pic_arr_night[random_night]);
