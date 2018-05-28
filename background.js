@@ -13,7 +13,8 @@ if (hour > 10 && hour <= 16) {
 } else {
   setbgnight();
 }
-var bg = document.getElementById("bg");
+
+var body = jQuery("body");
 
 function setbg() {
   jQuery(".btn").removeClass("btn-secondary");
@@ -23,22 +24,16 @@ function setbg() {
       var tempimg = new Image();
       tempimg.src = "images/" + mobile_pic_arr[randomMobile] + ".jpg";
       tempimg.onload = function(){
-        jQuery("#bg").css("background","url(images/" + mobile_pic_arr[randomMobile] + ".jpg) no-repeat center center fixed");
-        bg.style.webkitBackgroundSize = "cover";
-        bg.style.mozBackgroundSize = "cover";
-        bg.style.oBackgroundSize = "cover";
-        bg.style.backgroundSize = "cover";
+        jQuery("body").css("background","url(images/" + mobile_pic_arr[randomMobile] + ".jpg) no-repeat center center fixed");
+        jQuery("body").css("background-size","cover");
       };
     } else {
       jQuery(".btn").addClass("btn-secondary" + pic_arr[random]);
       var tempimg = new Image();
       tempimg.src = "images/" + pic_arr[random] + ".jpg";
       tempimg.onload = function(){
-        jQuery("#bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
-        bg.style.webkitBackgroundSize = "cover";
-        bg.style.mozBackgroundSize = "cover";
-        bg.style.oBackgroundSize = "cover";
-        bg.style.backgroundSize = "cover";
+        jQuery("body").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
+        jQuery("body").css("background-size","cover");
       };
     }
   }
@@ -55,22 +50,16 @@ function setbgnight() {
       var tempimg = new Image();
       tempimg.src = "images/" + mobile_pic_arr_night[randomMobile_night] + ".jpg";
       tempimg.onload = function(){
-        jQuery("#bg").css("background","url(images/" + mobile_pic_arr_night[randomMobile_night] + ".jpg) no-repeat center center fixed");
-        bg.style.webkitBackgroundSize = "cover";
-        bg.style.mozBackgroundSize = "cover";
-        bg.style.oBackgroundSize = "cover";
-        bg.style.backgroundSize = "cover";
+        jQuery("body").css("background","url(images/" + mobile_pic_arr_night[randomMobile_night] + ".jpg) no-repeat center center fixed");
+        jQuery("body").css("background-size","cover");
       };
     } else {
       jQuery(".btn").addClass("btn-secondary" + pic_arr_night[random_night]);
       var tempimg = new Image();
       tempimg.src = "images/" + pic_arr_night[random_night] + ".jpg";
       tempimg.onload = function(){
-        jQuery("#bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
-        bg.style.webkitBackgroundSize = "cover";
-        bg.style.mozBackgroundSize = "cover";
-        bg.style.oBackgroundSize = "cover";
-        bg.style.backgroundSize = "cover";
+        jQuery("body").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
+        jQuery("body").css("background-size","cover");
       };
     }
   }
