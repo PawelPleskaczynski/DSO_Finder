@@ -70,7 +70,7 @@ window.onload = jQuery("#link_up").attr("onclick","dec_plus()");
 window.onload = jQuery("#link_down").attr("onclick","dec_minus()");
 
 function imaging() {
-  jQuery("#small_link").text("The image is too big, make it smaller.");
+  jQuery("#small_link").text("Fit image to screen.");
   jQuery("#card").css("transform","scale(1)");
   jQuery(".small_img_div").hide();
   jQuery("#survey_div_obs").show();
@@ -109,7 +109,7 @@ function imaging() {
 }
 
 function observing() {
-  jQuery("#small_link").text("The image is too big, make it smaller.");
+  jQuery("#small_link").text("Fit image to screen.");
   jQuery("#card").css("transform","scale(1)");
   jQuery(".small_img_div").hide();
   jQuery("#survey_div_obs").show();
@@ -149,7 +149,7 @@ function observing() {
 
 
 function fov_img() {
-  jQuery("#small_link").text("The image is too big, make it smaller.");
+  jQuery("#small_link").text("Fit image to screen.");
   jQuery("#card").css("transform","scale(1)");
   jQuery(".small_img_div").hide();
   px_size_text.innerHTML = "";
@@ -197,42 +197,92 @@ function fov_img() {
       load_solar_system_obj_img("moon", 29.333, moon_ang, 34.1, fov_height, fov_width);
       restart_pos();
       drag_obj();
+      if (jQuery("#card").height() > jQuery(window).height() - 70) {
+        jQuery(".small_img_div").fadeIn("slow");
+      } else {
+        jQuery(".small_img_div").hide();
+      }
     } else if (object_imaging_v.toUpperCase().trim() == "mercury".toUpperCase()) {
       load_solar_system_obj_img("mercury", 0.075, mercury_ang, 0.216, fov_height, fov_width);
       restart_pos();
       drag_obj();
+      if (jQuery("#card").height() > jQuery(window).height() - 70) {
+        jQuery(".small_img_div").fadeIn("slow");
+      } else {
+        jQuery(".small_img_div").hide();
+      }
     } else if (object_imaging_v.toUpperCase().trim() == "venus".toUpperCase()) {
       load_solar_system_obj_img("venus", 0.161, venus_ang, 1.1, fov_height, fov_width);
       restart_pos();
       drag_obj();
+      if (jQuery("#card").height() > jQuery(window).height() - 70) {
+        jQuery(".small_img_div").fadeIn("slow");
+      } else {
+        jQuery(".small_img_div").hide();
+      }
     } else if (object_imaging_v.toUpperCase().trim() == "mars".toUpperCase()) {
       load_solar_system_obj_img("mars", 0.0583, mars_ang, 0.418, fov_height, fov_width);
       restart_pos();
       drag_obj();
+      if (jQuery("#card").height() > jQuery(window).height() - 70) {
+        jQuery(".small_img_div").fadeIn("slow");
+      } else {
+        jQuery(".small_img_div").hide();
+      }
     } else if (object_imaging_v.toUpperCase().trim() == "jupiter".toUpperCase()) {
       load_solar_system_obj_img("jupiter", 0.496, jupiter_ang, 0.835, fov_height, fov_width);
       restart_pos();
       drag_obj();
+      if (jQuery("#card").height() > jQuery(window).height() - 70) {
+        jQuery(".small_img_div").fadeIn("slow");
+      } else {
+        jQuery(".small_img_div").hide();
+      }
     } else if (object_imaging_v.toUpperCase().trim() == "saturn".toUpperCase()) {
       load_solar_system_obj_img("saturn", 0.583, saturn_ang, 0.723, fov_height, fov_width);
       restart_pos();
       drag_obj();
+      if (jQuery("#card").height() > jQuery(window).height() - 70) {
+        jQuery(".small_img_div").fadeIn("slow");
+      } else {
+        jQuery(".small_img_div").hide();
+      }
     } else if (object_imaging_v.toUpperCase().trim() == "uranus".toUpperCase()) {
       load_solar_system_obj_img("uranus", 0.055, uranus_ang, 0.068, fov_height, fov_width);
       restart_pos();
       drag_obj();
+      if (jQuery("#card").height() > jQuery(window).height() - 70) {
+        jQuery(".small_img_div").fadeIn("slow");
+      } else {
+        jQuery(".small_img_div").hide();
+      }
     } else if (object_imaging_v.toUpperCase().trim() == "neptune".toUpperCase()) {
       load_solar_system_obj_img("neptune", 0.036, neptune_ang, 0.04, fov_height, fov_width);
       restart_pos();
       drag_obj();
+      if (jQuery("#card").height() > jQuery(window).height() - 70) {
+        jQuery(".small_img_div").fadeIn("slow");
+      } else {
+        jQuery(".small_img_div").hide();
+      }
     } else if (object_imaging_v.toUpperCase().trim() == "sun".toUpperCase()) {
       load_solar_system_obj_img("sun", 31.45, sun_ang, 32.53, fov_height, fov_width);
       restart_pos();
       drag_obj();
+      if (jQuery("#card").height() > jQuery(window).height() - 70) {
+        jQuery(".small_img_div").fadeIn("slow");
+      } else {
+        jQuery(".small_img_div").hide();
+      }
     } else if (object_imaging_v.toUpperCase().trim() == "iss".toUpperCase() || object_imaging_v.toUpperCase().trim() == "international space station".toUpperCase()) {
       iss_img(fov_height, fov_width);
       restart_pos();
       drag_obj();
+      if (jQuery("#card").height() > jQuery(window).height() - 70) {
+        jQuery(".small_img_div").fadeIn("slow");
+      } else {
+        jQuery(".small_img_div").hide();
+      }
     } else {
       jQuery("#size").hide();
       jQuery("#loading_bg").hide();
@@ -346,15 +396,11 @@ function fov_img() {
             jQuery("#card").fadeIn("slow");
             jQuery("#loading_text").hide();
             scroll_bottom_load();
-            function mediaquery(query) {
-              if (query.matches) {
-                jQuery(".small_img_div").fadeIn("slow");
-              } else {
-                jQuery(".small_img_div").hide();
-              }
+            if (jQuery("#card").height() > jQuery(window).height() - 70) {
+              jQuery(".small_img_div").fadeIn("slow");
+            } else {
+              jQuery(".small_img_div").hide();
             }
-            var query = window.matchMedia("(min-width: 1024px)")
-            mediaquery(query);
           }
 
           image.onerror = function() {
@@ -458,15 +504,11 @@ function fov_img() {
             jQuery("#card").fadeIn("slow");
             jQuery("#loading_text").fadeOut("slow");
             scroll_bottom_load();
-            function mediaquery(query) {
-              if (query.matches) {
-                jQuery(".small_img_div").fadeIn("slow");
-              } else {
-                jQuery(".small_img_div").hide();
-              }
+            if (jQuery("#card").height() > jQuery(window).height() - 70) {
+              jQuery(".small_img_div").fadeIn("slow");
+            } else {
+              jQuery(".small_img_div").hide();
             }
-            var query = window.matchMedia("(min-width: 1024px)")
-            mediaquery(query);
           }
 
           image_big_fov.onload = function() {
@@ -474,15 +516,11 @@ function fov_img() {
             jQuery("#loading_text").fadeOut("slow");
             scroll_bottom_load();
 
-            function mediaquery(query) {
-              if (query.matches) {
-                jQuery(".small_img_div").fadeIn("slow");
-              } else {
-                jQuery(".small_img_div").hide();
-              }
+            if (jQuery("#card").height() > jQuery(window).height() - 70) {
+              jQuery(".small_img_div").fadeIn("slow");
+            } else {
+              jQuery(".small_img_div").hide();
             }
-            var query = window.matchMedia("(min-width: 1024px)")
-            mediaquery(query);
 
             jQuery("#loading_bg").hide();
             jQuery("#card2").show();
@@ -538,7 +576,7 @@ function fov_img() {
 }
 
 function fov_obs() {
-  jQuery("#small_link").text("The image is too big, make it smaller.");
+  jQuery("#small_link").text("Fit image to screen.");
   jQuery("#card").css("transform","scale(1)");
   jQuery(".small_img_div").hide();
   px_size_text.innerHTML = "";
@@ -578,42 +616,92 @@ function fov_obs() {
       load_solar_system_obj_obs("moon", 29.333, moon_ang, 34.1, fov);
       restart_pos();
       drag_obj();
+      if (jQuery("#card").height() > jQuery(window).height() - 70) {
+        jQuery(".small_img_div").fadeIn("slow");
+      } else {
+        jQuery(".small_img_div").hide();
+      }
     } else if (object_observing_v.toUpperCase().trim() == "mercury".toUpperCase()) {
       load_solar_system_obj_obs("mercury", 0.075, mercury_ang, 0.216, fov);
       restart_pos();
       drag_obj();
+      if (jQuery("#card").height() > jQuery(window).height() - 70) {
+        jQuery(".small_img_div").fadeIn("slow");
+      } else {
+        jQuery(".small_img_div").hide();
+      }
     } else if (object_observing_v.toUpperCase().trim() == "venus".toUpperCase()) {
       load_solar_system_obj_obs("venus", 0.161, venus_ang, 1.1, fov);
       restart_pos();
       drag_obj();
+      if (jQuery("#card").height() > jQuery(window).height() - 70) {
+        jQuery(".small_img_div").fadeIn("slow");
+      } else {
+        jQuery(".small_img_div").hide();
+      }
     } else if (object_observing_v.toUpperCase().trim() == "mars".toUpperCase()) {
       load_solar_system_obj_obs("mars", 0.0583, mars_ang, 0.418, fov);
       restart_pos();
       drag_obj();
+      if (jQuery("#card").height() > jQuery(window).height() - 70) {
+        jQuery(".small_img_div").fadeIn("slow");
+      } else {
+        jQuery(".small_img_div").hide();
+      }
     } else if (object_observing_v.toUpperCase().trim() == "jupiter".toUpperCase()) {
       load_solar_system_obj_obs("jupiter", 0.496, jupiter_ang, 0.835, fov);
       restart_pos();
       drag_obj();
+      if (jQuery("#card").height() > jQuery(window).height() - 70) {
+        jQuery(".small_img_div").fadeIn("slow");
+      } else {
+        jQuery(".small_img_div").hide();
+      }
     } else if (object_observing_v.toUpperCase().trim() == "saturn".toUpperCase()) {
       load_solar_system_obj_obs("saturn", 0.583, saturn_ang, 0.723, fov);
       restart_pos();
       drag_obj();
+      if (jQuery("#card").height() > jQuery(window).height() - 70) {
+        jQuery(".small_img_div").fadeIn("slow");
+      } else {
+        jQuery(".small_img_div").hide();
+      }
     } else if (object_observing_v.toUpperCase().trim() == "uranus".toUpperCase()) {
       load_solar_system_obj_obs("uranus", 0.055, uranus_ang, 0.068, fov);
       restart_pos();
       drag_obj();
+      if (jQuery("#card").height() > jQuery(window).height() - 70) {
+        jQuery(".small_img_div").fadeIn("slow");
+      } else {
+        jQuery(".small_img_div").hide();
+      }
     } else if (object_observing_v.toUpperCase().trim() == "neptune".toUpperCase()) {
       load_solar_system_obj_obs("neptune", 0.036, neptune_ang, 0.04, fov);
       restart_pos();
       drag_obj();
+      if (jQuery("#card").height() > jQuery(window).height() - 70) {
+        jQuery(".small_img_div").fadeIn("slow");
+      } else {
+        jQuery(".small_img_div").hide();
+      }
     } else if (object_observing_v.toUpperCase().trim() == "sun".toUpperCase()) {
       load_solar_system_obj_obs("sun", 31.45, sun_ang, 32.53, fov);
       restart_pos();
       drag_obj();
+      if (jQuery("#card").height() > jQuery(window).height() - 70) {
+        jQuery(".small_img_div").fadeIn("slow");
+      } else {
+        jQuery(".small_img_div").hide();
+      }
     } else if (object_observing_v.toUpperCase().trim() == "iss".toUpperCase() || object_observing_v.toUpperCase().trim() == "international space station".toUpperCase()) {
        iss_obs(fov);
        restart_pos();
        drag_obj();
+       if (jQuery("#card").height() > jQuery(window).height() - 70) {
+         jQuery(".small_img_div").fadeIn("slow");
+       } else {
+         jQuery(".small_img_div").hide();
+       }
     } else {
       jQuery("#loading_bg").hide();
       jQuery("#solar_system_obj").hide();
@@ -729,15 +817,11 @@ function fov_obs() {
             jQuery("#card").fadeIn("slow");
             jQuery("#loading_text").fadeOut("slow");
             scroll_bottom_load();
-            function mediaquery(query) {
-              if (query.matches) {
-                jQuery(".small_img_div").fadeIn("slow");
-              } else {
-                jQuery(".small_img_div").hide();
-              }
+            if (jQuery("#card").height() > jQuery(window).height() - 70) {
+              jQuery(".small_img_div").fadeIn("slow");
+            } else {
+              jQuery(".small_img_div").hide();
             }
-            var query = window.matchMedia("(min-width: 1024px)")
-            mediaquery(query);
           }
 
           image.onerror = function() {
@@ -841,15 +925,11 @@ function fov_obs() {
               jQuery("#card").fadeIn("slow");
               jQuery("#loading_text").fadeOut("slow");
               scroll_bottom_load();
-              function mediaquery(query) {
-                if (query.matches) {
-                  jQuery(".small_img_div").fadeIn("slow");
-                } else {
-                  jQuery(".small_img_div").hide();
-                }
+              if (jQuery("#card").height() > jQuery(window).height() - 70) {
+                jQuery(".small_img_div").fadeIn("slow");
+              } else {
+                jQuery(".small_img_div").hide();
               }
-              var query = window.matchMedia("(min-width: 1024px)")
-              mediaquery(query);
             }
 
           image_big_fov_obs.onload = function() {
@@ -857,15 +937,11 @@ function fov_obs() {
             jQuery("#loading_text").fadeOut("slow");
             scroll_bottom_load();
 
-            function mediaquery(query) {
-              if (query.matches) {
-                jQuery(".small_img_div").fadeIn("slow");
-              } else {
-                jQuery(".small_img_div").hide();
-              }
+            if (jQuery("#card").height() > jQuery(window).height() - 70) {
+              jQuery(".small_img_div").fadeIn("slow");
+            } else {
+              jQuery(".small_img_div").hide();
             }
-            var query = window.matchMedia("(min-width: 1024px)")
-            mediaquery(query);
 
             jQuery("#loading_bg").hide();
             jQuery("#card2").show();
@@ -1161,15 +1237,11 @@ function color() {
 }
 
 function load_solar_system_obj_img(type, min, avg, max, fovheight, fovwidth) {
-  function mediaquery(query) {
-    if (query.matches) {
-      jQuery(".small_img_div").fadeIn("slow");
-    } else {
-      jQuery(".small_img_div").hide();
-    }
+  if (jQuery("#card").height() > jQuery(window).height() - 70) {
+    jQuery(".small_img_div").fadeIn("slow");
+  } else {
+    jQuery(".small_img_div").hide();
   }
-  var query = window.matchMedia("(min-width: 1024px)")
-  mediaquery(query);
   jQuery("#solar_system_obj").css("border-radius","50%");
   jQuery("#survey_div").hide();
   var heightfov = fovheight / fovwidth;
@@ -1277,15 +1349,11 @@ function load_solar_system_obj_img(type, min, avg, max, fovheight, fovwidth) {
 }
 
 function load_solar_system_obj_obs(type, min, avg, max, fov) {
-  function mediaquery(query) {
-    if (query.matches) {
-      jQuery(".small_img_div").fadeIn("slow");
-    } else {
-      jQuery(".small_img_div").hide();
-    }
+  if (jQuery("#card").height() > jQuery(window).height() - 70) {
+    jQuery(".small_img_div").fadeIn("slow");
+  } else {
+    jQuery(".small_img_div").hide();
   }
-  var query = window.matchMedia("(min-width: 1024px)")
-  mediaquery(query);
   px_size_text.innerHTML = "";
   jQuery("#solar_system_obj").css("border-radius","50%");
   jQuery("#survey_div_obs").hide();
@@ -1365,15 +1433,11 @@ function load_solar_system_obj_obs(type, min, avg, max, fov) {
 }
 
 function iss_img(fovheight, fovwidth) {
-  function mediaquery(query) {
-    if (query.matches) {
-      jQuery(".small_img_div").fadeIn("slow");
-    } else {
-      jQuery(".small_img_div").hide();
-    }
+  if (jQuery("#card").height() > jQuery(window).height() - 70) {
+    jQuery(".small_img_div").fadeIn("slow");
+  } else {
+    jQuery(".small_img_div").hide();
   }
-  var query = window.matchMedia("(min-width: 1024px)")
-  mediaquery(query);
   jQuery("#size").hide();
   jQuery("#solar_system_obj").css("border-radius","0%");
   jQuery("#survey_div").hide();
@@ -1417,15 +1481,11 @@ function iss_img(fovheight, fovwidth) {
 }
 
 function iss_obs() {
-  function mediaquery(query) {
-    if (query.matches) {
-      jQuery(".small_img_div").fadeIn("slow");
-    } else {
-      jQuery(".small_img_div").hide();
-    }
+  if (jQuery("#card").height() > jQuery(window).height() - 70) {
+    jQuery(".small_img_div").fadeIn("slow");
+  } else {
+    jQuery(".small_img_div").hide();
   }
-  var query = window.matchMedia("(min-width: 1024px)")
-  mediaquery(query);
   px_size_text.innerHTML = "";
   jQuery("#size").hide();
   jQuery("#solar_system_obj").css("border-radius","0%");
@@ -1504,12 +1564,20 @@ function check_if_not_empty() {
 }
 
 function make_small() {
-  if (jQuery("#small_link").text() == "The image is too big, make it smaller.") {
+  if (jQuery("#small_link").text() == "Fit image to screen.") {
+    var card_height = jQuery("#card").height();
+    var screen_height = jQuery(window).height() - 90;
+    var card_scale = screen_height / card_height;
     anime({
       targets: "#card",
-      scale: 0.66,
+      scale: card_scale,
       easing: 'easeInOutQuart',
-      duration: 600
+      duration: 600,
+      complete: function(anim) {
+        jQuery('html, body').animate({
+          scrollTop: jQuery('#card').offset().top - 75
+        }, 300);
+      }
     });
     jQuery("#small_link").text("Make size normal.");
   } else {
@@ -1519,6 +1587,6 @@ function make_small() {
       easing: 'easeInOutQuart',
       duration: 600
     });
-    jQuery("#small_link").text("The image is too big, make it smaller.");
+    jQuery("#small_link").text("Fit image to screen.");
   }
 }

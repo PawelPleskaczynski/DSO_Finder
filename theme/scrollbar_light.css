@@ -14,3 +14,6 @@
 ::-webkit-resizer {
   background: #a5a5a5;
 }
+a {
+  text-decoration: none !important;
+}
