@@ -10,7 +10,7 @@ You can also find some helpful information on the main site.
 ## Sources
 
 ### APIs
-Powered by <a href="https://api.arcsecond.io/?/">arcsecond.io</a>, <a href="http://skyserver.sdss.org/dr12/en/help/docs/api.aspx#imgcutout">SDSS SkyServer</a> and <a href="http://archive.eso.org/dss/dss">ESO DSS Archive</a>.
+Powered by <a href="https://api.arcsecond.io/?/">arcsecond.io</a>, <a href="http://skyserver.sdss.org/dr12/en/help/docs/api.aspx#imgcutout">SDSS SkyServer</a>, <a href="http://archive.eso.org/dss/dss">ESO DSS Archive</a> and <a href="https://en.wikipedia.org/w/api.php">Wikipedia</a> APIs.
 
 ### Images
 Background images are from various observatories, these images were processed by <a href="https://www.facebook.com/KarolAstro">Karol Masztalerz</a>. Background image of the Moon was taken by me. Source of images of phases of the Moon: <a href="https://sourceforge.net/projects/virtualmoon/">Virtual Moon Atlas</a>.

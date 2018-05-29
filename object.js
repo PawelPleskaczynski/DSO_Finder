@@ -16,6 +16,12 @@ var mediaquery = window.matchMedia("(max-width: 1024px)");
 var name;
 
 jQuery(document).ready(function() {
+  jQuery("#coords_icon").hide();
+  jQuery("#mag_icon").hide();
+  jQuery("#link_icon").hide();
+  jQuery("#link_p").css("opacity","0");
+  jQuery("#link_wikipedia").css("opacity","0");
+
   var slide = getVar("barslide");
   if (slide) {
     jQuery("#nonav_content").fadeIn("slow");
@@ -42,6 +48,7 @@ $(function () {
 
 function load() {
   if (is_coords) {
+    jQuery("#coords_icon").show();
     var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + getVar("obj") + "&format=json&radius=10";
     json();
     jQuery("#link_left").attr("onclick","ra_plus()");
@@ -54,6 +61,8 @@ function load() {
     jQuery("#link_up").show();
     jQuery("#link_down").show();
   } else if (getVar("obj").toUpperCase() == "sun".toUpperCase()) {
+    jQuery("#link_p").hide();
+    jQuery("#link_wikipedia").hide();
     document.getElementById("cardtitle").innerHTML = "Sun in white light";
     image.src = "https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_HMIIC.jpg";
     image.onload = function() {
@@ -73,6 +82,8 @@ function load() {
     }
     color();
   } else if (getVar("obj").toUpperCase() == "moon".toUpperCase()) {
+    jQuery("#link_p").hide();
+    jQuery("#link_wikipedia").hide();
     var date = new Date();
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
@@ -188,6 +199,8 @@ function load() {
     jQuery("#link_right").show();
     jQuery("#link_up").show();
     jQuery("#link_down").show();
+    jQuery("#coords_icon").show();
+    jQuery("#link_icon").show();
   }
 
   function json() {
@@ -254,11 +267,6 @@ function load() {
           var table_data_fluxes = result.fluxes;
 
           document.title = name + " - DSO Finder";
-
-          document.getElementById("raplus").onclick = "ra_plus()";
-          document.getElementById("raminus").onclick = "ra_minus()";
-          document.getElementById("decplus").onclick = "dec_plus()";
-          document.getElementById("decminus").onclick = "dec_minus()";
         }
       } else {
         name = json.name;
@@ -310,12 +318,10 @@ function load() {
       }
 
       function createTable_object_types() {
-        var columns = addAllColumnHeaders_object_types(table_data_object_types);
-
         for (var i = 0 ; i < table_data_object_types.length ; i++) {
           var row$ = $('<tr/>');
-          for (var colIndex = 0 ; colIndex < columns.length ; colIndex++) {
-            var cellValue = table_data_object_types[i][columns[colIndex]];
+          for (var colIndex = 0 ; colIndex < 1 ; colIndex++) {
+            var cellValue = table_data_object_types[i];
 
             if (cellValue == null) { cellValue = ""; }
 
@@ -323,24 +329,6 @@ function load() {
           }
           $("#table_type").append(row$);
         }
-      }
-
-      function addAllColumnHeaders_object_types(table_data_object_types) {
-        var columnSet = [];
-        var headerTr$ = $('<tr/>');
-
-        for (var i = 0 ; i < table_data_object_types.length ; i++) {
-          var rowHash = table_data_object_types[i];
-          for (var key in rowHash) {
-            if ($.inArray(key, columnSet) == -1){
-              columnSet.push(key);
-              headerTr$.append($('<th/>').html(key));
-            }
-          }
-        }
-        $("#table_type").append(headerTr$);
-
-        return columnSet;
       }
 
       function createTable_aliases() {
@@ -413,6 +401,51 @@ function load() {
 
       document.title = name + " - DSO Finder";
       document.getElementById("link_simbad").href = "http://simbad.u-strasbg.fr/simbad/sim-basic?Ident=" + name + "&submit=SIMBAD+search";
+      var messier_pattern = /^M\d+$|^M \d+$/;
+      var number_pattern = /\d+/;
+      if (getVar("input_type") != "coordinates") {
+        if (messier_pattern.test(name)) {
+          var name_new = number_pattern.exec(name);
+          name = "Messier " + name_new;
+        } else {
+          name = name.toUpperCase();
+          var no_space_pattern = /[a-zA-Z]+\d+/;
+          var letters_pattern = /[a-zA-Z]+/;
+          var number_pattern = /\d+/;
+          if (no_space_pattern.test(name)) {
+            var letters = letters_pattern.exec(name);
+            var numbers = number_pattern.exec(name);
+            name = letters + " " + numbers;
+          }
+        }
+        var requrl = "https://calm-eyrie-13472.herokuapp.com/https://en.wikipedia.org/w/api.php?action=opensearch&search=" + name;
+        jQuery.getJSON(requrl, function(json) {
+          var array = json[1];
+          var array_desc = json[2];
+          var array_link = json[3];
+          function find_object(element) {
+            return element.toUpperCase() == name.toUpperCase();
+          }
+          var element_index = array.findIndex(find_object);
+          var description = array_desc[element_index];
+          var link = array_link[element_index];
+          if (description != "" && description != null && description != undefined) {
+            document.getElementById("card_decs").innerHTML = description + "<a href=" + link + ">&nbsp;More...</a>";
+          }
+          if (link != "" && link != null && link != undefined) {
+            document.getElementById("link_wikipedia").href = link;
+            jQuery("#link_p").css("opacity","1");
+            jQuery("#link_wikipedia").css("opacity","1");
+          } else {
+            jQuery("#link_p").css("opacity","0");
+            jQuery("#link_wikipedia").css("opacity","0");
+          }
+          jQuery("#card_decs").fadeIn("slow");
+        });
+      } else {
+        jQuery("#link_p").css("opacity","0");
+        jQuery("#link_wikipedia").css("opacity","0");
+      }
 
       var request = new XMLHttpRequest();
       request.onreadystatechange = function() {
@@ -472,6 +505,8 @@ function load() {
           var flux = fluxes[i];
           if (fluxes[i].name == "V") {
             if (flux.value != null || flux.value != undefined) {
+              jQuery("#link_div").css("margin-top","-16px");
+              jQuery("#mag_icon").show();
               var mag_vis = (flux.value).toFixed(2);
               card_mag.innerHTML = "Visual magnitude: " + mag_vis + " mag";
               jQuery("#card_mag").attr("style","display: inline-block;");
@@ -490,11 +525,13 @@ function load() {
               }
             } else {
               jQuery("#card_mag").hide();
+              jQuery("#mag_icon").hide();
             }
           }
         }
       } else {
         jQuery("#card_mag").hide();
+        jQuery("#mag_icon").hide();
       }
 
     })

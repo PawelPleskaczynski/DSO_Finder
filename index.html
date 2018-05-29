@@ -89,12 +89,12 @@
       color: #000;
     }
     .notice {
-      animation: notice_anim 1.5s ease 2;
+      animation: notice_anim 1.5s ease 3;
     }
     @keyframes notice_anim {
       50% {
-        font-size: 105%;
-        color: #ccc;
+        transform: scale(0.925);
+        opacity: 90%;
       }
     }
     .jumbotron_title {
@@ -201,8 +201,8 @@
           </div>
         </div>
         <div class="container" id="info_container">
-          <p style="color: #fff;" class="notice">Scroll down for more info ↓</p>
-          <p style="color: #fff;">Powered by <a href="https://api.arcsecond.io/?/" style="color: #42f4a4;">arcsecond.io</a>, <a href="http://skyserver.sdss.org/dr12/en/help/docs/api.aspx#imgcutout" style="color: #42f4a4;">SDSS SkyServer</a> and <a href="http://archive.eso.org/dss/dss" style="color: #42f4a4;">ESO DSS Archive</a>.</p>
+          <p style="color: #fff; display: inline-block;" class="notice">Scroll down for more info ↓</p><br/>
+          <p style="color: #fff;">Powered by <a href="https://api.arcsecond.io/?/" style="color: #42f4a4;">arcsecond.io</a>, <a href="http://skyserver.sdss.org/dr12/en/help/docs/api.aspx#imgcutout" style="color: #42f4a4;">SDSS SkyServer</a>, <a href="http://archive.eso.org/dss/dss" style="color: #42f4a4;">ESO DSS Archive</a> and  <a href="https://en.wikipedia.org/w/api.php" style="color: #42f4a4;">Wikipedia</a> APIs.</p>
         </div>
       </div>
     </div>

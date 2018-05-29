@@ -15,7 +15,7 @@ window.onload = function() {
   var hour = date.getHours();
   if (hour > 7 && hour <= 18) {
     jQuery(".text_item").css("color","#000");
-    jQuery(".about").css("background","#fafafa");
+    jQuery(".about").css("background","#fff");
   } else {
     jQuery(".text_item").css("color","#fff");
     jQuery(".about").css("background","#222");
@@ -37,7 +37,7 @@ function openDSO() {
   if (!object_name == null || !object_name == "") {
     if (coord_regex.test(object_name)) {
       anime({
-        targets: '#bg',
+        targets: 'body',
         opacity: 0,
         easing: 'easeInOutQuart',
         duration: 400,
@@ -64,7 +64,7 @@ function openDSO() {
       var dec3 = Number(dec_s[1]/3600);
       var dec_final = Number(dec_d_symbol + (dec1 + dec2 + dec3)).toFixed(3);
       anime({
-        targets: '#bg',
+        targets: 'body',
         opacity: 0,
         easing: 'easeInOutQuart',
         duration: 400,
@@ -75,7 +75,7 @@ function openDSO() {
     } else {
       if (object_name.match(/sun/i)) {
         anime({
-          targets: '#bg',
+          targets: 'body',
           opacity: 0,
           easing: 'easeInOutQuart',
           duration: 400,
@@ -85,7 +85,7 @@ function openDSO() {
         });
       } else if (object_name.match(/moon/i)) {
         anime({
-          targets: '#bg',
+          targets: 'body',
           opacity: 0,
           easing: 'easeInOutQuart',
           duration: 400,
@@ -95,7 +95,7 @@ function openDSO() {
         });
       } else {
         anime({
-          targets: '#bg',
+          targets: 'body',
           opacity: 0,
           easing: 'easeInOutQuart',
           duration: 400,
@@ -141,7 +141,7 @@ function lucky() {
   }
   var lucky_obj = cat_array[catalog_array] + " " + number_final;
   anime({
-    targets: '#bg',
+    targets: 'body',
     opacity: 0,
     easing: 'easeInOutQuart',
     duration: 400,
