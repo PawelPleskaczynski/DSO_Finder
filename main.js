@@ -11,33 +11,18 @@ scrollreveal.reveal('#about', {
 
 window.onload = function() {
   var text_opacity = basicScroll.create({
-  	elem: document.querySelector('.apis_text'),
-  	from: 'bottom-bottom',
-  	to: 'top-middle',
-  	props: {
-  		'--opacity': {
-  			from: .01,
-  			to: .99
-  		}
-  	}
+    elem: document.querySelector('.apis_text'),
+    from: 'bottom-bottom',
+    to: 'top-middle',
+    props: {
+      '--opacity': {
+        from: .01,
+        to: .99
+      }
+    }
   });
 
   text_opacity.start();
-
-  var parallax = basicScroll.create({
-  	elem: document.querySelector('.bg'),
-  	from: 'top-top',
-  	to: 'bottom-top',
-  	props: {
-  		'--pageparallax': {
-  			from: "0%",
-  			to: "-5%"
-  		}
-  	}
-  });
-
-  parallax.start();
-
   jQuery("img").css("transform","scale(0)");
   var date = new Date();
   var hour = date.getHours();

@@ -31,8 +31,69 @@ function setbg() {
       var tempimg = new Image();
       tempimg.src = "images/" + pic_arr[random] + ".jpg";
       tempimg.onload = function(){
-        jQuery(".bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
-        jQuery(".bg").css("background-size","cover");
+        if (isChrome || isFirefox || isOpera) {
+          if (pic_arr[random] != 9) {
+            jQuery(".bg").css("background","url(images/" + pic_arr[random] + "_starless.jpg) no-repeat center center fixed");
+            jQuery(".bg").css("background-size","cover");
+            jQuery(".layer1").css("background","url(images/" + pic_arr[random] + "_stars_layer_1.jpg) no-repeat center center fixed");
+            jQuery(".layer1").css("background-size","cover");
+            jQuery(".layer1").css("mix-blend-mode","screen");
+            jQuery(".layer2").css("background","url(images/" + pic_arr[random] + "_stars_layer_2.jpg) no-repeat center center fixed");
+            jQuery(".layer2").css("background-size","cover");
+            jQuery(".layer2").css("mix-blend-mode","screen");
+            var parallax = basicScroll.create({
+              elem: document.querySelector('.bg'),
+              from: 'top-top',
+              to: 'bottom-top',
+              props: {
+                '--pageparallax': {
+                  from: "0%",
+                  to: "-5%"
+                }
+              }
+            });
+
+            parallax.start();
+
+            var parallax_layer_1 = basicScroll.create({
+              elem: document.querySelector('.layer1'),
+              from: 'top-top',
+              to: 'bottom-top',
+              props: {
+                '--pageparallax_layer1': {
+                  from: "0%",
+                  to: "-7.5%"
+                }
+              }
+            });
+
+            parallax_layer_1.start();
+
+            var parallax_layer_2 = basicScroll.create({
+              elem: document.querySelector('.layer2'),
+              from: 'top-top',
+              to: 'bottom-top',
+              props: {
+                '--pageparallax_layer2': {
+                  from: "0%",
+                  to: "-11.25%"
+                }
+              }
+            });
+
+            parallax_layer_2.start();
+          } else {
+            jQuery(".layer1").hide();
+            jQuery(".layer2").hide();
+            jQuery(".bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
+            jQuery(".bg").css("background-size","cover");
+          }
+        } else if (isIE || isEdge) {
+          jQuery(".layer1").hide();
+          jQuery(".layer2").hide();
+          jQuery(".bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
+          jQuery(".bg").css("background-size","cover");
+        }
       };
     }
   }
@@ -57,8 +118,69 @@ function setbgnight() {
       var tempimg = new Image();
       tempimg.src = "images/" + pic_arr_night[random_night] + ".jpg";
       tempimg.onload = function(){
-        jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
-        jQuery(".bg").css("background-size","cover");
+        if (isChrome || isFirefox || isOpera) {
+          if (pic_arr_night[random_night] != 9) {
+            jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + "_starless.jpg) no-repeat center center fixed");
+            jQuery(".bg").css("background-size","cover");
+            jQuery(".layer1").css("background","url(images/" + pic_arr_night[random_night] + "_stars_layer_1.jpg) no-repeat center center fixed");
+            jQuery(".layer1").css("background-size","cover");
+            jQuery(".layer1").css("mix-blend-mode","screen");
+            jQuery(".layer2").css("background","url(images/" + pic_arr_night[random_night] + "_stars_layer_2.jpg) no-repeat center center fixed");
+            jQuery(".layer2").css("background-size","cover");
+            jQuery(".layer2").css("mix-blend-mode","screen");
+            var parallax = basicScroll.create({
+              elem: document.querySelector('.bg'),
+              from: 'top-top',
+              to: 'bottom-top',
+              props: {
+                '--pageparallax': {
+                  from: "0%",
+                  to: "-5%"
+                }
+              }
+            });
+
+            parallax.start();
+
+            var parallax_layer_1 = basicScroll.create({
+              elem: document.querySelector('.layer1'),
+              from: 'top-top',
+              to: 'bottom-top',
+              props: {
+                '--pageparallax_layer1': {
+                  from: "0%",
+                  to: "-7.5%"
+                }
+              }
+            });
+
+            parallax_layer_1.start();
+
+            var parallax_layer_2 = basicScroll.create({
+              elem: document.querySelector('.layer2'),
+              from: 'top-top',
+              to: 'bottom-top',
+              props: {
+                '--pageparallax_layer2': {
+                  from: "0%",
+                  to: "-11.25%"
+                }
+              }
+            });
+
+            parallax_layer_2.start();
+          } else {
+            jQuery(".layer1").hide();
+            jQuery(".layer2").hide();
+            jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
+            jQuery(".bg").css("background-size","cover");
+          }
+        } else if (isIE || isEdge) {
+          jQuery(".layer1").hide();
+          jQuery(".layer2").hide();
+          jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
+          jQuery(".bg").css("background-size","cover");
+        }
       };
     }
   }
@@ -66,3 +188,9 @@ function setbgnight() {
   var mobile = window.matchMedia("(max-width: 730px)")
   mediaquery(mobile);
 }
+
+var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+var isFirefox = typeof InstallTrigger !== 'undefined';
+var isChrome = !!window.chrome && !!window.chrome.webstore;
+var isIE = /*@cc_on!@*/false || !!document.documentMode;
+var isEdge = !isIE && !!window.StyleMedia;
