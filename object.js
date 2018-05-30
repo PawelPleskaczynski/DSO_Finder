@@ -492,89 +492,10 @@ function load() {
         }
         hideTable(mediaquery);
         mediaquery.addListener(hideTable);
-        var opacity1 = basicScroll.create({
-          elem: document.querySelector('#table_type_div'),
-          from: 'top-bottom',
-          to: 'top-middle',
-          props: {
-            '--opacity_1': {
-              from: .01,
-              to: .99
-            }
-          }
-        });
-
-        opacity1.start();
-
-        var opacity2 = basicScroll.create({
-          elem: document.querySelector('#table_fluxes_div'),
-          from: 'top-bottom',
-          to: 'top-middle',
-          props: {
-            '--opacity_2': {
-              from: .01,
-              to: .99
-            }
-          }
-        });
-
-        opacity2.start();
-
-        var opacity3 = basicScroll.create({
-          elem: document.querySelector('#table_aliases_div'),
-          from: 'top-bottom',
-          to: 'top-middle',
-          props: {
-            '--opacity_3': {
-              from: .01,
-              to: .99
-            }
-          }
-        });
-
-        opacity3.start();
-
-        var scale1 = basicScroll.create({
-          elem: document.querySelector('#table_type_div'),
-          from: 'top-bottom',
-          to: 'top-middle',
-          props: {
-            '--scale_1': {
-              from: .75,
-              to: .99
-            }
-          }
-        });
-
-        scale1.start();
-
-        var scale2 = basicScroll.create({
-          elem: document.querySelector('#table_fluxes_div'),
-          from: 'top-bottom',
-          to: 'top-top',
-          props: {
-            '--scale_2': {
-              from: .75,
-              to: .99
-            }
-          }
-        });
-
-        scale2.start();
-
-        var scale3 = basicScroll.create({
-          elem: document.querySelector('#table_aliases_div'),
-          from: 'top-bottom',
-          to: 'top-top',
-          props: {
-            '--scale_3': {
-              from: .75,
-              to: .99
-            }
-          }
-        });
-
-        scale3.start();
+        window.scrollreveal = ScrollReveal();
+        scrollreveal.reveal('#table_type_div');
+        scrollreveal.reveal('#table_fluxes_div');
+        scrollreveal.reveal('#table_aliases_div');
       }
 
 
