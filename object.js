@@ -61,13 +61,20 @@ function load() {
     jQuery("#link_up").show();
     jQuery("#link_down").show();
   } else if (getVar("obj").toUpperCase() == "sun".toUpperCase()) {
-    jQuery("#link_p").hide();
-    jQuery("#link_wikipedia").hide();
     document.getElementById("cardtitle").innerHTML = "Sun in white light";
     image.src = "https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_HMIIC.jpg";
     image.onload = function() {
+      jQuery(".footer").css("opacity","1");
       jQuery("#loadingtextdiv").hide();
-      jQuery(".card-text").hide();
+      jQuery("#card_ra_dec").hide();
+      jQuery("#link_div").show();
+      document.getElementById("link_simbad").innerHTML = "Latest solar images from SDO";
+      document.getElementById("link_simbad").href = "https://sdo.gsfc.nasa.gov/";
+      document.getElementById("link_wikipedia").href = "https://en.wikipedia.org/wiki/Sun";
+      jQuery("#link_p").css("opacity","1");
+      jQuery("#link_wikipedia").css("opacity","1");
+      jQuery("#link_icon").show();
+      jQuery("#link_simbad").show();
       jQuery("#obs").hide();
       jQuery("#sun_btn").show();
       jQuery("#zoom_ra_dec_btns").hide();
@@ -82,8 +89,6 @@ function load() {
     }
     color();
   } else if (getVar("obj").toUpperCase() == "moon".toUpperCase()) {
-    jQuery("#link_p").hide();
-    jQuery("#link_wikipedia").hide();
     var date = new Date();
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
@@ -175,8 +180,17 @@ function load() {
     document.getElementById("cardtitle").innerHTML = phase_round + " Moon";
 
     image.onload = function() {
+      jQuery(".footer").css("opacity","1");
+      jQuery("#card_ra_dec").hide();
+      jQuery("#link_div").show();
+      document.getElementById("link_simbad").innerHTML = "LRO Lunar Map";
+      document.getElementById("link_simbad").href = "https://quickmap.lroc.asu.edu/";
+      document.getElementById("link_wikipedia").href = "https://en.wikipedia.org/wiki/Moon";
+      jQuery("#link_p").css("opacity","1");
+      jQuery("#link_wikipedia").css("opacity","1");
+      jQuery("#link_icon").show();
+      jQuery("#link_simbad").show();
       jQuery("#loadingtextdiv").hide();
-      jQuery(".card-text").hide();
       jQuery("#obs").hide();
       jQuery("#zoom_ra_dec_btns").hide();
       jQuery("#card").fadeIn(500);
@@ -237,6 +251,7 @@ function load() {
           jQuery("#table_btn_div").hide();
 
           image.onload = function() {
+            jQuery(".footer").css("opacity","1");
             jQuery("#card").fadeIn(500);
             jQuery("#card").css("transform","scale(1.2)");
             anime({
@@ -469,6 +484,7 @@ function load() {
       request.send();
 
       image.onload = function() {
+        jQuery(".footer").css("opacity","1");
         jQuery("#card").fadeIn(500);
         jQuery("#card").css("transform","scale(1.2)");
         anime({
@@ -496,6 +512,7 @@ function load() {
         scrollreveal.reveal('#table_type_div');
         scrollreveal.reveal('#table_fluxes_div');
         scrollreveal.reveal('#table_aliases_div');
+        scrollreveal.reveal('.footer');
       }
 
 

@@ -62,7 +62,7 @@ function openDSO() {
   var dec_d_regex = /(|[+-−])([0-9]{1,2})(| )(d|D|°)/
   var dec_m_regex = /([0-9]{1,2})(| )(m|M|′|')/
   var dec_s_regex = /([0-9]+[|.|,][0-9]+|[0-9]+)(| )(s|S|″|")/
-  if (!object_name == null || !object_name == "") {
+  if (object_name != null && object_name != "") {
     if (coord_regex.test(object_name)) {
       anime({
         targets: 'body',
