@@ -1601,6 +1601,58 @@ function check_if_not_empty() {
   });
 }
 
+function check_obs() {
+  if (jQuery("#object_name_img").val().toUpperCase() == "sun".toUpperCase()) {
+    jQuery("#survey_div").fadeOut("slow");
+  } else if (jQuery("#object_name_img").val().toUpperCase() == "moon".toUpperCase()) {
+    jQuery("#survey_div").fadeOut("slow");
+  } else if (jQuery("#object_name_img").val().toUpperCase() == "mercury".toUpperCase()) {
+    jQuery("#survey_div").fadeOut("slow");
+  } else if (jQuery("#object_name_img").val().toUpperCase() == "venus".toUpperCase()) {
+    jQuery("#survey_div").fadeOut("slow");
+  } else if (jQuery("#object_name_img").val().toUpperCase() == "mars".toUpperCase()) {
+    jQuery("#survey_div").fadeOut("slow");
+  } else if (jQuery("#object_name_img").val().toUpperCase() == "jupiter".toUpperCase()) {
+    jQuery("#survey_div").fadeOut("slow");
+  } else if (jQuery("#object_name_img").val().toUpperCase() == "saturn".toUpperCase()) {
+    jQuery("#survey_div").fadeOut("slow");
+  } else if (jQuery("#object_name_img").val().toUpperCase() == "uranus".toUpperCase()) {
+    jQuery("#survey_div").fadeOut("slow");
+  } else if (jQuery("#object_name_img").val().toUpperCase() == "neptune".toUpperCase()) {
+    jQuery("#survey_div").fadeOut("slow");
+  } else if (jQuery("#object_name_img").val().toUpperCase() == "iss".toUpperCase() || jQuery("#object_name_img").val().toUpperCase() == "international space station".toUpperCase()) {
+    jQuery("#survey_div").fadeOut("slow");
+  } else {
+    jQuery("#survey_div").fadeIn("slow");
+  }
+}
+
+function check_obs_obs() {
+  if (jQuery("#object_name_obs").val().toUpperCase() == "sun".toUpperCase()) {
+    jQuery("#survey_div").fadeOut("slow");
+  } else if (jQuery("#object_name_obs").val().toUpperCase() == "moon".toUpperCase()) {
+    jQuery("#survey_div").fadeOut("slow");
+  } else if (jQuery("#object_name_obs").val().toUpperCase() == "mercury".toUpperCase()) {
+    jQuery("#survey_div").fadeOut("slow");
+  } else if (jQuery("#object_name_obs").val().toUpperCase() == "venus".toUpperCase()) {
+    jQuery("#survey_div").fadeOut("slow");
+  } else if (jQuery("#object_name_obs").val().toUpperCase() == "mars".toUpperCase()) {
+    jQuery("#survey_div").fadeOut("slow");
+  } else if (jQuery("#object_name_obs").val().toUpperCase() == "jupiter".toUpperCase()) {
+    jQuery("#survey_div").fadeOut("slow");
+  } else if (jQuery("#object_name_obs").val().toUpperCase() == "saturn".toUpperCase()) {
+    jQuery("#survey_div").fadeOut("slow");
+  } else if (jQuery("#object_name_obs").val().toUpperCase() == "uranus".toUpperCase()) {
+    jQuery("#survey_div").fadeOut("slow");
+  } else if (jQuery("#object_name_obs").val().toUpperCase() == "neptune".toUpperCase()) {
+    jQuery("#survey_div").fadeOut("slow");
+  } else if (jQuery("#object_name_obs").val().toUpperCase() == "iss".toUpperCase() || jQuery("#object_name_img").val().toUpperCase() == "international space station".toUpperCase()) {
+    jQuery("#survey_div").fadeOut("slow");
+  } else {
+    jQuery("#survey_div").fadeIn("slow");
+  }
+}
+
 function make_small() {
   if (jQuery("#small_link").text() == "Fit image to screen.") {
     var card_height = jQuery("#card").height();

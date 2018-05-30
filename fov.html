@@ -455,7 +455,7 @@
               <label class="form-control-label" for="object_name_img">Object (can be DSO, Sun/Moon/planets/ISS or coordinates)</label>
               <div class="form-group">
                 <div class="input-group mb-3">
-                  <input type="text" class="form-control" oninput="check_if_not_empty()" placeholder="Type in name/coordinates of an object..." id="object_name_img">
+                  <input type="text" class="form-control" oninput="check_if_not_empty(); check_obs();" placeholder="Type in name/coordinates of an object..." id="object_name_img">
                 </div>
               </div>
             </fieldset>
@@ -499,7 +499,7 @@
               <label class="form-control-label" for="object_name_obs">Object (can be DSO, Sun/Moon/planets or coordinates)</label>
               <div class="form-group">
                 <div class="input-group mb-3">
-                  <input type="text" class="form-control" oninput="check_if_not_empty()" placeholder="Type in name/coordinates of an object..." id="object_name_obs">
+                  <input type="text" class="form-control" oninput="check_if_not_empty(); check_obs_obs();" placeholder="Type in name/coordinates of an object..." id="object_name_obs">
                 </div>
               </div>
             </fieldset>
