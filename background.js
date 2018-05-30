@@ -29,7 +29,15 @@ function setbg() {
     } else {
       jQuery(".btn").addClass("btn-secondary" + pic_arr[random]);
       var tempimg = new Image();
-      tempimg.src = "images/" + pic_arr[random] + ".jpg";
+      tempimg.src = "images/" + pic_arr[random] + "_starless.jpg";
+      jQuery(".layer1").hide();
+      jQuery(".layer2").hide();
+      var tempimg1 = new Image();
+      var tempimg2 = new Image();
+      tempimg1.src = "images/" + pic_arr[random] + "_stars_layer_1.jpg";
+      tempimg2.src = "images/" + pic_arr[random] + "_stars_layer_2.jpg";
+      tempimg1.onload = function(){ jQuery(".layer1").fadeIn("slow"); };
+      tempimg2.onload = function(){ jQuery(".layer2").fadeIn("slow"); };
       tempimg.onload = function(){
         if (isChrome || isFirefox || isOpera) {
           if (pic_arr[random] != 9) {
@@ -116,7 +124,15 @@ function setbgnight() {
     } else {
       jQuery(".btn").addClass("btn-secondary" + pic_arr_night[random_night]);
       var tempimg = new Image();
-      tempimg.src = "images/" + pic_arr_night[random_night] + ".jpg";
+      tempimg.src = "images/" + pic_arr_night[random_night] + "_starless.jpg";
+      jQuery(".layer1").hide();
+      jQuery(".layer2").hide();
+      var tempimg1 = new Image();
+      var tempimg2 = new Image();
+      tempimg1.src = "images/" + pic_arr_night[random_night] + "_stars_layer_1.jpg";
+      tempimg2.src = "images/" + pic_arr_night[random_night] + "_stars_layer_2.jpg";
+      tempimg1.onload = function(){ jQuery(".layer1").fadeIn("slow"); };
+      tempimg2.onload = function(){ jQuery(".layer2").fadeIn("slow"); };
       tempimg.onload = function(){
         if (isChrome || isFirefox || isOpera) {
           if (pic_arr_night[random_night] != 9) {
