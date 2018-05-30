@@ -25,6 +25,7 @@
     <meta property="og:url" content="https://pawelpleskaczynski.github.io/DSO_Finder/">
     <meta property="og:image" content="https://pawelpleskaczynski.github.io/DSO_Finder/images/og-image.jpg">
     <script src="anime.min.js"></script>
+    <script src="basicScroll.min.js"></script>
     <link href="https://unpkg.com/webkul-micron@1.1.6/dist/css/micron.min.css" type="text/css" rel="stylesheet">
     <script src="https://unpkg.com/webkul-micron@1.1.6/dist/script/micron.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="theme/bootstrap/dist/css/bootstrap.min.css">
@@ -335,6 +336,30 @@
       transform: translate(0, -30%);
       margin-left: 5%;
     }
+    #table_type_div {
+      opacity: var(--opacity_1);
+      transition: opacity .1s ease;
+      will-change: opacity;
+      transform: scale(var(--scale_1));
+      transition: transform .1s ease;
+      will-change: transform;
+    }
+    #table_fluxes_div {
+      opacity: var(--opacity_2);
+      transition: opacity .1s ease;
+      will-change: opacity;
+      transform: scale(var(--scale_2));
+      transition: transform .1s ease;
+      will-change: transform;
+    }
+    #table_aliases_div {
+      opacity: var(--opacity_3);
+      transition: opacity .1s ease;
+      will-change: opacity;
+      transform: scale(var(--scale_3));
+      transition: transform .1s ease;
+      will-change: transform;
+    }
     </style>
   </head>
   <body style="padding-top: 70px;">
@@ -455,14 +480,18 @@
                 </div>
 
                 <div id="table_div">
-                  <p id="table_fluxes_p" data-toggle="tooltip" data-placement="left" data-original-title="Brightness of the object in different wavelengths.">Fluxes</p>
-                  <table id="table_fluxes" class="table table-hover"></table>
-
-                  <p id="table_aliases_p" data-toggle="tooltip" data-placement="left" data-original-title="Catalog numbers of this object.">Catalog numbers</p>
-                  <table id="table_aliases" class="table table-hover"></table>
-
-                  <p id="table_type_p" data-toggle="tooltip" data-placement="left" data-original-title="Type of the object (eg. galaxy, nebula, star…).">Object type</p>
-                  <table id="table_type" class="table table-hover"></table>
+                  <div id="table_fluxes_div">
+                    <p id="table_fluxes_p" data-toggle="tooltip" data-placement="left" data-original-title="Brightness of the object in different wavelengths.">Fluxes</p>
+                    <table id="table_fluxes" class="table table-hover"></table>
+                  </div>
+                  <div id="table_aliases_div">
+                    <p id="table_aliases_p" data-toggle="tooltip" data-placement="left" data-original-title="Catalog numbers of this object.">Catalog numbers</p>
+                    <table id="table_aliases" class="table table-hover"></table>
+                  </div>
+                  <div id="table_type_div">
+                    <p id="table_type_p" data-toggle="tooltip" data-placement="left" data-original-title="Type of the object (eg. galaxy, nebula, star…).">Object type</p>
+                    <table id="table_type" class="table table-hover"></table>
+                  </div>
                 </div>
 
                 </div>

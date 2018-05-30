@@ -529,6 +529,10 @@
         </div>
       </div>
 
+      <div class="small_img_div">
+        <p><a href="javascript:void(0)" onclick="make_small()" id="small_link">Fit image to screen.</a></p>
+      </div>
+
       <div class="card" id="card">
         <div style="position: relative;">
           <div id="details_div">
@@ -563,9 +567,6 @@
         </div>
       </div>
 
-      <div class="small_img_div">
-        <p><a href="javascript:void(0)" onclick="make_small()" id="small_link">Fit image to screen.</a></p>
-      </div>
 
       <div class="alert alert-dismissible alert-danger" style="display: none; margin-bottom: 24px;">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -625,19 +626,7 @@
           duration: 400,
         });
         jQuery(".alert-info").fadeIn(500);
-        jQuery(".alert-info").css("transform","scale(0.9)");
-        anime({
-          targets: '.alert-info',
-          scale: 1,
-          duration: 1500
-        });
         jQuery(".jumbotron").fadeIn(500);
-        jQuery(".jumbotron").css("transform","scale(1.1)");
-        anime({
-          targets: '.jumbotron',
-          scale: 1,
-          duration: 1500
-        });
       })
       </script>
       <script src="fov.js"></script>

@@ -31,8 +31,8 @@ function setbg() {
       var tempimg = new Image();
       tempimg.src = "images/" + pic_arr[random] + ".jpg";
       tempimg.onload = function(){
-        jQuery("body").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
-        jQuery("body").css("background-size","cover");
+        jQuery(".bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
+        jQuery(".bg").css("background-size","cover");
       };
     }
   }
@@ -57,8 +57,8 @@ function setbgnight() {
       var tempimg = new Image();
       tempimg.src = "images/" + pic_arr_night[random_night] + ".jpg";
       tempimg.onload = function(){
-        jQuery("body").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
-        jQuery("body").css("background-size","cover");
+        jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
+        jQuery(".bg").css("background-size","cover");
       };
     }
   }

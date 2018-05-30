@@ -1126,16 +1126,16 @@ function dec_minus_obs() {
 }
 
 function scroll_bottom() {
-  $('html,body').animate({
+  jQuery('html, body').animate({
     scrollTop: $("#loading_text").offset().top
   }, 1000);
-}
-
+};
+//,l ljknlh
 function scroll_bottom_load() {
-  $('html,body').animate({
-    scrollTop: $("#card").offset().top
+  jQuery('html, body').animate({
+    scrollTop: jQuery('#card').offset().top - 80
   }, 1000);
-}
+};
 
 function lucky() {
   var cat_array = ["M","NGC","PGC","Arp","HCG","Gum","VdB"];
