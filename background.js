@@ -59,7 +59,6 @@ function setbg() {
       jQuery(".btn").addClass("btn-secondary" + pic_arr[random]);
       tempimg.onload = function(){
         if (no_ie) {
-          jQuery("body").removeClass("no_scroll");
           if (pic_arr[random] != moon) {
             var tempimg1 = new Image();
             var tempimg2 = new Image();
@@ -151,6 +150,9 @@ function setbg() {
           jQuery(".bg").css("background-size","cover");
         }
       };
+      jQuery(document).ready(function() {
+        jQuery("body").removeClass("no_scroll");
+      });
     }
   }
 
@@ -199,7 +201,6 @@ function setbgnight() {
           var tempimg2 = new Image();
           tempimg1.src = "images/" + pic_arr_night[random_night] + "_stars_layer_1.jpg";
           tempimg2.src = "images/" + pic_arr_night[random_night] + "_stars_layer_2.jpg";
-          jQuery("body").removeClass("no_scroll");
           jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + "_starless.jpg) no-repeat center center fixed");
           jQuery(".bg").css("background-size","cover");
           jQuery(".layer1").css("background","url(images/" + pic_arr_night[random_night] + "_stars_layer_1.jpg) no-repeat center center fixed");
@@ -267,6 +268,9 @@ function setbgnight() {
           jQuery(".bg").css("background-size","cover");
         }
       };
+      jQuery(document).ready(function() {
+        jQuery("body").removeClass("no_scroll");
+      });
     }
   }
 
