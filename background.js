@@ -14,7 +14,6 @@ if (hour > 10 && hour <= 16) {
   setbgnight();
 }
 
-
 function setbg() {
   jQuery(".btn").removeClass("btn-secondary");
   function mediaquery(mobile) {
@@ -27,20 +26,47 @@ function setbg() {
         jQuery(".mobile_bg").css("background-size","cover");
       };
     } else {
+      var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+      var isFirefox = typeof InstallTrigger !== 'undefined';
+      var isChrome = !!window.chrome && !!window.chrome.webstore;
+      var isIE = /*@cc_on!@*/false || !!document.documentMode;
+      var isEdge = !isIE && !!window.StyleMedia;
+      var moon = 9;
+
+      var no_ie = (isChrome || isFirefox || isOpera);
+      var is_ie = (isIE || isEdge);
+
+      if (no_ie) {
+        jQuery("body").addClass("no_scroll");
+      }
+
+      if (no_ie) {
+        if (pic_arr[random] == moon) {
+          var tempimg = new Image();
+          tempimg.src = "images/" + pic_arr[random] + ".jpg";
+          jQuery(".layer1").hide();
+          jQuery(".layer2").hide();
+        } else {
+          var tempimg = new Image();
+          tempimg.src = "images/" + pic_arr[random] + "_starless.jpg";
+          jQuery(".layer1").hide();
+          jQuery(".layer2").hide();
+          var tempimg1 = new Image();
+          var tempimg2 = new Image();
+          tempimg1.src = "images/" + pic_arr[random] + "_stars_layer_1.jpg";
+          tempimg2.src = "images/" + pic_arr[random] + "_stars_layer_2.jpg";
+          tempimg1.onload = function(){ jQuery(".layer1").fadeIn("slow"); };
+          tempimg2.onload = function(){ jQuery(".layer2").fadeIn("slow"); };
+        }
+      } else {
+        var tempimg = new Image();
+        tempimg.src = "images/" + pic_arr[random] + ".jpg";
+      }
       jQuery(".btn").addClass("btn-secondary" + pic_arr[random]);
-      var tempimg = new Image();
-      tempimg.src = "images/" + pic_arr[random] + "_starless.jpg";
-      jQuery(".layer1").hide();
-      jQuery(".layer2").hide();
-      var tempimg1 = new Image();
-      var tempimg2 = new Image();
-      tempimg1.src = "images/" + pic_arr[random] + "_stars_layer_1.jpg";
-      tempimg2.src = "images/" + pic_arr[random] + "_stars_layer_2.jpg";
-      tempimg1.onload = function(){ jQuery(".layer1").fadeIn("slow"); };
-      tempimg2.onload = function(){ jQuery(".layer2").fadeIn("slow"); };
       tempimg.onload = function(){
-        if (isChrome || isFirefox || isOpera) {
-          if (pic_arr[random] != 9) {
+        if (no_ie) {
+          jQuery("body").removeClass("no_scroll");
+          if (pic_arr[random] != moon) {
             jQuery(".bg").css("background","url(images/" + pic_arr[random] + "_starless.jpg) no-repeat center center fixed");
             jQuery(".bg").css("background-size","cover");
             jQuery(".layer1").css("background","url(images/" + pic_arr[random] + "_stars_layer_1.jpg) no-repeat center center fixed");
@@ -101,6 +127,11 @@ function setbg() {
           jQuery(".layer2").hide();
           jQuery(".bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
           jQuery(".bg").css("background-size","cover");
+        } else {
+          jQuery(".layer1").hide();
+          jQuery(".layer2").hide();
+          jQuery(".bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
+          jQuery(".bg").css("background-size","cover");
         }
       };
     }
@@ -122,76 +153,93 @@ function setbgnight() {
         jQuery(".mobile_bg").css("background-size","cover");
       };
     } else {
+      var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+      var isFirefox = typeof InstallTrigger !== 'undefined';
+      var isChrome = !!window.chrome && !!window.chrome.webstore;
+      var isIE = /*@cc_on!@*/false || !!document.documentMode;
+      var isEdge = !isIE && !!window.StyleMedia;
+
+      var no_ie = (isChrome || isFirefox || isOpera);
+      var is_ie = (isIE || isEdge);
+
+      if (no_ie) {
+        jQuery("body").addClass("no_scroll");
+      }
+
+      if (no_ie) {
+        var tempimg = new Image();
+        tempimg.src = "images/" + pic_arr_night[random_night] + "_starless.jpg";
+        jQuery(".layer1").hide();
+        jQuery(".layer2").hide();
+        var tempimg1 = new Image();
+        var tempimg2 = new Image();
+        tempimg1.src = "images/" + pic_arr_night[random_night] + "_stars_layer_1.jpg";
+        tempimg2.src = "images/" + pic_arr_night[random_night] + "_stars_layer_2.jpg";
+        tempimg1.onload = function(){ jQuery(".layer1").fadeIn("slow"); };
+        tempimg2.onload = function(){ jQuery(".layer2").fadeIn("slow"); };
+      } else {
+        var tempimg = new Image();
+        tempimg.src = "images/" + pic_arr_night[random_night] + ".jpg";
+      }
       jQuery(".btn").addClass("btn-secondary" + pic_arr_night[random_night]);
-      var tempimg = new Image();
-      tempimg.src = "images/" + pic_arr_night[random_night] + "_starless.jpg";
-      jQuery(".layer1").hide();
-      jQuery(".layer2").hide();
-      var tempimg1 = new Image();
-      var tempimg2 = new Image();
-      tempimg1.src = "images/" + pic_arr_night[random_night] + "_stars_layer_1.jpg";
-      tempimg2.src = "images/" + pic_arr_night[random_night] + "_stars_layer_2.jpg";
-      tempimg1.onload = function(){ jQuery(".layer1").fadeIn("slow"); };
-      tempimg2.onload = function(){ jQuery(".layer2").fadeIn("slow"); };
       tempimg.onload = function(){
-        if (isChrome || isFirefox || isOpera) {
-          if (pic_arr_night[random_night] != 9) {
-            jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + "_starless.jpg) no-repeat center center fixed");
-            jQuery(".bg").css("background-size","cover");
-            jQuery(".layer1").css("background","url(images/" + pic_arr_night[random_night] + "_stars_layer_1.jpg) no-repeat center center fixed");
-            jQuery(".layer1").css("background-size","cover");
-            jQuery(".layer1").css("mix-blend-mode","screen");
-            jQuery(".layer2").css("background","url(images/" + pic_arr_night[random_night] + "_stars_layer_2.jpg) no-repeat center center fixed");
-            jQuery(".layer2").css("background-size","cover");
-            jQuery(".layer2").css("mix-blend-mode","screen");
-            var parallax = basicScroll.create({
-              elem: document.querySelector('.bg'),
-              from: 'top-top',
-              to: 'bottom-top',
-              props: {
-                '--pageparallax': {
-                  from: "0%",
-                  to: "-5%"
-                }
+        if (no_ie) {
+          jQuery("body").removeClass("no_scroll");
+          jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + "_starless.jpg) no-repeat center center fixed");
+          jQuery(".bg").css("background-size","cover");
+          jQuery(".layer1").css("background","url(images/" + pic_arr_night[random_night] + "_stars_layer_1.jpg) no-repeat center center fixed");
+          jQuery(".layer1").css("background-size","cover");
+          jQuery(".layer1").css("mix-blend-mode","screen");
+          jQuery(".layer2").css("background","url(images/" + pic_arr_night[random_night] + "_stars_layer_2.jpg) no-repeat center center fixed");
+          jQuery(".layer2").css("background-size","cover");
+          jQuery(".layer2").css("mix-blend-mode","screen");
+          var parallax = basicScroll.create({
+            elem: document.querySelector('.bg'),
+            from: 'top-top',
+            to: 'bottom-top',
+            props: {
+              '--pageparallax': {
+                from: "0%",
+                to: "-5%"
               }
-            });
+            }
+          });
 
-            parallax.start();
+          parallax.start();
 
-            var parallax_layer_1 = basicScroll.create({
-              elem: document.querySelector('.layer1'),
-              from: 'top-top',
-              to: 'bottom-top',
-              props: {
-                '--pageparallax_layer1': {
-                  from: "0%",
-                  to: "-7.5%"
-                }
+          var parallax_layer_1 = basicScroll.create({
+            elem: document.querySelector('.layer1'),
+            from: 'top-top',
+            to: 'bottom-top',
+            props: {
+              '--pageparallax_layer1': {
+                from: "0%",
+                to: "-7.5%"
               }
-            });
+            }
+          });
 
-            parallax_layer_1.start();
+          parallax_layer_1.start();
 
-            var parallax_layer_2 = basicScroll.create({
-              elem: document.querySelector('.layer2'),
-              from: 'top-top',
-              to: 'bottom-top',
-              props: {
-                '--pageparallax_layer2': {
-                  from: "0%",
-                  to: "-11.25%"
-                }
+          var parallax_layer_2 = basicScroll.create({
+            elem: document.querySelector('.layer2'),
+            from: 'top-top',
+            to: 'bottom-top',
+            props: {
+              '--pageparallax_layer2': {
+                from: "0%",
+                to: "-11.25%"
               }
-            });
+            }
+          });
 
-            parallax_layer_2.start();
-          } else {
-            jQuery(".layer1").hide();
-            jQuery(".layer2").hide();
-            jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
-            jQuery(".bg").css("background-size","cover");
-          }
+          parallax_layer_2.start();
         } else if (isIE || isEdge) {
+          jQuery(".layer1").hide();
+          jQuery(".layer2").hide();
+          jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
+          jQuery(".bg").css("background-size","cover");
+        } else {
           jQuery(".layer1").hide();
           jQuery(".layer2").hide();
           jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
@@ -204,9 +252,3 @@ function setbgnight() {
   var mobile = window.matchMedia("(max-width: 730px)")
   mediaquery(mobile);
 }
-
-var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
-var isFirefox = typeof InstallTrigger !== 'undefined';
-var isChrome = !!window.chrome && !!window.chrome.webstore;
-var isIE = /*@cc_on!@*/false || !!document.documentMode;
-var isEdge = !isIE && !!window.StyleMedia;
