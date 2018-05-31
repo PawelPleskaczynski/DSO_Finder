@@ -1,11 +1,11 @@
 var pic_arr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 var mobile_pic_arr = ['1', '2', '3', '5', '6', '7', '10'];
-var pic_arr_night = ['1', '3', '4', '6', '10'];
-var mobile_pic_arr_night = ['1', '3', '6', '10'];
+var pic_arr_night = ['1', '3', '4', '6', '7', '10'];
+var mobile_pic_arr_night = ['1', '3', '6', '7', '10'];
 var random = Math.floor((Math.random() * 10));
 var randomMobile = Math.floor((Math.random() * 7));
-var random_night = Math.floor((Math.random() * 5));
-var randomMobile_night = Math.floor((Math.random() * 4));
+var random_night = Math.floor((Math.random() * 6));
+var randomMobile_night = Math.floor((Math.random() * 5));
 var date = new Date();
 var hour = date.getHours();
 if (hour > 10 && hour <= 16) {
@@ -125,6 +125,19 @@ function setbg() {
             jQuery(".layer2").hide();
             jQuery(".bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
             jQuery(".bg").css("background-size","cover");
+            var parallax = basicScroll.create({
+              elem: document.querySelector('.bg'),
+              from: 'top-top',
+              to: 'bottom-top',
+              props: {
+                '--pageparallax': {
+                  from: "0%",
+                  to: "-5%"
+                }
+              }
+            });
+
+            parallax.start();
           }
         } else if (isIE || isEdge) {
           jQuery(".layer1").hide();

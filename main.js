@@ -10,19 +10,6 @@ scrollreveal.reveal('#about', {
 });
 
 window.onload = function() {
-  var text_opacity = basicScroll.create({
-    elem: document.querySelector('.apis_text'),
-    from: 'bottom-bottom',
-    to: 'top-middle',
-    props: {
-      '--opacity': {
-        from: .01,
-        to: .99
-      }
-    }
-  });
-
-  text_opacity.start();
   jQuery("img").css("transform","scale(0)");
   var date = new Date();
   var hour = date.getHours();
@@ -33,6 +20,8 @@ window.onload = function() {
     jQuery(".text_item").css("color","#fff");
     jQuery(".about").css("background","#222");
   }
+  scrollreveal.reveal('.text_item');
+  scrollreveal.reveal('.apis_text');
 }
 
 function openDSO() {
