@@ -49,24 +49,22 @@ function setbg() {
         } else {
           var tempimg = new Image();
           tempimg.src = "images/" + pic_arr[random] + "_starless.jpg";
-          jQuery(".layer1").hide();
-          jQuery(".layer2").hide();
-          var tempimg1 = new Image();
-          var tempimg2 = new Image();
-          tempimg1.src = "images/" + pic_arr[random] + "_stars_layer_1.jpg";
-          tempimg2.src = "images/" + pic_arr[random] + "_stars_layer_2.jpg";
-          tempimg1.onload = function(){ jQuery(".layer1").fadeIn("slow"); };
-          tempimg2.onload = function(){ jQuery(".layer2").fadeIn("slow"); };
         }
       } else {
         var tempimg = new Image();
         tempimg.src = "images/" + pic_arr[random] + ".jpg";
       }
+      jQuery(".layer1").hide();
+      jQuery(".layer2").hide();
       jQuery(".btn").addClass("btn-secondary" + pic_arr[random]);
       tempimg.onload = function(){
         if (no_ie) {
           jQuery("body").removeClass("no_scroll");
           if (pic_arr[random] != moon) {
+            var tempimg1 = new Image();
+            var tempimg2 = new Image();
+            tempimg1.src = "images/" + pic_arr[random] + "_stars_layer_1.jpg";
+            tempimg2.src = "images/" + pic_arr[random] + "_stars_layer_2.jpg";
             jQuery(".bg").css("background","url(images/" + pic_arr[random] + "_starless.jpg) no-repeat center center fixed");
             jQuery(".bg").css("background-size","cover");
             jQuery(".layer1").css("background","url(images/" + pic_arr[random] + "_stars_layer_1.jpg) no-repeat center center fixed");
@@ -89,33 +87,39 @@ function setbg() {
 
             parallax.start();
 
-            var parallax_layer_1 = basicScroll.create({
-              elem: document.querySelector('.layer1'),
-              from: 'top-top',
-              to: 'bottom-top',
-              props: {
-                '--pageparallax_layer1': {
-                  from: "0%",
-                  to: "-7.5%"
+            tempimg1.onload = function() {
+              jQuery(".layer1").fadeIn("slow");
+              var parallax_layer_1 = basicScroll.create({
+                elem: document.querySelector('.layer1'),
+                from: 'top-top',
+                to: 'bottom-top',
+                props: {
+                  '--pageparallax_layer1': {
+                    from: "0%",
+                    to: "-7.5%"
+                  }
                 }
-              }
-            });
+              });
 
-            parallax_layer_1.start();
-
-            var parallax_layer_2 = basicScroll.create({
-              elem: document.querySelector('.layer2'),
-              from: 'top-top',
-              to: 'bottom-top',
-              props: {
-                '--pageparallax_layer2': {
-                  from: "0%",
-                  to: "-11.25%"
+              parallax_layer_1.start();
+            };
+            tempimg2.onload = function() {
+              jQuery(".layer2").fadeIn("slow");
+              var parallax_layer_2 = basicScroll.create({
+                elem: document.querySelector('.layer2'),
+                from: 'top-top',
+                to: 'bottom-top',
+                props: {
+                  '--pageparallax_layer2': {
+                    from: "0%",
+                    to: "-11.25%"
+                  }
                 }
-              }
-            });
+              });
 
-            parallax_layer_2.start();
+              parallax_layer_2.start();
+            };
+
           } else {
             jQuery(".layer1").hide();
             jQuery(".layer2").hide();
@@ -169,21 +173,19 @@ function setbgnight() {
       if (no_ie) {
         var tempimg = new Image();
         tempimg.src = "images/" + pic_arr_night[random_night] + "_starless.jpg";
-        jQuery(".layer1").hide();
-        jQuery(".layer2").hide();
-        var tempimg1 = new Image();
-        var tempimg2 = new Image();
-        tempimg1.src = "images/" + pic_arr_night[random_night] + "_stars_layer_1.jpg";
-        tempimg2.src = "images/" + pic_arr_night[random_night] + "_stars_layer_2.jpg";
-        tempimg1.onload = function(){ jQuery(".layer1").fadeIn("slow"); };
-        tempimg2.onload = function(){ jQuery(".layer2").fadeIn("slow"); };
       } else {
         var tempimg = new Image();
         tempimg.src = "images/" + pic_arr_night[random_night] + ".jpg";
       }
+      jQuery(".layer1").hide();
+      jQuery(".layer2").hide();
       jQuery(".btn").addClass("btn-secondary" + pic_arr_night[random_night]);
       tempimg.onload = function(){
         if (no_ie) {
+          var tempimg1 = new Image();
+          var tempimg2 = new Image();
+          tempimg1.src = "images/" + pic_arr_night[random_night] + "_stars_layer_1.jpg";
+          tempimg2.src = "images/" + pic_arr_night[random_night] + "_stars_layer_2.jpg";
           jQuery("body").removeClass("no_scroll");
           jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + "_starless.jpg) no-repeat center center fixed");
           jQuery(".bg").css("background-size","cover");
@@ -207,33 +209,39 @@ function setbgnight() {
 
           parallax.start();
 
-          var parallax_layer_1 = basicScroll.create({
-            elem: document.querySelector('.layer1'),
-            from: 'top-top',
-            to: 'bottom-top',
-            props: {
-              '--pageparallax_layer1': {
-                from: "0%",
-                to: "-7.5%"
+          tempimg1.onload = function() {
+            jQuery(".layer1").fadeIn("slow");
+            var parallax_layer_1 = basicScroll.create({
+              elem: document.querySelector('.layer1'),
+              from: 'top-top',
+              to: 'bottom-top',
+              props: {
+                '--pageparallax_layer1': {
+                  from: "0%",
+                  to: "-7.5%"
+                }
               }
-            }
-          });
+            });
 
-          parallax_layer_1.start();
-
-          var parallax_layer_2 = basicScroll.create({
-            elem: document.querySelector('.layer2'),
-            from: 'top-top',
-            to: 'bottom-top',
-            props: {
-              '--pageparallax_layer2': {
-                from: "0%",
-                to: "-11.25%"
+            parallax_layer_1.start();
+          };
+          tempimg2.onload = function() {
+            jQuery(".layer2").fadeIn("slow");
+            var parallax_layer_2 = basicScroll.create({
+              elem: document.querySelector('.layer2'),
+              from: 'top-top',
+              to: 'bottom-top',
+              props: {
+                '--pageparallax_layer2': {
+                  from: "0%",
+                  to: "-11.25%"
+                }
               }
-            }
-          });
+            });
 
-          parallax_layer_2.start();
+            parallax_layer_2.start();
+          };
+
         } else if (isIE || isEdge) {
           jQuery(".layer1").hide();
           jQuery(".layer2").hide();
