@@ -150,7 +150,7 @@ function setbg() {
           jQuery(".bg").css("background-size","cover");
         }
       };
-      jQuery(document).ready(function() {
+      jQuery(window).on('load', function() {
         jQuery("body").removeClass("no_scroll");
       });
     }
@@ -268,7 +268,7 @@ function setbgnight() {
           jQuery(".bg").css("background-size","cover");
         }
       };
-      jQuery(document).ready(function() {
+      jQuery(window).on('load', function() {
         jQuery("body").removeClass("no_scroll");
       });
     }
