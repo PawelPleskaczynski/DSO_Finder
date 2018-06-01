@@ -56,6 +56,9 @@
       }
     }
     @media only screen and (min-width: 730px) {
+      #info_container {
+        margin-bottom: 24px;
+      }
       .jumbotron {
         display: block;
         margin-left: auto;
@@ -161,11 +164,6 @@
     .facebook:hover {
       color: #3B5998;
     }
-    .apis_text {
-      opacity: var(--opacity);
-      transition: opacity .1s linear;
-      will-change: opacity;
-    }
     .bg {
       position: fixed;
       top: 0;
@@ -247,8 +245,11 @@
           </div>
         </div>
         <div class="container" id="info_container">
-          <p style="color: #fff; display: inline-block;" class="notice">Scroll down for more info ↓</p><br/>
-          <p style="color: #fff;" class="apis_text">Powered by <a href="https://api.arcsecond.io/?/" style="color: #42f4a4;">arcsecond.io</a>, <a href="http://skyserver.sdss.org/dr12/en/help/docs/api.aspx#imgcutout" style="color: #42f4a4;">SDSS SkyServer</a>, <a href="http://archive.eso.org/dss/dss" style="color: #42f4a4;">ESO DSS Archive</a> and  <a href="https://en.wikipedia.org/w/api.php" style="color: #42f4a4;">Wikipedia</a> APIs.</p>
+          <p style="color: #fff; display: inline-block; float: left;" class="notice">Scroll down for more info ↓</p>
+          <div style="float: right;" data-toggle="tooltip" data-placement="top" data-original-title="" id="credits_div">
+            <span class="mdi mdi-information" style="color: #fff; transform: translateY(27%); margin-right: 8px; transform: scale(1.2);"></span><p style="color: #fff; float: right;">Credits</p>
+          </div>
+          <br/>
         </div>
       </div>
     </div>
@@ -276,6 +277,7 @@
           <p class="text_item"><a href="fov.html">Field of view calculator</a> lets you check how an object will look like through your telescope. You can choose between imaging and observing mode. In imaging mode, you need to input details about your telescope and camera and in observing mode you need to input details about your telescope and eyepiece.</p>
           <h4 class="text_item">More information</h4>
           <p class="text_item"><a href="https://github.com/PawelPleskaczynski/DSO_Finder/blob/master/README.md">About</a>, <a href="help.html">Help</a></p>
+          <p class="text_item">Powered by <a href="https://api.arcsecond.io/?/">arcsecond.io</a>, <a href="http://skyserver.sdss.org/dr12/en/help/docs/api.aspx#imgcutout">SDSS SkyServer</a>, <a href="http://archive.eso.org/dss/dss">ESO DSS Archive</a> and  <a href="https://en.wikipedia.org/w/api.php">Wikipedia</a> APIs.</p>
           <p style="color: #666; float: left;">© 2018 Paweł Pleskaczyński</p>
           <a href="https://github.com/PawelPleskaczynski" class="github">
             <span class="mdi mdi-github-circle github" style="transform: translateY(27%); transform: scale(1.5); margin-left: 8px;"></span>

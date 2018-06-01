@@ -1,28 +1,39 @@
 var pic_arr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-var mobile_pic_arr = ['1', '2', '3', '5', '6', '7', '10'];
-var pic_arr_night = ['1', '3', '4', '6', '7', '10'];
-var mobile_pic_arr_night = ['1', '3', '6', '7', '10'];
+var pic_arr_night = ['1', '3', '4', '6', '7'];
 var random = Math.floor((Math.random() * 10));
-var randomMobile = Math.floor((Math.random() * 7));
-var random_night = Math.floor((Math.random() * 6));
-var randomMobile_night = Math.floor((Math.random() * 5));
+var random_night = Math.floor((Math.random() * 5));
 var date = new Date();
 var hour = date.getHours();
-if (hour > 10 && hour <= 16) {
+
+var credits = ["DSS II/DSS I, K. Masztalerz, P. Ware, K. Maddox",
+"NASA, ESA, G. Illingworth, D. Magee, and P. Oesch (University of California, Santa Cruz), R. Bouwens (Leiden University), and the HUDF09 Team",
+"DSS II, ESO, STScl, K. Masztalerz",
+"NASA, Holland Ford (JHU), the ACS Science Team and ESA",
+"NASA, ESA, and The Hubble Heritage Team (AURA/STScI)",
+"DSS II, Mt. Palomar observatory, STScl, K. Masztalerz",
+"Liverpool telescope",
+"Hubble Space Telescope",
+"P. Pleskaczynski",
+"NASA, ESA and the Hubble SM4 ERO Team"];
+if (hour > 9 && hour <= 18) {
   setbg();
+  var nr = pic_arr[random] - 1;
+  document.getElementById("credits_div").setAttribute("data-original-title", credits[nr]);
 } else {
   setbgnight();
+  var nr_night = pic_arr_night[random_night] - 1;
+  document.getElementById("credits_div").setAttribute("data-original-title", credits[nr_night]);
 }
 
 function setbg() {
   jQuery(".btn").removeClass("btn-secondary");
   function mediaquery(mobile) {
     if (mobile.matches) {
-      jQuery(".btn").addClass("btn-secondary" + mobile_pic_arr[randomMobile]);
+      jQuery(".btn").addClass("btn-secondary" + pic_arr[random]);
       var tempimg = new Image();
-      tempimg.src = "images/" + mobile_pic_arr[randomMobile] + ".jpg";
+      tempimg.src = "images/" + pic_arr[random] + ".jpg";
       tempimg.onload = function(){
-        jQuery(".mobile_bg").css("background","url(images/" + mobile_pic_arr[randomMobile] + ".jpg) no-repeat center center");
+        jQuery(".mobile_bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center");
         jQuery(".mobile_bg").css("background-size","cover");
       };
     } else {
@@ -32,6 +43,7 @@ function setbg() {
       var isIE = /*@cc_on!@*/false || !!document.documentMode;
       var isEdge = !isIE && !!window.StyleMedia;
       var moon = 9;
+      var hudf = 2;
 
       var no_ie = (isChrome || isFirefox || isOpera);
       var is_ie = (isIE || isEdge);
@@ -41,7 +53,7 @@ function setbg() {
       }
 
       if (no_ie) {
-        if (pic_arr[random] == moon) {
+        if (pic_arr[random] == moon || pic_arr[random] == hudf) {
           var tempimg = new Image();
           tempimg.src = "images/" + pic_arr[random] + ".jpg";
           jQuery(".layer1").hide();
@@ -59,7 +71,7 @@ function setbg() {
       jQuery(".btn").addClass("btn-secondary" + pic_arr[random]);
       tempimg.onload = function(){
         if (no_ie) {
-          if (pic_arr[random] != moon) {
+          if (pic_arr[random] != moon && pic_arr[random] != hudf) {
             var tempimg1 = new Image();
             var tempimg2 = new Image();
             tempimg1.src = "images/" + pic_arr[random] + "_stars_layer_1.jpg";
@@ -164,11 +176,11 @@ function setbgnight() {
   jQuery(".btn").removeClass("btn-secondary");
   function mediaquery(mobile) {
     if (mobile.matches) {
-      jQuery(".btn").addClass("btn-secondary" + mobile_pic_arr_night[randomMobile_night]);
+      jQuery(".btn").addClass("btn-secondary" + pic_arr_night[random_night]);
       var tempimg = new Image();
-      tempimg.src = "images/" + mobile_pic_arr_night[randomMobile_night] + ".jpg";
+      tempimg.src = "images/" + pic_arr_night[random_night] + ".jpg";
       tempimg.onload = function(){
-        jQuery(".mobile_bg").css("background","url(images/" + mobile_pic_arr_night[randomMobile_night] + ".jpg) no-repeat center center");
+        jQuery(".mobile_bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center");
         jQuery(".mobile_bg").css("background-size","cover");
       };
     } else {

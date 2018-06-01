@@ -21,8 +21,11 @@ window.onload = function() {
     jQuery(".about").css("background","#222");
   }
   scrollreveal.reveal('.text_item');
-  scrollreveal.reveal('.apis_text');
 }
+
+jQuery(document).ready(function(){
+  jQuery('[data-toggle="tooltip"]').tooltip();
+});  
 
 function openDSO() {
   var object_name = document.getElementById("input_name").value;

@@ -142,8 +142,8 @@ fieldset[disabled] .btn-secondary3.active {
 /* bg 4 */
 .btn-secondary4 {
   color: #ffffff;
-  background-color: #C01F15;
-  border-color: #C01F15;
+  background-color: #d4473e;
+  border-color: #d4473e;
 }
 
 .btn-secondary4:hover,
@@ -152,8 +152,8 @@ fieldset[disabled] .btn-secondary3.active {
 .btn-secondary4.active,
 .open .dropdown-toggle.btn-secondary4 {
   color: #ffffff;
-  background-color: #8C1C10;
-  border-color: #8C1C10;
+  background-color: #8f2a2e;
+  border-color: #8f2a2e;
 }
 
 .btn-secondary4:active,
@@ -177,20 +177,20 @@ fieldset[disabled] .btn-secondary4:active,
 .btn-secondary4.disabled.active,
 .btn-secondary4[disabled].active,
 fieldset[disabled] .btn-secondary4.active {
-  background-color: #C01F15;
-  border-color: #C01F15;
+  background-color: #d4473e;
+  border-color: #d4473e;
 }
 
 .btn-secondary4 .badge {
-  color: #C01F15;
+  color: #d4473e;
   background-color: #ffffff;
 }
 
 /* bg 5 */
 .btn-secondary5 {
   color: #ffffff;
-  background-color: #6DA3BB;
-  border-color: #6DA3BB;
+  background-color: #c82457;
+  border-color: #c82457;
 }
 
 .btn-secondary5:hover,
@@ -199,8 +199,8 @@ fieldset[disabled] .btn-secondary4.active {
 .btn-secondary5.active,
 .open .dropdown-toggle.btn-secondary5 {
   color: #ffffff;
-  background-color: #30537D;
-  border-color: #30537D;
+  background-color: #89274e;
+  border-color: #89274e;
 }
 
 .btn-secondary5:active,
@@ -224,12 +224,12 @@ fieldset[disabled] .btn-secondary5:active,
 .btn-secondary5.disabled.active,
 .btn-secondary5[disabled].active,
 fieldset[disabled] .btn-secondary5.active {
-  background-color: #6DA3BB;
-  border-color: #6DA3BB;
+  background-color: #c82457;
+  border-color: #c82457;
 }
 
 .btn-secondary5 .badge {
-  color: #6DA3BB;
+  color: #c82457;
   background-color: #ffffff;
 }
 
@@ -424,8 +424,8 @@ fieldset[disabled] .btn-secondary9.active {
 /* bg 10 */
 .btn-secondary10 {
   color: #ffffff;
-  background-color: #DC4554;
-  border-color: #DC4554;
+  background-color: #297e7e;
+  border-color: #297e7e;
 }
 
 .btn-secondary10:hover,
@@ -434,8 +434,8 @@ fieldset[disabled] .btn-secondary9.active {
 .btn-secondary10.active,
 .open .dropdown-toggle.btn-secondary10 {
   color: #ffffff;
-  background-color: #812228;
-  border-color: #812228;
+  background-color: #0a3955;
+  border-color: #0a3955;
 }
 
 .btn-secondary10:active,
@@ -459,11 +459,11 @@ fieldset[disabled] .btn-secondary10:active,
 .btn-secondary10.disabled.active,
 .btn-secondary10[disabled].active,
 fieldset[disabled] .btn-secondary10.active {
-  background-color: #DC4554;
-  border-color: #DC4554;
+  background-color: #297e7e;
+  border-color: #297e7e;
 }
 
 .btn-secondary10 .badge {
-  color: #DC4554;
+  color: #297e7e;
   background-color: #ffffff;
 }
