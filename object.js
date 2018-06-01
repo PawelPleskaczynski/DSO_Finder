@@ -68,7 +68,7 @@ function load() {
       jQuery("#loadingtextdiv").hide();
       jQuery("#card_ra_dec").hide();
       jQuery("#link_div").show();
-      document.getElementById("link_simbad").innerHTML = "Latest solar images from SDO";
+      document.getElementById("link_simbad").innerHTML = "Images from SDO";
       document.getElementById("link_simbad").href = "https://sdo.gsfc.nasa.gov/";
       document.getElementById("link_wikipedia").href = "https://en.wikipedia.org/wiki/Sun";
       jQuery("#link_p").css("opacity","1");
@@ -331,21 +331,30 @@ function load() {
         jQuery("#table_fluxes_p").hide();
         jQuery("#table_btn_div").hide();
       }
-/*
 
-*/
+
       function createTable_object_types() {
-        for (var i = 0 ; i < table_data_object_types.length ; i++) {
-          var row$ = $('<tr/>');
-          for (var colIndex = 0 ; colIndex < 1 ; colIndex++) {
-            var cellValue = table_data_object_types[i];
+        var requrl = "object_types.json";
+        jQuery.getJSON(requrl, function(json) {
+          for (var i = 0 ; i < table_data_object_types.length ; i++) {
+            var row$ = $('<tr/>');
+            for (var colIndex = 0 ; colIndex < 1 ; colIndex++) {
+              var cellValue = table_data_object_types[i];
 
-            if (cellValue == null) { cellValue = ""; }
+              function find_object(element) {
+                return element.name == cellValue;
+              }
+              var element_index = json.findIndex(find_object);
+              var value = json[element_index].value;
+              cellValue = value;
 
-            row$.append($('<td/>').html(cellValue));
+              if (cellValue == null) { cellValue = ""; }
+
+              row$.append($('<td/>').html(cellValue));
+            }
+            $("#table_type").append(row$);
           }
-          $("#table_type").append(row$);
-        }
+        });
       }
 
       function createTable_aliases() {
@@ -793,7 +802,7 @@ function openDSO() {
         }
       });
     } else {
-      if (object_name.match(/sun/i)) {
+      if (object_name.toUpperCase().trim() == "sun".toUpperCase().trim()) {
         anime({
           targets: '#nonav_content',
           opacity: 0,
@@ -803,7 +812,7 @@ function openDSO() {
             window.open("object.html?obj=sun","_self")
           }
         });
-      } else if (object_name.match(/moon/i)) {
+      } else if (object_name.toUpperCase().trim() == "moon".toUpperCase().trim()) {
         anime({
           targets: '#nonav_content',
           opacity: 0,

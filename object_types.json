@@ -1,0 +1,950 @@
+[
+ {
+   "name": "?",
+   "value": "Object of unknown nature"
+ },
+ {
+   "name": "ev",
+   "value": "Transient event"
+ },
+ {
+   "name": "Rad",
+   "value": "Radio-source"
+ },
+ {
+   "name": "mR",
+   "value": "Metric Radio-source"
+ },
+ {
+   "name": "cm",
+   "value": "Centimetric Radio-source"
+ },
+ {
+   "name": "mm",
+   "value": "Millimetric Radio-source"
+ },
+ {
+   "name": "smm",
+   "value": "Sub-millimetric source"
+ },
+ {
+   "name": "HI",
+   "value": "HI (21cm) source"
+ },
+ {
+   "name": "rB",
+   "value": "radio Burst"
+ },
+ {
+   "name": "Mas",
+   "value": "Maser"
+ },
+ {
+   "name": "IR",
+   "value": "Infra-Red source"
+ },
+ {
+   "name": "FIR",
+   "value": "Far-IR source  (? >= 30 ?m)"
+ },
+ {
+   "name": "NIR",
+   "value": "Near-IR source (? < 10 ?m)"
+ },
+ {
+   "name": "red",
+   "value": "Very red source"
+ },
+ {
+   "name": "ERO",
+   "value": "Extremely Red Object"
+ },
+ {
+   "name": "blu",
+   "value": "Blue object"
+ },
+ {
+   "name": "UV",
+   "value": "UV-emission source"
+ },
+ {
+   "name": "X",
+   "value": "X-ray source"
+ },
+ {
+   "name": "UX?",
+   "value": "Ultra-luminous X-ray candidate"
+ },
+ {
+   "name": "ULX",
+   "value": "Ultra-luminous X-ray source"
+ },
+ {
+   "name": "gam",
+   "value": "Gamma-ray source"
+ },
+ {
+   "name": "gB",
+   "value": "Gamma-ray Burst"
+ },
+ {
+   "name": "err",
+   "value": "Not an object (error, artefact, ...)"
+ },
+ {
+   "name": "grv",
+   "value": "Gravitational Source"
+ },
+ {
+   "name": "Lev",
+   "value": "(Micro)Lensing Event"
+ },
+ {
+   "name": "LS?",
+   "value": "Possible gravitational lens System"
+ },
+ {
+   "name": "Le?",
+   "value": "Possible gravitational lens"
+ },
+ {
+   "name": "LI?",
+   "value": "Possible gravitationally lensed image"
+ },
+ {
+   "name": "gLe",
+   "value": "Gravitational Lens"
+ },
+ {
+   "name": "gLS",
+   "value": "Gravitational Lens System (lens+images)"
+ },
+ {
+   "name": "GWE",
+   "value": "Gravitational Wave Event"
+ },
+ {
+   "name": "G?",
+   "value": "Possible Galaxy"
+ },
+ {
+   "name": "SC?",
+   "value": "Possible Supercluster of Galaxies"
+ },
+ {
+   "name": "C?G",
+   "value": "Possible Cluster of Galaxies"
+ },
+ {
+   "name": "Gr?",
+   "value": "Possible Group of Galaxies"
+ },
+ {
+   "name": "As?",
+   "value": "Possible As*"
+ },
+ {
+   "name": "**?",
+   "value": "Physical Binary Candidate"
+ },
+ {
+   "name": "EB?",
+   "value": "Eclipsing Binary Candidate"
+ },
+ {
+   "name": "Sy?",
+   "value": "Symbiotic Star Candidate"
+ },
+ {
+   "name": "CV?",
+   "value": "Cataclysmic Binary Candidate"
+ },
+ {
+   "name": "No?",
+   "value": "Nova Candidate"
+ },
+ {
+   "name": "XB?",
+   "value": "X-ray binary Candidate"
+ },
+ {
+   "name": "LX?",
+   "value": "Low-Mass X-ray binary Candidate"
+ },
+ {
+   "name": "HX?",
+   "value": "High-Mass X-ray binary Candidate"
+ },
+ {
+   "name": "Pec?",
+   "value": "Possible Peculiar Star"
+ },
+ {
+   "name": "Y*?",
+   "value": "Young Stellar Object Candidate"
+ },
+ {
+   "name": "pr?",
+   "value": "Pre-main sequence Star Candidate"
+ },
+ {
+   "name": "TT?",
+   "value": "T Tau star Candidate"
+ },
+ {
+   "name": "C*?",
+   "value": "Possible Carbon Star"
+ },
+ {
+   "name": "S*?",
+   "value": "Possible S Star"
+ },
+ {
+   "name": "OH?",
+   "value": "Possible Star with envelope of OH/IR type"
+ },
+ {
+   "name": "CH?",
+   "value": "Possible Star with envelope of CH type"
+ },
+ {
+   "name": "WR?",
+   "value": "Possible Wolf-Rayet Star"
+ },
+ {
+   "name": "Be?",
+   "value": "Possible Be Star"
+ },
+ {
+   "name": "Ae?",
+   "value": "Possible Herbig Ae/Be Star"
+ },
+ {
+   "name": "HB?",
+   "value": "Possible Horizontal Branch Star"
+ },
+ {
+   "name": "RR?",
+   "value": "Possible Star of RR Lyr type"
+ },
+ {
+   "name": "Ce?",
+   "value": "Possible Cepheid"
+ },
+ {
+   "name": "RB?",
+   "value": "Possible Red Giant Branch star"
+ },
+ {
+   "name": "sg?",
+   "value": "Possible Supergiant star"
+ },
+ {
+   "name": "s?r",
+   "value": "Possible Red supergiant star"
+ },
+ {
+   "name": "s?y",
+   "value": "Possible Yellow supergiant star"
+ },
+ {
+   "name": "s?b",
+   "value": "Possible Blue supergiant star"
+ },
+ {
+   "name": "AB?",
+   "value": "Asymptotic Giant Branch Star candidate"
+ },
+ {
+   "name": "LP?",
+   "value": "Long Period Variable candidate"
+ },
+ {
+   "name": "Mi?",
+   "value": "Mira candidate"
+ },
+ {
+   "name": "sv?",
+   "value": "Semi-regular variable candidate"
+ },
+ {
+   "name": "pA?",
+   "value": "Post-AGB Star Candidate"
+ },
+ {
+   "name": "BS?",
+   "value": "Candidate blue Straggler Star"
+ },
+ {
+   "name": "HS?",
+   "value": "Hot subdwarf candidate"
+ },
+ {
+   "name": "WD?",
+   "value": "White Dwarf Candidate"
+ },
+ {
+   "name": "N*?",
+   "value": "Neutron Star Candidate"
+ },
+ {
+   "name": "BH?",
+   "value": "Black Hole Candidate"
+ },
+ {
+   "name": "SN?",
+   "value": "SuperNova Candidate"
+ },
+ {
+   "name": "LM?",
+   "value": "Low-mass star candidate"
+ },
+ {
+   "name": "BD?",
+   "value": "Brown Dwarf Candidate"
+ },
+ {
+   "name": "mul",
+   "value": "Composite object"
+ },
+ {
+   "name": "reg",
+   "value": "Region defined in the sky"
+ },
+ {
+   "name": "vid",
+   "value": "Underdense region of the Universe"
+ },
+ {
+   "name": "SCG",
+   "value": "Supercluster of Galaxies"
+ },
+ {
+   "name": "ClG",
+   "value": "Cluster of Galaxies"
+ },
+ {
+   "name": "GrG",
+   "value": "Group of Galaxies"
+ },
+ {
+   "name": "CGG",
+   "value": "Compact Group of Galaxies"
+ },
+ {
+   "name": "PaG",
+   "value": "Pair of Galaxies"
+ },
+ {
+   "name": "IG",
+   "value": "Interacting Galaxies"
+ },
+ {
+   "name": "C?*",
+   "value": "Possible (open) star cluster"
+ },
+ {
+   "name": "Gl?",
+   "value": "Possible Globular Cluster"
+ },
+ {
+   "name": "Cl*",
+   "value": "Cluster of Stars"
+ },
+ {
+   "name": "GlC",
+   "value": "Globular Cluster"
+ },
+ {
+   "name": "OpC",
+   "value": "Open (galactic) Cluster"
+ },
+ {
+   "name": "As*",
+   "value": "Association of Stars"
+ },
+ {
+   "name": "St*",
+   "value": "Stellar Stream"
+ },
+ {
+   "name": "MGr",
+   "value": "Moving Group"
+ },
+ {
+   "name": "**",
+   "value": "Double or multiple star"
+ },
+ {
+   "name": "EB*",
+   "value": "Eclipsing binary"
+ },
+ {
+   "name": "Al*",
+   "value": "Eclipsing binary of Algol type"
+ },
+ {
+   "name": "bL*",
+   "value": "Eclipsing binary of beta Lyr type"
+ },
+ {
+   "name": "WU*",
+   "value": "Eclipsing binary of W UMa type"
+ },
+ {
+   "name": "EP*",
+   "value": "Star showing eclipses by its planet"
+ },
+ {
+   "name": "SB*",
+   "value": "Spectroscopic binary"
+ },
+ {
+   "name": "El*",
+   "value": "Ellipsoidal variable Star"
+ },
+ {
+   "name": "Sy*",
+   "value": "Symbiotic Star"
+ },
+ {
+   "name": "CV*",
+   "value": "Cataclysmic Variable Star"
+ },
+ {
+   "name": "DQ*",
+   "value": "CV DQ Her type (intermediate polar)"
+ },
+ {
+   "name": "AM*",
+   "value": "CV of AM Her type (polar)"
+ },
+ {
+   "name": "NL*",
+   "value": "Nova-like Star"
+ },
+ {
+   "name": "No*",
+   "value": "Nova"
+ },
+ {
+   "name": "DN*",
+   "value": "Dwarf Nova"
+ },
+ {
+   "name": "XB*",
+   "value": "X-ray Binary"
+ },
+ {
+   "name": "LXB",
+   "value": "Low Mass X-ray Binary"
+ },
+ {
+   "name": "HXB",
+   "value": "High Mass X-ray Binary"
+ },
+ {
+   "name": "ISM",
+   "value": "Interstellar matter"
+ },
+ {
+   "name": "PoC",
+   "value": "Part of Cloud"
+ },
+ {
+   "name": "PN?",
+   "value": "Possible Planetary Nebula"
+ },
+ {
+   "name": "GCb",
+   "value": "Cometary Globule"
+ },
+ {
+   "name": "bub",
+   "value": "Bubble"
+ },
+ {
+   "name": "EmO",
+   "value": "Emission Object"
+ },
+ {
+   "name": "Cld",
+   "value": "Cloud"
+ },
+ {
+   "name": "GNe",
+   "value": "Galactic Nebula"
+ },
+ {
+   "name": "BNe",
+   "value": "Bright Nebula"
+ },
+ {
+   "name": "DNe",
+   "value": "Dark Cloud (nebula)"
+ },
+ {
+   "name": "RNe",
+   "value": "Reflection Nebula"
+ },
+ {
+   "name": "MoC",
+   "value": "Molecular Cloud"
+ },
+ {
+   "name": "glb",
+   "value": "Globule (low-mass dark cloud)"
+ },
+ {
+   "name": "cor",
+   "value": "Dense core"
+ },
+ {
+   "name": "SFR",
+   "value": "Star forming region"
+ },
+ {
+   "name": "HVC",
+   "value": "High-velocity Cloud"
+ },
+ {
+   "name": "HII",
+   "value": "HII (ionized) region"
+ },
+ {
+   "name": "PN",
+   "value": "Planetary Nebula"
+ },
+ {
+   "name": "sh",
+   "value": "HI shell"
+ },
+ {
+   "name": "SR?",
+   "value": "SuperNova Remnant Candidate"
+ },
+ {
+   "name": "SNR",
+   "value": "SuperNova Remnant"
+ },
+ {
+   "name": "cir",
+   "value": "CircumStellar matter"
+ },
+ {
+   "name": "of?",
+   "value": "Outflow candidate"
+ },
+ {
+   "name": "out",
+   "value": "Outflow"
+ },
+ {
+   "name": "HH",
+   "value": "Herbig-Haro Object"
+ },
+ {
+   "name": "*",
+   "value": "Star"
+ },
+ {
+   "name": "*iC",
+   "value": "Star in Cluster"
+ },
+ {
+   "name": "*iN",
+   "value": "Star in Nebula"
+ },
+ {
+   "name": "*iA",
+   "value": "Star in Association"
+ },
+ {
+   "name": "*i*",
+   "value": "Star in double system"
+ },
+ {
+   "name": "V*?",
+   "value": "Star suspected of Variability"
+ },
+ {
+   "name": "Pe*",
+   "value": "Peculiar Star"
+ },
+ {
+   "name": "HB*",
+   "value": "Horizontal Branch Star"
+ },
+ {
+   "name": "Y*O",
+   "value": "Young Stellar Object"
+ },
+ {
+   "name": "Ae*",
+   "value": "Herbig Ae/Be star"
+ },
+ {
+   "name": "Em*",
+   "value": "Emission-line Star"
+ },
+ {
+   "name": "Be*",
+   "value": "Be Star"
+ },
+ {
+   "name": "BS*",
+   "value": "Blue Straggler Star"
+ },
+ {
+   "name": "RG*",
+   "value": "Red Giant Branch star"
+ },
+ {
+   "name": "AB*",
+   "value": "Asymptotic Giant Branch Star (He-burning)"
+ },
+ {
+   "name": "C*",
+   "value": "Carbon Star"
+ },
+ {
+   "name": "S*",
+   "value": "S Star"
+ },
+ {
+   "name": "sg*",
+   "value": "Evolved supergiant star"
+ },
+ {
+   "name": "s*r",
+   "value": "Red supergiant star"
+ },
+ {
+   "name": "s*y",
+   "value": "Yellow supergiant star"
+ },
+ {
+   "name": "s*b",
+   "value": "Blue supergiant star"
+ },
+ {
+   "name": "HS*",
+   "value": "Hot subdwarf"
+ },
+ {
+   "name": "pA*",
+   "value": "Post-AGB Star (proto-PN)"
+ },
+ {
+   "name": "WD*",
+   "value": "White Dwarf"
+ },
+ {
+   "name": "ZZ*",
+   "value": "Pulsating White Dwarf"
+ },
+ {
+   "name": "LM*",
+   "value": "Low-mass star (M<1solMass)"
+ },
+ {
+   "name": "BD*",
+   "value": "Brown Dwarf (M<0.08solMass)"
+ },
+ {
+   "name": "N*",
+   "value": "Confirmed Neutron Star"
+ },
+ {
+   "name": "OH*",
+   "value": "OH/IR star"
+ },
+ {
+   "name": "CH*",
+   "value": "Star with envelope of CH type"
+ },
+ {
+   "name": "pr*",
+   "value": "Pre-main sequence Star"
+ },
+ {
+   "name": "TT*",
+   "value": "T Tau-type Star"
+ },
+ {
+   "name": "WR*",
+   "value": "Wolf-Rayet Star"
+ },
+ {
+   "name": "PM*",
+   "value": "High proper-motion Star"
+ },
+ {
+   "name": "HV*",
+   "value": "High-velocity Star"
+ },
+ {
+   "name": "V*",
+   "value": "Variable Star"
+ },
+ {
+   "name": "Ir*",
+   "value": "Variable Star of irregular type"
+ },
+ {
+   "name": "Or*",
+   "value": "Variable Star of Orion Type"
+ },
+ {
+   "name": "V* RI*",
+   "value": "Variable Star with rapid variations"
+ },
+ {
+   "name": "Er*",
+   "value": "Eruptive variable Star"
+ },
+ {
+   "name": "Fl*",
+   "value": "Flare Star"
+ },
+ {
+   "name": "FU*",
+   "value": "Variable Star of FU Ori type"
+ },
+ {
+   "name": "RC*",
+   "value": "Variable Star of R CrB type"
+ },
+ {
+   "name": "RC?",
+   "value": "Variable Star of R CrB type candiate"
+ },
+ {
+   "name": "Ro*",
+   "value": "Rotationally variable Star"
+ },
+ {
+   "name": "a2*",
+   "value": "Variable Star of alpha2 CVn type"
+ },
+ {
+   "name": "Psr",
+   "value": "Pulsar"
+ },
+ {
+   "name": "BY*",
+   "value": "Variable of BY Dra type"
+ },
+ {
+   "name": "RS*",
+   "value": "Variable of RS CVn type"
+ },
+ {
+   "name": "Pu*",
+   "value": "Pulsating variable Star"
+ },
+ {
+   "name": "RR*",
+   "value": "Variable Star of RR Lyr type"
+ },
+ {
+   "name": "Ce*",
+   "value": "Cepheid variable Star"
+ },
+ {
+   "name": "dS*",
+   "value": "Variable Star of delta Sct type"
+ },
+ {
+   "name": "RV*",
+   "value": "Variable Star of RV Tau type"
+ },
+ {
+   "name": "WV*",
+   "value": "Variable Star of W Vir type"
+ },
+ {
+   "name": "bC*",
+   "value": "Variable Star of beta Cep type"
+ },
+ {
+   "name": "cC*",
+   "value": "Classical Cepheid (delta Cep type)"
+ },
+ {
+   "name": "gD*",
+   "value": "Variable Star of gamma Dor type"
+ },
+ {
+   "name": "SX*",
+   "value": "Variable Star of SX Phe type (subdwarf)"
+ },
+ {
+   "name": "LP*",
+   "value": "Long-period variable star"
+ },
+ {
+   "name": "Mi*",
+   "value": "Variable Star of Mira Cet type"
+ },
+ {
+   "name": "sr*",
+   "value": "Semi-regular pulsating Star"
+ },
+ {
+   "name": "SN*",
+   "value": "SuperNova"
+ },
+ {
+   "name": "su*",
+   "value": "Sub-stellar object"
+ },
+ {
+   "name": "Pl?",
+   "value": "Extra-solar Planet Candidate"
+ },
+ {
+   "name": "Pl",
+   "value": "Extra-solar Confirmed Planet"
+ },
+ {
+   "name": "G",
+   "value": "Galaxy"
+ },
+ {
+   "name": "PoG",
+   "value": "Part of a Galaxy"
+ },
+ {
+   "name": "GiC",
+   "value": "Galaxy in Cluster of Galaxies"
+ },
+ {
+   "name": "BiC",
+   "value": "Brightest galaxy in a Cluster (BCG)"
+ },
+ {
+   "name": "GiG",
+   "value": "Galaxy in Group of Galaxies"
+ },
+ {
+   "name": "GiP",
+   "value": "Galaxy in Pair of Galaxies"
+ },
+ {
+   "name": "HzG",
+   "value": "Galaxy with high redshift"
+ },
+ {
+   "name": "ALS",
+   "value": "Absorption Line system"
+ },
+ {
+   "name": "LyA",
+   "value": "Ly alpha Absorption Line system"
+ },
+ {
+   "name": "DLA",
+   "value": "Damped Ly-alpha Absorption Line system"
+ },
+ {
+   "name": "mAL",
+   "value": "metallic Absorption Line system"
+ },
+ {
+   "name": "LLS",
+   "value": "Lyman limit system"
+ },
+ {
+   "name": "BAL",
+   "value": "Broad Absorption Line system"
+ },
+ {
+   "name": "rG",
+   "value": "Radio Galaxy"
+ },
+ {
+   "name": "H2G",
+   "value": "HII Galaxy"
+ },
+ {
+   "name": "LSB",
+   "value": "Low Surface Brightness Galaxy"
+ },
+ {
+   "name": "AG?",
+   "value": "Possible Active Galaxy Nucleus"
+ },
+ {
+   "name": "Q?",
+   "value": "Possible Quasar"
+ },
+ {
+   "name": "Bz?",
+   "value": "Possible Blazar"
+ },
+ {
+   "name": "BL?",
+   "value": "Possible BL Lac"
+ },
+ {
+   "name": "EmG",
+   "value": "Emission-line galaxy"
+ },
+ {
+   "name": "SBG",
+   "value": "Starburst Galaxy"
+ },
+ {
+   "name": "bCG",
+   "value": "Blue compact Galaxy"
+ },
+ {
+   "name": "LeI",
+   "value": "Gravitationally Lensed Image"
+ },
+ {
+   "name": "LeG",
+   "value": "Gravitationally Lensed Image of a Galaxy"
+ },
+ {
+   "name": "LeQ",
+   "value": "Gravitationally Lensed Image of a Quasar"
+ },
+ {
+   "name": "AGN",
+   "value": "Active Galaxy Nucleus"
+ },
+ {
+   "name": "LIN",
+   "value": "LINER-type Active Galaxy Nucleus"
+ },
+ {
+   "name": "SyG",
+   "value": "Seyfert Galaxy"
+ },
+ {
+   "name": "Sy1",
+   "value": "Seyfert 1 Galaxy"
+ },
+ {
+   "name": "Sy2",
+   "value": "Seyfert 2 Galaxy"
+ },
+ {
+   "name": "Bla",
+   "value": "Blazar"
+ },
+ {
+   "name": "BLL",
+   "value": "BL Lac - type object"
+ },
+ {
+   "name": "QVV",
+   "value": "Optically Violently Variable object"
+ },
+ {
+   "name": "QSO",
+   "value": "Quasar"
+ }
+]

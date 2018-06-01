@@ -75,7 +75,7 @@ function openDSO() {
         }
       });
     } else {
-      if (object_name.match(/sun/i)) {
+      if (object_name.toUpperCase().trim() == "sun".toUpperCase().trim()) {
         anime({
           targets: 'body',
           opacity: 0,
@@ -85,7 +85,7 @@ function openDSO() {
             window.open("object.html?obj=sun&barslide=true","_self")
           }
         });
-      } else if (object_name.match(/moon/i)) {
+      } else if (object_name.toUpperCase().trim() == "moon".toUpperCase().trim()) {
         anime({
           targets: 'body',
           opacity: 0,
