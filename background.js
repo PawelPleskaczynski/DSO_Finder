@@ -4,8 +4,6 @@ var random = Math.floor((Math.random() * 20));
 var random_night = Math.floor((Math.random() * 13));
 var date = new Date();
 var hour = date.getHours();
-jQuery(".bg").hide();
-jQuery(".mobile_bg").hide();
 
 var credits = ["DSS II/DSS I, K. Masztalerz, P. Ware, K. Maddox",
 "NASA, ESA, G. Illingworth, D. Magee, and P. Oesch (University of California, Santa Cruz), R. Bouwens (Leiden University), and the HUDF09 Team",
@@ -44,7 +42,6 @@ function setbg() {
       tempimg.onload = function(){
         jQuery(".mobile_bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center");
         jQuery(".mobile_bg").css("background-size","cover");
-        jQuery(".mobile_bg").fadeIn("slow");
       };
     } else {
       var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
@@ -84,7 +81,6 @@ function setbg() {
       tempimg.onload = function(){
         if (no_ie) {
           if (pic_arr[random] != moon && pic_arr[random] != hudf && pic_arr[random] != img1 && pic_arr[random] != img2) {
-            jQuery(".bg").fadeIn("slow");
             var tempimg1 = new Image();
             var tempimg2 = new Image();
             tempimg1.src = "images/" + pic_arr[random] + "_stars_layer_1.jpg";
@@ -145,7 +141,6 @@ function setbg() {
             };
 
           } else {
-            jQuery(".bg").fadeIn("slow");
             jQuery(".layer1").hide();
             jQuery(".layer2").hide();
             jQuery(".bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
@@ -165,13 +160,11 @@ function setbg() {
             parallax.start();
           }
         } else if (isIE || isEdge) {
-          jQuery(".bg").fadeIn("slow");
           jQuery(".layer1").hide();
           jQuery(".layer2").hide();
           jQuery(".bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
           jQuery(".bg").css("background-size","cover");
         } else {
-          jQuery(".bg").fadeIn("slow");
           jQuery(".layer1").hide();
           jQuery(".layer2").hide();
           jQuery(".bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
@@ -198,7 +191,6 @@ function setbgnight() {
       tempimg.onload = function(){
         jQuery(".mobile_bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center");
         jQuery(".mobile_bg").css("background-size","cover");
-        jQuery(".mobile_bg").fadeIn("slow");
       };
     } else {
       var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
@@ -236,7 +228,6 @@ function setbgnight() {
       tempimg.onload = function(){
         if (no_ie) {
           if (pic_arr_night[random_night] != img1) {
-            jQuery(".bg").fadeIn("slow");
             var tempimg1 = new Image();
             var tempimg2 = new Image();
             tempimg1.src = "images/" + pic_arr_night[random_night] + "_stars_layer_1.jpg";
@@ -296,7 +287,6 @@ function setbgnight() {
               parallax_layer_2.start();
             };
           } else {
-            jQuery(".bg").fadeIn("slow");
             jQuery(".layer1").hide();
             jQuery(".layer2").hide();
             jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
@@ -316,13 +306,11 @@ function setbgnight() {
             parallax.start();
           }
         } else if (isIE || isEdge) {
-          jQuery(".bg").fadeIn("slow");
           jQuery(".layer1").hide();
           jQuery(".layer2").hide();
           jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
           jQuery(".bg").css("background-size","cover");
         } else {
-          jQuery(".bg").fadeIn("slow");
           jQuery(".layer1").hide();
           jQuery(".layer2").hide();
           jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
