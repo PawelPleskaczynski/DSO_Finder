@@ -5,6 +5,7 @@ var random_night = Math.floor((Math.random() * 13));
 var date = new Date();
 var hour = date.getHours();
 jQuery(".bg").hide();
+jQuery(".mobile_bg").hide();
 
 var credits = ["DSS II/DSS I, K. Masztalerz, P. Ware, K. Maddox",
 "NASA, ESA, G. Illingworth, D. Magee, and P. Oesch (University of California, Santa Cruz), R. Bouwens (Leiden University), and the HUDF09 Team",
@@ -43,7 +44,7 @@ function setbg() {
       tempimg.onload = function(){
         jQuery(".mobile_bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center");
         jQuery(".mobile_bg").css("background-size","cover");
-        jQuery(".bg").fadeIn("slow");
+        jQuery(".mobile_bg").fadeIn("slow");
       };
     } else {
       var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
@@ -197,7 +198,7 @@ function setbgnight() {
       tempimg.onload = function(){
         jQuery(".mobile_bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center");
         jQuery(".mobile_bg").css("background-size","cover");
-        jQuery(".bg").fadeIn("slow");
+        jQuery(".mobile_bg").fadeIn("slow");
       };
     } else {
       var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
