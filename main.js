@@ -1,3 +1,13 @@
+function mediaquery_height(mobilequery) {
+  if (mobilequery.matches) {
+    var viewport_height = jQuery(window).height();
+    jQuery(".mobile_bg").css("height",viewport_height);
+  }
+}
+var mobilequery = window.matchMedia("(max-width: 730px)")
+
+mediaquery_height(mobilequery);
+
 window.scrollreveal = ScrollReveal();
 scrollreveal.reveal('#about', {
   afterReveal: function(domEl) {
