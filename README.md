@@ -20,7 +20,7 @@ Powered by <a href="https://api.arcsecond.io/?/">arcsecond.io</a>, <a href="http
 SDSS and DSS2 observatories
 
 ##### Moon
-Virtual Moon Atlas
+Map copyright: Applied Coherent Technology, NASA LRO
 
 ##### Sun
 NASA SDO

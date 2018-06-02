@@ -471,8 +471,8 @@ fieldset[disabled] .btn-secondary10.active {
 /* bg 11 */
 .btn-secondary11 {
   color: #ffffff;
-  background-color: #cf7753;
-  border-color: #cf7753;
+  background-color: #D64E5C;
+  border-color: #D64E5C;
 }
 
 .btn-secondary11:hover,
@@ -506,12 +506,12 @@ fieldset[disabled] .btn-secondary11:active,
 .btn-secondary11.disabled.active,
 .btn-secondary11[disabled].active,
 fieldset[disabled] .btn-secondary11.active {
-  background-color: #cf7753;
-  border-color: #cf7753;
+  background-color: #D64E5C;
+  border-color: #D64E5C;
 }
 
 .btn-secondary11 .badge {
-  color: #cf7753;
+  color: #D64E5C;
   background-color: #ffffff;
 }
 

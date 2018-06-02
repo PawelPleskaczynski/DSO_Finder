@@ -22,6 +22,9 @@ var credits = ["DSS II/DSS I, K. Masztalerz, P. Ware, K. Maddox",
 "ESO. Acknowledgement: VPHAS+ Consortium/Cambridge Astronomical Survey Unit",
 "ESO/T. Preibisch",
 "ESO"];
+
+jQuery(".bg").hide();
+
 if (hour > 9 && hour <= 18) {
   setbg();
   var nr = pic_arr[random] - 1;
@@ -79,6 +82,7 @@ function setbg() {
       jQuery(".layer2").hide();
       jQuery(".btn").addClass("btn-secondary" + pic_arr[random]);
       tempimg.onload = function(){
+        jQuery(".bg").fadeIn("slow");
         if (no_ie) {
           if (pic_arr[random] != moon && pic_arr[random] != hudf && pic_arr[random] != img1 && pic_arr[random] != img2) {
             var tempimg1 = new Image();
@@ -226,6 +230,7 @@ function setbgnight() {
       jQuery(".layer2").hide();
       jQuery(".btn").addClass("btn-secondary" + pic_arr_night[random_night]);
       tempimg.onload = function(){
+        jQuery(".bg").fadeIn("slow");
         if (no_ie) {
           if (pic_arr_night[random_night] != img1) {
             var tempimg1 = new Image();

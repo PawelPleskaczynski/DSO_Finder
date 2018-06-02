@@ -123,86 +123,35 @@ function load() {
       phase_round = "New";
     }
 
-    if (phase <= 4) {
-      phase = phase / 4 * 100;
-    } else {
-      phase = (8 - phase) / 4 * 1000;
-    }
-
-    if (phase >= 0 && phase < 10) {
-      image.src = "images/moon/moon_1.jpg"
-    } else if (phase >= 10 && phase < 20) {
-      image.src = "images/moon/moon_2.jpg"
-    } else if (phase >= 20 && phase < 30) {
-      image.src = "images/moon/moon_3.jpg"
-    } else if (phase >= 30 && phase < 40) {
-      image.src = "images/moon/moon_4.jpg"
-    } else if (phase >= 40 && phase < 50) {
-      image.src = "images/moon/moon_5.jpg"
-    } else if (phase >= 50 && phase < 60) {
-      image.src = "images/moon/moon_6.jpg"
-    } else if (phase >= 60 && phase < 70) {
-      image.src = "images/moon/moon_7.jpg"
-    } else if (phase >= 70 && phase < 80) {
-      image.src = "images/moon/moon_8.jpg"
-    } else if (phase >= 80 && phase < 85) {
-      image.src = "images/moon/moon_9.jpg"
-    } else if (phase >= 85 && phase < 91) {
-      image.src = "images/moon/moon_10.jpg"
-    } else if (phase >= 91 && phase <= 100) {
-      image.src = "images/moon/moon_12.jpg"
-    } else if (phase >= 820 && phase < 1000) {
-      image.src = "images/moon/moon_13.jpg"
-    } else if (phase >= 800 && phase < 820) {
-      image.src = "images/moon/moon_14.jpg"
-    } else if (phase >= 700 && phase < 800) {
-      image.src = "images/moon/moon_15.jpg"
-    } else if (phase >= 600 && phase < 700) {
-      image.src = "images/moon/moon_16.jpg"
-    } else if (phase >= 500 && phase < 600) {
-      image.src = "images/moon/moon_17.jpg"
-    } else if (phase >= 400 && phase < 500) {
-      image.src = "images/moon/moon_18.jpg"
-    } else if (phase >= 300 && phase < 400) {
-      image.src = "images/moon/moon_19.jpg"
-    } else if (phase >= 200 && phase < 300) {
-      image.src = "images/moon/moon_20.jpg"
-    } else if (phase >= 100 && phase < 200) {
-      image.src = "images/moon/moon_21.jpg"
-    } else if (phase >= 0 && phase < 100) {
-      image.src = "images/moon/moon_22.jpg"
-    }
-
-    if (phase > 100) {
-      phase = phase / 10;
-    }
-
-    jQuery("#cardtitle").attr("data-original-title","Around " + Math.round(phase) + "%");
-
     document.getElementById("cardtitle").innerHTML = phase_round + " Moon";
-
-    image.onload = function() {
-      jQuery(".footer").css("opacity","1");
-      jQuery("#card_ra_dec").hide();
-      jQuery("#link_div").show();
-      document.getElementById("link_simbad").innerHTML = "LRO Lunar Map";
-      document.getElementById("link_simbad").href = "https://quickmap.lroc.asu.edu/";
-      document.getElementById("link_wikipedia").href = "https://en.wikipedia.org/wiki/Moon";
-      jQuery("#link_p").css("opacity","1");
-      jQuery("#link_wikipedia").css("opacity","1");
-      jQuery("#link_icon").show();
-      jQuery("#link_simbad").show();
-      jQuery("#loadingtextdiv").hide();
-      jQuery("#obs").hide();
-      jQuery("#zoom_ra_dec_btns").hide();
-      jQuery("#card").fadeIn(500);
-      jQuery("#card").css("transform","scale(1.2)");
-      anime({
-        targets: '#card',
-        scale: 1,
-        duration: 1500
-      });
-    }
+    document.getElementById("iframe").setAttribute("src","https://quickmap.lroc.asu.edu/?layers=NrBsFYBoAZIRnpEoAsjZwLpNKG%2BscB2fDbMADlPnNAE5rDgjZWakiE2mAmOuqt3J9%2BjTOKQ9QPRkmBSuBcgGZoPQUskVVYicDhwo3OQbRCkBkueCroiskmVw1YrZ1f6d1uE48-lfsp43spWmp4M1urKMlEURLHhcChsDvIU9LoqPIkYcjH2NHqqypGkAHRQIKopWY7QymYVVTYNRkrFDQHG1WplrJUqDakwg-W%2BqWOtMdTQg8XSstWghXM84Cqg3c2bTQMbjhCz80PKGvv5DcE742H74ipEe4jVRNsDhkM8z3Of9evHP6tKSAg7Au6jT7FIjXPKvdppULndg2Ij9FFnEZMM6FbEUXIY7QeM7PLB6FJY-KiayqHjvDFqAlkzYQhDLWEY0DI3jxLGbdHYljE9w0hJ1YAob5LCV047KciShGjeVISUcuZ0B6q8D0tkS8BMhXgJVzDadOACy7QDnY6DQUlDBrEu18pAG13pLYedRHOKob0ZG3CDLcrXAcCGAgvcPJDwR1nkCOht0WuM8BD2cpERM5Y7ZrSgBP1Fw0u1K5mYIA&extent=-90%2C-25.89296936714001%2C90%2C26.24780686698097&proj=10");
+    jQuery("#DSO_image").hide();
+    jQuery(".footer").css("opacity","1");
+    jQuery("#card_ra_dec").hide();
+    jQuery("#link_div").show();
+    document.getElementById("card_decs").innerHTML = "Map copyright - <a href=\"http://www.actgate.com/quickmap.html\">Applied Coherent Technology</a> and <a href=\"https://www.nasa.gov/mission_pages/LRO/main/index.html\">NASA LRO</a>.";
+    jQuery("#card_decs").show();
+    document.getElementById("link_simbad").innerHTML = "LRO Lunar Map";
+    document.getElementById("link_simbad").href = "https://quickmap.lroc.asu.edu/";
+    document.getElementById("link_wikipedia").href = "https://en.wikipedia.org/wiki/Moon";
+    jQuery("#link_p").css("opacity","1");
+    jQuery("#link_wikipedia").css("opacity","1");
+    jQuery("#link_icon").show();
+    jQuery("#link_simbad").show();
+    jQuery("#loadingtextdiv").hide();
+    jQuery("#obs").hide();
+    jQuery("#zoom_ra_dec_btns").hide();
+    jQuery("#card").fadeIn(500);
+    jQuery("#card").css("transform","scale(1.2)");
+    anime({
+      targets: '#card',
+      scale: 1,
+      duration: 1500
+    });
+    var card_width = jQuery("#card").width();
+    jQuery("#iframe").css("width", card_width);
+    jQuery("#iframe").css("height", card_width);
+    jQuery("#iframe").show();
   } else {
     var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/" + getVar("obj") + "/?format=json";
     json();

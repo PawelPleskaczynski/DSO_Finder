@@ -25,7 +25,7 @@ window.onload = function() {
 
 jQuery(document).ready(function(){
   jQuery('[data-toggle="tooltip"]').tooltip();
-});  
+});
 
 function openDSO() {
   var object_name = document.getElementById("input_name").value;
