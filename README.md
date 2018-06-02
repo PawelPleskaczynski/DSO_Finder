@@ -48,6 +48,20 @@ P. Pleskaczynski
 
 NASA, ESA and the Hubble SM4 ERO Team
 
+ESO
+
+ESO/B. Bailleul
+
+ESO
+
+ESO/S. Guisard (www.eso.org/~sguisard)
+
+ESO. Acknowledgement: VPHAS+ Consortium/Cambridge Astronomical Survey Unit
+
+ESO/T. Preibisch
+
+ESO
+
 Some images were modified by me for the parallax effect on the main site.
 
 #### Images in FoV calculator

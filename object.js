@@ -245,6 +245,7 @@ function load() {
                 slider.setAttribute("min","5");
                 slider.setAttribute("max","300");
                 slider.setAttribute("value","30");
+                update_fov();
               } else {
                 jQuery("#btn_no_sdss").show();
                 image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
@@ -252,6 +253,7 @@ function load() {
                 slider.setAttribute("min","5");
                 slider.setAttribute("max","120");
                 slider.setAttribute("value","30");
+                update_fov();
               }
             }
           };
@@ -494,6 +496,7 @@ function load() {
             slider.setAttribute("min","5");
             slider.setAttribute("max","300");
             slider.setAttribute("value","30");
+            update_fov();
           } else {
             jQuery("#btn_no_sdss").show();
             image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
@@ -501,6 +504,7 @@ function load() {
             slider.setAttribute("min","5");
             slider.setAttribute("max","120");
             slider.setAttribute("value","30");
+            update_fov();
           }
         }
       };
@@ -616,6 +620,7 @@ function load() {
 }
 
 function zoomin() {
+  update_fov();
   if (img_type == "DSS_R" || img_type == "DSS_B" || img_type == "DSS_IR") {
     zoom_dss = zoom_dss - 5;
   } else if (img_type == "SDSS") {
@@ -663,6 +668,7 @@ function zoomin() {
 }
 
 function zoomout() {
+  update_fov();
   if (img_type == "DSS_R" || img_type == "DSS_B" || img_type == "DSS_IR") {
     zoom_dss = zoom_dss + 5;
     jQuery("#slider").val(zoom_dss);
@@ -710,6 +716,7 @@ function option_r() {
      jQuery("#loading_bg").hide();
      black_white();
      img_type = "DSS_R";
+     update_fov();
      preload();
   }
   image.onerror = function() {
@@ -728,6 +735,7 @@ function option_b() {
      jQuery("#loading_bg").hide();
      black_white();
      img_type = "DSS_B";
+     update_fov();
      preload();
   }
   image.onerror = function() {
@@ -746,6 +754,7 @@ function option_ir() {
      jQuery("#loading_bg").hide();
      black_white();
      img_type = "DSS_IR";
+     update_fov();
      preload();
   }
   image.onerror = function() {
@@ -764,6 +773,7 @@ function option_sdss() {
      jQuery("#loading_bg").hide();
      color();
      img_type = "SDSS";
+     update_fov();
      preload();
   }
   image.onerror = function() {
@@ -1172,5 +1182,31 @@ function zoom_slider(value) {
       zoom_sdss = value;
     }
     color();
+  }
+}
+
+function update_fov() {
+  var fov_value;
+  if (img_type == "DSS_R" || img_type == "DSS_B" || img_type == "DSS_IR") {
+    var zoom_fov = slider.value;
+    fov_value = zoom_fov / 60;
+    if (fov_value < 1) {
+      fov_value = fov_value * 60;
+      document.getElementById("fov_text").innerHTML = "FoV " + fov_value.toFixed(2) + "\"";
+    } else {
+      document.getElementById("fov_text").innerHTML = "FoV " + fov_value.toFixed(2) + "°";
+    }
+  } else if (img_type == "SDSS") {
+    var zoom_fov = slider.value;
+    fov_value = Math.pow(zoom_fov,(1/1.5));
+    fov_value = zoom_fov * 10;
+    fov_value = fov_value * 512;
+    fov_value = fov_value / 60 / 60 / 60;
+    if (fov_value < 1) {
+      fov_value = fov_value * 60;
+      document.getElementById("fov_text").innerHTML = "FoV " + fov_value.toFixed(2) + "\"";
+    } else {
+      document.getElementById("fov_text").innerHTML = "FoV " + fov_value.toFixed(2) + "°";
+    }
   }
 }

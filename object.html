@@ -340,7 +340,7 @@
     }
     .slider {
       -webkit-appearance: none;
-      width: 66%;
+      width: 45%;
       height: 12px;
       border-radius: 5px;
       background: #666;
@@ -428,10 +428,11 @@
         <div class="loading_bg" id="loading_bg">
           <h2 class="blink" id="loading_text_img">Loading…</h2>
         </div>
-        <div class="controls_slider" id="slider_div" style="position: absolute; height: 24px; width: 50%; z-index: 3; transform: translate(5%, 50%); display: none;">
+        <div class="controls_slider" id="slider_div" style="position: absolute; height: 24px; width: 100%; z-index: 3; transform: translateY(50%); padding-left: 16px; padding-right: 16px; display: none;">
           <h5 class="controls_slider" style="cursor: pointer; display: inline-block; float: left; margin-right: 12px; clear: both;" onclick="zoomout()">-</h5>
-          <input type="range" min="5" max="300" value="30" class="slider" id="slider" style="display: inline-block; margin-right: 12px; clear: both; transform: rotate(180deg);" onchange="zoom_slider(this.value)">
+          <input type="range" min="5" max="300" value="30" class="slider" id="slider" style="display: inline-block; margin-right: 12px; clear: both; transform: rotate(180deg);" onchange="zoom_slider(this.value)" oninput="update_fov()">
           <h5 class="controls_slider" style="cursor: pointer; display: inline-block; clear: both;" onclick="zoomin()">+</h5>
+          <p style="-webkit-user-select: none; -moz-user-select: -moz-none; -ms-user-select: none; user-select: none; float: right;" id="fov_text"></p>
         </div>
         <div class="link_up" id="link_up" style="position: absolute; height: 20%; width: 100%; z-index: 2; display: none;" onclick="">
           <h5 class="controls">Up</h5>

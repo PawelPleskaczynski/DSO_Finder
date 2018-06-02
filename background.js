@@ -1,9 +1,10 @@
-var pic_arr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-var pic_arr_night = ['1', '3', '4', '6', '7'];
-var random = Math.floor((Math.random() * 10));
-var random_night = Math.floor((Math.random() * 5));
+var pic_arr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10','11','12','13','14','15','16','17','12','11','16'];
+var pic_arr_night = ['1', '3', '4', '6', '7','11','12','15','16','7','11','12','16'];
+var random = Math.floor((Math.random() * 20));
+var random_night = Math.floor((Math.random() * 13));
 var date = new Date();
 var hour = date.getHours();
+jQuery(".bg").hide();
 
 var credits = ["DSS II/DSS I, K. Masztalerz, P. Ware, K. Maddox",
 "NASA, ESA, G. Illingworth, D. Magee, and P. Oesch (University of California, Santa Cruz), R. Bouwens (Leiden University), and the HUDF09 Team",
@@ -14,7 +15,14 @@ var credits = ["DSS II/DSS I, K. Masztalerz, P. Ware, K. Maddox",
 "Liverpool telescope",
 "Hubble Space Telescope",
 "P. Pleskaczynski",
-"NASA, ESA and the Hubble SM4 ERO Team"];
+"NASA, ESA and the Hubble SM4 ERO Team",
+"ESO",
+"ESO/B. Bailleul",
+"ESO",
+"ESO/S. Guisard (www.eso.org/~sguisard)",
+"ESO. Acknowledgement: VPHAS+ Consortium/Cambridge Astronomical Survey Unit",
+"ESO/T. Preibisch",
+"ESO"];
 if (hour > 9 && hour <= 18) {
   setbg();
   var nr = pic_arr[random] - 1;
@@ -35,6 +43,7 @@ function setbg() {
       tempimg.onload = function(){
         jQuery(".mobile_bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center");
         jQuery(".mobile_bg").css("background-size","cover");
+        jQuery(".bg").fadeIn("slow");
       };
     } else {
       var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
@@ -44,6 +53,8 @@ function setbg() {
       var isEdge = !isIE && !!window.StyleMedia;
       var moon = 9;
       var hudf = 2;
+      var img1 = 14;
+      var img2 = 15;
 
       var no_ie = (isChrome || isFirefox || isOpera);
       var is_ie = (isIE || isEdge);
@@ -53,7 +64,7 @@ function setbg() {
       }
 
       if (no_ie) {
-        if (pic_arr[random] == moon || pic_arr[random] == hudf) {
+        if (pic_arr[random] == moon || pic_arr[random] == hudf || pic_arr[random] == img1 || pic_arr[random] == img2) {
           var tempimg = new Image();
           tempimg.src = "images/" + pic_arr[random] + ".jpg";
           jQuery(".layer1").hide();
@@ -71,7 +82,8 @@ function setbg() {
       jQuery(".btn").addClass("btn-secondary" + pic_arr[random]);
       tempimg.onload = function(){
         if (no_ie) {
-          if (pic_arr[random] != moon && pic_arr[random] != hudf) {
+          if (pic_arr[random] != moon && pic_arr[random] != hudf && pic_arr[random] != img1 && pic_arr[random] != img2) {
+            jQuery(".bg").fadeIn("slow");
             var tempimg1 = new Image();
             var tempimg2 = new Image();
             tempimg1.src = "images/" + pic_arr[random] + "_stars_layer_1.jpg";
@@ -132,6 +144,7 @@ function setbg() {
             };
 
           } else {
+            jQuery(".bg").fadeIn("slow");
             jQuery(".layer1").hide();
             jQuery(".layer2").hide();
             jQuery(".bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
@@ -151,11 +164,13 @@ function setbg() {
             parallax.start();
           }
         } else if (isIE || isEdge) {
+          jQuery(".bg").fadeIn("slow");
           jQuery(".layer1").hide();
           jQuery(".layer2").hide();
           jQuery(".bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
           jQuery(".bg").css("background-size","cover");
         } else {
+          jQuery(".bg").fadeIn("slow");
           jQuery(".layer1").hide();
           jQuery(".layer2").hide();
           jQuery(".bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
@@ -182,6 +197,7 @@ function setbgnight() {
       tempimg.onload = function(){
         jQuery(".mobile_bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center");
         jQuery(".mobile_bg").css("background-size","cover");
+        jQuery(".bg").fadeIn("slow");
       };
     } else {
       var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
@@ -193,13 +209,22 @@ function setbgnight() {
       var no_ie = (isChrome || isFirefox || isOpera);
       var is_ie = (isIE || isEdge);
 
+      var img1 = 15;
+
       if (no_ie) {
         jQuery("body").addClass("no_scroll");
       }
 
       if (no_ie) {
-        var tempimg = new Image();
-        tempimg.src = "images/" + pic_arr_night[random_night] + "_starless.jpg";
+        if (pic_arr_night[random_night] == img1) {
+          var tempimg = new Image();
+          tempimg.src = "images/" + pic_arr_night[random_night] + ".jpg";
+          jQuery(".layer1").hide();
+          jQuery(".layer2").hide();
+        } else {
+          var tempimg = new Image();
+          tempimg.src = "images/" + pic_arr_night[random_night] + "_starless.jpg";
+        }
       } else {
         var tempimg = new Image();
         tempimg.src = "images/" + pic_arr_night[random_night] + ".jpg";
@@ -209,71 +234,94 @@ function setbgnight() {
       jQuery(".btn").addClass("btn-secondary" + pic_arr_night[random_night]);
       tempimg.onload = function(){
         if (no_ie) {
-          var tempimg1 = new Image();
-          var tempimg2 = new Image();
-          tempimg1.src = "images/" + pic_arr_night[random_night] + "_stars_layer_1.jpg";
-          tempimg2.src = "images/" + pic_arr_night[random_night] + "_stars_layer_2.jpg";
-          jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + "_starless.jpg) no-repeat center center fixed");
-          jQuery(".bg").css("background-size","cover");
-          jQuery(".layer1").css("background","url(images/" + pic_arr_night[random_night] + "_stars_layer_1.jpg) no-repeat center center fixed");
-          jQuery(".layer1").css("background-size","cover");
-          jQuery(".layer1").css("mix-blend-mode","screen");
-          jQuery(".layer2").css("background","url(images/" + pic_arr_night[random_night] + "_stars_layer_2.jpg) no-repeat center center fixed");
-          jQuery(".layer2").css("background-size","cover");
-          jQuery(".layer2").css("mix-blend-mode","screen");
-          var parallax = basicScroll.create({
-            elem: document.querySelector('.bg'),
-            from: 'top-top',
-            to: 'bottom-top',
-            props: {
-              '--pageparallax': {
-                from: "0%",
-                to: "-5%"
-              }
-            }
-          });
-
-          parallax.start();
-
-          tempimg1.onload = function() {
-            jQuery(".layer1").fadeIn("slow");
-            var parallax_layer_1 = basicScroll.create({
-              elem: document.querySelector('.layer1'),
+          if (pic_arr_night[random_night] != img1) {
+            jQuery(".bg").fadeIn("slow");
+            var tempimg1 = new Image();
+            var tempimg2 = new Image();
+            tempimg1.src = "images/" + pic_arr_night[random_night] + "_stars_layer_1.jpg";
+            tempimg2.src = "images/" + pic_arr_night[random_night] + "_stars_layer_2.jpg";
+            jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + "_starless.jpg) no-repeat center center fixed");
+            jQuery(".bg").css("background-size","cover");
+            jQuery(".layer1").css("background","url(images/" + pic_arr_night[random_night] + "_stars_layer_1.jpg) no-repeat center center fixed");
+            jQuery(".layer1").css("background-size","cover");
+            jQuery(".layer1").css("mix-blend-mode","screen");
+            jQuery(".layer2").css("background","url(images/" + pic_arr_night[random_night] + "_stars_layer_2.jpg) no-repeat center center fixed");
+            jQuery(".layer2").css("background-size","cover");
+            jQuery(".layer2").css("mix-blend-mode","screen");
+            var parallax = basicScroll.create({
+              elem: document.querySelector('.bg'),
               from: 'top-top',
               to: 'bottom-top',
               props: {
-                '--pageparallax_layer1': {
+                '--pageparallax': {
                   from: "0%",
-                  to: "-7.5%"
+                  to: "-5%"
                 }
               }
             });
 
-            parallax_layer_1.start();
-          };
-          tempimg2.onload = function() {
-            jQuery(".layer2").fadeIn("slow");
-            var parallax_layer_2 = basicScroll.create({
-              elem: document.querySelector('.layer2'),
+            parallax.start();
+
+            tempimg1.onload = function() {
+              jQuery(".layer1").fadeIn("slow");
+              var parallax_layer_1 = basicScroll.create({
+                elem: document.querySelector('.layer1'),
+                from: 'top-top',
+                to: 'bottom-top',
+                props: {
+                  '--pageparallax_layer1': {
+                    from: "0%",
+                    to: "-7.5%"
+                  }
+                }
+              });
+
+              parallax_layer_1.start();
+            };
+            tempimg2.onload = function() {
+              jQuery(".layer2").fadeIn("slow");
+              var parallax_layer_2 = basicScroll.create({
+                elem: document.querySelector('.layer2'),
+                from: 'top-top',
+                to: 'bottom-top',
+                props: {
+                  '--pageparallax_layer2': {
+                    from: "0%",
+                    to: "-11.25%"
+                  }
+                }
+              });
+
+              parallax_layer_2.start();
+            };
+          } else {
+            jQuery(".bg").fadeIn("slow");
+            jQuery(".layer1").hide();
+            jQuery(".layer2").hide();
+            jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
+            jQuery(".bg").css("background-size","cover");
+            var parallax = basicScroll.create({
+              elem: document.querySelector('.bg'),
               from: 'top-top',
               to: 'bottom-top',
               props: {
-                '--pageparallax_layer2': {
+                '--pageparallax': {
                   from: "0%",
-                  to: "-11.25%"
+                  to: "-5%"
                 }
               }
             });
 
-            parallax_layer_2.start();
-          };
-
+            parallax.start();
+          }
         } else if (isIE || isEdge) {
+          jQuery(".bg").fadeIn("slow");
           jQuery(".layer1").hide();
           jQuery(".layer2").hide();
           jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
           jQuery(".bg").css("background-size","cover");
         } else {
+          jQuery(".bg").fadeIn("slow");
           jQuery(".layer1").hide();
           jQuery(".layer2").hide();
           jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
