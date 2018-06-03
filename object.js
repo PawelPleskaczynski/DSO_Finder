@@ -603,13 +603,11 @@ function zoomin() {
       if (zoom_sdss >= 0) {
         image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + "&width=512&height=512";
         color();
-        zoom_sdss_slider_value = Math.pow(zoom_sdss_slider_value,(1/1.5));
-        var zoom_sdss_slider_value = zoom_sdss * 10;
+        var zoom_sdss_slider_value = zoom_sdss / 10;
         jQuery("#slider").val(zoom_sdss_slider_value);
       } else {
         zoom_sdss = 0;
-        zoom_sdss_slider_value = Math.pow(zoom_sdss_slider_value,(1/1.5));
-        var zoom_sdss_slider_value = zoom_sdss * 10;
+        var zoom_sdss_slider_value = zoom_sdss / 10;
         jQuery("#loading_bg").hide();
         jQuery("#slider").val(zoom_sdss);
       }
@@ -628,8 +626,7 @@ function zoomout() {
     jQuery("#slider").val(zoom_dss);
   } else if (img_type == "SDSS") {
     zoom_sdss = zoom_sdss + 1;
-    zoom_sdss_slider_value = Math.pow(zoom_sdss_slider_value,(1/1.5));
-    var zoom_sdss_slider_value = zoom_sdss * 10;
+    var zoom_sdss_slider_value = zoom_sdss / 10;
     if (zoom_sdss_slider_value <= 300) {
       jQuery("#slider").val(zoom_sdss_slider_value);
     }
@@ -1126,8 +1123,7 @@ function zoom_slider(value) {
     }
     black_white();
   } else if (img_type == "SDSS") {
-    value = value / 10;
-    Math.pow(value, 1.5);
+    value = value / 10 * 1.2;
     jQuery("#loading_bg").show();
     image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + value + "&width=512&height=512";
     image.onload = function () {
@@ -1152,10 +1148,7 @@ function update_fov() {
     }
   } else if (img_type == "SDSS") {
     var zoom_fov = slider.value;
-    fov_value = Math.pow(zoom_fov,(1/1.5));
-    fov_value = zoom_fov * 10;
-    fov_value = fov_value * 512;
-    fov_value = fov_value / 60 / 60 / 60;
+    fov_value = zoom_fov / 60;
     if (fov_value < 1) {
       fov_value = fov_value * 60;
       document.getElementById("fov_text").innerHTML = "FoV " + fov_value.toFixed(2) + "\"";
