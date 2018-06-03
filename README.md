@@ -95,3 +95,5 @@ Images of DSO: SDSS and DSS2/DSS1 observatories
 <a href="https://scrollrevealjs.org">ScrollReveal</a> library
 
 <a href="https://basicscroll.electerious.com/">basicScroll</a> library
+
+<a href="https://github.com/matthewhudson/current-device">Current-Device</a> library

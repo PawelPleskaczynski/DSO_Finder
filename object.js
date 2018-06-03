@@ -151,6 +151,11 @@ function load() {
     var card_width = jQuery("#card").width();
     jQuery("#iframe").css("width", card_width);
     jQuery("#iframe").css("height", card_width);
+    window.onresize = function() {
+      var card_width = jQuery("#card").width();
+      jQuery("#iframe").css("width", card_width);
+      jQuery("#iframe").css("height", card_width);
+    }
     jQuery("#iframe").show();
   } else {
     var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/" + getVar("obj") + "/?format=json";

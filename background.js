@@ -37,297 +37,289 @@ if (hour > 9 && hour <= 18) {
 
 function setbg() {
   jQuery(".btn").removeClass("btn-secondary");
-  function mediaquery(mobile) {
-    if (mobile.matches) {
-      jQuery(".btn").addClass("btn-secondary" + pic_arr[random]);
-      var tempimg = new Image();
-      tempimg.src = "images/" + pic_arr[random] + ".jpg";
-      tempimg.onload = function(){
-        jQuery(".mobile_bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center");
-        jQuery(".mobile_bg").css("background-size","cover");
-      };
-    } else {
-      var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
-      var isFirefox = typeof InstallTrigger !== 'undefined';
-      var isChrome = !!window.chrome && !!window.chrome.webstore;
-      var isIE = /*@cc_on!@*/false || !!document.documentMode;
-      var isEdge = !isIE && !!window.StyleMedia;
-      var moon = 9;
-      var hudf = 2;
-      var img1 = 14;
-      var img2 = 15;
+  if (device.mobile() == true || device.tablet() == true) {
+    jQuery(".btn").addClass("btn-secondary" + pic_arr[random]);
+    var tempimg = new Image();
+    tempimg.src = "images/" + pic_arr[random] + ".jpg";
+    tempimg.onload = function(){
+      jQuery(".mobile_bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center");
+      jQuery(".mobile_bg").css("background-size","cover");
+    };
+  } else {
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+    var isEdge = !isIE && !!window.StyleMedia;
+    var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    var moon = 9;
+    var hudf = 2;
+    var img1 = 14;
+    var img2 = 15;
 
-      var no_ie = (isChrome || isFirefox || isOpera);
-      var is_ie = (isIE || isEdge);
+    var no_ie = (isChrome || isFirefox || isOpera || isSafari);
+    var is_ie = (isIE || isEdge);
 
-      if (no_ie) {
-        jQuery("body").addClass("no_scroll");
-      }
+    if (no_ie) {
+      jQuery("body").addClass("no_scroll");
+    }
 
-      if (no_ie) {
-        if (pic_arr[random] == moon || pic_arr[random] == hudf || pic_arr[random] == img1 || pic_arr[random] == img2) {
-          var tempimg = new Image();
-          tempimg.src = "images/" + pic_arr[random] + ".jpg";
-          jQuery(".layer1").hide();
-          jQuery(".layer2").hide();
-        } else {
-          var tempimg = new Image();
-          tempimg.src = "images/" + pic_arr[random] + "_starless.jpg";
-        }
-      } else {
+    if (no_ie) {
+      if (pic_arr[random] == moon || pic_arr[random] == hudf || pic_arr[random] == img1 || pic_arr[random] == img2) {
         var tempimg = new Image();
         tempimg.src = "images/" + pic_arr[random] + ".jpg";
+        jQuery(".layer1").hide();
+        jQuery(".layer2").hide();
+      } else {
+        var tempimg = new Image();
+        tempimg.src = "images/" + pic_arr[random] + "_starless.jpg";
       }
-      jQuery(".layer1").hide();
-      jQuery(".layer2").hide();
-      jQuery(".btn").addClass("btn-secondary" + pic_arr[random]);
-      tempimg.onload = function(){
-        jQuery(".bg").fadeIn("slow");
-        if (no_ie) {
-          if (pic_arr[random] != moon && pic_arr[random] != hudf && pic_arr[random] != img1 && pic_arr[random] != img2) {
-            var tempimg1 = new Image();
-            var tempimg2 = new Image();
-            tempimg1.src = "images/" + pic_arr[random] + "_stars_layer_1.jpg";
-            tempimg2.src = "images/" + pic_arr[random] + "_stars_layer_2.jpg";
-            jQuery(".bg").css("background","url(images/" + pic_arr[random] + "_starless.jpg) no-repeat center center fixed");
-            jQuery(".bg").css("background-size","cover");
-            jQuery(".layer1").css("background","url(images/" + pic_arr[random] + "_stars_layer_1.jpg) no-repeat center center fixed");
-            jQuery(".layer1").css("background-size","cover");
-            jQuery(".layer1").css("mix-blend-mode","screen");
-            jQuery(".layer2").css("background","url(images/" + pic_arr[random] + "_stars_layer_2.jpg) no-repeat center center fixed");
-            jQuery(".layer2").css("background-size","cover");
-            jQuery(".layer2").css("mix-blend-mode","screen");
-            var parallax = basicScroll.create({
-              elem: document.querySelector('.bg'),
-              from: 'top-top',
-              to: 'bottom-top',
-              props: {
-                '--pageparallax': {
-                  from: "0%",
-                  to: "-5%"
-                }
-              }
-            });
-
-            parallax.start();
-
-            tempimg1.onload = function() {
-              jQuery(".layer1").fadeIn("slow");
-              var parallax_layer_1 = basicScroll.create({
-                elem: document.querySelector('.layer1'),
-                from: 'top-top',
-                to: 'bottom-top',
-                props: {
-                  '--pageparallax_layer1': {
-                    from: "0%",
-                    to: "-7.5%"
-                  }
-                }
-              });
-
-              parallax_layer_1.start();
-            };
-            tempimg2.onload = function() {
-              jQuery(".layer2").fadeIn("slow");
-              var parallax_layer_2 = basicScroll.create({
-                elem: document.querySelector('.layer2'),
-                from: 'top-top',
-                to: 'bottom-top',
-                props: {
-                  '--pageparallax_layer2': {
-                    from: "0%",
-                    to: "-11.25%"
-                  }
-                }
-              });
-
-              parallax_layer_2.start();
-            };
-
-          } else {
-            jQuery(".layer1").hide();
-            jQuery(".layer2").hide();
-            jQuery(".bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
-            jQuery(".bg").css("background-size","cover");
-            var parallax = basicScroll.create({
-              elem: document.querySelector('.bg'),
-              from: 'top-top',
-              to: 'bottom-top',
-              props: {
-                '--pageparallax': {
-                  from: "0%",
-                  to: "-5%"
-                }
-              }
-            });
-
-            parallax.start();
-          }
-        } else if (isIE || isEdge) {
-          jQuery(".layer1").hide();
-          jQuery(".layer2").hide();
-          jQuery(".bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
+    } else {
+      var tempimg = new Image();
+      tempimg.src = "images/" + pic_arr[random] + ".jpg";
+    }
+    jQuery(".layer1").hide();
+    jQuery(".layer2").hide();
+    jQuery(".btn").addClass("btn-secondary" + pic_arr[random]);
+    tempimg.onload = function(){
+      jQuery(".bg").fadeIn("slow");
+      if (no_ie) {
+        if (pic_arr[random] != moon && pic_arr[random] != hudf && pic_arr[random] != img1 && pic_arr[random] != img2) {
+          var tempimg1 = new Image();
+          var tempimg2 = new Image();
+          tempimg1.src = "images/" + pic_arr[random] + "_stars_layer_1.jpg";
+          tempimg2.src = "images/" + pic_arr[random] + "_stars_layer_2.jpg";
+          jQuery(".bg").css("background","url(images/" + pic_arr[random] + "_starless.jpg) no-repeat center center fixed");
           jQuery(".bg").css("background-size","cover");
+          jQuery(".layer1").css("background","url(images/" + pic_arr[random] + "_stars_layer_1.jpg) no-repeat center center fixed");
+          jQuery(".layer1").css("background-size","cover");
+          jQuery(".layer1").css("mix-blend-mode","screen");
+          jQuery(".layer2").css("background","url(images/" + pic_arr[random] + "_stars_layer_2.jpg) no-repeat center center fixed");
+          jQuery(".layer2").css("background-size","cover");
+          jQuery(".layer2").css("mix-blend-mode","screen");
+          var parallax = basicScroll.create({
+            elem: document.querySelector('.bg'),
+            from: 'top-top',
+            to: 'bottom-top',
+            props: {
+              '--pageparallax': {
+                from: "0%",
+                to: "-5%"
+              }
+            }
+          });
+
+          parallax.start();
+
+          tempimg1.onload = function() {
+            jQuery(".layer1").fadeIn("slow");
+            var parallax_layer_1 = basicScroll.create({
+              elem: document.querySelector('.layer1'),
+              from: 'top-top',
+              to: 'bottom-top',
+              props: {
+                '--pageparallax_layer1': {
+                  from: "0%",
+                  to: "-7.5%"
+                }
+              }
+            });
+
+            parallax_layer_1.start();
+          };
+          tempimg2.onload = function() {
+            jQuery(".layer2").fadeIn("slow");
+            var parallax_layer_2 = basicScroll.create({
+              elem: document.querySelector('.layer2'),
+              from: 'top-top',
+              to: 'bottom-top',
+              props: {
+                '--pageparallax_layer2': {
+                  from: "0%",
+                  to: "-11.25%"
+                }
+              }
+            });
+
+            parallax_layer_2.start();
+          };
+
         } else {
           jQuery(".layer1").hide();
           jQuery(".layer2").hide();
           jQuery(".bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
           jQuery(".bg").css("background-size","cover");
-        }
-      };
-      jQuery(window).on('load', function() {
-        jQuery("body").removeClass("no_scroll");
-      });
-    }
-  }
+          var parallax = basicScroll.create({
+            elem: document.querySelector('.bg'),
+            from: 'top-top',
+            to: 'bottom-top',
+            props: {
+              '--pageparallax': {
+                from: "0%",
+                to: "-5%"
+              }
+            }
+          });
 
-  var mobile = window.matchMedia("(max-width: 730px)")
-  mediaquery(mobile);
+          parallax.start();
+        }
+      } else if (isIE || isEdge) {
+        jQuery(".layer1").hide();
+        jQuery(".layer2").hide();
+        jQuery(".bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
+        jQuery(".bg").css("background-size","cover");
+      } else {
+        jQuery(".layer1").hide();
+        jQuery(".layer2").hide();
+        jQuery(".bg").css("background","url(images/" + pic_arr[random] + ".jpg) no-repeat center center fixed");
+        jQuery(".bg").css("background-size","cover");
+      }
+    };
+    jQuery(window).on('load', function() {
+      jQuery("body").removeClass("no_scroll");
+    });
+  }
 }
 
 function setbgnight() {
   jQuery(".btn").removeClass("btn-secondary");
-  function mediaquery(mobile) {
-    if (mobile.matches) {
-      jQuery(".btn").addClass("btn-secondary" + pic_arr_night[random_night]);
-      var tempimg = new Image();
-      tempimg.src = "images/" + pic_arr_night[random_night] + ".jpg";
-      tempimg.onload = function(){
-        jQuery(".mobile_bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center");
-        jQuery(".mobile_bg").css("background-size","cover");
-      };
-    } else {
-      var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
-      var isFirefox = typeof InstallTrigger !== 'undefined';
-      var isChrome = !!window.chrome && !!window.chrome.webstore;
-      var isIE = /*@cc_on!@*/false || !!document.documentMode;
-      var isEdge = !isIE && !!window.StyleMedia;
+  if (device.mobile() == true || device.tablet() == true) {
+    jQuery(".btn").addClass("btn-secondary" + pic_arr_night[random_night]);
+    var tempimg = new Image();
+    tempimg.src = "images/" + pic_arr_night[random_night] + ".jpg";
+    tempimg.onload = function(){
+      jQuery(".mobile_bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center");
+      jQuery(".mobile_bg").css("background-size","cover");
+    };
+  } else {
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+    var isEdge = !isIE && !!window.StyleMedia;
+    var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
-      var no_ie = (isChrome || isFirefox || isOpera);
-      var is_ie = (isIE || isEdge);
+    var no_ie = (isChrome || isFirefox || isOpera || isSafari);
+    var is_ie = (isIE || isEdge);
 
-      var img1 = 15;
+    var img1 = 15;
 
-      if (no_ie) {
-        jQuery("body").addClass("no_scroll");
-      }
+    if (no_ie) {
+      jQuery("body").addClass("no_scroll");
+    }
 
-      if (no_ie) {
-        if (pic_arr_night[random_night] == img1) {
-          var tempimg = new Image();
-          tempimg.src = "images/" + pic_arr_night[random_night] + ".jpg";
-          jQuery(".layer1").hide();
-          jQuery(".layer2").hide();
-        } else {
-          var tempimg = new Image();
-          tempimg.src = "images/" + pic_arr_night[random_night] + "_starless.jpg";
-        }
-      } else {
+    if (no_ie) {
+      if (pic_arr_night[random_night] == img1) {
         var tempimg = new Image();
         tempimg.src = "images/" + pic_arr_night[random_night] + ".jpg";
+        jQuery(".layer1").hide();
+        jQuery(".layer2").hide();
+      } else {
+        var tempimg = new Image();
+        tempimg.src = "images/" + pic_arr_night[random_night] + "_starless.jpg";
       }
-      jQuery(".layer1").hide();
-      jQuery(".layer2").hide();
-      jQuery(".btn").addClass("btn-secondary" + pic_arr_night[random_night]);
-      tempimg.onload = function(){
-        jQuery(".bg").fadeIn("slow");
-        if (no_ie) {
-          if (pic_arr_night[random_night] != img1) {
-            var tempimg1 = new Image();
-            var tempimg2 = new Image();
-            tempimg1.src = "images/" + pic_arr_night[random_night] + "_stars_layer_1.jpg";
-            tempimg2.src = "images/" + pic_arr_night[random_night] + "_stars_layer_2.jpg";
-            jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + "_starless.jpg) no-repeat center center fixed");
-            jQuery(".bg").css("background-size","cover");
-            jQuery(".layer1").css("background","url(images/" + pic_arr_night[random_night] + "_stars_layer_1.jpg) no-repeat center center fixed");
-            jQuery(".layer1").css("background-size","cover");
-            jQuery(".layer1").css("mix-blend-mode","screen");
-            jQuery(".layer2").css("background","url(images/" + pic_arr_night[random_night] + "_stars_layer_2.jpg) no-repeat center center fixed");
-            jQuery(".layer2").css("background-size","cover");
-            jQuery(".layer2").css("mix-blend-mode","screen");
-            var parallax = basicScroll.create({
-              elem: document.querySelector('.bg'),
-              from: 'top-top',
-              to: 'bottom-top',
-              props: {
-                '--pageparallax': {
-                  from: "0%",
-                  to: "-5%"
-                }
-              }
-            });
-
-            parallax.start();
-
-            tempimg1.onload = function() {
-              jQuery(".layer1").fadeIn("slow");
-              var parallax_layer_1 = basicScroll.create({
-                elem: document.querySelector('.layer1'),
-                from: 'top-top',
-                to: 'bottom-top',
-                props: {
-                  '--pageparallax_layer1': {
-                    from: "0%",
-                    to: "-7.5%"
-                  }
-                }
-              });
-
-              parallax_layer_1.start();
-            };
-            tempimg2.onload = function() {
-              jQuery(".layer2").fadeIn("slow");
-              var parallax_layer_2 = basicScroll.create({
-                elem: document.querySelector('.layer2'),
-                from: 'top-top',
-                to: 'bottom-top',
-                props: {
-                  '--pageparallax_layer2': {
-                    from: "0%",
-                    to: "-11.25%"
-                  }
-                }
-              });
-
-              parallax_layer_2.start();
-            };
-          } else {
-            jQuery(".layer1").hide();
-            jQuery(".layer2").hide();
-            jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
-            jQuery(".bg").css("background-size","cover");
-            var parallax = basicScroll.create({
-              elem: document.querySelector('.bg'),
-              from: 'top-top',
-              to: 'bottom-top',
-              props: {
-                '--pageparallax': {
-                  from: "0%",
-                  to: "-5%"
-                }
-              }
-            });
-
-            parallax.start();
-          }
-        } else if (isIE || isEdge) {
-          jQuery(".layer1").hide();
-          jQuery(".layer2").hide();
-          jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
+    } else {
+      var tempimg = new Image();
+      tempimg.src = "images/" + pic_arr_night[random_night] + ".jpg";
+    }
+    jQuery(".layer1").hide();
+    jQuery(".layer2").hide();
+    jQuery(".btn").addClass("btn-secondary" + pic_arr_night[random_night]);
+    tempimg.onload = function(){
+      jQuery(".bg").fadeIn("slow");
+      if (no_ie) {
+        if (pic_arr_night[random_night] != img1) {
+          var tempimg1 = new Image();
+          var tempimg2 = new Image();
+          tempimg1.src = "images/" + pic_arr_night[random_night] + "_stars_layer_1.jpg";
+          tempimg2.src = "images/" + pic_arr_night[random_night] + "_stars_layer_2.jpg";
+          jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + "_starless.jpg) no-repeat center center fixed");
           jQuery(".bg").css("background-size","cover");
+          jQuery(".layer1").css("background","url(images/" + pic_arr_night[random_night] + "_stars_layer_1.jpg) no-repeat center center fixed");
+          jQuery(".layer1").css("background-size","cover");
+          jQuery(".layer1").css("mix-blend-mode","screen");
+          jQuery(".layer2").css("background","url(images/" + pic_arr_night[random_night] + "_stars_layer_2.jpg) no-repeat center center fixed");
+          jQuery(".layer2").css("background-size","cover");
+          jQuery(".layer2").css("mix-blend-mode","screen");
+          var parallax = basicScroll.create({
+            elem: document.querySelector('.bg'),
+            from: 'top-top',
+            to: 'bottom-top',
+            props: {
+              '--pageparallax': {
+                from: "0%",
+                to: "-5%"
+              }
+            }
+          });
+
+          parallax.start();
+
+          tempimg1.onload = function() {
+            jQuery(".layer1").fadeIn("slow");
+            var parallax_layer_1 = basicScroll.create({
+              elem: document.querySelector('.layer1'),
+              from: 'top-top',
+              to: 'bottom-top',
+              props: {
+                '--pageparallax_layer1': {
+                  from: "0%",
+                  to: "-7.5%"
+                }
+              }
+            });
+
+            parallax_layer_1.start();
+          };
+          tempimg2.onload = function() {
+            jQuery(".layer2").fadeIn("slow");
+            var parallax_layer_2 = basicScroll.create({
+              elem: document.querySelector('.layer2'),
+              from: 'top-top',
+              to: 'bottom-top',
+              props: {
+                '--pageparallax_layer2': {
+                  from: "0%",
+                  to: "-11.25%"
+                }
+              }
+            });
+
+            parallax_layer_2.start();
+          };
         } else {
           jQuery(".layer1").hide();
           jQuery(".layer2").hide();
           jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
           jQuery(".bg").css("background-size","cover");
-        }
-      };
-      jQuery(window).on('load', function() {
-        jQuery("body").removeClass("no_scroll");
-      });
-    }
-  }
+          var parallax = basicScroll.create({
+            elem: document.querySelector('.bg'),
+            from: 'top-top',
+            to: 'bottom-top',
+            props: {
+              '--pageparallax': {
+                from: "0%",
+                to: "-5%"
+              }
+            }
+          });
 
-  var mobile = window.matchMedia("(max-width: 730px)")
-  mediaquery(mobile);
+          parallax.start();
+        }
+      } else if (isIE || isEdge) {
+        jQuery(".layer1").hide();
+        jQuery(".layer2").hide();
+        jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
+        jQuery(".bg").css("background-size","cover");
+      } else {
+        jQuery(".layer1").hide();
+        jQuery(".layer2").hide();
+        jQuery(".bg").css("background","url(images/" + pic_arr_night[random_night] + ".jpg) no-repeat center center fixed");
+        jQuery(".bg").css("background-size","cover");
+      }
+    };
+    jQuery(window).on('load', function() {
+      jQuery("body").removeClass("no_scroll");
+    });
+  }
 }
