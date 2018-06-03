@@ -37,7 +37,7 @@
     <script src="light_dark.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="libraries/current-device.min.js"></script>
+    <script src="https://unpkg.com/current-device/umd/current-device.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <style type="text/css">
     body {
@@ -209,7 +209,7 @@
     <div class="layer1" id="layer1" style="width: 120vw; height: 120vh;"></div>
     <div class="layer2" id="layer2" style="width: 120vw; height: 120vh;"></div>
 
-    <div class="mobile_bg">
+    <div class="mobile_bg" style="padding-bottom: 24px;">
       <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar" style="opacity: 0.8; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transform: translateY(-100%);">
         <a class="navbar-brand" href="index.html">DSO Finder</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
@@ -231,7 +231,7 @@
         </div>
       </nav>
       <div>
-        <div class="jumbotron">
+        <div class="jumbotron" id="jumbotron">
           <h2 class="jumbotron_title">Find astronomical object</h2>
           <p class="lead">Type name/coordinates of an object to find its images from DSS and SDSS sky surveys</p>
           <hr class="my-4">

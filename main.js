@@ -6,15 +6,23 @@ window.addEventListener("orientationchange", function() {
 }, false);
 
 function size(vheight) {
-  if (device.mobile() == true || device.tablet() == true) {
+  if (device.tablet() == true) {
     if (device.portrait() == true) {
       jQuery(".mobile_bg").css("height",vheight);
     } else if (device.landscape() == true) {
       jQuery(".mobile_bg").css("height","100%");
     }
+  } else if (device.mobile() == true) {
+    jQuery(".mobile_bg").css("height","100%");
   } else {
-    var viewport_height = jQuery(window).height();
-    jQuery(".mobile_bg").css("height","100vh");
+    jQuery(".mobile_bg").css("height","100%");
+    setTimeout(function() {
+      if (jQuery(".mobile_bg").height() < viewport_height) {
+        jQuery(".mobile_bg").css("height","100vh");
+      } else {
+        jQuery(".mobile_bg").css("height","100%");
+      }
+    }, 200);
   }
 };
 
