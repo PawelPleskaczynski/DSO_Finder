@@ -1,156 +1,153 @@
 [
   {
-    "type":"company",
-    "camera_manufacturer":"Altair Astro"
-  },
-  {
-    "type":"camera",
-    "camera_name":"Altair 130",
-    "pixel_size":"3.75",
-    "resolution_width":"1280",
-    "resolution_height":"960"
-  },
-  {
-    "type":"camera",
-    "camera_name":"Altair 174",
-    "pixel_size":"5.86",
-    "resolution_width":"1920",
-    "resolution_height":"1200"
-  },
-  {
-    "type":"camera",
-    "camera_name":"Altair 178",
-    "pixel_size":"2.4",
-    "resolution_width":"3040",
-    "resolution_height":"2048"
-  },
-  {
-    "type":"camera",
-    "camera_name":"Altair 224",
-    "pixel_size":"3.75",
-    "resolution_width":"1280",
-    "resolution_height":"960"
-  },
-  {
-    "type":"camera",
-    "camera_name":"Altair 290",
-    "pixel_size":"2.9",
-    "resolution_width":"1920",
-    "resolution_height":"1080"
-  },
-  {
-    "type":"camera",
-    "camera_name":"Altair 385",
-    "pixel_size":"3.75",
-    "resolution_width":"1920",
-    "resolution_height":"1080"
-  },
-
-  {
-    "type":"company",
-    "camera_manufacturer":"ZWO"
-  },
-  {
-    "type":"camera",
-    "camera_name":"ZWO ASI034",
-    "pixel_size":"5.6",
-    "resolution_width":"728",
-    "resolution_height":"512"
+    "camera_manufacturer":"Altair Astro",
+    "cameras":[
+      {
+        "type":"camera",
+        "camera_name":"GPCAM 130",
+        "pixel_size":"3.75",
+        "resolution_width":"1280",
+        "resolution_height":"960"
+      },
+      {
+        "type":"camera",
+        "camera_name":"Hypercam 174",
+        "pixel_size":"5.86",
+        "resolution_width":"1920",
+        "resolution_height":"1200"
+      },
+      {
+        "type":"camera",
+        "camera_name":"Hypercam/GPCAM 178",
+        "pixel_size":"2.4",
+        "resolution_width":"3040",
+        "resolution_height":"2048"
+      },
+      {
+        "type":"camera",
+        "camera_name":"Hypercam 183",
+        "pixel_size":"2.4",
+        "resolution_width":"5440",
+        "resolution_height":"3648"
+      },
+      {
+        "type":"camera",
+        "camera_name":"Hypercam/GPCAM 224",
+        "pixel_size":"3.75",
+        "resolution_width":"1280",
+        "resolution_height":"960"
+      },
+      {
+        "type":"camera",
+        "camera_name":"GPCAM 290",
+        "pixel_size":"2.9",
+        "resolution_width":"1920",
+        "resolution_height":"1080"
+      },
+      {
+        "type":"camera",
+        "camera_name":"GPCAM 385",
+        "pixel_size":"3.75",
+        "resolution_width":"1920",
+        "resolution_height":"1080"
+      }
+    ]
   },
 
   {
-    "type":"company",
-    "camera_manufacturer":"ZWO"
-  },
-  {
-    "type":"camera",
-    "camera_name":"ZWO ASI034",
-    "pixel_size":"5.6",
-    "resolution_width":"728",
-    "resolution_height":"512"
-  },
-  {
-    "type":"camera",
-    "camera_name":"ZWO ASI120",
-    "pixel_size":"3.75",
-    "resolution_width":"1280",
-    "resolution_height":"960"
-  },
-  {
-    "type":"camera",
-    "camera_name":"ZWO ASI224",
-    "pixel_size":"3.75",
-    "resolution_width":"1304",
-    "resolution_height":"976"
-  },
-  {
-    "type":"camera",
-    "camera_name":"ZWO ASI290",
-    "pixel_size":"2.9",
-    "resolution_width":"1936",
-    "resolution_height":"1096"
-  },
-  {
-    "type":"camera",
-    "camera_name":"ZWO ASI178",
-    "pixel_size":"2.4",
-    "resolution_width":"3096",
-    "resolution_height":"2080"
-  },
-  {
-    "type":"camera",
-    "camera_name":"ZWO ASI385",
-    "pixel_size":"3.75",
-    "resolution_width":"1936",
-    "resolution_height":"1096"
-  },
-  {
-    "type":"camera",
-    "camera_name":"ZWO ASI174",
-    "pixel_size":"5.86",
-    "resolution_width":"1936",
-    "resolution_height":"1216"
-  },
-  {
-    "type":"camera",
-    "camera_name":"ZWO ASI183",
-    "pixel_size":"2.4",
-    "resolution_width":"5496",
-    "resolution_height":"3672"
-  },
-  {
-    "type":"camera",
-    "camera_name":"ZWO ASI1600",
-    "pixel_size":"3.8",
-    "resolution_width":"4656",
-    "resolution_height":"3520"
-  },
-  {
-    "type":"camera",
-    "camera_name":"ZWO ASI294",
-    "pixel_size":"4.63",
-    "resolution_width":"4144",
-    "resolution_height":"2822"
-  },
-  {
-    "type":"camera",
-    "camera_name":"ZWO ASI071",
-    "pixel_size":"4.78",
-    "resolution_width":"4944",
-    "resolution_height":"3284"
-  },
-  {
-    "type":"camera",
-    "camera_name":"ZWO ASI094",
-    "pixel_size":"4.88",
-    "resolution_width":"7376",
-    "resolution_height":"4928"
-  },
-  {
-    "type":"camera",
-    "camera_name":"ZWO ASI128",
-    "pixel_size":"5.97",
-    "resolution_width":"6032",
-    "resolution_height":"4032"
+    "camera_manufacturer":"ZWO",
+    "cameras":[
+      {
+        "type":"camera",
+        "camera_name":"ZWO ASI034",
+        "pixel_size":"5.6",
+        "resolution_width":"728",
+        "resolution_height":"512"
+      },
+      {
+        "type":"camera",
+        "camera_name":"ZWO ASI120",
+        "pixel_size":"3.75",
+        "resolution_width":"1280",
+        "resolution_height":"960"
+      },
+      {
+        "type":"camera",
+        "camera_name":"ZWO ASI224",
+        "pixel_size":"3.75",
+        "resolution_width":"1304",
+        "resolution_height":"976"
+      },
+      {
+        "type":"camera",
+        "camera_name":"ZWO ASI290",
+        "pixel_size":"2.9",
+        "resolution_width":"1936",
+        "resolution_height":"1096"
+      },
+      {
+        "type":"camera",
+        "camera_name":"ZWO ASI178",
+        "pixel_size":"2.4",
+        "resolution_width":"3096",
+        "resolution_height":"2080"
+      },
+      {
+        "type":"camera",
+        "camera_name":"ZWO ASI385",
+        "pixel_size":"3.75",
+        "resolution_width":"1936",
+        "resolution_height":"1096"
+      },
+      {
+        "type":"camera",
+        "camera_name":"ZWO ASI174",
+        "pixel_size":"5.86",
+        "resolution_width":"1936",
+        "resolution_height":"1216"
+      },
+      {
+        "type":"camera",
+        "camera_name":"ZWO ASI183",
+        "pixel_size":"2.4",
+        "resolution_width":"5496",
+        "resolution_height":"3672"
+      },
+      {
+        "type":"camera",
+        "camera_name":"ZWO ASI1600",
+        "pixel_size":"3.8",
+        "resolution_width":"4656",
+        "resolution_height":"3520"
+      },
+      {
+        "type":"camera",
+        "camera_name":"ZWO ASI294",
+        "pixel_size":"4.63",
+        "resolution_width":"4144",
+        "resolution_height":"2822"
+      },
+      {
+        "type":"camera",
+        "camera_name":"ZWO ASI071",
+        "pixel_size":"4.78",
+        "resolution_width":"4944",
+        "resolution_height":"3284"
+      },
+      {
+        "type":"camera",
+        "camera_name":"ZWO ASI094",
+        "pixel_size":"4.88",
+        "resolution_width":"7376",
+        "resolution_height":"4928"
+      },
+      {
+        "type":"camera",
+        "camera_name":"ZWO ASI128",
+        "pixel_size":"5.97",
+        "resolution_width":"6032",
+        "resolution_height":"4032"
+      }
+    ]
   }
 ]

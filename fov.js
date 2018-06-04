@@ -1792,18 +1792,36 @@ function find_obj() {
   }
 }
 
-var json_cameras;
+var camera_manufacturer = [{"name":"Altair Astro"},{"name":"ZWO"}];
 
-$.getJSON("cameras.json", function(json) {
-  dropdown_add_cameras(json);
-});
+dropdown_add_manufacturer(camera_manufacturer);
+
+function dropdown_add_manufacturer(json) {
+  for (var i = 0; i < json.length; i++) {
+    jQuery("#dropdown_cam_man").append("<li><a href=\"javascript:void(0)\" class=\"dropdown_item_man\" id=\"id_man_" + i + "\">" + json[i].name + "</a></li>");
+    jQuery("#id_man_" + i).attr("onclick","add_dropdown_cameras(\"" + json[i].name + "\")");
+  }
+}
+
+function add_dropdown_cameras(name) {
+  jQuery(".dropdown_item_camera").remove();
+  document.getElementById("camera_btn").innerHTML = "Choose camera model";
+  $.getJSON("cameras.json", function(json) {
+    var index = json.findIndex(function(item, i){
+      return item.camera_manufacturer == name;
+    });
+    json = json[index].cameras;
+    dropdown_add_cameras(json);
+    document.getElementById("camera_man_btn").innerHTML = name;
+  });
+}
 
 function dropdown_add_cameras(json) {
   for (var i = 0; i < json.length; i++) {
     if (json[i].camera_manufacturer != null && json[i].camera_manufacturer != undefined && json[i].type == "company") {
-      jQuery(".dropdown-menu").append("<li><p class=\"dropdown_item\">" + json[i].camera_manufacturer + "</p></li>");
+      jQuery("#dropdown_cam").append("<li><p class=\"dropdown_item\">" + json[i].camera_manufacturer + "</p></li>");
     } else if (json[i].type == "camera") {
-      jQuery(".dropdown-menu").append("<li><a href=\"javascript:void(0)\" class=\"dropdown_item_camera\" id=\"id_" + i + "\">" + json[i].camera_name + "</a></li>");
+      jQuery("#dropdown_cam").append("<li><a href=\"javascript:void(0)\" class=\"dropdown_item_camera\" id=\"id_" + i + "\">" + json[i].camera_name + "</a></li>");
       jQuery("#id_" + i).attr("onclick","input_camera_details(" + json[i].pixel_size + "," + json[i].resolution_width + "," + json[i].resolution_height + "," + "\"" + json[i].camera_name + "\"" + ")");
     }
   }
