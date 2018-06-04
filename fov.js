@@ -188,9 +188,27 @@ function fov_img() {
     res_sdss = fov_width_secs / 960;
     res_sdss = res_sdss.toFixed(2);
 
-    fov_width_text.innerHTML = "Width: " + fov_width.toFixed(2) + " arcminutes";
-    fov_height_text.innerHTML = "Height: " + fov_height.toFixed(2) + " arcminutes";
-    resolution_text.innerHTML = "Resolution: " + res.toFixed(2) + " arcseconds/px"
+    if (fov_width > 60) {
+      fov_width_new = fov_width / 60;
+      fov_width_text.innerHTML = "Width: " + fov_width_new.toFixed(2) + " degrees";
+    } else {
+      fov_width_text.innerHTML = "Width: " + fov_width.toFixed(2) + " arcminutes";
+    }
+
+    if (fov_height > 60) {
+      fov_height_new = fov_height / 60;
+      fov_height_text.innerHTML = "Height: " + fov_height_new.toFixed(2) + " degrees";
+    } else {
+      fov_height_text.innerHTML = "Height: " + fov_height.toFixed(2) + " arcminutes";
+    }
+
+    if (res > 60) {
+      res_new = res / 60;
+      resolution_text.innerHTML = "Resolution: " + res_new.toFixed(2) + " degrees/px";
+    } else {
+      resolution_text.innerHTML = "Resolution: " + res.toFixed(2) + " arcseconds/px"
+    }
+
     loading_text.innerHTML = "Loading...";
 
     if (object_imaging_v.toUpperCase().trim() == "moon".toUpperCase()) {
@@ -1772,4 +1790,29 @@ function find_obj() {
       }
     }
   }
+}
+
+var json_cameras;
+
+$.getJSON("cameras.json", function(json) {
+  dropdown_add_cameras(json);
+});
+
+function dropdown_add_cameras(json) {
+  for (var i = 0; i < json.length; i++) {
+    if (json[i].camera_manufacturer != null && json[i].camera_manufacturer != undefined && json[i].type == "company") {
+      jQuery(".dropdown-menu").append("<li><p class=\"dropdown_item\">" + json[i].camera_manufacturer + "</p></li>");
+    } else if (json[i].type == "camera") {
+      jQuery(".dropdown-menu").append("<li><a href=\"javascript:void(0)\" class=\"dropdown_item_camera\" id=\"id_" + i + "\">" + json[i].camera_name + "</a></li>");
+      jQuery("#id_" + i).attr("onclick","input_camera_details(" + json[i].pixel_size + "," + json[i].resolution_width + "," + json[i].resolution_height + "," + "\"" + json[i].camera_name + "\"" + ")");
+    }
+  }
+}
+
+function input_camera_details(pix_size, res_wdth, res_hght, cam_name) {
+  jQuery("#pixsize").val(pix_size);
+  jQuery("#reswidth").val(res_wdth);
+  jQuery("#resheight").val(res_hght);
+  document.getElementById("camera_btn").innerHTML = cam_name;
+  check_if_not_empty();
 }
