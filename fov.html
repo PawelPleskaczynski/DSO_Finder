@@ -364,6 +364,24 @@
     .dropdown_item {
       color: #999;
     }
+    .dropdown-menu li {
+      background: #222;
+      transition: background 0.3s;
+    }
+    .dropdown-menu li:hover {
+      background: #333;
+      cursor: pointer;
+    }
+    @media only screen and (max-width: 700px) {
+      .dropdown-menu li {
+        font-size: 1.25em;
+      }
+    }
+    @media only screen and (min-width: 700px) {
+      .dropdown-menu li {
+        font-size: 1em;
+      }
+    }
     </style>
   </head>
   <body style="padding-top: 70px; display: none;">
@@ -438,16 +456,16 @@
         <div id="img_mode">
           <div class="form-group">
             <fieldset style="margin-top: 24px;">
-              <div style="margin-bottom: 24px; margin-top: -12px;">
-                <li class="dropdown" style="display: inline-block;">
+              <div style="margin-bottom: 24px; margin-top: -24px;">
+                <li class="dropdown" style="display: inline-block; margin-top: 12px;">
                   <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" id="camera_man_btn" aria-expanded="false">Choose camera's manufacturer<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu" style="height: 250px; overflow: auto;" id="dropdown_cam_man">
+                  <ul class="dropdown-menu" role="menu" style="max-height: 250px; min-width: 150px; max-width: 500px; overflow: auto;" id="dropdown_cam_man">
                   </ul>
                 </li>
 
-                <li class="dropdown" style="display: inline-block;">
+                <li class="dropdown" style="display: inline-block; margin-top: 12px;">
                   <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" id="camera_btn" aria-expanded="false">Choose camera model<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu" style="height: 250px; overflow: auto;" id="dropdown_cam">
+                  <ul class="dropdown-menu" role="menu" style="max-height: 250px; min-width: 150px; max-width: 500px; overflow: auto;" id="dropdown_cam">
                   </ul>
                 </li>
               </div>
@@ -551,7 +569,7 @@
 
         <div class="custom-control custom-checkbox" style="margin-top: 24px;">
           <input type="checkbox" class="custom-control-input" id="dss_check" onclick="dss_check()" checked="">
-          <label class="custom-control-label" for="dss_check">Load smaller images (from DSS1 sky survey) for large fields of view (works if DSS is checked)</label>
+          <label class="custom-control-label" for="dss_check">Load lighter images (from DSS1 sky survey) for large fields of view (works if DSS is checked)</label>
         </div>
 
       </div>

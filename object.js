@@ -89,7 +89,7 @@ function load() {
         duration: 1500
       });
     }
-    color();
+
   } else if (getVar("obj").toUpperCase() == "moon".toUpperCase()) {
     var date = new Date();
     var year = date.getFullYear();
@@ -195,17 +195,17 @@ function load() {
                 jQuery("#btn_sdss").show();
                 image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + "&width=512&height=512";
                 img_type = "SDSS";
-                color();
+
                 slider.setAttribute("min","5");
                 slider.setAttribute("max","300");
                 slider.setAttribute("value","30");
                 update_fov();
               } else {
                 jQuery("#btn_no_sdss").show();
-                image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+                image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-redANDequinox=J2000ANDstatsmode=VO";
                 img_type = "DSS_R";
                 slider.setAttribute("min","5");
-                slider.setAttribute("max","120");
+                slider.setAttribute("max","90");
                 slider.setAttribute("value","30");
                 update_fov();
               }
@@ -446,17 +446,17 @@ function load() {
             jQuery("#btn_sdss").show();
             image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + "&width=512&height=512";
             img_type = "SDSS";
-            color();
+
             slider.setAttribute("min","5");
             slider.setAttribute("max","300");
             slider.setAttribute("value","30");
             update_fov();
           } else {
             jQuery("#btn_no_sdss").show();
-            image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+            image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-redANDequinox=J2000ANDstatsmode=VO";
             img_type = "DSS_R";
             slider.setAttribute("min","5");
-            slider.setAttribute("max","120");
+            slider.setAttribute("max","90");
             slider.setAttribute("value","30");
             update_fov();
           }
@@ -588,34 +588,29 @@ function zoomin() {
       preload();
     }
     if (img_type == "DSS_R") {
-      image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
-      black_white();
-      jQuery("#slider").val(zoom_dss);
+      image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-redANDequinox=J2000ANDstatsmode=VO";
+      jQuery("#slider").val(zoom_dss * 10);
     } else if (img_type == "DSS_B") {
-      image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
-      black_white();
-      jQuery("#slider").val(zoom_dss);
+      image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-blueANDequinox=J2000ANDstatsmode=VO";
+      jQuery("#slider").val(zoom_dss * 10);
     } else if (img_type == "DSS_IR") {
-      image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
-      black_white();
-      jQuery("#slider").val(zoom_dss);
+      image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-infraredANDequinox=J2000ANDstatsmode=VO";
+      jQuery("#slider").val(zoom_dss * 10);
     } else if (img_type == "SDSS") {
       if (zoom_sdss >= 0) {
         image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + "&width=512&height=512";
-        color();
         var zoom_sdss_slider_value = zoom_sdss / 10;
         jQuery("#slider").val(zoom_sdss_slider_value);
       } else {
         zoom_sdss = 0;
         var zoom_sdss_slider_value = zoom_sdss / 10;
         jQuery("#loading_bg").hide();
-        jQuery("#slider").val(zoom_sdss);
+        jQuery("#slider").val(zoom_sdss * 10);
       }
     }
-  }
-  if (zoom_dss < 5) {
+  } else if (zoom_dss < 5) {
     zoom_dss = 5;
-    jQuery("#slider").val(zoom_dss);
+    jQuery("#slider").val(zoom_dss * 10);
   }
 }
 
@@ -623,10 +618,10 @@ function zoomout() {
   update_fov();
   if (img_type == "DSS_R" || img_type == "DSS_B" || img_type == "DSS_IR") {
     zoom_dss = zoom_dss + 5;
-    jQuery("#slider").val(zoom_dss);
+    jQuery("#slider").val(zoom_dss * 10);
   } else if (img_type == "SDSS") {
     zoom_sdss = zoom_sdss + 1;
-    var zoom_sdss_slider_value = zoom_sdss / 10;
+    var zoom_sdss_slider_value = zoom_sdss * 10;
     if (zoom_sdss_slider_value <= 300) {
       jQuery("#slider").val(zoom_sdss_slider_value);
     }
@@ -639,33 +634,28 @@ function zoomout() {
       preload();
     }
     if (img_type == "DSS_R") {
-      image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
-      black_white();
+      image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-redANDequinox=J2000ANDstatsmode=VO";
     } else if (img_type == "DSS_B") {
-      image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
-      black_white();
+      image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-blueANDequinox=J2000ANDstatsmode=VO";
     } else if (img_type == "DSS_IR") {
-      image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
-      black_white();
+      image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-infraredANDequinox=J2000ANDstatsmode=VO";
     } else if (img_type == "SDSS") {
       image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + "&width=512&height=512";
-      color();
     }
-  }
-  if (zoom_dss > 120) {
+  } else if (zoom_dss > 120) {
     zoom_dss = 120;
   }
 }
 
 function option_r() {
   slider.setAttribute("min","5");
-  slider.setAttribute("max","120");
+  slider.setAttribute("max","90");
   jQuery("#slider").val(30);
   zoom_dss = 30;
   jQuery("#loading_bg").show();
   image.onload = function () {
      jQuery("#loading_bg").hide();
-     black_white();
+
      img_type = "DSS_R";
      update_fov();
      preload();
@@ -674,17 +664,17 @@ function option_r() {
     image.onerror = "";
     image.src = "img_error.png";
   }
-  image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+  image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-redANDequinox=J2000ANDstatsmode=VO";
 }
 function option_b() {
   slider.setAttribute("min","5");
-  slider.setAttribute("max","120");
+  slider.setAttribute("max","90");
   jQuery("#slider").val(30);
   zoom_dss = 30;
   jQuery("#loading_bg").show();
   image.onload = function () {
      jQuery("#loading_bg").hide();
-     black_white();
+
      img_type = "DSS_B";
      update_fov();
      preload();
@@ -693,17 +683,17 @@ function option_b() {
     image.onerror = "";
     image.src = "img_error.png";
   }
-  image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
+  image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-blueANDequinox=J2000ANDstatsmode=VO";
 }
 function option_ir() {
   slider.setAttribute("min","5");
-  slider.setAttribute("max","120");
+  slider.setAttribute("max","90");
   jQuery("#slider").val(30);
   zoom_dss = 30;
   jQuery("#loading_bg").show();
   image.onload = function () {
      jQuery("#loading_bg").hide();
-     black_white();
+
      img_type = "DSS_IR";
      update_fov();
      preload();
@@ -712,7 +702,7 @@ function option_ir() {
     image.onerror = "";
     image.src = "img_error.png";
   }
-  image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
+  image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-infraredANDequinox=J2000ANDstatsmode=VO";
 }
 function option_sdss() {
   slider.setAttribute("min","5");
@@ -722,7 +712,7 @@ function option_sdss() {
   jQuery("#loading_bg").show();
   image.onload = function () {
      jQuery("#loading_bg").hide();
-     color();
+
      img_type = "SDSS";
      update_fov();
      preload();
@@ -851,17 +841,17 @@ function ra_plus() {
     preload();
   }
   if (img_type == "DSS_R") {
-    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
-    black_white();
+    image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-redANDequinox=J2000ANDstatsmode=VO";
+
   } else if (img_type == "DSS_B") {
-    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
-    black_white();
+    image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-blueANDequinox=J2000ANDstatsmode=VO";
+
   } else if (img_type == "DSS_IR") {
-    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
-    black_white();
+    image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-infraredANDequinox=J2000ANDstatsmode=VO";
+
   } else if (img_type == "SDSS") {
     image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + "&width=512&height=512";
-    color();
+
   }
 }
 
@@ -874,17 +864,17 @@ function ra_minus() {
     preload();
   }
   if (img_type == "DSS_R") {
-    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
-    black_white();
+    image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-redANDequinox=J2000ANDstatsmode=VO";
+
   } else if (img_type == "DSS_B") {
-    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
-    black_white();
+    image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-blueANDequinox=J2000ANDstatsmode=VO";
+
   } else if (img_type == "DSS_IR") {
-    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
-    black_white();
+    image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-infraredANDequinox=J2000ANDstatsmode=VO";
+
   } else if (img_type == "SDSS") {
     image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + "&width=512&height=512";
-    color();
+
   }
 }
 
@@ -897,17 +887,17 @@ function dec_plus() {
     preload();
   }
   if (img_type == "DSS_R") {
-    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
-    black_white();
+    image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-redANDequinox=J2000ANDstatsmode=VO";
+
   } else if (img_type == "DSS_B") {
-    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
-    black_white();
+    image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-blueANDequinox=J2000ANDstatsmode=VO";
+
   } else if (img_type == "DSS_IR") {
-    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
-    black_white();
+    image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-infraredANDequinox=J2000ANDstatsmode=VO";
+
   } else if (img_type == "SDSS") {
     image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + "&width=512&height=512";
-    color();
+
   }
 }
 
@@ -920,17 +910,17 @@ function dec_minus() {
     preload();
   }
   if (img_type == "DSS_R") {
-    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
-    black_white();
+    image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-redANDequinox=J2000ANDstatsmode=VO";
+
   } else if (img_type == "DSS_B") {
-    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
-    black_white();
+    image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-blueANDequinox=J2000ANDstatsmode=VO";
+
   } else if (img_type == "DSS_IR") {
-    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
-    black_white();
+    image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-infraredANDequinox=J2000ANDstatsmode=VO";
+
   } else if (img_type == "SDSS") {
     image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + "&width=512&height=512";
-    color();
+
   }
 }
 
@@ -958,16 +948,6 @@ function ha_sun() {
     image.src = "img_error.png";
   }
   image.src = "https://www.daystarfilters.com/latest_gong_color.jpg";
-}
-
-function black_white() {
-  $('#DSO_image').css('-webkit-filter','grayscale(100%)');
-  $('#DSO_image').css('filter','grayscale(100%)');
-}
-
-function color() {
-  $('#DSO_image').css('-webkit-filter','grayscale(0%)');
-  $('#DSO_image').css('filter','grayscale(0%)');
 }
 
 function moonPhase(day, month, year) { /* based on https://www.subsystems.us/uploads/9/8/9/4/98948044/moonphase.pdf*/
@@ -1053,43 +1033,48 @@ function preload() {
   img_3 = new Image();
   img_4 = new Image();
 
-  if (img_type == "DSS_R") {
-    img_1.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + (ra + 0.1) + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
-  } else if (img_type == "DSS_B") {
-    img_1.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + (ra + 0.1) + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
-  } else if (img_type == "DSS_IR") {
-    img_1.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + (ra + 0.1) + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
-  } else if (img_type == "SDSS") {
+  if (img_type != "SDSS") {
+    if (zoom_dss < 90) {
+      if (img_type == "DSS_R") {
+        img_1.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + (ra + 0.1) + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-redANDequinox=J2000ANDstatsmode=VO";
+      } else if (img_type == "DSS_B") {
+        img_1.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + (ra + 0.1) + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-blueANDequinox=J2000ANDstatsmode=VO";
+      } else if (img_type == "DSS_IR") {
+        img_1.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + (ra + 0.1) + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-infraredANDequinox=J2000ANDstatsmode=VO";
+      }
+      setTimeout(function() {
+        if (img_type == "DSS_R") {
+          img_2.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + (ra - 0.1) + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-redANDequinox=J2000ANDstatsmode=VO";
+        } else if (img_type == "DSS_B") {
+          img_2.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + (ra - 0.1) + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-blueANDequinox=J2000ANDstatsmode=VO";
+        } else if (img_type == "DSS_IR") {
+          img_2.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + (ra - 0.1) + "ANDdec=" + dec + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-infraredANDequinox=J2000ANDstatsmode=VO";
+        }
+        setTimeout(function() {
+          if (img_type == "DSS_R") {
+            img_3.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + (dec + 0.1) + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-redANDequinox=J2000ANDstatsmode=VO";
+          } else if (img_type == "DSS_B") {
+            img_3.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + (dec + 0.1) + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-blueANDequinox=J2000ANDstatsmode=VO";
+          } else if (img_type == "DSS_IR") {
+            img_3.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + (dec + 0.1) + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-infraredANDequinox=J2000ANDstatsmode=VO";
+          }
+          setTimeout(function() {
+            if (img_type == "DSS_R") {
+              img_4.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + (dec - 0.1) + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-redANDequinox=J2000ANDstatsmode=VO";
+            } else if (img_type == "DSS_B") {
+              img_4.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + (dec - 0.1) + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-blueANDequinox=J2000ANDstatsmode=VO";
+            } else if (img_type == "DSS_IR") {
+              img_4.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + (dec - 0.1) + "ANDx=" + zoom_dss + ".000000ANDy=" + zoom_dss + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-infraredANDequinox=J2000ANDstatsmode=VO";
+            }
+          }, 500);
+        }, 500);
+      }, 500);
+    }
+  }
+  if (img_type == "SDSS") {
     img_1.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + (ra + 0.1) + "&dec=" + dec + "&scale=" + zoom_sdss + "&width=512&height=512";
-  }
-
-  if (img_type == "DSS_R") {
-    img_2.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + (ra - 0.1) + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
-  } else if (img_type == "DSS_B") {
-    img_2.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + (ra - 0.1) + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
-  } else if (img_type == "DSS_IR") {
-    img_2.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + (ra - 0.1) + "&dec=" + dec + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
-  } else if (img_type == "SDSS") {
     img_2.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + (ra - 0.1) + "&dec=" + dec + "&scale=" + zoom_sdss + "&width=512&height=512";
-  }
-
-  if (img_type == "DSS_R") {
-    img_3.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + (dec + 0.1) + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
-  } else if (img_type == "DSS_B") {
-    img_3.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + (dec + 0.1) + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
-  } else if (img_type == "DSS_IR") {
-    img_3.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + (dec + 0.1) + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
-  } else if (img_type == "SDSS") {
     img_3.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + (dec + 0.1) + "&scale=" + zoom_sdss + "&width=512&height=512";
-  }
-
-  if (img_type == "DSS_R") {
-    img_4.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + (dec - 0.1) + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
-  } else if (img_type == "DSS_B") {
-    img_4.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + (dec - 0.1) + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
-  } else if (img_type == "DSS_IR") {
-    img_4.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + (dec - 0.1) + "&x=" + zoom_dss + ".000000&y=" + zoom_dss + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
-  } else if (img_type == "SDSS") {
     img_4.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + (dec - 0.1) + "&scale=" + zoom_sdss + "&width=512&height=512";
   }
 }
@@ -1097,31 +1082,31 @@ function preload() {
 function zoom_slider(value) {
   if (img_type == "DSS_R") {
     jQuery("#loading_bg").show();
-    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + value + ".000000&y=" + value + ".000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000&statsmode=VO";
+    image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + value + ".000000ANDy=" + value + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-redANDequinox=J2000ANDstatsmode=VO";
     image.onload = function () {
       jQuery("#loading_bg").hide();
       preload();
       zoom_dss = value;
     }
-    black_white();
+
   } else if (img_type == "DSS_B") {
     jQuery("#loading_bg").show();
-    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + value + ".000000&y=" + value + ".000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000&statsmode=VO";
+    image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + value + ".000000ANDy=" + value + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-blueANDequinox=J2000ANDstatsmode=VO";
     image.onload = function () {
       jQuery("#loading_bg").hide();
       preload();
       zoom_dss = value;
     }
-    black_white();
+
   } else if (img_type == "DSS_IR") {
     jQuery("#loading_bg").show();
-    image.src = "https://https-proxy-dss.herokuapp.com/dss/dss/image?ra=" + ra + "&dec=" + dec + "&x=" + value + ".000000&y=" + value + ".000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000&statsmode=VO";
+    image.src = "https://node-dss-resizer.herokuapp.com/?width=512&url=ra=" + ra + "ANDdec=" + dec + "ANDx=" + value + ".000000ANDy=" + value + ".000000ANDmime-type=download-gifANDSky-Survey=DSS2-infraredANDequinox=J2000ANDstatsmode=VO";
     image.onload = function () {
       jQuery("#loading_bg").hide();
       preload();
       zoom_dss = value;
     }
-    black_white();
+
   } else if (img_type == "SDSS") {
     value = value / 10 * 1.2;
     jQuery("#loading_bg").show();
@@ -1131,7 +1116,7 @@ function zoom_slider(value) {
       preload();
       zoom_sdss = value;
     }
-    color();
+
   }
 }
 
@@ -1140,6 +1125,7 @@ function update_fov() {
   if (img_type == "DSS_R" || img_type == "DSS_B" || img_type == "DSS_IR") {
     var zoom_fov = slider.value;
     fov_value = zoom_fov / 60;
+    zoom_dss = fov_value * 60;
     if (fov_value < 1) {
       fov_value = fov_value * 60;
       document.getElementById("fov_text").innerHTML = "FoV " + fov_value.toFixed(2) + "\"";

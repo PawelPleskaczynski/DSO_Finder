@@ -55,6 +55,277 @@
   },
 
   {
+    "camera_manufacturer":"Canon DSLR",
+    "cameras":[
+      {
+        "type":"camera",
+        "camera_name":"EOS 1D X",
+        "pixel_size":"6.95",
+        "resolution_width":"5184",
+        "resolution_height":"3456"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 1D X Mark II",
+        "pixel_size":"6.57",
+        "resolution_width":"5472",
+        "resolution_height":"3648"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 5D Mark III",
+        "pixel_size":"6.25",
+        "resolution_width":"5760",
+        "resolution_height":"3840"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 5D Mark IV",
+        "pixel_size":"5.35",
+        "resolution_width":"6720",
+        "resolution_height":"4480"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 5DS",
+        "pixel_size":"4.14",
+        "resolution_width":"8688",
+        "resolution_height":"5792"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 6D",
+        "pixel_size":"6.55",
+        "resolution_width":"5472",
+        "resolution_height":"3648"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 6D Mark II",
+        "pixel_size":"5.77",
+        "resolution_width":"6240",
+        "resolution_height":"4160"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 7D",
+        "pixel_size":"4.3",
+        "resolution_width":"5184",
+        "resolution_height":"3456"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 7D Mark II",
+        "pixel_size":"4.1",
+        "resolution_width":"5472",
+        "resolution_height":"3648"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 60D",
+        "pixel_size":"4.3",
+        "resolution_width":"5184",
+        "resolution_height":"3456"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 70D",
+        "pixel_size":"4.1",
+        "resolution_width":"5472",
+        "resolution_height":"3648"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 77D",
+        "pixel_size":"3.72",
+        "resolution_width":"6000",
+        "resolution_height":"4000"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 80D",
+        "pixel_size":"3.7",
+        "resolution_width":"6000",
+        "resolution_height":"4000"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 300D",
+        "pixel_size":"7.4",
+        "resolution_width":"3072",
+        "resolution_height":"2048"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 350D",
+        "pixel_size":"6.4",
+        "resolution_width":"3456",
+        "resolution_height":"2304"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 400D",
+        "pixel_size":"5.7",
+        "resolution_width":"3888",
+        "resolution_height":"2592"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 450D",
+        "pixel_size":"5.2",
+        "resolution_width":"4272",
+        "resolution_height":"2848"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 500D",
+        "pixel_size":"4.7",
+        "resolution_width":"4752",
+        "resolution_height":"3168"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 550D",
+        "pixel_size":"4.3",
+        "resolution_width":"5184",
+        "resolution_height":"3456"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 600D",
+        "pixel_size":"4.3",
+        "resolution_width":"5184",
+        "resolution_height":"3456"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 650D",
+        "pixel_size":"4.3",
+        "resolution_width":"5184",
+        "resolution_height":"3456"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 700D",
+        "pixel_size":"4.3",
+        "resolution_width":"5184",
+        "resolution_height":"3456"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 750D",
+        "pixel_size":"3.71",
+        "resolution_width":"6000",
+        "resolution_height":"4000"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 750D",
+        "pixel_size":"3.71",
+        "resolution_width":"6000",
+        "resolution_height":"4000"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 760D",
+        "pixel_size":"3.71",
+        "resolution_width":"6000",
+        "resolution_height":"4000"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 800D",
+        "pixel_size":"3.72",
+        "resolution_width":"6000",
+        "resolution_height":"4000"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 100D",
+        "pixel_size":"4.3",
+        "resolution_width":"5184",
+        "resolution_height":"3456"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 1000D",
+        "pixel_size":"5.7",
+        "resolution_width":"3888",
+        "resolution_height":"2592"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 1100D",
+        "pixel_size":"5.2",
+        "resolution_width":"4272",
+        "resolution_height":"2848"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 1200D",
+        "pixel_size":"4.3",
+        "resolution_width":"5184",
+        "resolution_height":"3456"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 1300D",
+        "pixel_size":"4.3",
+        "resolution_width":"5184",
+        "resolution_height":"3456"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS 4000D",
+        "pixel_size":"4.3",
+        "resolution_width":"5184",
+        "resolution_height":"3456"
+      }
+    ]
+  },
+
+  {
+    "camera_manufacturer":"Canon EOS M",
+    "cameras":[
+      {
+        "type":"camera",
+        "camera_name":"EOS M",
+        "pixel_size":"4.3",
+        "resolution_width":"5184",
+        "resolution_height":"3456"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS M3",
+        "pixel_size":"3.71",
+        "resolution_width":"6000",
+        "resolution_height":"4000"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS M5",
+        "pixel_size":"3.71",
+        "resolution_width":"6000",
+        "resolution_height":"4000"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS M10",
+        "pixel_size":"4.3",
+        "resolution_width":"5184",
+        "resolution_height":"3456"
+      },
+      {
+        "type":"camera",
+        "camera_name":"EOS M100",
+        "pixel_size":"3.71",
+        "resolution_width":"6000",
+        "resolution_height":"4000"
+      }
+    ]
+  },
+
+  {
     "camera_manufacturer":"ZWO",
     "cameras":[
       {
