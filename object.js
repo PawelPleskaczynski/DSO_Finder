@@ -600,7 +600,7 @@ function zoomin() {
       if (zoom_sdss >= 0) {
         image.src = "https://skyserver.sdss.org/dr12/SkyserverWS/ImgCutout/getjpeg?ra=" + ra + "&dec=" + dec + "&scale=" + zoom_sdss + "&width=512&height=512";
         var zoom_sdss_slider_value = zoom_sdss / 10;
-        jQuery("#slider").val(zoom_sdss_slider_value);
+        jQuery("#slider").val(zoom_sdss_slider_value * 10 * 10);
       } else {
         zoom_sdss = 0;
         var zoom_sdss_slider_value = zoom_sdss / 10;
