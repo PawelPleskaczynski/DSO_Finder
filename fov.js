@@ -330,7 +330,7 @@ function fov_img() {
       if (fov_width * fov_height <= 8100) {
 
         if (coord_regex.test(object_imaging_v)) {
-          var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + object_imaging_v.replace("+","%2B") + "&format=json&radius=10";
+          var requestURL = "https://cors-anywhere.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + object_imaging_v.replace("+","%2B") + "&format=json&radius=10";
         } else if (ra_dec_regex.test(object_imaging_v)) {
           var ra_reg = object_imaging_v.match(ra_regex);
           var dec_reg = object_imaging_v.match(dec_regex);
@@ -349,9 +349,9 @@ function fov_img() {
           var dec2 = Number(dec_m[1]/60);
           var dec3 = Number(dec_s[1]/3600);
           dec_final = Number(dec_d_symbol + (dec1 + dec2 + dec3)).toFixed(3);
-          var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + ra_final.toFixed(3) + " " + dec_final.replace("+","%2B") + "&format=json&radius=10";
+          var requestURL = "https://cors-anywhere.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + ra_final.toFixed(3) + " " + dec_final.replace("+","%2B") + "&format=json&radius=10";
         } else {
-          var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/" + object_imaging_v + "/?format=json";
+          var requestURL = "https://cors-anywhere.herokuapp.com/https://api.arcsecond.io/objects/" + object_imaging_v + "/?format=json";
         }
 
         $.getJSON(requestURL, function (json) {
@@ -462,7 +462,7 @@ function fov_img() {
         scroll_bottom();
 
         if (coord_regex.test(object_imaging_v)) {
-          var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + object_imaging_v.replace("+","%2B") + "&format=json&radius=10";
+          var requestURL = "https://cors-anywhere.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + object_imaging_v.replace("+","%2B") + "&format=json&radius=10";
         } else if (ra_dec_regex.test(object_imaging_v)) {
           var ra_reg = object_imaging_v.match(ra_regex);
           var dec_reg = object_imaging_v.match(dec_regex);
@@ -481,9 +481,9 @@ function fov_img() {
           var dec2 = Number(dec_m[1]/60);
           var dec3 = Number(dec_s[1]/3600);
           dec_final = Number(dec_d_symbol + (dec1 + dec2 + dec3)).toFixed(3);
-          var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + ra_final.toFixed(3) + " " + dec_final.replace("+","%2B") + "&format=json&radius=10";
+          var requestURL = "https://cors-anywhere.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + ra_final.toFixed(3) + " " + dec_final.replace("+","%2B") + "&format=json&radius=10";
         } else {
-          var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/" + object_imaging_v + "/?format=json";
+          var requestURL = "https://cors-anywhere.herokuapp.com/https://api.arcsecond.io/objects/" + object_imaging_v + "/?format=json";
         }
 
         $.getJSON(requestURL, function (json) {
@@ -763,7 +763,7 @@ function fov_obs() {
       if (fov * fov <= 8100) {
 
         if (coord_regex.test(object_observing_v)) {
-          var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + object_observing_v.replace("+","%2B") + "&format=json&radius=10";
+          var requestURL = "https://cors-anywhere.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + object_observing_v.replace("+","%2B") + "&format=json&radius=10";
         } else if (ra_dec_regex.test(object_observing_v)) {
           var ra_reg = object_observing_v.match(ra_regex);
           var dec_reg = object_observing_v.match(dec_regex);
@@ -782,9 +782,9 @@ function fov_obs() {
           var dec2 = Number(dec_m[1]/60);
           var dec3 = Number(dec_s[1]/3600);
           dec_final = Number(dec_d_symbol + (dec1 + dec2 + dec3)).toFixed(3);
-          var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + ra_final.toFixed(3) + " " + dec_final.replace("+","%2B") + "&format=json&radius=10";
+          var requestURL = "https://cors-anywhere.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + ra_final.toFixed(3) + " " + dec_final.replace("+","%2B") + "&format=json&radius=10";
         } else {
-          var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/" + object_observing_v + "/?format=json";
+          var requestURL = "https://cors-anywhere.herokuapp.com/https://api.arcsecond.io/objects/" + object_observing_v + "/?format=json";
         }
 
         $.getJSON(requestURL, function (json) {
@@ -897,7 +897,7 @@ function fov_obs() {
         scroll_bottom();
 
         if (coord_regex.test(object_observing_v)) {
-          var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + object_observing_v.replace("+","%2B") + "&format=json&radius=10";
+          var requestURL = "https://cors-anywhere.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + object_observing_v.replace("+","%2B") + "&format=json&radius=10";
         } else if (ra_dec_regex.test(object_observing_v)) {
           var ra_reg = object_observing_v.match(ra_regex);
           var dec_reg = object_observing_v.match(dec_regex);
@@ -916,9 +916,9 @@ function fov_obs() {
           var dec2 = Number(dec_m[1]/60);
           var dec3 = Number(dec_s[1]/3600);
           dec_final = Number(dec_d_symbol + (dec1 + dec2 + dec3)).toFixed(3);
-          var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + ra_final.toFixed(3) + " " + dec_final.replace("+","%2B") + "&format=json&radius=10";
+          var requestURL = "https://cors-anywhere.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + ra_final.toFixed(3) + " " + dec_final.replace("+","%2B") + "&format=json&radius=10";
         } else {
-          var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/" + object_observing_v + "/?format=json";
+          var requestURL = "https://cors-anywhere.herokuapp.com/https://api.arcsecond.io/objects/" + object_observing_v + "/?format=json";
         }
 
         $.getJSON(requestURL, function (json) {

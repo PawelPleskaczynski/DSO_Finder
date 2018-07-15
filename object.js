@@ -50,7 +50,7 @@ $(function () {
 function load() {
   if (is_coords) {
     jQuery("#coords_icon").show();
-    var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + getVar("obj") + "&format=json&radius=10";
+    var requestURL = "https://cors-anywhere.herokuapp.com/https://api.arcsecond.io/objects/?coordinates=" + getVar("obj") + "&format=json&radius=10";
     json();
     jQuery("#link_left").attr("onclick","ra_plus()");
     jQuery("#link_right").attr("onclick","ra_minus()");
@@ -158,7 +158,7 @@ function load() {
     }
     jQuery("#iframe").show();
   } else {
-    var requestURL = "https://calm-eyrie-13472.herokuapp.com/https://api.arcsecond.io/objects/" + getVar("obj") + "/?format=json";
+    var requestURL = "https://cors-anywhere.herokuapp.com/https://api.arcsecond.io/objects/" + getVar("obj") + "/?format=json";
     json();
     jQuery("#link_left").attr("onclick","ra_plus()");
     jQuery("#link_right").attr("onclick","ra_minus()");
@@ -409,7 +409,7 @@ function load() {
             name = letters + " " + numbers;
           }
         }
-        var requrl = "https://calm-eyrie-13472.herokuapp.com/https://en.wikipedia.org/w/api.php?action=opensearch&search=" + name;
+        var requrl = "https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=opensearch&search=" + name;
         jQuery.getJSON(requrl, function(json) {
           var array = json[1];
           var array_desc = json[2];
